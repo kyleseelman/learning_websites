@@ -1,0 +1,1425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LATENT SPACE — An Interactive Guide to Modern AI</title>
+<style>
+  :root {
+    color-scheme: dark;
+    --bg: #07070d;
+    --panel: rgba(255,255,255,.035);
+    --line: rgba(255,255,255,.09);
+    --fg: #ecebf5;
+    --dim: #9a98b5;
+    --prose: #cfcde6;
+    --code: #cfcde6;
+    --v: #8b5cf6;
+    --c: #22d3ee;
+    --p: #f472b6;
+    --a: #fbbf24;
+    --g: #34d399;
+    --well: rgba(0,0,0,.35);
+    --well-2: rgba(0,0,0,.25);
+    --well-3: rgba(0,0,0,.2);
+    --inset: rgba(0,0,0,.4);
+    --track: rgba(255,255,255,.12);
+    --bar: rgba(255,255,255,.04);
+    --soft: rgba(255,255,255,.05);
+    --soft-2: rgba(255,255,255,.08);
+    --mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+  }
+  html[data-theme="light"] {
+    color-scheme: light;
+    --bg: #f4f2fb;
+    --panel: #ffffff;
+    --line: rgba(36, 28, 72, .14);
+    --fg: #1b1630;
+    --dim: #4e486c;
+    --prose: #322c4e;
+    --code: #2a2444;
+    --v: #6d28d9;
+    --c: #0e7490;
+    --p: #be185d;
+    --a: #b45309;
+    --g: #047857;
+    --well: #ffffff;
+    --well-2: #f7f5fc;
+    --well-3: #f8f7fc;
+    --inset: #f3f0fa;
+    --track: rgba(36, 28, 72, .16);
+    --bar: rgba(36, 28, 72, .07);
+    --soft: #ffffff;
+    --soft-2: rgba(36, 28, 72, .08);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--fg); font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif; overflow-x: hidden; line-height: 1.6; }
+  body::before {
+    content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+    background:
+      radial-gradient(800px 600px at 10% 10%, rgba(139,92,246,.10), transparent 60%),
+      radial-gradient(700px 500px at 90% 60%, rgba(34,211,238,.07), transparent 60%),
+      radial-gradient(600px 500px at 30% 100%, rgba(244,114,182,.06), transparent 60%);
+  }
+  ::selection { background: var(--v); color: #fff; }
+  button { font-family: inherit; cursor: pointer; }
+
+  /* ---------- Nav ---------- */
+  #progress { position: fixed; top: 0; left: 0; height: 2px; width: 0; z-index: 100; background: linear-gradient(90deg, var(--v), var(--c), var(--p)); }
+  #sidenav { position: fixed; left: 22px; top: 50%; transform: translateY(-50%); z-index: 50; display: flex; flex-direction: column; gap: 12px; }
+  #sidenav a { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--dim); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; }
+  #sidenav a i { width: 8px; height: 8px; border-radius: 50%; border: 1px solid var(--dim); transition: all .3s; flex: none; }
+  #sidenav a span { opacity: 0; transform: translateX(-6px); transition: all .3s; white-space: nowrap; }
+  #sidenav:hover a span, #sidenav a.active span { opacity: 1; transform: none; }
+  #sidenav a.active { color: var(--fg); }
+  #sidenav a.active i { background: var(--c); border-color: var(--c); box-shadow: 0 0 12px var(--c); }
+  @media (max-width: 1100px) { #sidenav { display: none; } }
+
+  /* ---------- Layout ---------- */
+  main { position: relative; z-index: 1; }
+  section { padding: 120px 8vw 80px 12vw; max-width: 1500px; margin: 0 auto; }
+  @media (max-width: 1100px) { section { padding: 90px 5vw 60px; } }
+  .kicker { font-family: var(--mono); font-size: 12px; color: var(--c); letter-spacing: .2em; margin-bottom: 14px; }
+  h2 { font-size: clamp(34px, 5vw, 64px); line-height: 1.05; letter-spacing: -.03em; font-weight: 800; margin-bottom: 18px; }
+  h2 .grad, h1 .grad { background: linear-gradient(90deg, var(--v), var(--c)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .intro { color: var(--dim); font-size: 18px; max-width: 760px; margin-bottom: 40px; }
+  .intro b { color: var(--fg); font-weight: 600; }
+  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 20px; padding: 28px; position: relative; overflow: hidden; }
+  .grid2 { display: grid; grid-template-columns: 1.4fr 1fr; gap: 24px; align-items: start; }
+  @media (max-width: 1000px) { .grid2 { grid-template-columns: 1fr; } }
+  .note { font-size: 13px; color: var(--dim); margin-top: 14px; }
+  .note b { color: var(--a); font-weight: 600; }
+  .explain h3 { font-size: 20px; margin-bottom: 10px; }
+  .explain p { color: var(--dim); font-size: 15px; margin-bottom: 14px; }
+  .explain p b { color: var(--fg); }
+  .explain code, .mono { font-family: var(--mono); font-size: .9em; color: var(--c); }
+  .btn {
+    background: var(--soft); border: 1px solid var(--line); color: var(--fg); padding: 9px 16px;
+    border-radius: 10px; font-size: 13px; transition: all .2s;
+  }
+  .btn:hover { border-color: var(--c); color: var(--c); }
+  .btn.primary { background: linear-gradient(90deg, var(--v), #6d28d9); border: none; color: #fff; }
+  .btn.primary:hover { filter: brightness(1.2); color: #fff; }
+  .btn.on { border-color: var(--c); color: var(--c); background: rgba(34,211,238,.08); }
+  .row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+  input[type=range] { -webkit-appearance: none; appearance: none; width: 100%; height: 4px; border-radius: 4px; background: var(--track); outline: none; }
+  input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 18px; height: 18px; border-radius: 50%; background: var(--c); box-shadow: 0 0 14px var(--c); cursor: pointer; }
+  input[type=range]::-moz-range-thumb { width: 18px; height: 18px; border-radius: 50%; background: var(--c); border: none; cursor: pointer; }
+  .slider { margin: 14px 0; }
+  .slider label { display: flex; justify-content: space-between; font-size: 13px; color: var(--dim); margin-bottom: 8px; }
+  .slider label b { color: var(--fg); font-family: var(--mono); }
+  .reveal { opacity: 0; transform: translateY(40px); transition: opacity .9s cubic-bezier(.2,.7,.2,1), transform .9s cubic-bezier(.2,.7,.2,1); }
+  .reveal.visible { opacity: 1; transform: none; }
+  canvas { display: block; }
+
+  /* ---------- Hero ---------- */
+  #hero { position: relative; height: 100vh; min-height: 640px; display: flex; align-items: center; padding: 0 8vw 0 12vw; max-width: none; overflow: hidden; }
+  #hero-canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .hero-inner { position: relative; max-width: 900px; pointer-events: none; }
+  .hero-inner .kicker { font-size: 13px; }
+  h1 { font-size: clamp(56px, 10vw, 150px); line-height: .92; letter-spacing: -.05em; font-weight: 900; }
+  #stream { margin-top: 30px; font-size: clamp(18px, 2vw, 24px); color: var(--dim); min-height: 3.4em; max-width: 720px; font-family: var(--mono); }
+  #stream .t { animation: tokIn .6s ease-out; border-radius: 4px; }
+  @keyframes tokIn { from { background: rgba(34,211,238,.45); color: #fff; } to { background: transparent; } }
+  #stream .caret { display: inline-block; width: .55em; height: 1.1em; background: var(--c); vertical-align: -3px; animation: blink 1s steps(1) infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
+  .hero-cta { margin-top: 36px; display: flex; gap: 14px; pointer-events: auto; }
+  .hero-cta a { text-decoration: none; }
+  .hero-chips { margin-top: 40px; display: flex; flex-wrap: wrap; gap: 8px; pointer-events: auto; }
+  .chip { font-family: var(--mono); font-size: 11px; color: var(--dim); border: 1px solid var(--line); border-radius: 20px; padding: 5px 11px; text-decoration: none; transition: all .2s; }
+  .chip:hover { color: var(--c); border-color: var(--c); }
+
+  /* ---------- Tokenizer ---------- */
+  #tok-input { width: 100%; min-height: 110px; background: var(--well); border: 1px solid var(--line); border-radius: 12px; padding: 14px; color: var(--fg); font-size: 16px; font-family: inherit; resize: vertical; outline: none; }
+  #tok-input:focus { border-color: var(--v); }
+  #tok-out { margin-top: 18px; font-family: var(--mono); font-size: 15px; line-height: 2.1; min-height: 60px; word-break: break-word; }
+  #tok-out .tk { padding: 3px 1px; border-radius: 4px; margin-right: 1px; transition: transform .15s; display: inline; }
+  #tok-out .tk:hover { outline: 1px solid var(--fg); }
+  #tok-out .sp { opacity: .45; }
+  #tok-out.ids .tk { font-size: 12px; }
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 20px; }
+  .stat { background: var(--well-2); border: 1px solid var(--line); border-radius: 12px; padding: 14px; }
+  .stat .n { font-size: 28px; font-weight: 800; font-family: var(--mono); }
+  .stat .l { font-size: 11px; color: var(--dim); letter-spacing: .12em; text-transform: uppercase; }
+
+  /* ---------- Attention ---------- */
+  #attn-wrap { position: relative; overflow-x: auto; padding-top: 150px; padding-bottom: 10px; }
+  #attn-svg { position: absolute; top: 0; left: 0; pointer-events: none; overflow: visible; }
+  #attn-sent { display: flex; gap: 8px; white-space: nowrap; width: max-content; position: relative; }
+  #attn-sent span { font-family: var(--mono); font-size: 17px; padding: 8px 12px; border-radius: 8px; border: 1px solid var(--line); cursor: pointer; transition: background .2s, border-color .2s; }
+  #attn-sent span.q { border-color: var(--a); box-shadow: 0 0 0 2px rgba(251,191,36,.25); }
+  #attn-heat { width: 100%; max-width: 380px; aspect-ratio: 1; margin: 0 auto; }
+
+  /* ---------- Sampling ---------- */
+  #samp-prompt { font-family: var(--mono); font-size: 18px; padding: 16px; background: var(--well); border-radius: 12px; border: 1px solid var(--line); min-height: 60px; }
+  #samp-prompt .gen { color: var(--c); }
+  #samp-prompt .new { animation: tokIn 1s; }
+  .bars { margin-top: 18px; display: flex; flex-direction: column; gap: 6px; }
+  .bar-row { display: grid; grid-template-columns: 110px 1fr 60px; gap: 12px; align-items: center; font-family: var(--mono); font-size: 13px; transition: opacity .3s; }
+  .bar-row.cut { opacity: .28; }
+  .bar-track { height: 20px; background: var(--bar); border-radius: 5px; position: relative; overflow: hidden; }
+  .bar-fill { position: absolute; inset: 0 auto 0 0; background: linear-gradient(90deg, var(--v), var(--c)); border-radius: 5px; transition: width .35s cubic-bezier(.2,.8,.2,1); }
+  .bar-hist { position: absolute; left: 0; bottom: 0; height: 4px; background: var(--a); transition: width .35s; }
+  .bar-row.picked .bar-track { box-shadow: 0 0 0 2px var(--a); }
+  .bar-row .pct { text-align: right; color: var(--dim); }
+
+  /* ---------- Transformer ---------- */
+  .tf { display: grid; grid-template-columns: 260px 1fr; gap: 24px; }
+  @media (max-width: 800px) { .tf { grid-template-columns: 1fr; } }
+  .tf-stack { display: flex; flex-direction: column; gap: 6px; }
+  .tf-stage { padding: 11px 14px; border-radius: 10px; border: 1px solid var(--line); font-size: 13px; cursor: pointer; transition: all .25s; display: flex; justify-content: space-between; background: var(--well-3); }
+  .tf-stage small { color: var(--dim); font-family: var(--mono); }
+  .tf-stage.loop { margin-left: 18px; border-left: 2px solid var(--v); }
+  .tf-stage.active { border-color: var(--c); background: rgba(34,211,238,.1); box-shadow: 0 0 24px rgba(34,211,238,.15); }
+  .tf-stage.done { color: var(--dim); }
+  #tf-title { font-size: 26px; font-weight: 800; margin-bottom: 8px; }
+  #tf-desc { color: var(--dim); font-size: 15px; min-height: 96px; }
+  #tf-vis { margin-top: 20px; }
+  .vec-label { font-family: var(--mono); font-size: 12px; color: var(--dim); margin-bottom: 8px; }
+  .vec { display: grid; grid-template-columns: repeat(32, 1fr); gap: 3px; }
+  .vec div { aspect-ratio: 1; border-radius: 3px; transition: background .6s; }
+  #tf-tokens { display: flex; gap: 6px; margin-bottom: 14px; flex-wrap: wrap; min-height: 34px; }
+  #tf-tokens span { font-family: var(--mono); font-size: 13px; padding: 5px 10px; border-radius: 6px; background: rgba(139,92,246,.18); border: 1px solid rgba(139,92,246,.4); }
+  #tf-tokens span.hl { background: rgba(34,211,238,.2); border-color: var(--c); }
+
+  /* ---------- Pipeline / training ---------- */
+  .stages { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; position: relative; }
+  @media (max-width: 900px) { .stages { grid-template-columns: 1fr 1fr; } }
+  .stage-card { padding: 20px; border-radius: 16px; border: 1px solid var(--line); background: var(--well-3); cursor: pointer; transition: all .3s; }
+  .stage-card .num { font-family: var(--mono); font-size: 12px; color: var(--v); }
+  .stage-card h4 { font-size: 17px; margin: 6px 0; }
+  .stage-card p { font-size: 13px; color: var(--dim); }
+  .stage-card.active { border-color: var(--v); background: rgba(139,92,246,.12); transform: translateY(-4px); box-shadow: 0 16px 40px -10px rgba(139,92,246,.4); }
+  #stage-detail { margin-top: 20px; }
+  .data-ex { font-family: var(--mono); font-size: 13px; background: var(--inset); border-radius: 10px; padding: 16px; border: 1px solid var(--line); white-space: pre-wrap; color: var(--code); }
+  .data-ex .k { color: var(--p); } .data-ex .ok { color: var(--g); } .data-ex .bad { color: #f87171; } .data-ex .dim { color: var(--dim); }
+  #think-box { font-family: var(--mono); font-size: 14px; min-height: 180px; background: var(--inset); border-radius: 12px; padding: 18px; border: 1px solid var(--line); white-space: pre-wrap; color: var(--fg); }
+  #think-box .th { color: var(--dim); font-style: italic; }
+  #think-box .ans { color: var(--g); font-weight: 700; }
+  #think-box .wrong { color: #f87171; font-weight: 700; }
+
+  /* ---------- RAG ---------- */
+  .rag { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+  @media (max-width: 1000px) { .rag { grid-template-columns: 1fr; } }
+  .rag-step { padding: 16px; border-radius: 14px; border: 1px solid var(--line); background: var(--well-3); opacity: .4; transition: all .5s; min-height: 220px; }
+  .rag-step.on { opacity: 1; border-color: var(--c); box-shadow: 0 0 30px rgba(34,211,238,.12); }
+  .rag-step h5 { font-family: var(--mono); font-size: 11px; letter-spacing: .15em; color: var(--c); margin-bottom: 10px; }
+  .rag-step .body { font-size: 13px; color: var(--dim); }
+  .doc { display: grid; grid-template-columns: 1fr 34px; gap: 6px; font-size: 11px; margin-bottom: 6px; align-items: center; transition: all .4s; padding: 4px 6px; border-radius: 6px; }
+  .doc .sb { grid-column: 1 / -1; height: 3px; background: var(--bar); border-radius: 3px; overflow: hidden; }
+  .doc .sb i { display: block; height: 100%; width: 0; background: var(--c); transition: width .8s; }
+  .doc.top { background: rgba(34,211,238,.1); color: var(--fg); }
+  .mini-vec { display: grid; grid-template-columns: repeat(12, 1fr); gap: 2px; margin-top: 10px; }
+  .mini-vec i { aspect-ratio: 1; border-radius: 2px; background: var(--soft-2); transition: background .4s; }
+
+  /* ---------- Apps / Models ---------- */
+  .apps { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+  .app { padding: 24px; border-radius: 18px; border: 1px solid var(--line); background: var(--panel); cursor: pointer; transition: all .3s; position: relative; overflow: hidden; }
+  .app::before { content: ""; position: absolute; inset: 0; background: radial-gradient(300px circle at var(--mx,50%) var(--my,50%), rgba(139,92,246,.15), transparent 60%); opacity: 0; transition: opacity .3s; pointer-events: none; }
+  .app:hover::before { opacity: 1; }
+  .app:hover { border-color: rgba(139,92,246,.5); transform: translateY(-3px); }
+  .app .ic { font-size: 34px; }
+  .app h4 { font-size: 18px; margin: 10px 0 6px; }
+  .app p { font-size: 14px; color: var(--dim); }
+  .app .more { max-height: 0; overflow: hidden; transition: max-height .5s ease, margin .5s; font-size: 13px; color: var(--prose); }
+  .app.open .more { max-height: 320px; margin-top: 12px; }
+  .app .more b { color: var(--c); font-weight: 600; }
+  .app .hint { position: absolute; top: 18px; right: 18px; font-family: var(--mono); font-size: 18px; color: var(--dim); transition: transform .3s; }
+  .app.open .hint { transform: rotate(45deg); color: var(--c); }
+
+  .models { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 18px; }
+  .model { padding: 26px; border-radius: 18px; border: 1px solid var(--line); background: var(--panel); }
+  .model .tag {
+    font-family: var(--mono); font-size: 11px; padding: 3px 9px; border-radius: 20px; display: inline-block; margin-bottom: 12px;
+    color: var(--tag); border: 1px solid color-mix(in srgb, var(--tag) 40%, transparent); background: color-mix(in srgb, var(--tag) 12%, transparent);
+  }
+  html[data-theme="light"] .model .tag { color: color-mix(in srgb, var(--tag) 58%, #120e24); }
+  html[data-theme="light"] .stage-card.active { box-shadow: 0 16px 40px -10px rgba(109,40,217,.35); }
+  .model h4 { font-size: 21px; margin-bottom: 8px; }
+  .model p { font-size: 14px; color: var(--dim); margin-bottom: 12px; }
+  .model ul { list-style: none; font-size: 13px; color: var(--prose); }
+  .model li { padding: 5px 0 5px 18px; position: relative; border-top: 1px solid var(--line); }
+  .model li::before { content: "›"; position: absolute; left: 4px; color: var(--c); }
+  .model .ex { margin-top: 12px; font-family: var(--mono); font-size: 12px; color: var(--a); }
+  .model svg { width: 100%; height: 70px; margin-bottom: 14px; }
+
+  footer { text-align: center; padding: 100px 20px 80px; color: var(--dim); position: relative; z-index: 1; }
+  footer h2 { margin-bottom: 14px; }
+
+  html[data-theme="light"] body::before {
+    background:
+      radial-gradient(800px 600px at 10% 10%, rgba(109,40,217,.08), transparent 60%),
+      radial-gradient(700px 500px at 90% 60%, rgba(14,116,144,.06), transparent 60%),
+      radial-gradient(600px 500px at 30% 100%, rgba(190,24,93,.05), transparent 60%);
+  }
+  html[data-theme="light"] .panel,
+  html[data-theme="light"] .app,
+  html[data-theme="light"] .model,
+  html[data-theme="light"] .stat,
+  html[data-theme="light"] .stage-card,
+  html[data-theme="light"] .rag-step {
+    box-shadow: 0 10px 30px rgba(40, 30, 80, .06);
+  }
+  html[data-theme="light"] .model svg text[fill="#9a98b5"] { fill: #4e486c; }
+  html[data-theme="light"] .model svg text[fill="#22d3ee"] { fill: #0e7490; }
+  html[data-theme="light"] .model svg text[fill="#fbbf24"] { fill: #b45309; }
+  html[data-theme="light"] .model svg text[fill="#f472b6"] { fill: #be185d; }
+  html[data-theme="light"] .model svg text[fill="#34d399"] { fill: #047857; }
+  html[data-theme="light"] .data-ex .bad,
+  html[data-theme="light"] #think-box .wrong { color: #dc2626; }
+
+  #theme-btn {
+    position: fixed; top: 18px; right: 22px; z-index: 80;
+    background: var(--panel); color: var(--fg); border: 1px solid var(--line);
+    border-radius: 999px; padding: 9px 16px; font-size: 13px; letter-spacing: .04em;
+    backdrop-filter: blur(10px); box-shadow: 0 8px 24px rgba(0,0,0,.18);
+  }
+  #theme-btn:hover { border-color: var(--c); color: var(--c); }
+  html[data-theme="light"] #theme-btn { box-shadow: 0 8px 24px rgba(40, 30, 80, .12); }
+</style>
+<script>
+(function () {
+  var t;
+  try { t = localStorage.getItem('ls-theme'); } catch (e) {}
+  document.documentElement.dataset.theme = t === 'dark' ? 'dark' : 'light';
+})();
+</script>
+</head>
+<body>
+<div id="progress"></div>
+<button id="theme-btn" type="button" aria-label="Toggle color theme">☾ Dark</button>
+
+<nav id="sidenav"></nav>
+
+<main>
+<!-- ======================= HERO ======================= -->
+<header id="hero" data-nav="Start">
+  <canvas id="hero-canvas"></canvas>
+  <div class="hero-inner">
+    <div class="kicker">// AN INTERACTIVE GUIDE TO MODERN AI</div>
+    <h1>Latent<br><span class="grad">Space.</span></h1>
+    <div id="stream"></div>
+    <div class="hero-cta">
+      <a class="btn primary" href="#tokens">Start learning →</a>
+      <a class="btn" href="#models">Jump to the models</a>
+    </div>
+    <div class="hero-chips">
+      <a class="chip" href="#tokens">tokens</a><a class="chip" href="#embeddings">embeddings</a><a class="chip" href="#attention">attention</a>
+      <a class="chip" href="#sampling">sampling</a><a class="chip" href="#transformer">transformers</a><a class="chip" href="#moe">mixture of experts</a>
+      <a class="chip" href="#diffusion">diffusion</a><a class="chip" href="#training">RLHF &amp; reasoning</a><a class="chip" href="#scaling">scaling laws</a><a class="chip" href="#rag">RAG</a>
+    </div>
+  </div>
+</header>
+
+<!-- ======================= TOKENS ======================= -->
+<section id="tokens" data-nav="Tokens">
+  <div class="kicker reveal">01 / TOKENIZATION</div>
+  <h2 class="reveal">Models don't read words.<br>They read <span class="grad">tokens.</span></h2>
+  <p class="intro reveal">Before a language model sees your text, it gets cut into <b>tokens</b>: common words, pieces of words, punctuation, and spaces. Each token maps to an integer ID, and the model only ever works with those IDs. That's why models sometimes struggle to count the letters in "strawberry": they never see the individual letters.</p>
+  <div class="grid2 reveal">
+    <div class="panel">
+      <textarea id="tok-input" spellcheck="false">Tokenization is surprisingly fundamental! GPT-style models see "unbelievably" as several pieces, and 1234567 gets split into chunks.</textarea>
+      <div class="row" style="margin-top:12px">
+        <button class="btn" id="tok-ids">Show token IDs</button>
+        <button class="btn" data-tok="How many r's are in strawberry?">strawberry</button>
+        <button class="btn" data-tok="def fibonacci(n):&#10;    return n if n < 2 else fibonacci(n-1) + fibonacci(n-2)">code</button>
+        <button class="btn" data-tok="Antidisestablishmentarianism internationalization">long words</button>
+      </div>
+      <div id="tok-out"></div>
+      <div class="stats">
+        <div class="stat"><div class="n" id="tok-n">0</div><div class="l">Tokens</div></div>
+        <div class="stat"><div class="n" id="tok-c">0</div><div class="l">Characters</div></div>
+        <div class="stat"><div class="n" id="tok-r">0</div><div class="l">Chars / token</div></div>
+      </div>
+    </div>
+    <div class="explain">
+      <h3>How it works: Byte-Pair Encoding</h3>
+      <p>Most tokenizers are built with <b>BPE</b>. It starts with single bytes, then repeatedly merges whichever adjacent pair shows up most often in a huge training corpus. After tens of thousands of merges, common words like <code>the</code> become a single token, while rare words get split into pieces like <code>anti</code> · <code>dis</code> · <code>establish</code> · <code>ment</code>.</p>
+      <p>Modern vocabularies have roughly <b>32k to 200k+ tokens</b>. For English, one token averages about <b>4 characters</b>, or about ¾ of a word. Other languages and code often need more tokens per word, which makes them more expensive to process.</p>
+      <p>Spaces are usually attached to the start of the following word. They show up here as <code>·</code>.</p>
+      <p class="note"><b>Note:</b> this demo is a simplified tokenizer that runs in your browser. Real BPE tokenizers will split text somewhat differently.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= EMBEDDINGS ======================= -->
+<section id="embeddings" data-nav="Embeddings">
+  <div class="kicker reveal">02 / EMBEDDINGS</div>
+  <h2 class="reveal">Meaning is a <span class="grad">direction.</span></h2>
+  <p class="intro reveal">Each token ID is turned into a <b>vector</b>: a list of a few thousand numbers. During training, words that show up in similar contexts end up close together in this high-dimensional space. Directions in the space come to mean things too. The difference between "man" and "woman" points roughly the same way as the difference between "king" and "queen."</p>
+  <div class="grid2 reveal">
+    <div class="panel" style="padding:0">
+      <canvas id="emb-canvas" style="width:100%;height:520px"></canvas>
+    </div>
+    <div class="explain">
+      <h3>Try vector arithmetic</h3>
+      <p>Hover over a word to see its nearest neighbors. Click an analogy below to watch the vector math happen.</p>
+      <div class="row" style="margin-bottom:18px">
+        <button class="btn" data-an="king,man,woman">king − man + woman</button>
+        <button class="btn" data-an="Paris,France,Japan">Paris − France + Japan</button>
+        <button class="btn" data-an="puppy,dog,cat">puppy − dog + cat</button>
+      </div>
+      <div class="data-ex" id="emb-result">Pick an analogy →</div>
+      <p style="margin-top:16px">Real embeddings have <b>thousands of dimensions</b>. This map squeezes them down to 2D, much like a projection technique such as t-SNE or UMAP would. Search engines, recommendation systems, and RAG (section 10) all rely on this idea: <b>things that are close in vector space have similar meanings.</b></p>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= ATTENTION ======================= -->
+<section id="attention" data-nav="Attention">
+  <div class="kicker reveal">03 / SELF-ATTENTION</div>
+  <h2 class="reveal">Every token <span class="grad">looks at</span><br>every other token.</h2>
+  <p class="intro reveal">Attention is the key idea behind the 2017 paper "Attention Is All You Need." For each token, the model computes a <b>query</b> ("what am I looking for?"), a <b>key</b> ("what do I contain?"), and a <b>value</b> ("what do I pass along?"). It compares each query against every key, and the resulting weights decide how much information flows from one token to another.</p>
+  <div class="panel reveal">
+    <div class="row" style="justify-content:space-between">
+      <div class="row">
+        <span class="mono" style="color:var(--dim);font-size:12px">HEAD:</span>
+        <button class="btn on" data-head="coref">Coreference</button>
+        <button class="btn" data-head="prev">Previous token</button>
+        <button class="btn" data-head="sink">Attention sink</button>
+      </div>
+      <div class="row">
+        <span class="mono" style="color:var(--dim);font-size:12px">LAST WORD:</span>
+        <button class="btn on" data-var="tired">tired</button>
+        <button class="btn" data-var="wide">wide</button>
+      </div>
+    </div>
+    <div id="attn-wrap">
+      <svg id="attn-svg"></svg>
+      <div id="attn-sent"></div>
+    </div>
+    <p class="note">Click any token to make it the <b>query</b>. Notice how <span class="mono">it</span> attends to <span class="mono">animal</span> when the last word is "tired," and to <span class="mono">street</span> when it's "wide."</p>
+  </div>
+  <div class="grid2 reveal" style="margin-top:24px">
+    <div class="explain">
+      <h3>The math, in one line</h3>
+      <p class="data-ex" style="font-size:15px">Attention(Q, K, V) = softmax( QKᵀ / √d ) · V</p>
+      <p style="margin-top:14px"><b>Multi-head attention</b> runs dozens of these in parallel, and each head learns its own pattern. Some heads track the <b>previous token</b>. Some link pronouns to what they refer to. Many dump extra attention onto the very first token, a pattern called an <b>"attention sink."</b></p>
+      <p>Language models are <b>causal</b>: a token can only attend to earlier tokens, never later ones. That's why the top-right triangle of the heatmap is empty.</p>
+      <p>Attention costs O(n²) in the length of the context, which is why long context windows are expensive. Tricks like <b>FlashAttention</b>, grouped-query attention, sliding windows, and KV caching keep the cost manageable.</p>
+    </div>
+    <div class="panel"><canvas id="attn-heat"></canvas><p class="note" style="text-align:center">Full attention matrix. Each row is a query and each column is a key.</p></div>
+  </div>
+</section>
+
+<!-- ======================= SAMPLING ======================= -->
+<section id="sampling" data-nav="Sampling">
+  <div class="kicker reveal">04 / NEXT-TOKEN PREDICTION</div>
+  <h2 class="reveal">It's all just <span class="grad">guessing the next token</span>.</h2>
+  <p class="intro reveal">A language model outputs a <b>probability for every token</b> in its vocabulary. Then a token is <b>sampled</b> from that distribution, added to the text, and the whole process repeats. <b>Temperature</b> and <b>top-p</b> control how adventurous that sampling is.</p>
+  <div class="grid2 reveal">
+    <div class="panel">
+      <div id="samp-prompt"></div>
+      <div class="bars" id="samp-bars"></div>
+      <div class="row" style="margin-top:18px">
+        <button class="btn primary" id="samp-one">Sample next token</button>
+        <button class="btn" id="samp-100">Sample 1,000×</button>
+        <button class="btn" id="samp-reset">Reset</button>
+      </div>
+    </div>
+    <div class="explain">
+      <div class="slider"><label>Temperature <b id="temp-v">1.00</b></label><input type="range" id="temp" min="0.05" max="2.5" step="0.01" value="1"></div>
+      <div class="slider"><label>Top-p (nucleus) <b id="topp-v">1.00</b></label><input type="range" id="topp" min="0.05" max="1" step="0.01" value="1"></div>
+      <p><b>Low temperature</b> makes the distribution sharper, so the model almost always picks the top choice. That's deterministic and safe, but it can get repetitive. <b>High temperature</b> flattens it out, so even "banana" gets a chance.</p>
+      <p><b>Top-p</b> keeps only the smallest set of tokens whose probabilities add up to <i>p</i>, then renormalizes. This cuts off the long tail of unlikely tokens. Grayed-out bars have been removed.</p>
+      <p>The yellow line under each bar is an <b>empirical histogram</b>. Click "Sample 1,000×" to watch randomness match the distribution.</p>
+      <p class="data-ex">p<sub>i</sub> = exp(z<sub>i</sub> / T) / Σ<sub>j</sub> exp(z<sub>j</sub> / T)</p>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= TRANSFORMER ======================= -->
+<section id="transformer" data-nav="Transformer">
+  <div class="kicker reveal">05 / THE TRANSFORMER</div>
+  <h2 class="reveal">Inside a <span class="grad">forward pass</span>.</h2>
+  <p class="intro reveal">Almost every frontier language model is a <b>decoder-only transformer</b>: a stack of identical blocks that refine a vector for each token, one layer at a time. Step through it, or press play, and watch the vector for the last token change at each stage.</p>
+  <div class="panel tf reveal">
+    <div class="tf-stack" id="tf-stack"></div>
+    <div>
+      <div id="tf-title"></div>
+      <div id="tf-desc"></div>
+      <div id="tf-vis">
+        <div id="tf-tokens"></div>
+        <div class="vec-label" id="tf-vec-label">vector for the last token · 32 of 4,096 dims shown</div>
+        <div class="vec" id="tf-vec"></div>
+      </div>
+      <div class="row" style="margin-top:22px">
+        <button class="btn" id="tf-prev">← Prev</button>
+        <button class="btn primary" id="tf-play">▶ Play</button>
+        <button class="btn" id="tf-next">Next →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= MOE ======================= -->
+<section id="moe" data-nav="Mixture of Experts">
+  <div class="kicker reveal">06 / MIXTURE OF EXPERTS</div>
+  <h2 class="reveal">Huge model. <span class="grad">Small bill.</span></h2>
+  <p class="intro reveal">In a <b>Mixture-of-Experts (MoE)</b> model, each feed-forward layer is split into many smaller "expert" networks. A small <b>router</b> sends each token to only its top-k experts. The model can have hundreds of billions of parameters in total while using only a fraction of them for each token.</p>
+  <div class="grid2 reveal">
+    <div class="panel" style="padding:0">
+      <canvas id="moe-canvas" style="width:100%;height:460px"></canvas>
+    </div>
+    <div class="explain">
+      <div class="row" style="margin-bottom:16px">
+        <button class="btn on" data-moe="moe">MoE (top-2 of 8)</button>
+        <button class="btn" data-moe="dense">Dense</button>
+      </div>
+      <div class="stats" style="grid-template-columns:1fr 1fr;margin-top:0;margin-bottom:18px">
+        <div class="stat"><div class="n" id="moe-total">8×</div><div class="l">Total FFN params</div></div>
+        <div class="stat"><div class="n" id="moe-active">2×</div><div class="l">Active per token</div></div>
+      </div>
+      <p>Each token goes through only <b>2 of the 8</b> experts, so it costs about as much compute as a model a quarter of the size, while the model still gets to store the knowledge of all 8.</p>
+      <p>For example, <b>Mixtral 8×7B</b> has about 47B parameters in total but only about 13B active per token. <b>DeepSeek-V3</b> has 671B in total and about 37B active. Several frontier labs are widely believed to use MoE in their largest models.</p>
+      <p>The tricky part is <b>load balancing</b>: if the router keeps choosing the same experts, the rest go to waste. Experts rarely end up specializing in clean topics like "French" or "math." What they learn is usually much more abstract.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= DIFFUSION ======================= -->
+<section id="diffusion" data-nav="Diffusion">
+  <div class="kicker reveal">07 / DIFFUSION MODELS</div>
+  <h2 class="reveal">Sculpting images <span class="grad">out of noise</span>.</h2>
+  <p class="intro reveal">Image and video generators like Stable Diffusion, FLUX, Imagen, and Sora are trained on a simple task. Take a real image, add a random amount of noise, and ask the network to <b>predict the noise</b>. To generate a new image, start from pure static and remove a little predicted noise at a time, guided by your text prompt.</p>
+  <div class="grid2 reveal">
+    <div class="panel" style="display:flex;flex-direction:column;align-items:center">
+      <canvas id="diff-canvas" style="width:100%;max-width:420px;aspect-ratio:1;border-radius:14px;image-rendering:pixelated"></canvas>
+      <div class="slider" style="width:100%;max-width:420px">
+        <label>Timestep t <b id="diff-t">0 / 1000</b></label>
+        <input type="range" id="diff-slider" min="0" max="1000" step="1" value="1000">
+      </div>
+      <div class="row">
+        <button class="btn primary" id="diff-gen">✨ Denoise (generate)</button>
+        <button class="btn" id="diff-noise">Add noise</button>
+      </div>
+      <div class="row" style="margin-top:12px">
+        <span class="mono" style="color:var(--dim);font-size:12px">PROMPT:</span>
+        <button class="btn on" data-scene="sunset">"a sunset over mountains"</button>
+        <button class="btn" data-scene="planet">"a ringed planet"</button>
+        <button class="btn" data-scene="flower">"a flower"</button>
+      </div>
+    </div>
+    <div class="explain">
+      <h3>The forward process</h3>
+      <p class="data-ex">x<sub>t</sub> = √ᾱ<sub>t</sub> · x<sub>0</sub> + √(1 − ᾱ<sub>t</sub>) · ε</p>
+      <p style="margin-top:14px">At timestep <i>t</i>, the image is a mix of the clean picture <i>x₀</i> and Gaussian noise <i>ε</i>. The slider shows that mix exactly, using a cosine noise schedule.</p>
+      <div class="stats" style="grid-template-columns:1fr 1fr;margin:16px 0">
+        <div class="stat"><div class="n" id="diff-sig" style="color:var(--c)">0%</div><div class="l">Signal</div></div>
+        <div class="stat"><div class="n" id="diff-noi" style="color:var(--p)">100%</div><div class="l">Noise</div></div>
+      </div>
+      <p><b>Generating an image</b> runs this process in reverse. A neural network, usually a U-Net or a <b>Diffusion Transformer (DiT)</b>, predicts the noise, removes some of it, and repeats for 20 to 50 steps. Most models work in a compressed <b>latent space</b> rather than on raw pixels, which is why it's called <i>latent</i> diffusion.</p>
+      <p>Newer <b>flow-matching</b> models learn straighter paths from noise to image, so they can generate in fewer steps.</p>
+      <p class="note"><b>Note:</b> this demo replays the exact math of the forward process. A real model would have to <i>learn</i> how to reverse it.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= TRAINING ======================= -->
+<section id="training" data-nav="Training & Reasoning">
+  <div class="kicker reveal">08 / HOW A MODEL IS MADE</div>
+  <h2 class="reveal">From autocomplete to <span class="grad">assistant</span>.</h2>
+  <p class="intro reveal">A raw pretrained model is a brilliant but unfocused autocomplete. Several more stages of training turn it into a helpful, careful assistant. The most recent stage teaches it to <b>think before it answers</b>. Click a stage to see what its training data looks like.</p>
+  <div class="stages reveal" id="stages"></div>
+  <div id="stage-detail" class="panel reveal"></div>
+
+  <div class="grid2 reveal" style="margin-top:30px">
+    <div class="panel">
+      <div class="row" style="margin-bottom:14px">
+        <button class="btn" id="think-fast">⚡ Answer instantly</button>
+        <button class="btn primary" id="think-slow">🧠 Think first</button>
+      </div>
+      <div id="think-box"><span class="th">A bat and a ball cost $1.10 in total. The bat costs $1.00 more than the ball. How much does the ball cost?</span></div>
+    </div>
+    <div class="explain">
+      <h3>Reasoning models and test-time compute</h3>
+      <p>Reasoning models such as OpenAI's o-series, DeepSeek-R1, and the "thinking" modes of Claude and Gemini are trained with <b>reinforcement learning on problems with checkable answers</b>, like math or code that has tests. The model is rewarded only when its final answer is right. Along the way, it learns to write out long <b>chains of thought</b>: breaking problems into steps, checking its work, and backtracking when it's wrong.</p>
+      <p>This opened a new way to scale. Instead of only training bigger models, you can let a model <b>think longer at inference time</b>. More thinking tokens often means better answers on hard problems.</p>
+      <p class="note">Try both buttons. The quick, intuitive answer is the classic human mistake.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= SCALING ======================= -->
+<section id="scaling" data-nav="Scaling Laws">
+  <div class="kicker reveal">09 / SCALING LAWS</div>
+  <h2 class="reveal">Bigger is <span class="grad">predictably</span> better.</h2>
+  <p class="intro reveal">One of the most surprising findings in AI: a model's training loss falls along a smooth <b>power law</b> as you add compute, data, and parameters. Labs fit these curves on small runs to predict how a run that's 100× larger will turn out before spending the money.</p>
+  <div class="grid2 reveal">
+    <div class="panel" style="padding:0"><canvas id="scale-canvas" style="width:100%;height:440px"></canvas></div>
+    <div class="explain">
+      <div class="slider"><label>Training compute <b id="sc-c">10²² FLOPs</b></label><input type="range" id="sc-slider" min="18" max="26.5" step="0.01" value="22"></div>
+      <div class="stats" style="grid-template-columns:1fr 1fr;margin-top:0;margin-bottom:16px">
+        <div class="stat"><div class="n" id="sc-n">—</div><div class="l">Compute-optimal params</div></div>
+        <div class="stat"><div class="n" id="sc-d">—</div><div class="l">Training tokens</div></div>
+        <div class="stat"><div class="n" id="sc-gpu">—</div><div class="l">H100-GPU hours*</div></div>
+        <div class="stat"><div class="n" id="sc-loss">—</div><div class="l">Predicted loss</div></div>
+      </div>
+      <p>The <b>Chinchilla</b> paper (2022) found that for a fixed compute budget, the best results come from about <b>20 training tokens per parameter</b>, with compute ≈ 6 × params × tokens. Many models today are deliberately "overtrained" on far more tokens than that, because smaller models are cheaper to run once deployed.</p>
+      <p class="note">*Assumes about 40% utilization of an H100's roughly 1 PFLOP/s of dense BF16 throughput. The curve is illustrative, not fitted to real data.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= RAG ======================= -->
+<section id="rag" data-nav="RAG & Agents">
+  <div class="kicker reveal">10 / RETRIEVAL-AUGMENTED GENERATION</div>
+  <h2 class="reveal">Give the model <span class="grad">an open book</span>.</h2>
+  <p class="intro reveal">Models only know what was in their training data, and they sometimes <b>hallucinate</b>. RAG fixes this by searching your documents first, using embeddings from section 02, and pasting the most relevant passages into the prompt. <b>Agents</b> take this further: the model decides on its own when to search, run code, or call other tools, and loops until the task is done.</p>
+  <div class="panel reveal">
+    <div class="rag">
+      <div class="rag-step" id="rag1"><h5>1 · QUESTION</h5><div class="body" style="color:var(--fg);font-size:15px">"How long do I have to return a product?"</div></div>
+      <div class="rag-step" id="rag2"><h5>2 · EMBED</h5><div class="body">The question is turned into a vector.<div class="mini-vec" id="rag-vec"></div></div></div>
+      <div class="rag-step" id="rag3"><h5>3 · RETRIEVE</h5><div class="body" id="rag-docs"></div></div>
+      <div class="rag-step" id="rag4"><h5>4 · AUGMENT</h5><div class="body"><div class="data-ex" style="font-size:11px;padding:10px"><span class="dim">System: Answer using only the context.</span>
+<span class="k">Context:</span> [doc 3] [doc 1]
+<span class="k">Question:</span> How long do I have to return…</div></div></div>
+      <div class="rag-step" id="rag5"><h5>5 · GENERATE</h5><div class="body" id="rag-ans" style="color:var(--fg);font-size:14px"></div></div>
+    </div>
+    <div class="row" style="margin-top:18px"><button class="btn primary" id="rag-run">▶ Run pipeline</button></div>
+  </div>
+</section>
+
+<!-- ======================= APPLICATIONS ======================= -->
+<section id="apps" data-nav="Applications">
+  <div class="kicker reveal">11 / APPLICATIONS</div>
+  <h2 class="reveal">What it's <span class="grad">actually used for</span>.</h2>
+  <p class="intro reveal">The same core ideas (tokens, embeddings, attention, diffusion, and reinforcement learning) power a surprisingly wide range of applications. Click a card to see how each one works.</p>
+  <div class="apps reveal" id="apps-grid"></div>
+</section>
+
+<!-- ======================= MODELS ======================= -->
+<section id="models" data-nav="Model Families">
+  <div class="kicker reveal">12 / THE STATE OF THE ART</div>
+  <h2 class="reveal">How today's <span class="grad">frontier models</span> differ.</h2>
+  <p class="intro reveal">Model names change every few months, but most frontier systems combine the same few architectural ideas. Here's a field guide. The examples are well-known representatives, not a ranking. Many labs don't publish their architectures, so some details are informed guesses.</p>
+  <div class="models reveal" id="models-grid"></div>
+</section>
+
+<footer>
+  <h2>That's the <span class="grad">latent space</span>.</h2>
+  <p>Tokens → embeddings → attention → probabilities → a sampled token, repeated billions of times a day.</p>
+  <p style="margin-top:30px"><a class="btn" href="#hero" style="text-decoration:none">↑ Back to top</a></p>
+</footer>
+</main>
+
+<script>
+(() => {
+  const $ = s => document.querySelector(s);
+  const $$ = s => [...document.querySelectorAll(s)];
+  const DPR = Math.min(window.devicePixelRatio || 1, 2);
+  const clamp = (v, a = 0, b = 1) => Math.max(a, Math.min(b, v));
+  const lerp = (a, b, t) => a + (b - a) * t;
+  const esc = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+  function setupCanvas(c) {
+    const r = c.getBoundingClientRect();
+    c.width = Math.max(1, r.width * DPR); c.height = Math.max(1, r.height * DPR);
+    const ctx = c.getContext('2d'); ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+    return { ctx, w: r.width, h: r.height };
+  }
+  function rrect(ctx, x, y, w, h, r) {
+    ctx.beginPath(); ctx.moveTo(x + r, y); ctx.arcTo(x + w, y, x + w, y + h, r); ctx.arcTo(x + w, y + h, x, y + h, r);
+    ctx.arcTo(x, y + h, x, y, r); ctx.arcTo(x, y, x + w, y, r); ctx.closePath();
+  }
+  const visible = new Map();
+  const visIO = new IntersectionObserver(es => es.forEach(e => visible.set(e.target, e.isIntersecting)));
+  const isVis = el => visible.get(el) !== false;
+  function mulberry(seed) { return () => { seed |= 0; seed = seed + 0x6D2B79F5 | 0; let t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+  function hash(s) { let h = 2166136261; for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); } return h >>> 0; }
+  const isLight = () => document.documentElement.dataset.theme === 'light';
+  const ink = (a = .9) => isLight() ? `rgba(27,22,48,${a})` : `rgba(236,235,245,${a})`;
+  const mute = (a = .85) => isLight() ? `rgba(78,72,108,${a})` : `rgba(154,152,181,${a})`;
+  const hair = a => isLight() ? `rgba(40,30,72,${a})` : `rgba(255,255,255,${a})`;
+  const accentRgb = () => isLight() ? '14,116,144' : '34,211,238';
+
+  /* ================= Progress + side nav ================= */
+  addEventListener('scroll', () => {
+    const h = document.documentElement.scrollHeight - innerHeight;
+    $('#progress').style.width = (scrollY / h * 100) + '%';
+  }, { passive: true });
+  const navSecs = $$('[data-nav]');
+  const sidenav = $('#sidenav');
+  navSecs.forEach(s => { const a = document.createElement('a'); a.href = '#' + s.id; a.innerHTML = `<i></i><span>${s.dataset.nav}</span>`; sidenav.appendChild(a); });
+  const navIO = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) $$('#sidenav a').forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id));
+  }), { rootMargin: '-45% 0px -50% 0px' });
+  navSecs.forEach(s => navIO.observe(s));
+
+  const revIO = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revIO.unobserve(e.target); } }), { threshold: .12 });
+  $$('.reveal').forEach(el => revIO.observe(el));
+
+  /* ================= HERO: neural network ================= */
+  const hc = $('#hero-canvas'); visIO.observe(hc);
+  let H, nodes = [], pulses = [], hmx = -999, hmy = -999;
+  function initHero() {
+    H = setupCanvas(hc);
+    const n = Math.round(H.w * H.h / 13000);
+    nodes = Array.from({ length: n }, () => ({ x: Math.random() * H.w, y: Math.random() * H.h, vx: (Math.random() - .5) * .25, vy: (Math.random() - .5) * .25, a: 0 }));
+  }
+  hc.parentElement.addEventListener('mousemove', e => { const r = hc.getBoundingClientRect(); hmx = e.clientX - r.left; hmy = e.clientY - r.top; });
+  hc.parentElement.addEventListener('mouseleave', () => { hmx = hmy = -999; });
+  function neighbor(i) {
+    const a = nodes[i]; let best = [], R = 150;
+    for (let j = 0; j < nodes.length; j++) { if (j === i) continue; const d = Math.hypot(nodes[j].x - a.x, nodes[j].y - a.y); if (d < R) best.push(j); }
+    return best.length ? best[Math.random() * best.length | 0] : -1;
+  }
+  function spawnPulse(i, depth) { const j = neighbor(i); if (j >= 0 && pulses.length < 90) pulses.push({ i, j, t: 0, depth, hue: Math.random() < .5 ? 190 : 265 }); }
+  function drawHero() {
+    requestAnimationFrame(drawHero);
+    if (!isVis(hc)) return;
+    const { ctx, w, h } = H;
+    ctx.clearRect(0, 0, w, h);
+    for (const n of nodes) {
+      n.x += n.vx; n.y += n.vy;
+      if (n.x < 0 || n.x > w) n.vx *= -1; if (n.y < 0 || n.y > h) n.vy *= -1;
+      n.a *= .95;
+    }
+    ctx.lineWidth = 1;
+    for (let i = 0; i < nodes.length; i++) for (let j = i + 1; j < nodes.length; j++) {
+      const a = nodes[i], b = nodes[j], d = Math.hypot(a.x - b.x, a.y - b.y);
+      if (d < 150) {
+        const md = Math.min(Math.hypot(a.x - hmx, a.y - hmy), 400);
+        const boost = 1 + (1 - md / 400) * 2;
+        ctx.strokeStyle = `rgba(109,40,217,${(1 - d / 150) * (isLight() ? .32 : .16) * boost})`;
+        ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+      }
+    }
+    if (Math.random() < .25) spawnPulse(Math.random() * nodes.length | 0, 0);
+    if (hmx > 0) {
+      let ci = -1, cd = 1e9;
+      nodes.forEach((n, i) => { const d = Math.hypot(n.x - hmx, n.y - hmy); if (d < cd) { cd = d; ci = i; } });
+      if (ci >= 0 && cd < 120 && Math.random() < .5) spawnPulse(ci, 0);
+    }
+    for (let k = pulses.length - 1; k >= 0; k--) {
+      const p = pulses[k], a = nodes[p.i], b = nodes[p.j];
+      p.t += .03;
+      if (p.t >= 1) { b.a = 1; pulses.splice(k, 1); if (p.depth < 5 && Math.random() < .75) spawnPulse(p.j, p.depth + 1); continue; }
+      const x = lerp(a.x, b.x, p.t), y = lerp(a.y, b.y, p.t);
+      ctx.strokeStyle = `hsla(${p.hue},90%,65%,.5)`; ctx.lineWidth = 1.5;
+      ctx.beginPath(); ctx.moveTo(lerp(a.x, b.x, Math.max(0, p.t - .25)), lerp(a.y, b.y, Math.max(0, p.t - .25))); ctx.lineTo(x, y); ctx.stroke();
+      ctx.fillStyle = `hsla(${p.hue},100%,75%,1)`;
+      ctx.beginPath(); ctx.arc(x, y, 2, 0, Math.PI * 2); ctx.fill();
+    }
+    for (const n of nodes) {
+      const idle = isLight() ? [88, 64, 150] : [120, 115, 160];
+      ctx.fillStyle = `rgba(${lerp(idle[0], 14, n.a) | 0},${lerp(idle[1], 116, n.a) | 0},${lerp(idle[2], 144, n.a) | 0},${.55 + n.a * .45})`;
+      ctx.beginPath(); ctx.arc(n.x, n.y, 1.6 + n.a * 2.5, 0, Math.PI * 2); ctx.fill();
+      if (n.a > .3) { ctx.fillStyle = `rgba(34,211,238,${n.a * .15})`; ctx.beginPath(); ctx.arc(n.x, n.y, 10 * n.a, 0, Math.PI * 2); ctx.fill(); }
+    }
+  }
+
+  // hero streamed subtitle
+  const streamText = "An interactive guide to how modern AI actually works: tokens, attention, transformers, diffusion, and reasoning, explained with things you can poke.";
+  const streamToks = streamText.match(/ ?[^\s]+/g);
+  const streamEl = $('#stream');
+  let si = 0;
+  (function streamNext() {
+    if (si >= streamToks.length) { streamEl.innerHTML += ''; return; }
+    const caret = streamEl.querySelector('.caret'); if (caret) caret.remove();
+    const s = document.createElement('span'); s.className = 't'; s.textContent = streamToks[si++];
+    streamEl.appendChild(s);
+    const c = document.createElement('span'); c.className = 'caret'; streamEl.appendChild(c);
+    setTimeout(streamNext, 50 + Math.random() * 110);
+  })();
+
+  /* ================= 01 TOKENIZER ================= */
+  const SUFFIX = ['ization', 'ational', 'ation', 'tion', 'sion', 'ment', 'ness', 'able', 'ible', 'ally', 'ing', 'ful', 'ous', 'ive', 'est', 'ism', 'ist', 'ers', 'ed', 'ly', 'er', 'es', 's'];
+  const PREFIX = ['anti', 'dis', 'un', 're', 'inter', 'over', 'under', 'pre', 'non'];
+  function splitStem(s) {
+    if (s.length <= 6) return [s];
+    for (const p of PREFIX) if (s.toLowerCase().startsWith(p) && s.length - p.length >= 4) return [s.slice(0, p.length), ...splitStem(s.slice(p.length))];
+    const out = []; for (let i = 0; i < s.length; i += 5) out.push(s.slice(i, i + 5));
+    if (out.length > 1 && out[out.length - 1].length < 3) { const l = out.pop(); out[out.length - 1] += l; }
+    return out;
+  }
+  function splitWord(w) {
+    if (w.length <= 6) return [w];
+    const lw = w.toLowerCase();
+    for (const s of SUFFIX) if (lw.endsWith(s) && w.length - s.length >= 3) return [...splitWord(w.slice(0, -s.length)), w.slice(-s.length)];
+    return splitStem(w);
+  }
+  function tokenize(text) {
+    const parts = text.match(/ ?[A-Za-z]+| ?\d{1,3}|\n|[ \t]+|[^\sA-Za-z\d]/g) || [];
+    const toks = [];
+    for (const p of parts) {
+      if (/^ ?[A-Za-z]+$/.test(p)) {
+        const lead = p[0] === ' ' ? ' ' : '';
+        const pieces = splitWord(p.trim());
+        pieces[0] = lead + pieces[0];
+        toks.push(...pieces);
+      } else toks.push(p);
+    }
+    return toks;
+  }
+  const tokIn = $('#tok-input'), tokOut = $('#tok-out');
+  let showIds = false;
+  function renderTok() {
+    const text = tokIn.value, toks = tokenize(text);
+    tokOut.classList.toggle('ids', showIds);
+    tokOut.innerHTML = toks.map((t, i) => {
+      const hue = (i * 47) % 360;
+      const id = hash(t) % 100277;
+      const shown = showIds ? String(id) : esc(t).replace(/ /g, '<span class="sp">·</span>').replace(/\n/g, '<span class="sp">↵</span>');
+      return `<span class="tk" title="token ${i} · id ${id}" style="background:hsla(${hue},70%,55%,.28)">${shown}</span>${t === '\n' ? '<br>' : ''}`;
+    }).join(showIds ? ' ' : '');
+    $('#tok-n').textContent = toks.length;
+    $('#tok-c').textContent = text.length;
+    $('#tok-r').textContent = toks.length ? (text.length / toks.length).toFixed(2) : '0';
+  }
+  tokIn.addEventListener('input', renderTok);
+  $('#tok-ids').onclick = e => { showIds = !showIds; e.target.classList.toggle('on', showIds); e.target.textContent = showIds ? 'Show text' : 'Show token IDs'; renderTok(); };
+  $$('[data-tok]').forEach(b => b.onclick = () => { tokIn.value = b.dataset.tok; renderTok(); });
+  renderTok();
+
+  /* ================= 02 EMBEDDINGS ================= */
+  const W2 = [
+    ['king', .60, .22, 0], ['queen', .70, .34, 0], ['man', .32, .22, 0], ['woman', .42, .34, 0], ['prince', .66, .12, 0], ['princess', .76, .24, 0], ['boy', .38, .12, 0], ['girl', .48, .24, 0],
+    ['France', .10, .66, 1], ['Paris', .22, .58, 1], ['Japan', .16, .84, 1], ['Tokyo', .28, .76, 1], ['Italy', .05, .76, 1], ['Rome', .17, .68, 1], ['Germany', .21, .93, 1], ['Berlin', .33, .85, 1],
+    ['dog', .70, .66, 2], ['puppy', .78, .76, 2], ['cat', .60, .74, 2], ['kitten', .68, .84, 2], ['wolf', .80, .60, 2], ['tiger', .58, .62, 2],
+    ['pizza', .40, .62, 3], ['sushi', .44, .80, 3], ['pasta', .36, .70, 3], ['ramen', .48, .88, 3],
+    ['python', .88, .18, 4], ['code', .92, .30, 4], ['GPU', .84, .40, 4], ['neural', .94, .08, 4],
+  ];
+  const embColors = ['#a78bfa', '#22d3ee', '#f472b6', '#fbbf24', '#34d399'];
+  const embNames = ['people / royalty', 'countries / capitals', 'animals', 'food', 'computing'];
+  const ec = $('#emb-canvas'); visIO.observe(ec);
+  let E, eHover = -1, anim = null;
+  const embPos = i => { const pad = 50; return [pad + W2[i][1] * (E.w - pad * 2), pad + W2[i][2] * (E.h - pad * 2)]; };
+  ec.addEventListener('mousemove', e => {
+    const r = ec.getBoundingClientRect(), x = e.clientX - r.left, y = e.clientY - r.top;
+    eHover = -1; let bd = 30;
+    W2.forEach((_, i) => { const [px, py] = embPos(i); const d = Math.hypot(px - x, py - y); if (d < bd) { bd = d; eHover = i; } });
+  });
+  ec.addEventListener('mouseleave', () => eHover = -1);
+  const idx = w => W2.findIndex(x => x[0] === w);
+  $$('[data-an]').forEach(b => b.onclick = () => {
+    const [a, bb, c] = b.dataset.an.split(',').map(idx);
+    const tx = W2[a][1] - W2[bb][1] + W2[c][1], ty = W2[a][2] - W2[bb][2] + W2[c][2];
+    let best = -1, bd = 1e9;
+    W2.forEach((w, i) => { if (i === a || i === bb || i === c) return; const d = Math.hypot(w[1] - tx, w[2] - ty); if (d < bd) { bd = d; best = i; } });
+    anim = { a, b: bb, c, tx, ty, best, t0: performance.now() };
+    $('#emb-result').innerHTML = `<span class="k">${W2[a][0]}</span> − <span class="k">${W2[bb][0]}</span> + <span class="k">${W2[c][0]}</span> ≈ …`;
+  });
+  function arrow(ctx, x1, y1, x2, y2, col, t = 1) {
+    const x = lerp(x1, x2, t), y = lerp(y1, y2, t);
+    ctx.strokeStyle = col; ctx.fillStyle = col; ctx.lineWidth = 2.5;
+    ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x, y); ctx.stroke();
+    const ang = Math.atan2(y2 - y1, x2 - x1);
+    ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(x - 11 * Math.cos(ang - .4), y - 11 * Math.sin(ang - .4)); ctx.lineTo(x - 11 * Math.cos(ang + .4), y - 11 * Math.sin(ang + .4)); ctx.closePath(); ctx.fill();
+  }
+  function drawEmb(now) {
+    requestAnimationFrame(drawEmb);
+    if (!isVis(ec)) return;
+    const { ctx, w, h } = E;
+    ctx.clearRect(0, 0, w, h);
+    ctx.strokeStyle = hair(isLight() ? .07 : .04); ctx.lineWidth = 1;
+    for (let x = 0; x < w; x += 40) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, h); ctx.stroke(); }
+    for (let y = 0; y < h; y += 40) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke(); }
+    // cluster halos
+    for (let c = 0; c < 5; c++) {
+      const pts = W2.map((w, i) => [w, i]).filter(([w]) => w[3] === c).map(([, i]) => embPos(i));
+      const cx = pts.reduce((s, p) => s + p[0], 0) / pts.length, cy = pts.reduce((s, p) => s + p[1], 0) / pts.length;
+      const g = ctx.createRadialGradient(cx, cy, 0, cx, cy, 130);
+      g.addColorStop(0, embColors[c] + '22'); g.addColorStop(1, 'transparent');
+      ctx.fillStyle = g; ctx.beginPath(); ctx.arc(cx, cy, 130, 0, Math.PI * 2); ctx.fill();
+    }
+    if (eHover >= 0) {
+      const [hx, hy] = embPos(eHover);
+      const near = W2.map((w, i) => [i, Math.hypot(w[1] - W2[eHover][1], w[2] - W2[eHover][2])]).filter(x => x[0] !== eHover).sort((a, b) => a[1] - b[1]).slice(0, 3);
+      near.forEach(([i, d]) => {
+        const [px, py] = embPos(i);
+        ctx.strokeStyle = hair(.45); ctx.setLineDash([4, 4]); ctx.lineWidth = 1;
+        ctx.beginPath(); ctx.moveTo(hx, hy); ctx.lineTo(px, py); ctx.stroke(); ctx.setLineDash([]);
+        ctx.fillStyle = ink(1); ctx.font = '11px ui-monospace, monospace';
+        ctx.fillText((1 - d * 1.2).toFixed(2), (hx + px) / 2 + 4, (hy + py) / 2 - 4);
+      });
+    }
+    let t = 0;
+    if (anim) {
+      t = clamp((now - anim.t0) / 2200, 0, 1);
+      const [ax, ay] = embPos(anim.a), [bx, by] = embPos(anim.b), [cx, cy] = embPos(anim.c);
+      const pad = 50, tx = pad + anim.tx * (w - pad * 2), ty = pad + anim.ty * (h - pad * 2);
+      arrow(ctx, bx, by, ax, ay, '#a78bfa', clamp(t * 2.2));
+      if (t > .45) arrow(ctx, cx, cy, tx, ty, '#22d3ee', clamp((t - .45) * 2.2));
+      if (t >= 1) {
+        const [rx, ry] = embPos(anim.best);
+        ctx.strokeStyle = '#fbbf24'; ctx.lineWidth = 2;
+        ctx.beginPath(); ctx.arc(rx, ry, 14 + Math.sin(now / 200) * 3, 0, Math.PI * 2); ctx.stroke();
+        if (!anim.shown) { anim.shown = true; $('#emb-result').innerHTML = `<span class="k">${W2[anim.a][0]}</span> − <span class="k">${W2[anim.b][0]}</span> + <span class="k">${W2[anim.c][0]}</span> ≈ <span class="ok">${W2[anim.best][0]}</span> ✓`; }
+      }
+    }
+    W2.forEach((wd, i) => {
+      const [x, y] = embPos(i), hl = i === eHover || (anim && t > 0 && [anim.a, anim.b, anim.c].includes(i));
+      ctx.fillStyle = embColors[wd[3]];
+      ctx.shadowBlur = hl ? 18 : 0; ctx.shadowColor = embColors[wd[3]];
+      ctx.beginPath(); ctx.arc(x, y, hl ? 7 : 5, 0, Math.PI * 2); ctx.fill(); ctx.shadowBlur = 0;
+      ctx.fillStyle = hl ? ink(1) : ink(.78);
+      ctx.font = `${hl ? 'bold 14px' : '12px'} system-ui, sans-serif`;
+      ctx.fillText(wd[0], x + 10, y + 4);
+    });
+    ctx.font = '11px ui-monospace, monospace';
+    embNames.forEach((n, i) => { ctx.fillStyle = embColors[i]; ctx.fillRect(16, h - 22 - i * 18, 8, 8); ctx.fillStyle = mute(.95); ctx.fillText(n, 30, h - 14 - i * 18); });
+  }
+
+  /* ================= 03 ATTENTION ================= */
+  const baseToks = ['The', 'animal', "didn't", 'cross', 'the', 'street', 'because', 'it', 'was', 'too'];
+  let attnVar = 'tired', attnHead = 'coref', attnQ = 7;
+  const attnToks = () => [...baseToks, attnVar];
+  function attnMatrix() {
+    const n = 11, M = [];
+    const ref = attnVar === 'tired' ? 1 : 5, other = attnVar === 'tired' ? 5 : 1;
+    for (let i = 0; i < n; i++) {
+      const row = [];
+      for (let j = 0; j < n; j++) {
+        if (j > i) { row.push(0); continue; }
+        let v;
+        if (attnHead === 'prev') v = j === i - 1 ? 6 : j === i ? (i === 0 ? 1 : .8) : .08;
+        else if (attnHead === 'sink') v = j === 0 ? 5 : .6 + (j === i ? .6 : 0);
+        else {
+          v = .12 + (j === i ? .9 : 0);
+          if (i === 7) { if (j === ref) v = 7; if (j === other) v = 1.2; }
+          if (i === 10) { if (j === 7) v = 3.5; if (j === ref) v = 2.8; if (j === 8 || j === 9) v = .8; }
+          if ((i === 2 || i === 3) && j === 1) v = 3;
+          if (i === 5 && j === 4) v = 1.6; if (i === 5 && j === 3) v = 1.6;
+          if (i === 8 && j === 7) v = 3;
+        }
+        row.push(v);
+      }
+      const s = row.reduce((a, b) => a + b, 0);
+      M.push(row.map(v => v / s));
+    }
+    return M;
+  }
+  const sentEl = $('#attn-sent'), svg = $('#attn-svg'), wrap = $('#attn-wrap');
+  function renderAttn() {
+    const toks = attnToks();
+    sentEl.innerHTML = toks.map((t, i) => `<span data-i="${i}">${t}</span>`).join('');
+    sentEl.querySelectorAll('span').forEach(s => s.onclick = () => { attnQ = +s.dataset.i; drawAttn(); });
+    drawAttn();
+  }
+  function drawAttn() {
+    const M = attnMatrix(), row = M[attnQ];
+    const spans = [...sentEl.querySelectorAll('span')];
+    const wr = wrap.getBoundingClientRect();
+    svg.setAttribute('width', sentEl.scrollWidth + 40); svg.setAttribute('height', wrap.scrollHeight);
+    const sl = wrap.scrollLeft;
+    const pos = spans.map(s => { const r = s.getBoundingClientRect(); return [r.left - wr.left + sl + r.width / 2, r.top - wr.top]; });
+    let paths = '';
+    spans.forEach((s, j) => {
+      s.classList.toggle('q', j === attnQ);
+      const w = row[j];
+      const arc = accentRgb();
+      s.style.background = j === attnQ ? 'rgba(180,83,9,.16)' : `rgba(${arc},${w * (isLight() ? .45 : .9)})`;
+      s.style.borderColor = w > .15 && j !== attnQ ? 'var(--c)' : '';
+      if (w > .01 && j !== attnQ) {
+        const [x1, y1] = pos[attnQ], [x2] = pos[j];
+        const hgt = Math.min(140, 30 + Math.abs(x2 - x1) * .35);
+        paths += `<path d="M${x1},${y1 - 2} Q${(x1 + x2) / 2},${y1 - hgt} ${x2},${y1 - 2}" fill="none" stroke="rgba(${arc},${clamp(w * 1.6 + .15)})" stroke-width="${1 + w * 12}" stroke-linecap="round"/>
+                  <text x="${(x1 + x2) / 2}" y="${y1 - hgt / 2 - 6}" fill="${ink(clamp(w * 2))}" font-size="11" font-family="ui-monospace,monospace" text-anchor="middle">${w > .06 ? (w * 100).toFixed(0) + '%' : ''}</text>`;
+      }
+    });
+    svg.innerHTML = paths;
+    drawHeat(M);
+  }
+  const heat = $('#attn-heat');
+  function drawHeat(M) {
+    const { ctx, w } = setupCanvas(heat);
+    const n = M.length, pad = 60, cs = (w - pad) / n, toks = attnToks();
+    ctx.clearRect(0, 0, w, w);
+    for (let i = 0; i < n; i++) for (let j = 0; j < n; j++) {
+      const v = M[i][j];
+      ctx.fillStyle = j > i
+        ? hair(isLight() ? .05 : .02)
+        : (isLight()
+          ? `rgba(14,116,144,${.08 + Math.sqrt(v) * .82})`
+          : `rgba(${lerp(30, 34, v) | 0},${lerp(20, 211, Math.sqrt(v)) | 0},${lerp(60, 238, Math.sqrt(v)) | 0},${.15 + Math.sqrt(v) * .85})`);
+      ctx.fillRect(pad + j * cs + 1, pad + i * cs + 1, cs - 2, cs - 2);
+    }
+    ctx.strokeStyle = isLight() ? '#b45309' : '#fbbf24'; ctx.lineWidth = 2;
+    ctx.strokeRect(pad, pad + attnQ * cs, cs * n, cs);
+    ctx.fillStyle = mute(1); ctx.font = '10px ui-monospace, monospace';
+    ctx.textAlign = 'right';
+    toks.forEach((t, i) => ctx.fillText(t, pad - 5, pad + i * cs + cs / 2 + 3));
+    toks.forEach((t, j) => { ctx.save(); ctx.translate(pad + j * cs + cs / 2 + 3, pad - 5); ctx.rotate(-Math.PI / 3); ctx.textAlign = 'left'; ctx.fillText(t, 0, 0); ctx.restore(); });
+    ctx.textAlign = 'left';
+  }
+  $$('[data-head]').forEach(b => b.onclick = () => { attnHead = b.dataset.head; $$('[data-head]').forEach(x => x.classList.toggle('on', x === b)); drawAttn(); });
+  $$('[data-var]').forEach(b => b.onclick = () => { attnVar = b.dataset.var; $$('[data-var]').forEach(x => x.classList.toggle('on', x === b)); renderAttn(); });
+  wrap.addEventListener('scroll', drawAttn);
+
+  /* ================= 04 SAMPLING ================= */
+  const PROMPT = 'The best way to learn AI is to';
+  const CANDS = [['build', 3.3], ['practice', 2.9], ['read', 2.5], ['start', 2.3], ['experiment', 2.0], ['ask', 1.5], ['teach', 1.2], ['sleep', -.2], ['dance', -.6], ['banana', -1.6]];
+  let counts = new Array(CANDS.length).fill(0), totalSamples = 0, generated = [];
+  const tempEl = $('#temp'), toppEl = $('#topp');
+  function probs() {
+    const T = +tempEl.value, P = +toppEl.value;
+    const ex = CANDS.map(([, z]) => Math.exp(z / T)), s = ex.reduce((a, b) => a + b, 0);
+    const p = ex.map(v => v / s);
+    const order = p.map((v, i) => [v, i]).sort((a, b) => b[0] - a[0]);
+    const keep = new Set(); let cum = 0;
+    for (const [v, i] of order) { keep.add(i); cum += v; if (cum >= P) break; }
+    const ks = [...keep].reduce((a, i) => a + p[i], 0);
+    return { raw: p, final: p.map((v, i) => keep.has(i) ? v / ks : 0), keep };
+  }
+  const barsEl = $('#samp-bars');
+  barsEl.innerHTML = CANDS.map(([w], i) => `<div class="bar-row" id="br${i}"><span>"${w}"</span><div class="bar-track"><div class="bar-fill"></div><div class="bar-hist"></div></div><span class="pct"></span></div>`).join('');
+  function renderSamp(picked = -1) {
+    $('#temp-v').textContent = (+tempEl.value).toFixed(2);
+    $('#topp-v').textContent = (+toppEl.value).toFixed(2);
+    const { final, keep } = probs();
+    const mx = Math.max(...final);
+    CANDS.forEach((_, i) => {
+      const r = $('#br' + i);
+      r.classList.toggle('cut', !keep.has(i));
+      r.classList.toggle('picked', i === picked);
+      r.querySelector('.bar-fill').style.width = (final[i] / mx * 100) + '%';
+      r.querySelector('.bar-hist').style.width = totalSamples ? (counts[i] / totalSamples / mx * 100) + '%' : '0';
+      r.querySelector('.pct').textContent = (final[i] * 100).toFixed(1) + '%';
+    });
+    $('#samp-prompt').innerHTML = esc(PROMPT) + generated.map((g, k) => ` <span class="gen ${k === generated.length - 1 ? 'new' : ''}">${g}</span>`).join('') + ' <span style="color:var(--dim)">▁</span>';
+  }
+  function sample() {
+    const { final } = probs(); let r = Math.random(), i = 0;
+    for (; i < final.length - 1; i++) { r -= final[i]; if (r <= 0) break; }
+    while (final[i] === 0 && i > 0) i--;
+    return i;
+  }
+  tempEl.oninput = toppEl.oninput = () => { counts.fill(0); totalSamples = 0; renderSamp(); };
+  $('#samp-one').onclick = () => { const i = sample(); counts[i]++; totalSamples++; generated = [CANDS[i][0]]; renderSamp(i); };
+  $('#samp-100').onclick = () => { for (let k = 0; k < 1000; k++) { counts[sample()]++; totalSamples++; } renderSamp(); };
+  $('#samp-reset').onclick = () => { counts.fill(0); totalSamples = 0; generated = []; renderSamp(); };
+  renderSamp();
+
+  /* ================= 05 TRANSFORMER ================= */
+  const TF = [
+    ['Input text', 'raw', 'You type a prompt: "The Eiffel Tower is in". The model\'s job is to predict whatever comes next.'],
+    ['Tokenize', 'ids', 'The text is split into tokens and each one becomes an integer ID. The model only ever sees these numbers.'],
+    ['Embed', 'd=4096', 'Each token ID looks up a row in a huge learned table, called the embedding matrix. Every token is now a vector of thousands of numbers, which forms the start of the "residual stream."'],
+    ['Position (RoPE)', 'rotate', 'Attention on its own has no sense of word order. Rotary position embeddings rotate parts of the query and key vectors by an angle that depends on each token\'s position, so the model can tell "dog bites man" from "man bites dog."'],
+    ['Self-Attention', 'mix', 'Each token gathers information from earlier tokens. Here, "in" pulls in information about "Eiffel" and "Tower." The result is added back into the residual stream instead of replacing it.', true],
+    ['Feed-Forward (MLP)', 'think', 'A two-layer network processes each token on its own. This is where much of the model\'s factual knowledge is thought to be stored, the association "Eiffel Tower → Paris," for example. In MoE models, this is the layer that gets split into experts.', true],
+    ['× N layers', '32–120+', 'Attention and the MLP repeat dozens of times. Early layers handle syntax, middle layers build up meaning and facts, and late layers prepare the prediction. Each layer adds a small update to the same residual stream.', true],
+    ['Unembed → logits', '→ vocab', 'The final vector for the last token is multiplied by the output matrix, producing one score, or logit, for every token in the vocabulary. That\'s over 100,000 numbers.'],
+    ['Softmax → sample', '" Paris"', 'The logits become probabilities, and one token is sampled from them (see section 04). The model outputs " Paris". Then the whole process runs again to predict the next token.'],
+  ];
+  const tfToks = ['The', ' E', 'iff', 'el', ' Tower', ' is', ' in'];
+  let tfStep = 0, tfTimer = null;
+  const stackEl = $('#tf-stack'), vecEl = $('#tf-vec');
+  stackEl.innerHTML = TF.map((s, i) => `<div class="tf-stage ${s[3] ? 'loop' : ''}" data-i="${i}"><span>${s[0]}</span><small>${s[1]}</small></div>`).join('');
+  $$('.tf-stage').forEach(el => el.onclick = () => { stopTf(); tfStep = +el.dataset.i; renderTf(); });
+  vecEl.innerHTML = '<div></div>'.repeat(32);
+  function vecColor(v) {
+    return v >= 0 ? `rgba(34,211,238,${.08 + v * .9})` : `rgba(244,114,182,${.08 - v * .9})`;
+  }
+  function renderTf() {
+    const [title, , desc] = TF[tfStep];
+    $('#tf-title').textContent = `${tfStep + 1}. ${title}`;
+    $('#tf-desc').textContent = desc;
+    $$('.tf-stage').forEach((el, i) => { el.classList.toggle('active', i === tfStep); el.classList.toggle('done', i < tfStep); });
+    const tk = $('#tf-tokens');
+    if (tfStep === 0) tk.innerHTML = `<span>The Eiffel Tower is in</span>`;
+    else if (tfStep === 1) tk.innerHTML = tfToks.map(t => `<span>${hash(t) % 100277}</span>`).join('');
+    else if (tfStep === 8) tk.innerHTML = tfToks.map(t => `<span>${esc(t).replace(/ /g, '·')}</span>`).join('') + `<span class="hl">·Paris</span>`;
+    else tk.innerHTML = tfToks.map((t, i) => `<span class="${i === tfToks.length - 1 ? 'hl' : ''}">${esc(t).replace(/ /g, '·')}</span>`).join('');
+    const rnd = mulberry(tfStep * 977 + 13);
+    const cells = vecEl.children;
+    for (let i = 0; i < 32; i++) {
+      let v = tfStep < 2 ? 0 : (rnd() * 2 - 1) * (tfStep >= 7 ? 1 : .4 + tfStep * .08);
+      if (tfStep === 8) v = i === 17 ? 1 : (rnd() * .15);
+      cells[i].style.background = tfStep < 2 ? hair(isLight() ? .08 : .05) : vecColor(clamp(v, -1, 1));
+    }
+    $('#tf-vec-label').textContent = tfStep < 2 ? 'no vectors yet, just text and integers' : tfStep === 7 ? 'logits · 32 of ~100,000 vocabulary scores shown' : tfStep === 8 ? 'probabilities · one token dominates: " Paris"' : 'vector for the last token " in" · 32 of 4,096 dims shown';
+  }
+  function stopTf() { clearInterval(tfTimer); tfTimer = null; $('#tf-play').textContent = '▶ Play'; }
+  $('#tf-next').onclick = () => { stopTf(); tfStep = Math.min(TF.length - 1, tfStep + 1); renderTf(); };
+  $('#tf-prev').onclick = () => { stopTf(); tfStep = Math.max(0, tfStep - 1); renderTf(); };
+  $('#tf-play').onclick = () => {
+    if (tfTimer) return stopTf();
+    if (tfStep === TF.length - 1) tfStep = 0;
+    renderTf();
+    $('#tf-play').textContent = '❚❚ Pause';
+    tfTimer = setInterval(() => { if (tfStep >= TF.length - 1) return stopTf(); tfStep++; renderTf(); }, 2600);
+  };
+  renderTf();
+
+  /* ================= 06 MOE ================= */
+  const mc = $('#moe-canvas'); visIO.observe(mc);
+  let M6, moeMode = 'moe', moeToks = [], experts = [], moeSpawn = 0;
+  const moeWords = ['def', 'sort', '(', 'list', ')', 'The', 'Eiffel', 'Tower', 'bonjour', 'le', 'monde', '2', '+', '2', '=', '4', 'protein', 'fold', 'once', 'upon', 'a', 'time', 'SELECT', '*', 'FROM'];
+  let moeWi = 0;
+  function initMoe() { M6 = setupCanvas(mc); experts = Array.from({ length: 8 }, () => ({ glow: 0, count: 0 })); }
+  $$('[data-moe]').forEach(b => b.onclick = () => {
+    moeMode = b.dataset.moe; $$('[data-moe]').forEach(x => x.classList.toggle('on', x === b));
+    moeToks = []; experts.forEach(e => { e.count = 0; e.glow = 0; });
+    $('#moe-total').textContent = moeMode === 'moe' ? '8×' : '1×';
+    $('#moe-active').textContent = moeMode === 'moe' ? '2×' : '1×';
+  });
+  function drawMoe(now) {
+    requestAnimationFrame(drawMoe);
+    if (!isVis(mc)) return;
+    const { ctx, w, h } = M6;
+    ctx.clearRect(0, 0, w, h);
+    const rx = w * .42, ry = h / 2, ex = w * .78, ew = Math.min(130, w * .2), eh = (h - 60) / 8 - 8;
+    const eY = i => 30 + i * (eh + 8) + eh / 2;
+    if (now - moeSpawn > 420) {
+      moeSpawn = now;
+      const word = moeWords[moeWi++ % moeWords.length], hv = hash(word + moeWi % 3);
+      let e1 = hv % 8, e2 = (hv >>> 5) % 8; if (e2 === e1) e2 = (e1 + 3) % 8;
+      moeToks.push({ word, x: 20, y: 40 + Math.random() * (h - 80), sy: 0, t: 0, ex: [e1, e2], hit: false });
+    }
+    // lines
+    ctx.strokeStyle = hair(isLight() ? .1 : .05); ctx.lineWidth = 1;
+    if (moeMode === 'moe') for (let i = 0; i < 8; i++) { ctx.beginPath(); ctx.moveTo(rx, ry); ctx.lineTo(ex, eY(i)); ctx.stroke(); }
+    // experts / dense block
+    if (moeMode === 'moe') {
+      experts.forEach((e, i) => {
+        e.glow *= .95;
+        const y = eY(i) - eh / 2;
+        rrect(ctx, ex, y, ew, eh, 8);
+        ctx.fillStyle = `rgba(139,92,246,${.08 + e.glow * .5})`; ctx.fill();
+        ctx.strokeStyle = e.glow > .2 ? `rgba(${accentRgb()},${Math.max(e.glow, isLight() ? .7 : e.glow)})` : hair(.18); ctx.lineWidth = 1.5; ctx.stroke();
+        ctx.fillStyle = ink(1); ctx.font = '12px ui-monospace, monospace';
+        ctx.fillText(`Expert ${i + 1}`, ex + 10, eY(i) + 4);
+        ctx.fillStyle = mute(1); ctx.textAlign = 'right';
+        ctx.fillText(e.count, ex + ew - 10, eY(i) + 4); ctx.textAlign = 'left';
+      });
+    } else {
+      const e = experts[0]; e.glow *= .95;
+      rrect(ctx, ex, 30, ew, h - 60, 12);
+      ctx.fillStyle = `rgba(139,92,246,${.15 + e.glow * .4})`; ctx.fill();
+      ctx.strokeStyle = `rgba(${accentRgb()},.8)`; ctx.lineWidth = 1.5; ctx.stroke();
+      ctx.fillStyle = ink(1); ctx.font = '13px ui-monospace, monospace'; ctx.textAlign = 'center';
+      ctx.fillText('Dense FFN', ex + ew / 2, h / 2 - 8); ctx.fillStyle = mute(1); ctx.fillText('all params', ex + ew / 2, h / 2 + 10);
+      ctx.fillText('every token', ex + ew / 2, h / 2 + 26); ctx.textAlign = 'left';
+    }
+    // router
+    if (moeMode === 'moe') {
+      const g = ctx.createRadialGradient(rx, ry, 0, rx, ry, 50);
+      g.addColorStop(0, 'rgba(251,191,36,.35)'); g.addColorStop(1, 'transparent');
+      ctx.fillStyle = g; ctx.beginPath(); ctx.arc(rx, ry, 50, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = isLight() ? '#fffbeb' : '#1a1626'; ctx.strokeStyle = isLight() ? '#b45309' : '#fbbf24'; ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.arc(rx, ry, 28, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+      ctx.fillStyle = isLight() ? '#b45309' : '#fbbf24'; ctx.font = 'bold 11px ui-monospace, monospace'; ctx.textAlign = 'center'; ctx.fillText('ROUTER', rx, ry + 4); ctx.textAlign = 'left';
+    }
+    // tokens
+    for (let k = moeToks.length - 1; k >= 0; k--) {
+      const tk = moeToks[k];
+      tk.t += .012;
+      if (tk.t > 1.15) { moeToks.splice(k, 1); continue; }
+      const drawTok = (x, y, a) => {
+        ctx.font = '12px ui-monospace, monospace';
+        const tw = ctx.measureText(tk.word).width + 14;
+        rrect(ctx, x - tw / 2, y - 11, tw, 22, 6);
+        ctx.fillStyle = `rgba(${accentRgb()},${.2 * a})`; ctx.fill();
+        ctx.strokeStyle = `rgba(${accentRgb()},${.85 * a})`; ctx.lineWidth = 1; ctx.stroke();
+        ctx.fillStyle = ink(a); ctx.textAlign = 'center'; ctx.fillText(tk.word, x, y + 4); ctx.textAlign = 'left';
+      };
+      const ease = t => t < .5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+      const target = moeMode === 'moe' ? [rx, ry] : [ex, tk.y];
+      if (tk.t < .5) {
+        const p = ease(tk.t / .5);
+        drawTok(lerp(tk.x, target[0], p), lerp(tk.y, target[1], p), 1);
+      } else {
+        const p = ease(clamp((tk.t - .5) / .5));
+        if (moeMode === 'moe') {
+          for (const e of tk.ex) {
+            const x = lerp(rx, ex, p), y = lerp(ry, eY(e), p);
+            ctx.fillStyle = '#22d3ee'; ctx.shadowBlur = 12; ctx.shadowColor = '#22d3ee';
+            ctx.beginPath(); ctx.arc(x, y, 4, 0, Math.PI * 2); ctx.fill(); ctx.shadowBlur = 0;
+          }
+          if (p >= 1 && !tk.hit) { tk.hit = true; tk.ex.forEach(e => { experts[e].glow = 1; experts[e].count++; }); }
+        } else if (!tk.hit) { tk.hit = true; experts[0].glow = 1; }
+      }
+    }
+    ctx.fillStyle = mute(1); ctx.font = '11px ui-monospace, monospace';
+    ctx.fillText('tokens →', 14, 20);
+  }
+
+  /* ================= 07 DIFFUSION ================= */
+  const DS = 96;
+  const dc = $('#diff-canvas'), dctx = dc.getContext('2d');
+  dc.width = DS; dc.height = DS;
+  const off = document.createElement('canvas'); off.width = off.height = DS;
+  const octx = off.getContext('2d');
+  let x0 = new Float32Array(DS * DS * 3), eps = new Float32Array(DS * DS * 3), dScene = 'sunset', dAnim = null;
+  function gauss(r) { const u = Math.max(1e-9, r()), v = r(); return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v); }
+  function paintScene(kind) {
+    const c = octx, S = DS;
+    c.clearRect(0, 0, S, S);
+    if (kind === 'sunset') {
+      let g = c.createLinearGradient(0, 0, 0, S * .65); g.addColorStop(0, '#3b1d6e'); g.addColorStop(.6, '#f2617a'); g.addColorStop(1, '#ffb347');
+      c.fillStyle = g; c.fillRect(0, 0, S, S);
+      c.fillStyle = '#ffe28a'; c.beginPath(); c.arc(S * .5, S * .58, S * .16, 0, Math.PI * 2); c.fill();
+      c.fillStyle = '#2a1640'; c.beginPath(); c.moveTo(0, S * .66); c.lineTo(S * .22, S * .42); c.lineTo(S * .4, S * .6); c.lineTo(S * .62, S * .36); c.lineTo(S * .85, S * .58); c.lineTo(S, S * .48); c.lineTo(S, S * .7); c.lineTo(0, S * .7); c.fill();
+      g = c.createLinearGradient(0, S * .68, 0, S); g.addColorStop(0, '#f2617a'); g.addColorStop(1, '#1d0f3a');
+      c.fillStyle = g; c.fillRect(0, S * .68, S, S * .32);
+      c.fillStyle = 'rgba(255,226,138,.7)'; for (let i = 0; i < 6; i++) c.fillRect(S * (.4 + Math.sin(i) * .03), S * (.72 + i * .045), S * (.2 - i * .025), 1.5);
+    } else if (kind === 'planet') {
+      c.fillStyle = '#050314'; c.fillRect(0, 0, S, S);
+      const r = mulberry(7); c.fillStyle = '#fff'; for (let i = 0; i < 60; i++) c.fillRect(r() * S, r() * S, r() < .2 ? 1.5 : 1, r() < .2 ? 1.5 : 1);
+      c.save(); c.translate(S / 2, S / 2); c.rotate(-.35);
+      c.strokeStyle = 'rgba(251,191,36,.8)'; c.lineWidth = 3; c.beginPath(); c.ellipse(0, 0, S * .42, S * .1, 0, Math.PI, 0); c.stroke();
+      const g = c.createRadialGradient(-S * .08, -S * .08, 2, 0, 0, S * .24); g.addColorStop(0, '#9be7ff'); g.addColorStop(.6, '#5b5bd6'); g.addColorStop(1, '#1e1250');
+      c.fillStyle = g; c.beginPath(); c.arc(0, 0, S * .24, 0, Math.PI * 2); c.fill();
+      c.strokeStyle = 'rgba(251,191,36,.9)'; c.beginPath(); c.ellipse(0, 0, S * .42, S * .1, 0, 0, Math.PI); c.stroke();
+      c.restore();
+    } else {
+      const g = c.createRadialGradient(S / 2, S / 2, 0, S / 2, S / 2, S * .7); g.addColorStop(0, '#1d4d3a'); g.addColorStop(1, '#07140f');
+      c.fillStyle = g; c.fillRect(0, 0, S, S);
+      c.strokeStyle = '#3fa66b'; c.lineWidth = 3; c.beginPath(); c.moveTo(S / 2, S * .55); c.quadraticCurveTo(S * .45, S * .8, S / 2, S); c.stroke();
+      for (let i = 0; i < 8; i++) {
+        const a = i / 8 * Math.PI * 2;
+        c.save(); c.translate(S / 2, S * .42); c.rotate(a);
+        const pg = c.createLinearGradient(0, 0, 0, -S * .24); pg.addColorStop(0, '#ff4fa3'); pg.addColorStop(1, '#ffc2e2');
+        c.fillStyle = pg; c.beginPath(); c.ellipse(0, -S * .13, S * .07, S * .14, 0, 0, Math.PI * 2); c.fill(); c.restore();
+      }
+      c.fillStyle = '#ffd23c'; c.beginPath(); c.arc(S / 2, S * .42, S * .07, 0, Math.PI * 2); c.fill();
+    }
+    const d = c.getImageData(0, 0, S, S).data;
+    for (let i = 0, k = 0; i < d.length; i += 4) { x0[k++] = d[i] / 127.5 - 1; x0[k++] = d[i + 1] / 127.5 - 1; x0[k++] = d[i + 2] / 127.5 - 1; }
+    const r = mulberry(hash(kind) + (Math.random() * 1e6 | 0));
+    for (let i = 0; i < eps.length; i++) eps[i] = gauss(r);
+  }
+  const alphaBar = t => { const s = .008, f = x => Math.cos((x / 1000 + s) / (1 + s) * Math.PI / 2) ** 2; return f(t) / f(0); };
+  const dImg = dctx.createImageData(DS, DS);
+  function renderDiff(t) {
+    const ab = clamp(alphaBar(t), 0, 1), a = Math.sqrt(ab), s = Math.sqrt(1 - ab), px = dImg.data;
+    for (let i = 0, k = 0; i < px.length; i += 4) {
+      px[i] = (a * x0[k] + s * eps[k++] + 1) * 127.5;
+      px[i + 1] = (a * x0[k] + s * eps[k++] + 1) * 127.5;
+      px[i + 2] = (a * x0[k] + s * eps[k++] + 1) * 127.5;
+      px[i + 3] = 255;
+    }
+    dctx.putImageData(dImg, 0, 0);
+    $('#diff-t').textContent = `${Math.round(t)} / 1000`;
+    $('#diff-sig').textContent = Math.round(ab * 100) + '%';
+    $('#diff-noi').textContent = Math.round((1 - ab) * 100) + '%';
+  }
+  const dSlider = $('#diff-slider');
+  dSlider.oninput = () => { dAnim = null; renderDiff(+dSlider.value); };
+  function animDiff(from, to, dur) {
+    const t0 = performance.now(), id = {};
+    dAnim = id;
+    (function step(now) {
+      if (dAnim !== id) return;
+      const p = clamp((now - t0) / dur), e = 1 - Math.pow(1 - p, 2);
+      const t = lerp(from, to, e);
+      dSlider.value = t; renderDiff(t);
+      if (p < 1) requestAnimationFrame(step);
+    })(t0);
+  }
+  $('#diff-gen').onclick = () => animDiff(+dSlider.value || 1000, 0, 3500);
+  $('#diff-noise').onclick = () => animDiff(+dSlider.value, 1000, 2000);
+  $$('[data-scene]').forEach(b => b.onclick = () => {
+    dScene = b.dataset.scene; $$('[data-scene]').forEach(x => x.classList.toggle('on', x === b));
+    paintScene(dScene); dSlider.value = 1000; renderDiff(1000); animDiff(1000, 0, 3500);
+  });
+  paintScene('sunset'); renderDiff(1000);
+  let diffAuto = false;
+  new IntersectionObserver(([e]) => { if (e.isIntersecting && !diffAuto) { diffAuto = true; animDiff(1000, 0, 4000); } }, { threshold: .5 }).observe(dc);
+
+  /* ================= 08 TRAINING ================= */
+  const STAGES = [
+    ['Pretraining', 'Predict the next token on trillions of tokens of web text, books, and code.', `<span class="dim">// ~10–30 trillion tokens · months on thousands of GPUs</span>
+<span class="k">input:</span>  "The mitochondria is the powerhouse of the"
+<span class="k">target:</span> " cell"
+
+<span class="dim">Loss = −log p(" cell" | context). Repeat roughly 10¹³ times.
+The result is a "base model". It knows a huge amount, but it only continues text.
+Ask it a question and it might reply with three more questions.</span>`],
+    ['Supervised Fine-Tuning', 'Teach the chat format using curated examples of ideal responses.', `<span class="dim">// tens of thousands to millions of high-quality demonstrations</span>
+<span class="k">User:</span>      Explain recursion to a 10-year-old.
+<span class="k">Assistant:</span> <span class="ok">Imagine you're standing in a line and want to know
+           your place, so you ask the person in front of you…</span>
+
+<span class="dim">The model learns to act like a helpful assistant: answering, following
+instructions, and formatting its output.</span>`],
+    ['Preference Tuning', 'RLHF / DPO: learn from human (or AI) judgments of which answer is better.', `<span class="k">Prompt:</span> "My code throws a KeyError, help?"
+
+<span class="ok">Response A ✓ preferred</span>  Asks to see the code, explains likely causes,
+                         suggests dict.get() with a default.
+<span class="bad">Response B ✗</span>            "KeyError means a key error occurred."
+
+<span class="dim">A reward model learns to predict these preferences. Then the LLM is
+optimized (with PPO, or directly with DPO) to produce answers that score highly.
+This is where helpfulness, honesty, and harmlessness are shaped.</span>`],
+    ['Reasoning RL', 'Reinforcement learning on verifiable tasks teaches the model to think step by step.', `<span class="k">Problem:</span> Find all integers n where n² + 2n − 15 = 0
+<span class="th dim">&lt;think&gt; Factor: (n+5)(n−3)=0 … so n = −5 or n = 3.
+        Check: 25 − 10 − 15 = 0 ✓   9 + 6 − 15 = 0 ✓ &lt;/think&gt;</span>
+<span class="k">Answer:</span> n ∈ {−5, 3}   <span class="ok">→ verifier: correct → reward +1</span>
+
+<span class="dim">No human writes the reasoning. The model figures out strategies like
+self-checking and backtracking because they lead to more correct answers.</span>`],
+  ];
+  $('#stages').innerHTML = STAGES.map((s, i) => `<div class="stage-card" data-i="${i}"><div class="num">STAGE ${i + 1}</div><h4>${s[0]}</h4><p>${s[1]}</p></div>`).join('');
+  function showStage(i) {
+    $$('.stage-card').forEach((c, k) => c.classList.toggle('active', k === i));
+    $('#stage-detail').innerHTML = `<div class="kicker" style="margin-bottom:10px">WHAT THE TRAINING DATA LOOKS LIKE · ${STAGES[i][0].toUpperCase()}</div><div class="data-ex">${STAGES[i][2]}</div>`;
+  }
+  $$('.stage-card').forEach(c => c.onclick = () => showStage(+c.dataset.i));
+  showStage(0);
+
+  const thinkBox = $('#think-box');
+  const Q = 'A bat and a ball cost $1.10 in total. The bat costs $1.00 more than the ball. How much does the ball cost?';
+  let thinkRun = 0;
+  function streamParts(parts) {
+    const run = ++thinkRun;
+    thinkBox.innerHTML = `<span style="color:var(--fg)">${Q}</span>\n\n`;
+    let pi = 0, ci = 0, span = null;
+    (function tick() {
+      if (run !== thinkRun || pi >= parts.length) return;
+      const [cls, text] = parts[pi];
+      if (!span) { span = document.createElement('span'); span.className = cls; thinkBox.appendChild(span); }
+      ci += 2 + (Math.random() * 3 | 0);
+      span.textContent = text.slice(0, ci);
+      if (ci >= text.length) { pi++; ci = 0; span = null; }
+      setTimeout(tick, cls === 'th' ? 14 : 30);
+    })();
+  }
+  $('#think-fast').onclick = () => streamParts([['wrong', 'The ball costs $0.10.'], ['th', '\n\n(Wrong: then the bat would cost $1.10, and the total would be $1.20.)']]);
+  $('#think-slow').onclick = () => streamParts([
+    ['th', '<thinking>\nLet the ball cost x. Then the bat costs x + 1.00.\nTogether: x + (x + 1.00) = 1.10\n→ 2x + 1.00 = 1.10\n→ 2x = 0.10\n→ x = 0.05\nCheck: ball $0.05 + bat $1.05 = $1.10 ✓, and the difference is $1.00 ✓\nThe intuitive answer of $0.10 would give a total of $1.20, so it\'s wrong.\n</thinking>\n\n'],
+    ['ans', 'The ball costs $0.05.'],
+  ]);
+
+  /* ================= 09 SCALING ================= */
+  const scv = $('#scale-canvas'); visIO.observe(scv);
+  let SC;
+  const lossAt = lc => 1.69 + 3.0 * Math.pow(10, -(lc - 18) * .08);
+  const runs = (() => { const r = mulberry(42); return Array.from({ length: 70 }, () => { const lc = 18 + r() * 8.3; return [lc, lossAt(lc) + r() * r() * .6 + .02]; }); })();
+  const sup = n => String(n).split('').map(ch => '⁰¹²³⁴⁵⁶⁷⁸⁹'['0123456789'.indexOf(ch)] || ch).join('');
+  function fmtBig(x) {
+    const u = [[1e12, 'T'], [1e9, 'B'], [1e6, 'M'], [1e3, 'K']];
+    for (const [v, s] of u) if (x >= v) return (x / v).toFixed(x / v >= 100 ? 0 : 1) + s;
+    return x.toFixed(0);
+  }
+  function drawScale() {
+    const { ctx, w, h } = SC;
+    const lc = +$('#sc-slider').value;
+    ctx.clearRect(0, 0, w, h);
+    const L = 60, R = 20, T = 30, B = 50;
+    const X = v => L + (v - 18) / 8.5 * (w - L - R), Y = v => T + (1 - (v - 1.8) / 3.2) * (h - T - B);
+    ctx.strokeStyle = hair(isLight() ? .1 : .07); ctx.fillStyle = mute(1); ctx.font = '11px ui-monospace, monospace';
+    for (let e = 18; e <= 26; e++) { ctx.beginPath(); ctx.moveTo(X(e), T); ctx.lineTo(X(e), h - B); ctx.stroke(); ctx.textAlign = 'center'; ctx.fillText('10' + sup(e), X(e), h - B + 18); }
+    for (let v = 2; v <= 5; v += .5) { ctx.beginPath(); ctx.moveTo(L, Y(v)); ctx.lineTo(w - R, Y(v)); ctx.stroke(); ctx.textAlign = 'right'; ctx.fillText(v.toFixed(1), L - 8, Y(v) + 4); }
+    ctx.textAlign = 'center'; ctx.fillText('training compute (FLOPs, log scale)', (L + w - R) / 2, h - 12);
+    ctx.save(); ctx.translate(16, (T + h - B) / 2); ctx.rotate(-Math.PI / 2); ctx.fillText('loss', 0, 0); ctx.restore();
+    ctx.textAlign = 'left';
+    runs.forEach(([x, y]) => { ctx.fillStyle = x <= lc ? 'rgba(139,92,246,.7)' : 'rgba(139,92,246,.18)'; ctx.beginPath(); ctx.arc(X(x), Y(y), 3.5, 0, Math.PI * 2); ctx.fill(); });
+    ctx.lineWidth = 2.5;
+    const grad = ctx.createLinearGradient(L, 0, w - R, 0); grad.addColorStop(0, '#8b5cf6'); grad.addColorStop(1, '#22d3ee');
+    ctx.strokeStyle = grad; ctx.beginPath();
+    for (let x = 18; x <= 26.5; x += .05) x === 18 ? ctx.moveTo(X(x), Y(lossAt(x))) : ctx.lineTo(X(x), Y(lossAt(x)));
+    ctx.stroke();
+    ctx.setLineDash([3, 5]); ctx.strokeStyle = 'rgba(244,114,182,.5)'; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(L, Y(1.69)); ctx.lineTo(w - R, Y(1.69)); ctx.stroke(); ctx.setLineDash([]);
+    ctx.fillStyle = isLight() ? '#be185d' : 'rgba(244,114,182,.9)'; ctx.fillText('irreducible loss (entropy of language)', L + 8, Y(1.69) - 6);
+    const mxp = X(lc), myp = Y(lossAt(lc));
+    ctx.strokeStyle = 'rgba(251,191,36,.5)'; ctx.setLineDash([4, 4]);
+    ctx.beginPath(); ctx.moveTo(mxp, h - B); ctx.lineTo(mxp, myp); ctx.lineTo(L, myp); ctx.stroke(); ctx.setLineDash([]);
+    ctx.fillStyle = isLight() ? '#b45309' : '#fbbf24'; ctx.shadowBlur = 16; ctx.shadowColor = ctx.fillStyle;
+    ctx.beginPath(); ctx.arc(mxp, myp, 7, 0, Math.PI * 2); ctx.fill(); ctx.shadowBlur = 0;
+    const C = Math.pow(10, lc), N = Math.sqrt(C / 120), D = 20 * N, gpuH = C / (4e14 * 3600);
+    $('#sc-c').textContent = `10${sup(lc.toFixed(1).replace('.0', ''))} FLOPs`;
+    $('#sc-n').textContent = fmtBig(N);
+    $('#sc-d').textContent = fmtBig(D);
+    $('#sc-gpu').textContent = fmtBig(gpuH);
+    $('#sc-loss').textContent = lossAt(lc).toFixed(2);
+  }
+  $('#sc-slider').oninput = drawScale;
+
+  /* ================= 10 RAG ================= */
+  const DOCS = [
+    ['Shipping: orders ship within 2 business days.', .41],
+    ['Our office dogs are named Biscuit and Mochi.', .08],
+    ['Returns: items may be returned within 30 days of delivery for a full refund.', .89],
+    ['Holiday hours: closed Dec 25 and Jan 1.', .22],
+    ['Refunds are issued to the original payment method within 5–7 days.', .71],
+  ];
+  const docsEl = $('#rag-docs');
+  docsEl.innerHTML = DOCS.map(([t], i) => `<div class="doc" id="doc${i}"><span>${t}</span><b class="mono" style="font-size:10px">—</b><div class="sb"><i></i></div></div>`).join('');
+  $('#rag-vec').innerHTML = '<i></i>'.repeat(24);
+  let ragRun = 0;
+  $('#rag-run').onclick = () => {
+    const run = ++ragRun, at = (ms, fn) => setTimeout(() => run === ragRun && fn(), ms);
+    $$('.rag-step').forEach(s => s.classList.remove('on'));
+    $$('.doc').forEach(d => { d.classList.remove('top'); d.querySelector('i').style.width = '0'; d.querySelector('b').textContent = '—'; });
+    $$('#rag-vec i').forEach(i => i.style.background = '');
+    $('#rag-ans').innerHTML = '';
+    at(0, () => $('#rag1').classList.add('on'));
+    at(700, () => { $('#rag2').classList.add('on'); const r = mulberry(9); $$('#rag-vec i').forEach((el, k) => setTimeout(() => { const v = r() * 2 - 1; el.style.background = v > 0 ? `rgba(34,211,238,${v})` : `rgba(244,114,182,${-v})`; }, k * 30)); });
+    at(1800, () => { $('#rag3').classList.add('on'); DOCS.forEach(([, s], i) => { $('#doc' + i).querySelector('i').style.width = s * 100 + '%'; $('#doc' + i).querySelector('b').textContent = s.toFixed(2); }); });
+    at(2800, () => { $('#doc2').classList.add('top'); $('#doc4').classList.add('top'); });
+    at(3500, () => $('#rag4').classList.add('on'));
+    at(4500, () => {
+      $('#rag5').classList.add('on');
+      const ans = 'You can return items within 30 days of delivery for a full refund [doc 3]. Refunds go back to your original payment method within 5–7 days [doc 1].';
+      let i = 0; (function t() { if (run !== ragRun) return; i += 3; $('#rag-ans').innerHTML = esc(ans.slice(0, i)).replace(/\[doc \d\]/g, m => `<span style="color:var(--c)">${m}</span>`); if (i < ans.length) setTimeout(t, 25); })();
+    });
+  };
+
+  /* ================= 11 APPS ================= */
+  const APPS = [
+    ['💬', 'Chat assistants', 'General-purpose helpers for writing, analysis, tutoring, and brainstorming.', 'A pretrained LLM, then <b>SFT</b>, then <b>preference tuning</b>. A <b>system prompt</b> sets its behavior, and long <b>context windows</b> (hundreds of thousands of tokens or more) let it read whole books or codebases at once.'],
+    ['👩‍💻', 'Coding agents', 'Write, refactor, debug, and test code across entire repositories.', 'An LLM in a <b>loop with tools</b>: read files, run the terminal, run the tests, then fix and try again. Coding is a natural fit for <b>reinforcement learning</b>, because passing tests are an automatic, checkable reward.'],
+    ['🔎', 'Search & RAG', 'Answer questions over the web or private documents, with citations.', '<b>Embeddings</b> find relevant passages, often combined with keyword search and a <b>reranker</b> model. The passages are inserted into the prompt so the model\'s answer is grounded in real sources (see section 10).'],
+    ['🎨', 'Image & video generation', 'Photorealistic images, illustrations, and minute-long video clips from a text prompt.', '<b>Latent diffusion</b> or <b>flow matching</b>, usually with a transformer backbone (DiT). A text encoder turns the prompt into a conditioning signal. Video models denoise <b>spacetime patches</b> to keep frames consistent over time.'],
+    ['🎙️', 'Speech & voice', 'Transcription, real-time voice conversation, and natural text-to-speech.', 'Audio is turned into tokens, either spectrogram frames or a learned <b>audio codec</b>. Speech-to-text models like Whisper use encoder-decoder transformers. Newer voice-native models process audio tokens directly, which cuts latency.'],
+    ['🧬', 'Science & biology', 'Predicting protein structures, designing molecules, and discovering materials.', '<b>AlphaFold</b> predicts a protein\'s 3D structure from its amino-acid sequence using attention over residue pairs. That work shared the <b>2024 Nobel Prize in Chemistry</b>. Newer models use <b>diffusion</b> to generate entirely new proteins and molecules.'],
+    ['🤖', 'Robotics', 'Robots that follow natural-language instructions in messy, real-world environments.', '<b>Vision-Language-Action (VLA)</b> models start from a vision-language model and add outputs for motor commands, or "action tokens." They\'re trained on large datasets of robot demonstrations plus web data, which helps them handle situations they haven\'t seen before.'],
+    ['👁️', 'Vision & documents', 'Reading charts, screenshots, handwriting, and medical images.', 'A <b>Vision Transformer</b> cuts an image into patches, e.g. 16×16 pixels, and turns each patch into a token. These sit in the same sequence as text tokens, so the LLM can attend over words and pixels together.'],
+    ['🌍', 'Translation', 'Near-instant translation across hundreds of languages.', 'The original transformer was built for translation. Today\'s multilingual LLMs pick up translation as a side effect of pretraining on many languages, and handle tone and idioms far better than older phrase-based systems.'],
+  ];
+  $('#apps-grid').innerHTML = APPS.map(a => `<div class="app"><span class="hint">+</span><div class="ic">${a[0]}</div><h4>${a[1]}</h4><p>${a[2]}</p><div class="more">${a[3]}</div></div>`).join('');
+  $$('.app').forEach(c => {
+    c.onclick = () => c.classList.toggle('open');
+    c.onmousemove = e => { const r = c.getBoundingClientRect(); c.style.setProperty('--mx', (e.clientX - r.left) + 'px'); c.style.setProperty('--my', (e.clientY - r.top) + 'px'); };
+  });
+
+  /* ================= 12 MODELS ================= */
+  const svgDense = `<svg viewBox="0 0 300 70">${[0,1,2,3,4,5].map(i => `<rect x="${10 + i * 48}" y="15" width="40" height="40" rx="6" fill="rgba(139,92,246,.35)" stroke="#8b5cf6"/>`).join('')}<text x="150" y="68" fill="#9a98b5" font-size="9" text-anchor="middle" font-family="monospace">every layer, every parameter, every token</text></svg>`;
+  const svgMoe = `<svg viewBox="0 0 300 70"><circle cx="30" cy="35" r="14" fill="none" stroke="#fbbf24" stroke-width="2"/>${[0,1,2,3,4,5,6,7].map(i => `<rect x="${70 + i * 28}" y="15" width="22" height="40" rx="4" fill="${i === 1 || i === 5 ? 'rgba(34,211,238,.5)' : 'rgba(109,40,217,.14)'}" stroke="${i === 1 || i === 5 ? '#22d3ee' : 'rgba(109,40,217,.35)'}"/>`).join('')}<path d="M44 35 L81 35 M44 35 L193 35" stroke="#22d3ee" stroke-width="1" opacity=".6"/></svg>`;
+  const svgReason = `<svg viewBox="0 0 300 70">${Array.from({ length: 22 }, (_, i) => `<rect x="${8 + i * 12}" y="25" width="9" height="20" rx="2" fill="${i < 18 ? 'rgba(154,152,181,.25)' : 'rgba(52,211,153,.7)'}"/>`).join('')}<text x="110" y="18" fill="#9a98b5" font-size="9" text-anchor="middle" font-family="monospace">thinking tokens…</text><text x="250" y="18" fill="#34d399" font-size="9" text-anchor="middle" font-family="monospace">answer</text></svg>`;
+  const svgMulti = `<svg viewBox="0 0 300 70">${Array.from({ length: 6 }, (_, i) => `<rect x="${10 + i * 14}" y="25" width="11" height="20" rx="2" fill="rgba(244,114,182,.6)"/>`).join('')}${Array.from({ length: 6 }, (_, i) => `<rect x="${100 + i * 14}" y="25" width="11" height="20" rx="2" fill="rgba(34,211,238,.6)"/>`).join('')}${Array.from({ length: 6 }, (_, i) => `<rect x="${190 + i * 14}" y="25" width="11" height="20" rx="2" fill="rgba(251,191,36,.6)"/>`).join('')}<text x="45" y="60" fill="#f472b6" font-size="9" text-anchor="middle" font-family="monospace">image</text><text x="135" y="60" fill="#22d3ee" font-size="9" text-anchor="middle" font-family="monospace">text</text><text x="225" y="60" fill="#fbbf24" font-size="9" text-anchor="middle" font-family="monospace">audio</text></svg>`;
+  const svgDiff = `<svg viewBox="0 0 300 70">${Array.from({ length: 6 }, (_, i) => `<rect x="${10 + i * 48}" y="12" width="40" height="40" rx="6" fill="rgba(139,92,246,${.12 + i * .14})" stroke="rgba(109,40,217,${.55 - i * .06})" stroke-dasharray="${6 - i},${i + 1}"/>`).join('')}<text x="150" y="66" fill="#9a98b5" font-size="9" text-anchor="middle" font-family="monospace">noise → → → → → image</text></svg>`;
+  const svgSsm = `<svg viewBox="0 0 300 70"><path d="M10 35 ${Array.from({ length: 14 }, (_, i) => `L${30 + i * 19} ${35 + Math.sin(i) * 10}`).join(' ')}" fill="none" stroke="#34d399" stroke-width="2"/>${Array.from({ length: 14 }, (_, i) => `<circle cx="${30 + i * 19}" cy="${35 + Math.sin(i) * 10}" r="3" fill="#34d399"/>`).join('')}<text x="150" y="66" fill="#9a98b5" font-size="9" text-anchor="middle" font-family="monospace">fixed-size state carried forward · O(n)</text></svg>`;
+  const MODELS = [
+    ['Dense Transformer', 'FOUNDATION', '#8b5cf6', svgDense, 'The classic design: a decoder-only transformer where every parameter is used for every token. Simple, stable, and very well understood.', ['Next-token prediction + RLHF', 'Grouped-query attention, RoPE, and SwiGLU MLPs are now standard', 'Compute per token grows directly with model size'], 'e.g. Llama 3 (8B–405B), Gemma, and many open-weight models'],
+    ['Mixture of Experts', 'SPARSE', '#22d3ee', svgMoe, 'Replaces each MLP with many experts and activates only a few per token. This is how you get huge total capacity at a manageable cost per token.', ['Router picks top-k experts per token', 'Total params ≫ active params', 'Harder to train: load balancing, memory'], 'e.g. Mixtral, DeepSeek-V3, Qwen-MoE, and likely many closed frontier models'],
+    ['Reasoning Models', 'TEST-TIME COMPUTE', '#34d399', svgReason, 'The same transformer, trained with large-scale RL to generate a long internal chain of thought before answering. A big step up on math, science, and coding.', ['RL with verifiable rewards', 'Thinks for seconds to minutes', 'Quality improves with more "thinking budget"'], 'e.g. OpenAI o-series, DeepSeek-R1, Claude and Gemini thinking modes'],
+    ['Natively Multimodal', 'ANY-TO-ANY', '#f472b6', svgMulti, 'Images, audio, and video are converted into tokens and fed into the same transformer as text, so one model can see, hear, and speak.', ['ViT patch encoders for images', 'Audio codecs for speech in and out', 'Shared attention across all modalities'], 'e.g. GPT-4o, the Gemini family, Claude (vision)'],
+    ['Diffusion & Flow', 'GENERATIVE MEDIA', '#fbbf24', svgDiff, 'Learns to turn noise into data step by step. The leading approach for images and video, and increasingly being tried for text and code as well.', ['Works in a compressed latent space', 'Transformer backbones (DiT) are replacing U-Nets', 'Classifier-free guidance makes outputs follow the prompt more closely'], 'e.g. Stable Diffusion 3, FLUX, Imagen, Sora, Veo'],
+    ['State-Space & Hybrids', 'EFFICIENT LONG CONTEXT', '#34d399', svgSsm, 'Instead of attending to every past token, the model carries a fixed-size memory forward. Cost grows linearly with sequence length instead of quadratically.', ['Mamba-style selective state spaces', 'Hybrids mix a few attention layers with many SSM layers', 'Fast inference on very long sequences'], 'e.g. Mamba, Jamba, and other hybrid architectures'],
+  ];
+  $('#models-grid').innerHTML = MODELS.map(([n, tag, col, svgS, d, li, ex]) => `<div class="model"><span class="tag" style="--tag:${col}">${tag}</span>${svgS}<h4>${n}</h4><p>${d}</p><ul>${li.map(x => `<li>${x}</li>`).join('')}</ul><div class="ex">${ex}</div></div>`).join('');
+
+  /* ================= Boot ================= */
+  function sizeAll() {
+    initHero();
+    E = setupCanvas(ec);
+    initMoe();
+    SC = setupCanvas(scv); drawScale();
+    renderAttn();
+  }
+  [hc, ec, mc, scv].forEach(c => visIO.observe(c));
+  addEventListener('resize', sizeAll);
+  sizeAll();
+  function syncThemeBtn() { $('#theme-btn').textContent = isLight() ? '☾ Dark' : '☀ Light'; }
+  $('#theme-btn').onclick = () => {
+    document.documentElement.dataset.theme = isLight() ? 'dark' : 'light';
+    try { localStorage.setItem('ls-theme', document.documentElement.dataset.theme); } catch (e) {}
+    syncThemeBtn();
+    renderTf();
+    drawAttn();
+    drawScale();
+  };
+  syncThemeBtn();
+  requestAnimationFrame(drawHero);
+  requestAnimationFrame(drawEmb);
+  requestAnimationFrame(drawMoe);
+})();
+</script>
+</body>
+</html>

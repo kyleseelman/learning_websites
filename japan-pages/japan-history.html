@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>日本 · Japan: A History from Myth to Reiwa</title>
+<meta name="description" content="A long-form, illustrated overview of Japanese history from the Paleolithic and founding myths to the Reiwa era (2026), with culture, religion, arts, language and society.">
+<meta name="color-scheme" content="light dark">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;600;800&family=Noto+Serif+JP:wght@400;600;900&family=Cormorant+Garamond:ital,wght@0,500;0,700;1,500&family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --washi:#f4ede0; --washi-2:#ece2cf; --card:#fbf7ef; --ink:#1f1b17; --ink-soft:#4a423a; --muted:#6f655a;
+  --shu:#c0391b; --shu-soft:#e0725a; --ai:#1f3a5f; --ai-soft:#3d6390; --kin:#a87b23; --kin-soft:#d4ad5a;
+  --matcha:#5f7a3a; --sakura:#f2b8c6; --line:rgba(31,27,23,.14); --shadow:0 10px 30px -12px rgba(40,25,10,.25);
+  --f-jp:"Shippori Mincho","Noto Serif JP","Hiragino Mincho ProN","Yu Mincho","YuMincho",serif;
+  --f-display:"Cormorant Garamond","Shippori Mincho",Georgia,serif;
+  --f-body:"EB Garamond","Noto Serif JP",Georgia,"Times New Roman",serif;
+  --noise:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .42 0 0 0 0 .34 0 0 0 0 .22 0 0 0 .10 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  --fibers:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='600'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.004 .09' numOctaves='2' seed='7'/%3E%3CfeColorMatrix values='0 0 0 0 .55 0 0 0 0 .45 0 0 0 0 .3 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E");
+}
+[data-theme="dark"]{
+  --washi:#111319; --washi-2:#181b24; --card:#1b1f2a; --ink:#ece4d4; --ink-soft:#cfc5b3; --muted:#9d9484;
+  --shu:#e8664a; --shu-soft:#f08e76; --ai:#8fb0dc; --ai-soft:#a9c3e6; --kin:#d9b25e; --kin-soft:#e8c97f;
+  --matcha:#9cbc6c; --line:rgba(236,228,212,.13); --shadow:0 12px 34px -14px rgba(0,0,0,.7);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}}
+body{margin:0;background-color:var(--washi);background-image:var(--noise),var(--fibers);color:var(--ink);font-family:var(--f-body);font-size:1.15rem;line-height:1.7;transition:background-color .4s,color .4s}
+a{color:var(--shu);text-decoration-thickness:1px;text-underline-offset:3px}
+a:hover{color:var(--ai)}
+:focus-visible{outline:3px solid var(--kin);outline-offset:3px;border-radius:4px}
+.skip{position:absolute;left:-999px;top:0;background:var(--ink);color:var(--washi);padding:.6rem 1rem;z-index:100}
+.skip:focus{left:1rem;top:1rem}
+.jp{font-family:var(--f-jp)}
+.sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* progress + top bar */
+#progress{position:fixed;top:0;left:0;height:4px;width:100%;transform-origin:0 50%;transform:scaleX(0);background:linear-gradient(90deg,var(--shu),var(--kin),var(--ai));z-index:60}
+.topbar{position:fixed;top:4px;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:.45rem 1rem;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);background:color-mix(in srgb,var(--washi) 78%,transparent);border-bottom:1px solid var(--line);transform:translateY(-120%);transition:transform .4s}
+.topbar.show{transform:none}
+.brand{font-family:var(--f-jp);font-weight:800;letter-spacing:.08em;color:var(--ink);text-decoration:none;display:flex;gap:.6rem;align-items:center}
+.brand .hanko{display:inline-grid;place-items:center;width:30px;height:30px;background:var(--shu);color:#fff;border-radius:6px;font-size:.95rem;transform:rotate(-4deg)}
+.tb-actions{display:flex;gap:.5rem}
+.icon-btn{font:inherit;font-size:.95rem;border:1px solid var(--line);background:var(--card);color:var(--ink);padding:.35rem .75rem;border-radius:999px;cursor:pointer;display:inline-flex;gap:.4rem;align-items:center}
+.icon-btn:hover{border-color:var(--shu)}
+#menuBtn{display:none}
+
+/* hero */
+.hero{position:relative;min-height:100vh;min-height:100svh;overflow:hidden;display:grid;place-items:center;text-align:center;isolation:isolate;
+  background:radial-gradient(ellipse at 50% 120%,color-mix(in srgb,var(--shu) 30%,transparent),transparent 60%),linear-gradient(180deg,#f8efe0 0%,#f3dcc4 55%,#e9c7ab 100%)}
+[data-theme="dark"] .hero{background:radial-gradient(ellipse at 50% 115%,rgba(232,102,74,.35),transparent 60%),linear-gradient(180deg,#0b0d16 0%,#151a2e 55%,#2b2236 100%)}
+.sun{position:absolute;width:min(56vw,520px);aspect-ratio:1;border-radius:50%;left:50%;top:44%;transform:translate(-50%,-50%);
+  background:radial-gradient(circle at 45% 40%,#ff6b4a,var(--shu) 55%,#9e2a12);box-shadow:0 0 120px 30px rgba(192,57,27,.35);z-index:-2;animation:rise 2.6s cubic-bezier(.2,.7,.2,1) both}
+.rays{position:absolute;left:50%;top:44%;width:240vmax;height:240vmax;transform:translate(-50%,-50%);z-index:-3;opacity:.16;
+  background:repeating-conic-gradient(from 0deg,var(--shu) 0deg 5deg,transparent 5deg 15deg);animation:spin 160s linear infinite;
+  -webkit-mask:radial-gradient(circle,#000 0 20%,transparent 60%);mask:radial-gradient(circle,#000 0 20%,transparent 60%)}
+@keyframes rise{from{transform:translate(-50%,10%);opacity:0}to{transform:translate(-50%,-50%);opacity:1}}
+@keyframes spin{to{transform:translate(-50%,-50%) rotate(360deg)}}
+.fuji{position:absolute;bottom:0;left:0;width:100%;height:auto;z-index:-1}
+.fuji .m{fill:#2c3e5c}.fuji .m2{fill:#3f5577;opacity:.75}.fuji .snow{fill:#fbf7ef}
+[data-theme="dark"] .fuji .m{fill:#0e1322}[data-theme="dark"] .fuji .m2{fill:#1c2440}[data-theme="dark"] .fuji .snow{fill:#cfd6e6}
+.mist{position:absolute;left:-10%;right:-10%;height:120px;bottom:12%;background:radial-gradient(ellipse at center,rgba(255,255,255,.55),transparent 70%);filter:blur(10px);z-index:-1;animation:drift 22s ease-in-out infinite alternate}
+[data-theme="dark"] .mist{background:radial-gradient(ellipse at center,rgba(160,170,210,.18),transparent 70%)}
+@keyframes drift{to{transform:translateX(6%)}}
+#petals{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none}
+.hero-inner{position:relative;z-index:2;padding:6rem 1.2rem 22vh;max-width:960px}
+.hero h1{margin:0;font-family:var(--f-jp);font-weight:800;font-size:clamp(4rem,14vw,10rem);line-height:1;letter-spacing:.12em;color:#fff;text-shadow:0 4px 30px rgba(80,10,0,.45)}
+.hero .kicker{font-family:var(--f-display);letter-spacing:.35em;text-transform:uppercase;font-size:.95rem;color:var(--ink);opacity:.8}
+[data-theme="dark"] .hero .kicker{color:#f0e6d6}
+.hero .title-en{font-family:var(--f-display);font-size:clamp(1.6rem,3.6vw,2.8rem);font-weight:700;margin:.6rem 0 .2rem;color:var(--ink)}
+[data-theme="dark"] .hero .title-en{color:#f6eee0}
+.hero p.lede{max-width:640px;margin:.4rem auto 1.4rem;font-size:1.2rem;color:var(--ink-soft)}
+[data-theme="dark"] .hero p.lede{color:#d9cfbd}
+.cta{display:inline-flex;gap:.6rem;align-items:center;padding:.75rem 1.4rem;border-radius:999px;background:var(--ink);color:var(--washi);text-decoration:none;font-family:var(--f-display);font-weight:700;letter-spacing:.06em;box-shadow:var(--shadow)}
+.cta:hover{background:var(--shu);color:#fff}
+.scroll-hint{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);z-index:3;color:#fff;font-size:.8rem;letter-spacing:.3em;writing-mode:vertical-rl;font-family:var(--f-jp);opacity:.85;animation:bob 2.4s ease-in-out infinite}
+@keyframes bob{50%{transform:translate(-50%,8px)}}
+
+/* layout */
+.layout{display:grid;grid-template-columns:250px minmax(0,1fr);gap:3rem;max-width:1280px;margin:0 auto;padding:0 1.5rem}
+.toc{position:sticky;top:72px;align-self:start;max-height:calc(100vh - 90px);overflow:auto;padding:1.2rem 0 2rem;font-size:.95rem;scrollbar-width:thin}
+.toc h2{font-family:var(--f-jp);font-size:1rem;letter-spacing:.2em;margin:0 0 .6rem;color:var(--muted)}
+.toc ol{list-style:none;margin:0;padding:0;border-left:2px solid var(--line)}
+.toc li a{display:flex;gap:.6rem;align-items:baseline;padding:.28rem .8rem;color:var(--ink-soft);text-decoration:none;border-left:2px solid transparent;margin-left:-2px;transition:all .25s}
+.toc li a .k{font-family:var(--f-jp);color:var(--muted);font-size:.8rem;min-width:2.2em}
+.toc li a:hover{color:var(--shu)}
+.toc li a.active{color:var(--shu);border-left-color:var(--shu);background:linear-gradient(90deg,color-mix(in srgb,var(--shu) 10%,transparent),transparent)}
+.toc li.grp{font-family:var(--f-display);text-transform:uppercase;letter-spacing:.2em;font-size:.72rem;color:var(--kin);padding:.9rem .8rem .2rem}
+main{min-width:0;padding-bottom:4rem}
+
+/* sections */
+section.chap{padding:5.5rem 0 1rem;scroll-margin-top:60px;position:relative}
+.chap-head{display:grid;grid-template-columns:auto 1fr;gap:1.2rem;align-items:end;margin-bottom:1.6rem}
+.chap-num{font-family:var(--f-jp);writing-mode:vertical-rl;font-size:2.2rem;font-weight:800;color:var(--shu);line-height:1;letter-spacing:.1em;border-right:2px solid var(--shu);padding-right:.6rem}
+.chap-head h2{margin:0;font-family:var(--f-display);font-size:clamp(2.1rem,4.6vw,3.4rem);line-height:1.05;font-weight:700}
+.chap-head .sub{display:block;font-family:var(--f-jp);font-size:1rem;color:var(--muted);letter-spacing:.25em;font-weight:400;margin-top:.4rem}
+.brush{display:block;height:14px;width:min(280px,70%);margin-top:.6rem;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 14' preserveAspectRatio='none'%3E%3Cpath d='M2 9 C 40 3, 90 4, 150 6 S 260 10, 298 4 L 297 8 C 250 13, 180 12, 120 11 S 30 12, 3 12 Z' fill='%23c0391b'/%3E%3C/svg%3E") no-repeat;background-size:100% 100%;opacity:.9}
+h3{font-family:var(--f-display);font-size:1.75rem;margin:2.4rem 0 .6rem;line-height:1.15}
+h3 .jp{font-size:1.05rem;color:var(--shu);margin-left:.5rem;letter-spacing:.1em}
+h3 .dates{display:block;font-family:var(--f-body);font-size:.95rem;color:var(--muted);letter-spacing:.06em;font-style:italic;margin-top:.15rem}
+h4{font-family:var(--f-display);font-size:1.3rem;margin:1.6rem 0 .3rem}
+p{margin:.7rem 0 1rem}
+.lead{font-size:1.3rem;line-height:1.6;color:var(--ink-soft)}
+.lead::first-letter{font-family:var(--f-display);float:left;font-size:4.2rem;line-height:.85;padding:.3rem .5rem 0 0;color:var(--shu);font-weight:700}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:1.3rem 1.5rem;box-shadow:var(--shadow);position:relative}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.2rem}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.1rem}
+.callout{border-left:4px solid var(--kin);background:color-mix(in srgb,var(--kin) 9%,var(--card));padding:1rem 1.3rem;border-radius:0 12px 12px 0;margin:1.4rem 0}
+.callout.shu{border-color:var(--shu);background:color-mix(in srgb,var(--shu) 7%,var(--card))}
+.callout.ai{border-color:var(--ai);background:color-mix(in srgb,var(--ai) 8%,var(--card))}
+.callout strong:first-child{font-family:var(--f-display);font-size:1.15rem}
+blockquote{margin:1.6rem 0;padding:1rem 1.4rem;font-style:italic;font-size:1.25rem;border-left:3px solid var(--shu);color:var(--ink-soft)}
+blockquote .jp{display:block;font-style:normal;font-size:1.4rem;color:var(--ink);margin-bottom:.3rem}
+blockquote cite{display:block;font-size:.95rem;margin-top:.4rem;color:var(--muted)}
+details{border:1px solid var(--line);border-radius:12px;background:var(--card);margin:1rem 0;overflow:hidden}
+summary{cursor:pointer;padding:.85rem 1.2rem;font-family:var(--f-display);font-weight:700;font-size:1.15rem;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:1rem}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"＋";font-family:var(--f-jp);color:var(--shu);transition:transform .3s}
+details[open] summary::after{transform:rotate(45deg)}
+details>div{padding:0 1.3rem 1rem}
+ul.facts{padding-left:1.1rem}ul.facts li{margin:.25rem 0}ul.facts li::marker{color:var(--shu)}
+.tag{display:inline-block;font-size:.75rem;font-family:var(--f-display);letter-spacing:.12em;text-transform:uppercase;padding:.1rem .55rem;border-radius:999px;border:1px solid var(--line);color:var(--muted);margin-right:.3rem}
+figure{margin:1.8rem 0}
+figcaption{font-size:.92rem;color:var(--muted);margin-top:.6rem;font-style:italic}
+.viz{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:1.2rem;box-shadow:var(--shadow);position:relative}
+.viz-title{font-family:var(--f-display);font-weight:700;font-size:1.3rem;margin:0 0 .2rem}
+.viz-note{font-size:.88rem;color:var(--muted);margin:0 0 .8rem}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:999px;padding:3px;gap:3px;background:var(--washi)}
+.seg button{font:inherit;font-size:.9rem;border:0;background:transparent;color:var(--ink-soft);padding:.3rem .9rem;border-radius:999px;cursor:pointer}
+.seg button[aria-pressed="true"],.seg button[aria-selected="true"]{background:var(--ink);color:var(--washi)}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1rem;margin:1.8rem 0}
+.stat{text-align:center;padding:1.1rem .6rem;border-top:3px solid var(--shu);background:var(--card);border-radius:0 0 12px 12px;box-shadow:var(--shadow)}
+.stat b{display:block;font-family:var(--f-display);font-size:2.3rem;line-height:1;color:var(--ai)}
+.stat span{font-size:.9rem;color:var(--muted)}
+
+/* timeline */
+.tl-wrap{position:relative}
+.tl-scroller{overflow-x:auto;padding:1.2rem .2rem 1rem;scrollbar-width:thin;scroll-snap-type:x proximity}
+.tl-track{display:flex;gap:4px;min-width:max-content;position:relative;padding-top:1.6rem}
+.tl-seg{flex:none;height:96px;border:0;border-radius:10px;cursor:pointer;color:#fff;text-align:left;padding:.55rem .7rem;font:inherit;position:relative;scroll-snap-align:center;transition:transform .25s,box-shadow .25s,filter .25s;overflow:hidden;box-shadow:inset 0 -30px 40px -20px rgba(0,0,0,.35)}
+.tl-seg::before{content:"";position:absolute;inset:0;background:var(--noise);opacity:.6;mix-blend-mode:multiply}
+.tl-seg .n{position:relative;display:block;font-family:var(--f-display);font-weight:700;font-size:1.08rem;line-height:1.1}
+.tl-seg .j{position:relative;display:block;font-family:var(--f-jp);font-size:.9rem;opacity:.9}
+.tl-seg .d{position:absolute;left:.7rem;bottom:.45rem;font-size:.75rem;opacity:.9;letter-spacing:.04em}
+.tl-seg:hover{transform:translateY(-4px);filter:saturate(1.15)}
+.tl-seg[aria-selected="true"]{transform:translateY(-10px);box-shadow:0 14px 24px -10px rgba(0,0,0,.45),0 0 0 3px var(--kin)}
+.tl-group{position:absolute;top:0;height:1.2rem;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);border-top:2px solid var(--line);padding-top:.1rem;font-family:var(--f-display)}
+.tl-detail{margin-top:1rem;display:grid;grid-template-columns:auto 1fr;gap:1.4rem;align-items:start;min-height:220px}
+.tl-kanji{font-family:var(--f-jp);font-size:4.6rem;line-height:1;writing-mode:vertical-rl;font-weight:800;padding:.4rem .2rem;border-radius:10px;color:#fff}
+.tl-body h4{margin:0;font-size:1.6rem}
+.tl-body .when{color:var(--muted);font-style:italic}
+.tl-body ul{margin:.6rem 0 0;padding-left:1.1rem}
+.tl-body li::marker{color:var(--shu)}
+.tl-nav{display:flex;gap:.5rem;justify-content:flex-end;margin-top:.4rem}
+.tl-detail.swap{animation:fadeUp .5s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+/* map */
+.map-grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:1.2rem;align-items:start}
+#japanMap{width:100%;height:auto;display:block}
+#japanMap .sea{fill:color-mix(in srgb,var(--ai) 9%,transparent)}
+#japanMap .wave{fill:none;stroke:color-mix(in srgb,var(--ai) 28%,transparent);stroke-width:1}
+#japanMap .land{fill:var(--washi-2);stroke:var(--ink-soft);stroke-width:1.4;stroke-linejoin:round}
+[data-theme="dark"] #japanMap .land{fill:#2a3040}
+#japanMap .rlabel{font-family:var(--f-display);font-size:13px;letter-spacing:.18em;text-transform:uppercase;fill:var(--muted);pointer-events:none}
+#japanMap .site{cursor:pointer}
+#japanMap .site circle.dot{stroke:#fff;stroke-width:1.5;transition:r .2s}
+#japanMap .site:hover circle.dot,#japanMap .site:focus circle.dot,#japanMap .site.on circle.dot{r:8}
+#japanMap .site .pulse{fill:none;stroke-width:2;opacity:0}
+#japanMap .site.on .pulse{animation:pulse 1.6s ease-out infinite}
+@keyframes pulse{from{r:6;opacity:.9}to{r:22;opacity:0}}
+#japanMap .slabel{font-size:11px;fill:var(--ink);font-family:var(--f-body);pointer-events:none;paint-order:stroke;stroke:var(--card);stroke-width:3px}
+#japanMap .inset{fill:none;stroke:var(--line);stroke-dasharray:4 4}
+.map-legend{display:flex;flex-wrap:wrap;gap:.4rem .9rem;font-size:.85rem;color:var(--muted);margin-top:.5rem}
+.map-legend i{display:inline-block;width:11px;height:11px;border-radius:50%;margin-right:.3rem;vertical-align:-1px}
+.map-panel{position:sticky;top:80px}
+.map-panel .era{font-family:var(--f-display);text-transform:uppercase;letter-spacing:.16em;font-size:.8rem}
+.map-panel h4{margin:.2rem 0 .4rem;font-size:1.6rem}
+.region-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:.8rem;margin-top:1.2rem}
+.region-list .card{padding:1rem 1.1rem}
+.region-list b{font-family:var(--f-display);font-size:1.15rem}
+
+/* tables */
+.table-wrap{overflow-x:auto;border-radius:14px;border:1px solid var(--line);box-shadow:var(--shadow);background:var(--card)}
+table{border-collapse:collapse;width:100%;min-width:760px;font-size:1rem}
+th,td{padding:.75rem .9rem;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+thead th{font-family:var(--f-display);font-size:1.15rem;color:#fff;position:sticky;top:0}
+thead th:first-child{background:var(--ink);color:var(--washi)}
+tbody th{font-family:var(--f-display);font-size:1rem;color:var(--muted);white-space:nowrap;letter-spacing:.04em}
+tbody tr:hover td{background:color-mix(in srgb,var(--kin) 7%,transparent)}
+.th-kam{background:#7a3b2e}.th-ash{background:#3f6a52}.th-tok{background:#24406b}
+
+/* shogunate bars */
+#shogunBars{width:100%;height:auto;display:block}
+#shogunBars text{font-family:var(--f-body);fill:var(--ink)}
+#shogunBars .tick{stroke:var(--line)}
+#shogunBars .ticklbl{font-size:11px;fill:var(--muted)}
+
+/* power diagram */
+.power-tabs{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1rem}
+.power{display:flex;flex-direction:column;align-items:center;gap:0}
+.tier{display:flex;flex-wrap:wrap;justify-content:center;gap:.8rem;position:relative;width:100%}
+.tier+.tier{margin-top:34px}
+.tier+.tier::before{content:"";position:absolute;top:-30px;left:50%;width:2px;height:26px;background:linear-gradient(var(--line),var(--shu));transform:translateX(-50%)}
+.node{background:var(--washi);border:1px solid var(--line);border-radius:12px;padding:.6rem .9rem;min-width:150px;max-width:260px;text-align:center;box-shadow:0 6px 16px -10px rgba(0,0,0,.35);animation:fadeUp .5s ease both}
+.node b{display:block;font-family:var(--f-display);font-size:1.12rem}
+.node .jp{display:block;font-size:.85rem;color:var(--shu)}
+.node small{display:block;color:var(--muted);font-size:.82rem;line-height:1.35;margin-top:.2rem}
+.node.top{border:2px solid var(--kin)}
+.node.real{border:2px solid var(--shu);background:color-mix(in srgb,var(--shu) 8%,var(--washi))}
+.node.side{border-style:dashed;opacity:.9}
+.power-note{margin-top:1rem;font-size:.95rem;color:var(--ink-soft);text-align:center}
+
+/* charts */
+.chart-box{position:relative}
+.chart-box svg{width:100%;height:auto;display:block;overflow:visible}
+.chart-box .axis text{font-size:11px;fill:var(--muted);font-family:var(--f-body)}
+.chart-box .axis line,.chart-box .axis path{stroke:var(--line)}
+.chart-box .grid line{stroke:var(--line);stroke-dasharray:2 4}
+.tip{position:absolute;pointer-events:none;background:var(--ink);color:var(--washi);padding:.4rem .7rem;border-radius:8px;font-size:.85rem;line-height:1.35;opacity:0;transform:translate(-50%,-110%);transition:opacity .15s;white-space:nowrap;z-index:5}
+.tip.on{opacity:1}
+.era-bars{display:flex;flex-direction:column;gap:.55rem}
+.era-row{display:grid;grid-template-columns:150px 1fr 70px;gap:.8rem;align-items:center;font-size:.95rem}
+.era-row .lbl b{font-family:var(--f-display);font-size:1.05rem}
+.era-row .lbl .jp{color:var(--shu);margin-left:.3rem}
+.era-row .bar{height:22px;background:var(--washi);border-radius:6px;overflow:hidden;border:1px solid var(--line)}
+.era-row .bar i{display:block;height:100%;width:0;border-radius:6px;transition:width 1.4s cubic-bezier(.2,.7,.2,1)}
+.era-row .yrs{font-variant-numeric:tabular-nums;color:var(--muted);text-align:right}
+
+/* writing */
+.script-flow{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:.6rem;align-items:stretch;margin:1rem 0 1.6rem}
+.sf{background:var(--washi);border:1px solid var(--line);border-radius:12px;padding:.8rem;text-align:center;position:relative}
+.sf .g{font-family:var(--f-jp);font-size:2.4rem;line-height:1.1;color:var(--ai)}
+.sf b{display:block;font-family:var(--f-display);font-size:1.05rem}
+.sf small{display:block;color:var(--muted);font-size:.8rem;line-height:1.35}
+.sf:not(:last-child)::after{content:"→";position:absolute;right:-.62rem;top:50%;transform:translateY(-50%);color:var(--shu);font-size:1.1rem;z-index:2;background:var(--card);border-radius:50%;width:1.1rem;line-height:1.1rem}
+.flips{display:grid;grid-template-columns:repeat(auto-fit,minmax(104px,1fr));gap:.7rem}
+.flip{perspective:700px;height:132px;border:0;background:none;padding:0;cursor:pointer;font:inherit;color:inherit}
+.flip .inner{position:relative;width:100%;height:100%;transition:transform .8s cubic-bezier(.3,.7,.2,1);transform-style:preserve-3d}
+.flip.on .inner{transform:rotateY(180deg)}
+.flip .face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:12px;border:1px solid var(--line);display:flex;flex-direction:column;align-items:center;justify-content:center;background:var(--washi)}
+.flip .face .g{font-family:var(--f-jp);font-size:3.2rem;line-height:1}
+.flip .face small{font-size:.75rem;color:var(--muted);margin-top:.35rem}
+.flip .back{transform:rotateY(180deg);background:color-mix(in srgb,var(--shu) 10%,var(--washi))}
+.flip .back .g{color:var(--shu)}
+.flip.kata .back{background:color-mix(in srgb,var(--ai) 12%,var(--washi))}
+.flip.kata .back .g{color:var(--ai)}
+.kata-part{color:var(--ai);font-weight:900}
+
+/* aesthetic cards */
+.aes{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1rem}
+.aes .card{overflow:hidden}
+.aes .big{font-family:var(--f-jp);font-size:3rem;line-height:1;color:var(--shu);opacity:.9}
+.aes .card::after{content:attr(data-k);position:absolute;right:-.2rem;bottom:-1.6rem;font-family:var(--f-jp);font-size:6.5rem;opacity:.05;font-weight:800;pointer-events:none}
+.enso{position:absolute;right:-60px;top:40px;width:220px;opacity:.07;pointer-events:none}
+
+footer{border-top:1px solid var(--line);padding:3rem 1.5rem;text-align:center;color:var(--muted);font-size:.95rem}
+footer .jp{font-size:1.6rem;color:var(--shu);display:block;margin-bottom:.4rem}
+
+@media (max-width:1100px){
+  .layout{grid-template-columns:minmax(0,1fr)}
+  .toc{position:fixed;top:56px;left:0;bottom:0;width:min(300px,85vw);max-height:none;background:var(--card);z-index:55;padding:1.2rem;transform:translateX(-105%);transition:transform .35s;box-shadow:var(--shadow);border-right:1px solid var(--line)}
+  .toc.open{transform:none}
+  #menuBtn{display:inline-flex}
+}
+@media (max-width:760px){
+  body{font-size:1.06rem}
+  .grid2,.grid3,.map-grid{grid-template-columns:minmax(0,1fr)}
+  .script-flow{grid-template-columns:minmax(0,1fr)}
+  .sf:not(:last-child)::after{content:"↓";right:50%;top:auto;bottom:-.75rem;transform:translateX(50%)}
+  .tl-detail{grid-template-columns:minmax(0,1fr)}
+  .tl-kanji{writing-mode:horizontal-tb;font-size:3rem}
+  .era-row{grid-template-columns:110px 1fr 54px}
+  .map-panel{position:static}
+  .chap-num{font-size:1.6rem}
+}
+@media print{.topbar,#progress,.toc,#petals,.scroll-hint{display:none}.reveal{opacity:1;transform:none}.layout{display:block}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div id="progress" role="progressbar" aria-label="Reading progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
+
+<header class="topbar" id="topbar">
+  <a class="brand" href="#top"><span class="hanko" aria-hidden="true">日</span><span>Japan · 日本史</span></a>
+  <div class="tb-actions">
+    <button class="icon-btn" id="menuBtn" aria-controls="toc" aria-expanded="false">☰ Contents</button>
+    <button class="icon-btn" id="themeBtn" aria-label="Toggle dark mode"><span id="themeIcon" aria-hidden="true">☾</span><span id="themeLbl">Night</span></button>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="top" aria-label="Introduction">
+  <div class="rays" aria-hidden="true"></div>
+  <div class="sun" aria-hidden="true"></div>
+  <canvas id="petals" aria-hidden="true"></canvas>
+  <div class="mist" aria-hidden="true"></div>
+  <svg class="fuji" viewBox="0 0 1200 400" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+    <path class="m2" d="M-20 400 C 120 330 220 300 320 310 C 380 316 420 290 470 300 L 470 400 Z M760 400 L 760 300 C 840 280 900 300 980 296 C 1080 292 1150 320 1220 340 L 1220 400 Z"/>
+    <path class="m" d="M100 400 C 320 300 465 165 545 92 L 575 100 L 600 88 L 625 100 L 655 92 C 735 165 880 300 1100 400 Z"/>
+    <path class="snow" d="M545 92 L575 100 L600 88 L625 100 L655 92 C 690 124 718 150 742 172 L 716 164 L 696 186 L 671 166 L 646 192 L 621 168 L 598 196 L 575 168 L 552 190 L 528 165 L 505 186 L 484 166 L 458 172 C 482 150 510 124 545 92 Z"/>
+  </svg>
+  <div class="hero-inner">
+    <div class="kicker">From the Age of the Gods to Reiwa</div>
+    <h1 lang="ja">日本</h1>
+    <div class="title-en">Japan: Thirty Thousand Years in One Scroll</div>
+    <p class="lede">An illustrated history of the archipelago: its myths and archaeology, its emperors and shoguns, its wars and reinventions, and the arts, faiths and language that took shape over the centuries.</p>
+    <a class="cta" href="#overview">Begin the journey <span aria-hidden="true">↓</span></a>
+  </div>
+  <div class="scroll-hint" aria-hidden="true">下へ</div>
+</section>
+
+<div class="layout">
+<nav class="toc" id="toc" aria-label="Table of contents">
+  <h2>目次 · Contents</h2>
+  <ol>
+    <li class="grp">Orientation</li>
+    <li><a href="#overview"><span class="k">序</span>Overview</a></li>
+    <li><a href="#timeline"><span class="k">年表</span>Interactive Timeline</a></li>
+    <li><a href="#geography"><span class="k">地</span>Land &amp; Regions</a></li>
+    <li class="grp">Ancient &amp; Classical</li>
+    <li><a href="#prehistory"><span class="k">古</span>Prehistory &amp; Myth</a></li>
+    <li><a href="#classical"><span class="k">朝</span>Kofun to Heian</a></li>
+    <li class="grp">The Warrior Age</li>
+    <li><a href="#kamakura"><span class="k">鎌</span>Kamakura &amp; Kenmu</a></li>
+    <li><a href="#muromachi"><span class="k">室</span>Muromachi &amp; Sengoku</a></li>
+    <li><a href="#unifiers"><span class="k">桃</span>The Three Unifiers</a></li>
+    <li><a href="#edo"><span class="k">江</span>Tokugawa Edo</a></li>
+    <li><a href="#compare"><span class="k">比</span>Shogunates Compared</a></li>
+    <li><a href="#power"><span class="k">権</span>Power Structures</a></li>
+    <li class="grp">Modern Japan</li>
+    <li><a href="#meiji"><span class="k">明</span>Bakumatsu &amp; Meiji</a></li>
+    <li><a href="#taisho-showa"><span class="k">昭</span>Taishō &amp; Wartime Shōwa</a></li>
+    <li><a href="#postwar"><span class="k">復</span>Occupation &amp; Miracle</a></li>
+    <li><a href="#heisei"><span class="k">平</span>Heisei</a></li>
+    <li><a href="#reiwa"><span class="k">令</span>Reiwa (2019–)</a></li>
+    <li><a href="#imperial"><span class="k">皇</span>Emperor &amp; Era Names</a></li>
+    <li><a href="#numbers"><span class="k">数</span>Population &amp; Economy</a></li>
+    <li class="grp">Culture &amp; Society</li>
+    <li><a href="#religion"><span class="k">神仏</span>Shinto &amp; Buddhism</a></li>
+    <li><a href="#arts"><span class="k">芸</span>Arts &amp; Traditions</a></li>
+    <li><a href="#aesthetics"><span class="k">美</span>Aesthetics</a></li>
+    <li><a href="#pop"><span class="k">漫</span>Modern Pop Culture</a></li>
+    <li><a href="#language"><span class="k">語</span>Language &amp; Writing</a></li>
+    <li><a href="#peoples"><span class="k">民</span>Ainu &amp; Ryukyu</a></li>
+    <li><a href="#sources"><span class="k">典</span>Notes &amp; Sources</a></li>
+  </ol>
+</nav>
+
+<main id="main">
+
+<!-- ============ OVERVIEW ============ -->
+<section class="chap" id="overview">
+  <div class="chap-head reveal"><div class="chap-num" aria-hidden="true">序</div><h2>An Archipelago of Reinvention<span class="sub">日本史概観</span><span class="brush"></span></h2></div>
+  <p class="lead reveal">Japan's history keeps returning to one pattern: an island society takes in ideas from outside (rice farming, Chinese writing, Buddhism, firearms, Western law, American mass culture), slowly makes them its own, and then turns inward to refine them, sometimes for centuries.</p>
+  <p class="reveal">Officially the state descends from a sun goddess. In practice it was shaped by migration across the Korea Strait, centralized on the Tang Chinese model, and then for nearly seven hundred years run largely by warriors, the <em>bushi</em>, while emperors in Kyoto reigned without ruling. In the 19th century Japan went from feudal isolation to industrial empire within about fifty years. It then lost that empire in catastrophic war and rebuilt itself as a pacifist democracy and, for a time, the world's second-largest economy. Today it is an aging, wealthy, technologically sophisticated society whose cultural exports, from Zen and sushi to anime and video games, are known around the world.</p>
+  <div class="stats reveal" aria-label="Key figures">
+    <div class="stat"><b data-count="14125">0</b><span>islands (2023 GSI recount)</span></div>
+    <div class="stat"><b data-count="47">0</b><span>prefectures</span></div>
+    <div class="stat"><b data-count="124" data-suffix="M">0</b><span>people, approx. (2024)</span></div>
+    <div class="stat"><b data-count="126" data-suffix="th">0</b><span>emperor (Naruhito), traditional count</span></div>
+    <div class="stat"><b data-count="248">0</b><span>era names since 645 CE</span></div>
+  </div>
+  <div class="callout ai reveal"><strong>How to read this page.</strong> Dates for prehistoric periods are approximate and still debated. Japanese names follow Japanese order (family name first), e.g. <em>Tokugawa Ieyasu</em>. Long vowels are marked with macrons (Kyōto, Tōkyō) in historical discussion, but familiar place names are often written without them.</div>
+</section>
+
+<!-- ============ TIMELINE ============ -->
+<section class="chap" id="timeline">
+  <div class="chap-head reveal"><div class="chap-num" aria-hidden="true">年表</div><h2>The Periods of Japanese History<span class="sub">時代区分</span><span class="brush"></span></h2></div>
+  <p class="reveal">Japanese historians divide the past into <em>jidai</em> (periods), usually named after the seat of power: Nara, Kamakura, Edo. Since 1868 they have been named after imperial eras. Select any period below for a summary. You can also use the arrow keys or swipe sideways on small screens.</p>
+  <div class="viz reveal">
+    <p class="viz-title">Interactive timeline</p>
+    <p class="viz-note">Segment widths use a logarithmic scale, so short periods stay visible next to the Jōmon's roughly 14,000 years. Colors group the periods into broad ages.</p>
+    <div class="tl-wrap">
+      <div class="tl-scroller" id="tlScroller">
+        <div class="tl-track" id="tlTrack" role="tablist" aria-label="Historical periods"></div>
+      </div>
+      <div class="tl-nav"><button class="icon-btn" id="tlPrev" aria-label="Previous period">← Prev</button><button class="icon-btn" id="tlNext" aria-label="Next period">Next →</button></div>
+      <div class="tl-detail" id="tlDetail" role="tabpanel" aria-live="polite"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GEOGRAPHY ============ -->
+<section class="chap" id="geography">
+  <div class="chap-head reveal"><div class="chap-num" aria-hidden="true">地</div><h2>Land, Sea &amp; Regions<span class="sub">地理と地方</span><span class="brush"></span></h2></div>
+  <p class="reveal">Japan is an arc of islands roughly 3,000 km long off the east coast of Asia, with a land area of about 378,000 km². The four main islands are <strong>Honshū, Hokkaidō, Kyūshū and Shikoku</strong>, followed by the Ryūkyū chain to the southwest. Roughly three-quarters of the country is mountainous or hilly, so people, rice paddies and cities crowd onto narrow coastal plains such as the Kantō, Nōbi and Kinai. The country sits where four tectonic plates meet on the Pacific "Ring of Fire". It has more than 100 active volcanoes and experiences around a tenth of the world's strong earthquakes. Its tallest peak, <strong>Mount Fuji</strong> (3,776 m), is itself a dormant stratovolcano that last erupted in 1707.</p>
+  <p class="reveal">Geography shaped the history. The Korea Strait was close enough for migration and trade but wide enough to deter invasion, and the only serious attempt before 1945 (by the Mongols in the 13th century) failed. The mountainous interior favored regional lords. The Seto Inland Sea served as the main highway linking Kyūshū to the Kinai heartland around Nara, Kyoto and Osaka.</p>
+  <div class="viz reveal">
+    <p class="viz-title">Historical map of Japan</p>
+    <p class="viz-note">A simplified, hand-drawn map. Select a marker to read about the site. Okinawa is shown in the inset (not to scale).</p>
+    <div class="map-grid">
+      <div>
+        <svg id="japanMap" viewBox="0 0 640 680" role="img" aria-label="Simplified map of Japan with historical sites"></svg>
+        <div class="map-legend" id="mapLegend"></div>
+      </div>
+      <div class="map-panel card" id="mapPanel" aria-live="polite">
+        <div class="era" style="color:var(--kin)">Select a site</div>
+        <h4>Explore the map</h4>
+        <p>Each marker is colored by the age it is best known for, from Jōmon villages and Yayoi moats to warrior capitals, the Edo window on the world, and the tragedies of the 20th and 21st centuries.</p>
+      </div>
+    </div>
+  </div>
+  <div class="region-list reveal">
+    <div class="card"><b>Hokkaidō</b> <span class="jp">北海道</span><br>Ancestral homeland of the Ainu, known as Ezo. Colonized after 1869; dairy, snow, and Sapporo.</div>
+    <div class="card"><b>Tōhoku</b> <span class="jp">東北</span><br>The rugged northeast: Jōmon heartland, the Ōshū Fujiwara at Hiraizumi, struck by the 2011 tsunami.</div>
+    <div class="card"><b>Kantō</b> <span class="jp">関東</span><br>Japan's largest plain. Seat of Kamakura and Edo/Tokyo; the greater Tokyo area holds about 37 million people.</div>
+    <div class="card"><b>Chūbu</b> <span class="jp">中部</span><br>The Japan Alps, Mount Fuji, Nagoya and the Sea of Japan coast. Home province of the three unifiers.</div>
+    <div class="card"><b>Kansai / Kinki</b> <span class="jp">近畿</span><br>The classical heartland of Nara, Kyoto and Osaka. The imperial capital for over a thousand years.</div>
+    <div class="card"><b>Chūgoku</b> <span class="jp">中国</span><br>Izumo's myths, Hiroshima, and the Mōri domain of Chōshū, a leading force in the Meiji Restoration.</div>
+    <div class="card"><b>Shikoku</b> <span class="jp">四国</span><br>Smallest main island, known for the 88-temple pilgrimage associated with Kūkai and for Tosa (Sakamoto Ryōma).</div>
+    <div class="card"><b>Kyūshū &amp; Okinawa</b> <span class="jp">九州・沖縄</span><br>Gateway to the continent: Yayoi rice, the Mongol landings, Nagasaki, Satsuma, and the Ryūkyū Kingdom.</div>
+  </div>
+</section>
+
+<!-- ============ PREHISTORY ============ -->
+<section class="chap" id="prehistory">
+  <div class="chap-head reveal"><div class="chap-num" aria-hidden="true">古</div><h2>Prehistory &amp; the Age of the Gods<span class="sub">先史時代と神話</span><span class="brush"></span></h2></div>
+
+  <h3 class="reveal">The Paleolithic <span class="jp">旧石器時代</span><span class="dates">c. 38,000 – c. 14,000 BCE (dates debated)</span></h3>
+  <p class="reveal">Humans reached the archipelago at least 38,000 years ago, when lower sea levels during the last Ice Age narrowed the straits. Some routes may even have joined Hokkaidō to Sakhalin and the Asian mainland. Japan's Paleolithic was only recognized in 1949, when the amateur archaeologist Aizawa Tadahiro found stone tools at <strong>Iwajuku</strong> (Gunma). These early people made some of the world's oldest known edge-ground stone axes, crossed open water to reach islands such as Kōzushima to collect obsidian, and hunted Naumann's elephants and giant deer. The field was badly shaken in 2000, when the archaeologist Fujimura Shin'ichi was filmed planting artifacts. His "discoveries" of supposedly ancient sites were thrown out, and decades of chronology had to be reassessed.</p>
+
+  <h3 class="reveal">Jōmon <span class="jp">縄文時代</span><span class="dates">c. 14,000 – c. 300 BCE</span></h3>
+  <p class="reveal">The Jōmon ("cord-marked") period is named for pottery decorated by pressing twisted cords into wet clay. Japanese ceramics are among the oldest in the world: shards from sites such as Ōdai Yamamoto I are dated to roughly 16,000 years ago. Unusually, the Jōmon were largely <strong>settled hunter-gatherer-fishers</strong>. They lived in pit-dwelling villages, managed chestnut groves, gathered shellfish (leaving huge shell middens) and fished the rich coastal waters, all without full agriculture.</p>
+  <div class="grid2 reveal">
+    <div class="card"><h4 style="margin-top:0">Sannai-Maruyama</h4><p>Near Aomori, a Middle Jōmon settlement (c. 3900–2200 BCE) with long houses, storage pits, burial rows and the post holes of a large six-pillar timber structure. It is part of the "Jōmon Prehistoric Sites in Northern Japan" UNESCO listing (2021).</p></div>
+    <div class="card"><h4 style="margin-top:0">Dogū &amp; flame pots</h4><p>Fired-clay figurines (<em>dogū</em>), often female and often deliberately broken, suggest fertility or healing rites. The spectacular Middle Jōmon "flame-style" vessels (<em>kaen doki</em>) from Niigata are among the most dramatic ceramics of the prehistoric world.</p></div>
+  </div>
+  <p class="reveal">Population estimates (very approximate) suggest about 20,000 people in the Initial Jōmon, a peak of perhaps 250,000 around 3000–2000 BCE, and then a decline as the climate cooled. Genetic studies show that modern mainland Japanese carry a modest Jōmon ancestry. That share is much higher among the Ainu and is also elevated among Ryukyuans.</p>
+
+  <h3 class="reveal">Yayoi <span class="jp">弥生時代</span><span class="dates">c. 300 BCE – c. 250 CE (some radiocarbon dates start c. 900–1000 BCE)</span></h3>
+  <p class="reveal">Wet-rice farming, bronze and iron, and new types of pottery arrived in northern Kyūshū with migrants from the Korean Peninsula. Over several centuries the new way of life spread northeast. Rice brought surpluses, land disputes, social ranks and war: Yayoi villages such as <strong>Yoshinogari</strong> (Saga) were ringed by moats and watchtowers. Bronze bells (<em>dōtaku</em>), mirrors and weapons served as ritual objects.</p>
+  <p class="reveal">At this point Japan enters written history, but only through Chinese records. The <em>Book of Han</em> mentions the people of <strong>Wa</strong> (倭) divided into "more than a hundred countries". In 57 CE the Later Han emperor gave a gold seal to the king of Na, and a seal matching the description was found on Shikanoshima island in 1784. The <em>Records of Wei</em> (3rd century) describe <strong>Queen Himiko</strong> of Yamatai, a shaman ruler who "occupied herself with magic and sorcery" and sent envoys to the Wei court in 239. Whether Yamatai lay in northern Kyūshū or in the Kinai region (perhaps at Makimuku in Nara) is one of Japanese history's longest-running debates.</p>
+
+  <h3 class="reveal">Founding myths <span class="jp">神代</span><span class="dates">As recorded in the Kojiki (712) and Nihon Shoki (720)</span></h3>
+  <div class="grid2 reveal">
+    <div class="card">
+      <h4 style="margin-top:0">The myth</h4>
+      <p>The sibling deities <strong>Izanagi and Izanami</strong> stir the primordial sea with a jeweled spear, and the brine that drips from it forms the first island. Their children include the sun goddess <strong>Amaterasu</strong>, the moon god Tsukuyomi and the storm god <strong>Susanoo</strong>. Angered by Susanoo, Amaterasu hides in a cave and plunges the world into darkness until the other gods lure her out with a mirror and a bawdy dance. Her grandson <strong>Ninigi</strong> descends to earth carrying the three regalia: the mirror <em>Yata no Kagami</em>, the sword <em>Kusanagi</em> and the jewel <em>Yasakani no Magatama</em>. Ninigi's great-grandson <strong>Jimmu</strong> marches east from Kyūshū and is enthroned at Kashihara in Yamato, traditionally on 11 February 660 BCE.</p>
+    </div>
+    <div class="card">
+      <h4 style="margin-top:0">The archaeology</h4>
+      <p>In 660 BCE the archipelago was in the late Jōmon or earliest Yayoi period, with no state and no writing. The date appears to have been calculated by 8th-century compilers counting back a 1,260-year cycle of the Chinese sexagenary calendar from 601 CE, a year of particular cosmological significance. Emperors before roughly the 5th–6th century are considered legendary or semi-legendary. Kinmei (r. c. 539–571) is generally the earliest emperor whose dates historians can verify. The myths themselves were political texts, assembled to justify the Yamato royal line's claim to rule.</p>
+    </div>
+  </div>
+  <div class="callout shu reveal"><strong>Myth in modern politics.</strong> From 1872 until 1945, the State made 11 February a national holiday, <em>Kigensetsu</em>, and taught Jimmu's founding as literal history. The holiday was abolished during the Occupation and revived in 1966 as <em>Kenkoku Kinen no Hi</em> (National Foundation Day). The vaguer name was a compromise over its mythological basis.</div>
+</section>
+
+<!-- ============ CLASSICAL ============ -->
+<section class="chap" id="classical">
+  <div class="chap-head reveal"><div class="chap-num" aria-hidden="true">朝</div><h2>Kofun, Asuka, Nara &amp; Heian<span class="sub">古墳・飛鳥・奈良・平安</span><span class="brush"></span></h2></div>
+
+  <h3 class="reveal">Kofun period <span class="jp">古墳時代</span><span class="dates">c. 250 – 538 CE</span></h3>
+  <p class="reveal">The period is named after its <em>kofun</em>, monumental burial mounds. The largest were "keyhole-shaped" (<em>zenpō-kōen-fun</em>), and their spread across Japan traces the reach of a confederation centered on the Yamato and Kawachi plains. The biggest, the <strong>Daisen Kofun</strong> in Sakai and traditionally the tomb of Emperor Nintoku, is about 486 m long, one of the largest graves on Earth. The Mozu–Furuichi Kofun Group became a UNESCO site in 2019. The mounds were ringed with <em>haniwa</em>, hollow clay figures of warriors, horses, houses and shrine maidens. Society was organized into clans (<em>uji</em>) with hereditary ranks (<em>kabane</em>). Yamato was deeply involved on the Korean Peninsula, especially with Baekje and the Gaya confederacy, and imported iron, horses, scribes and artisans.</p>
+
+  <h3 class="reveal">Asuka period <span class="jp">飛鳥時代</span><span class="dates">538 (or 552) – 710</span></h3>
+  <p class="reveal"><strong>Buddhism arrived</strong> when the king of Baekje sent an image and sutras to the Yamato court, in 538 or 552 depending on the source. Whether to accept the foreign god split the court: the pro-Buddhist <strong>Soga</strong> clan defeated the conservative <strong>Mononobe</strong> in 587. Under <strong>Empress Suiko</strong> (r. 592–628), the first reigning empress whose rule is historically attested, her nephew <strong>Prince Shōtoku</strong> (574–622) is credited with the twelve cap ranks (603), the <strong>Seventeen-Article Constitution</strong> (604), a moral code beginning "Harmony is to be valued", and missions to Sui China. One letter famously addressed the Sui emperor from "the Son of Heaven where the sun rises". Hōryū-ji, which he founded, contains the world's oldest surviving wooden buildings. Modern historians think much of Shōtoku's legend was embellished after his death.</p>
+  <p class="reveal">In the <strong>Isshi Incident</strong> of 645, Prince Naka no Ōe (later Emperor Tenji) and Nakatomi no Kamatari assassinated Soga no Iruka at court. Kamatari was later given the surname <strong>Fujiwara</strong>, founding the most powerful noble family in Japanese history. The <strong>Taika Reforms</strong> (from 646) adopted the Chinese model: in principle, all land and people belonged to the sovereign, with census registers, equal-field allotments and provincial administration. Defeat by Tang and Silla forces at Baekgang (663) spurred fortress-building. After the <strong>Jinshin War</strong> (672), Emperor Tenmu strengthened the throne, and by around 700 the titles <strong>Tennō</strong> (heavenly sovereign) and the country name <strong>Nihon</strong> ("origin of the sun") were in use. The <strong>Taihō Code</strong> (701) completed the <em>ritsuryō</em> legal state.</p>
+
+  <h3 class="reveal">Nara period <span class="jp">奈良時代</span><span class="dates">710 – 794</span></h3>
+  <p class="reveal">The first permanent capital, <strong>Heijō-kyō</strong> (Nara), was laid out on a grid modeled on the Tang capital Chang'an. The period saw the compilation of Japan's earliest surviving books: the <em>Kojiki</em> (712), the <em>Nihon Shoki</em> (720), provincial gazetteers (<em>fudoki</em>), and the <em>Man'yōshū</em> (compiled after 759), an anthology of about 4,500 poems by everyone from emperors to frontier guards. After a devastating smallpox epidemic (735–737) that killed perhaps a quarter to a third of the population, <strong>Emperor Shōmu</strong> ordered a provincial temple in every province and the colossal bronze <strong>Great Buddha of Tōdai-ji</strong>, dedicated in 752. The blind Chinese monk Ganjin (Jianzhen) arrived in 753 after five failed voyages. The growing political weight of Buddhist institutions culminated in the monk Dōkyō's attempt to take the throne. That alarm is one reason the capital eventually moved away from Nara's temples.</p>
+
+  <h3 class="reveal">Heian period <span class="jp">平安時代</span><span class="dates">794 – 1185</span></h3>
+  <p class="reveal"><strong>Emperor Kanmu</strong> moved the capital to <strong>Heian-kyō</strong>, the "capital of peace and tranquility", which remained the imperial seat (as Kyoto) until 1869. The monks <strong>Saichō</strong> (Tendai, on Mount Hiei) and <strong>Kūkai</strong> (Shingon, on Mount Kōya) brought new esoteric Buddhist schools from China. In 894, on the advice of the scholar Sugawara no Michizane, official embassies to the declining Tang were halted, and an inward-looking <em>kokufū</em> ("national style") culture flourished.</p>
+  <div class="grid2 reveal">
+    <div class="card"><h4 style="margin-top:0">The Fujiwara regency</h4><p>The Fujiwara ruled through marriage politics. They married daughters to emperors, then governed as <em>sesshō</em> (regent for a child emperor) and <em>kampaku</em> (chancellor for an adult). <strong>Fujiwara no Michinaga</strong> (966–1028) was father-in-law to four emperors and grandfather to three, and boasted that the world was his "like the full moon, unwaning." From 1086, retired emperors governing from their cloisters (<em>insei</em>) took power back from the regents.</p></div>
+    <div class="card"><h4 style="margin-top:0">Literature &amp; kana</h4><p>The new <strong>kana</strong> syllabaries made Japanese-language prose possible, and much of it was written by court women. <strong>Murasaki Shikibu</strong>'s <em>The Tale of Genji</em> (c. 1008), often called the world's first novel, and <strong>Sei Shōnagon</strong>'s <em>Pillow Book</em> are the masterpieces. The <em>Kokinshū</em> (905) set the standard for court poetry for a thousand years. Its kana preface by Ki no Tsurayuki declares that Japanese poetry "takes the human heart as its seed."</p></div>
+  </div>
+  <p class="reveal">Meanwhile, in the provinces, tax-exempt private estates (<em>shōen</em>) eroded the central treasury, and armed provincial families rose to defend and exploit them. The greatest were the <strong>Taira</strong> (Heike) and the <strong>Minamoto</strong> (Genji), both branches descended from emperors. After the Hōgen (1156) and Heiji (1160) disturbances, <strong>Taira no Kiyomori</strong> dominated the court. The <strong>Genpei War</strong> (1180–1185) ended at the naval battle of <strong>Dan-no-ura</strong>, where the child Emperor Antoku drowned with his Taira kin. The <em>Tale of the Heike</em> remembers the war as a meditation on impermanence: "The sound of the Gion Shōja bells echoes the impermanence of all things…"</p>
+</section>
+
+<!-- ============ KAMAKURA ============ -->
+<section class="chap" id="kamakura">
+  <div class="chap-head reveal"><div class="chap-num" aria-hidden="true">鎌</div><h2>The Kamakura Shogunate &amp; Kenmu Restoration<span class="sub">鎌倉幕府・建武の新政</span><span class="brush"></span></h2></div>
+  <h3 class="reveal">Kamakura period <span class="jp">鎌倉時代</span><span class="dates">1185 – 1333</span></h3>
+  <p class="reveal"><strong>Minamoto no Yoritomo</strong> (1147–1199) set up a military government, the <strong>bakufu</strong> ("tent government"), at <strong>Kamakura</strong>, his eastern base far from Kyoto's intrigues. In 1185 the court allowed him to appoint military governors (<em>shugo</em>) to provinces and stewards (<em>jitō</em>) to estates, which many historians now treat as the real founding of the shogunate. In 1192 he received the title <strong>sei-i taishōgun</strong> ("great general who subdues the barbarians"). For the first time Japan had a dual government: the imperial court in Kyoto kept its ceremony and prestige, while the warrior government in Kamakura held the land and the swords. Yoritomo, suspicious to the end, destroyed his own brilliant half-brother <strong>Minamoto no Yoshitsune</strong>, the hero of Dan-no-ura, who died at Hiraizumi in 1189 and became Japan's archetypal tragic hero.</p>
+  <h4 class="reveal">The Hōjō regents</h4>
+  <p class="reveal">After Yoritomo's death (1199), real power passed to the family of his widow <strong>Hōjō Masako</strong>, the formidable "nun shogun". The Hōjō ruled as <strong>shikken</strong> (regents) for puppet shoguns, at first Fujiwara and later imperial princes. So by the 13th century Japan had an emperor overshadowed by a retired emperor, a shogun controlled by a regent, and a regent who was sometimes guided by retired Hōjō elders. In the <strong>Jōkyū War</strong> (1221), Retired Emperor Go-Toba tried to overthrow Kamakura. He was crushed and exiled, and the bakufu set up a deputy office (Rokuhara Tandai) to watch the court. In 1232 the regent Hōjō Yasutoki issued the <strong>Goseibai Shikimoku</strong>, Japan's first warrior law code, based on precedent and "what is reasonable."</p>
+  <h4 class="reveal">The Mongol invasions and the "kamikaze"</h4>
+  <p class="reveal">Kublai Khan, ruler of the Mongol Yuan dynasty, demanded submission, and the young regent <strong>Hōjō Tokimune</strong> refused. In <strong>1274</strong> (the Bun'ei invasion), a Mongol–Korean fleet of perhaps 900 ships ravaged Tsushima and Iki and landed at Hakata Bay. Samurai who expected single combat met massed formations, poisoned arrows and exploding bombs (<em>tetsuhau</em>). The invaders withdrew after a storm. In <strong>1281</strong> (the Kōan invasion) two much larger fleets arrived, possibly over 100,000 men including a southern Chinese armada. They found Hakata defended by a stone wall, and samurai raided the ships by night. After weeks of stalemate a typhoon destroyed much of the fleet. The storms were hailed as <strong>kamikaze</strong> ("divine winds"), proof that Japan was a land of the gods. Underwater archaeology off Takashima suggests many Yuan ships were hastily built river craft.</p>
+  <div class="callout reveal"><strong>Why victory weakened Kamakura.</strong> A defensive war produced no conquered land to hand out as rewards. Vassals (<em>gokenin</em>) who had paid for their own service went unrewarded and fell into debt, and debt-cancellation decrees (<em>tokusei</em>, 1297) undermined credit. Combined with factional infighting, this left the Hōjō brittle.</div>
+  <h4 class="reveal">Kamakura Buddhism</h4>
+  <p class="reveal">The era produced the popular, single-practice schools that still dominate Japanese religion: <strong>Hōnen</strong>'s Pure Land (Jōdo, 1175) and his disciple <strong>Shinran</strong>'s True Pure Land (Jōdo Shinshū), both relying on the <em>nenbutsu</em> invocation of Amida; <strong>Nichiren</strong>'s devotion to the Lotus Sutra; and Zen, brought from Song China by <strong>Eisai</strong> (Rinzai, who also popularized tea) and <strong>Dōgen</strong> (Sōtō). Sculptors such as <strong>Unkei</strong> created vigorous, realistic works, among them the guardian kings of Tōdai-ji's Great South Gate. The Great Buddha of Kamakura was cast in the mid-13th century.</p>
+
+  <h3 class="reveal">The Kenmu Restoration <span class="jp">建武の新政</span><span class="dates">1333 – 1336</span></h3>
+  <p class="reveal">The ambitious <strong>Emperor Go-Daigo</strong> plotted to restore direct imperial rule. Exiled to the Oki Islands, he escaped, and Kamakura's own generals turned on it. <strong>Ashikaga Takauji</strong> seized Kyoto's Rokuhara office, and <strong>Nitta Yoshisada</strong> stormed Kamakura in 1333, where the last Hōjō regent and hundreds of followers killed themselves. Go-Daigo's restoration, however, favored courtiers over the warriors who had won it. Takauji rebelled, defeated the loyalist <strong>Kusunoki Masashige</strong> at Minatogawa (1336), and installed a rival emperor. Masashige, who knowingly fought a hopeless battle, later became the model of selfless loyalty to the throne, a symbol heavily used by prewar nationalists.</p>
+</section>
+
+<!-- ============ MUROMACHI ============ -->
+<section class="chap" id="muromachi">
+  <div class="chap-head reveal"><div class="chap-num" aria-hidden="true">室</div><h2>The Ashikaga Shogunate &amp; the Warring States<span class="sub">室町幕府・戦国時代</span><span class="brush"></span></h2></div>
+  <h3 class="reveal">Muromachi period <span class="jp">室町時代</span><span class="dates">1336/1338 – 1573</span></h3>
+  <p class="reveal">Ashikaga Takauji became shogun in 1338 and placed his government in <strong>Kyoto</strong>, later in the Muromachi district, which gave the period its name. Go-Daigo fled south to <strong>Yoshino</strong>, starting the era of the <strong>Northern and Southern Courts</strong> (<em>Nanboku-chō</em>, 1336–1392), when two rival imperial lines each claimed the regalia. The third shogun, <strong>Ashikaga Yoshimitsu</strong> (1358–1408), reunited the courts in 1392 on terms the south never saw honored. He accepted the title "King of Japan" from the Ming emperor to open lucrative tally trade, and built the Golden Pavilion (<strong>Kinkaku-ji</strong>). (In the Meiji era, the government declared the Southern Court the legitimate line, even though the current imperial family descends from the Northern Court.)</p>
+  <p class="reveal">The Ashikaga were never as strong as the Kamakura regime. They depended on great provincial <em>shugo</em> lords, such as the Hosokawa, Shiba, Hatakeyama and Yamana, who increasingly built up their own territories. Even so, Muromachi culture shaped what the world now calls "traditional Japan": <strong>Noh</strong> theater (Kan'ami and Zeami, patronized by Yoshimitsu), ink painting (<strong>Sesshū</strong>), Zen rock gardens, the tea ceremony, ikebana, and the <em>shoin-zukuri</em> style of architecture with tatami, alcoves and sliding doors. The eighth shogun, <strong>Yoshimasa</strong>, was politically hopeless but presided over the refined <em>Higashiyama</em> culture of the Silver Pavilion (Ginkaku-ji).</p>
+  <h4 class="reveal">The Ōnin War (1467–1477)</h4>
+  <p class="reveal">A succession dispute in the shogunal house, tangled with feuds inside the Hatakeyama and Shiba families, drew the Hosokawa (Eastern Army) and Yamana (Western Army) into ten years of war, fought largely in the streets of Kyoto. The capital was reduced to ashes and the war ended with no victor. The shogun's authority never recovered: power passed to whoever could hold territory by force, and the provinces broke into autonomous domains.</p>
+
+  <h3 class="reveal">Sengoku period <span class="jp">戦国時代</span><span class="dates">c. 1467 – 1568 (fighting continued to 1615)</span></h3>
+  <p class="reveal">The "Warring States" period is named after China's era of the same name. It was the age of <strong>gekokujō</strong>, "the low overthrowing the high": retainers toppled lords, and new warlords called <strong>daimyō</strong> ("great names") ruled domains as independent states, with their own law codes, castle towns, mines and tax surveys. Legendary rivals such as <strong>Takeda Shingen</strong> and <strong>Uesugi Kenshin</strong> fought five battles at Kawanakajima. Leagues of commoners also seized power: the <strong>Ikkō-ikki</strong> of Jōdo Shinshū believers ruled Kaga province for nearly a century, and Sakai was a self-governing merchant city.</p>
+  <div class="callout ai reveal"><strong>Europeans arrive.</strong> In 1543 Portuguese traders shipwrecked on <strong>Tanegashima</strong> brought matchlock guns. Within decades Japanese smiths were producing tens of thousands, and firearms transformed warfare. The Jesuit <strong>Francis Xavier</strong> landed at Kagoshima in 1549. By about 1600 there may have been 300,000 Japanese Christians, and some daimyō, the "Christian daimyō", converted too. Words like <em>pan</em> (bread) and <em>tempura</em> are Portuguese legacies.</div>
+</section>
+
+<!-- ============ UNIFIERS ============ -->
+<section class="chap" id="unifiers">
+  <div class="chap-head reveal"><div class="chap-num" aria-hidden="true">桃</div><h2>Azuchi–Momoyama: The Three Unifiers<span class="sub">安土桃山時代</span><span class="brush"></span></h2></div>
+  <blockquote class="reveal"><span class="jp" lang="ja">織田がつき 羽柴がこねし天下餅 座りしままに食うは徳川</span>"Oda pounded the rice, Hashiba [Hideyoshi] kneaded the cake, and Tokugawa sat down and ate it."<cite>Edo-period satirical verse</cite></blockquote>
+  <div class="grid3 reveal">
+    <div class="card"><h4 style="margin-top:0">Oda Nobunaga <span class="jp" style="color:var(--shu)">織田信長</span></h4><p><small class="tag">1534–1582</small></p><p>A minor lord from Owari who destroyed the far larger Imagawa army at <strong>Okehazama</strong> (1560), entered Kyoto in 1568 with the would-be shogun Ashikaga Yoshiaki, then expelled him in <strong>1573</strong>, ending the Ashikaga shogunate. He burned the Enryaku-ji temple complex (1571), defeated the Takeda with massed musket volleys at <strong>Nagashino</strong> (1575), built the soaring Azuchi Castle, and promoted free markets (<em>rakuichi rakuza</em>). Betrayed by his general Akechi Mitsuhide, he died at <strong>Honnō-ji</strong> in 1582.</p></div>
+    <div class="card"><h4 style="margin-top:0">Toyotomi Hideyoshi <span class="jp" style="color:var(--shu)">豊臣秀吉</span></h4><p><small class="tag">1537–1598</small></p><p>Born a commoner, he rose to be Nobunaga's best general. He avenged his lord within two weeks at Yamazaki and completed unification with the fall of Odawara (1590). Barred by birth from the shogun title, he ruled as <em>kampaku</em> and <em>taikō</em>. His <strong>sword hunt</strong> (1588), nationwide <strong>land surveys</strong> and an edict fixing social status separated warriors from farmers. He expelled missionaries (1587), crucified the 26 Martyrs (1597), built Osaka Castle, and launched two disastrous <strong>invasions of Korea</strong> (1592–98).</p></div>
+    <div class="card"><h4 style="margin-top:0">Tokugawa Ieyasu <span class="jp" style="color:var(--shu)">徳川家康</span></h4><p><small class="tag">1543–1616</small></p><p>A patient survivor, raised as a hostage in childhood and an ally of Nobunaga, who accepted relocation to the Kantō in 1590 and built up the then-modest fishing town of Edo. After Hideyoshi's death he outmaneuvered the regency council and won the decisive battle of <strong>Sekigahara</strong> (1600). He became shogun in <strong>1603</strong>, abdicated in 1605 to secure his dynasty, and finally destroyed the Toyotomi at the sieges of Osaka (1614–15).</p></div>
+  </div>
+  <h4 class="reveal">The Imjin War: invasions of Korea (1592–1598)</h4>
+  <p class="reveal">Hideyoshi aimed to conquer Ming China through Korea. In 1592 roughly 150,000 troops took Seoul and Pyongyang within weeks. Then Admiral <strong>Yi Sun-sin</strong>'s fleet, including his famous "turtle ships", cut Japanese supply lines, Korean "righteous armies" rose up, and Ming armies intervened. A second invasion in 1597 bogged down in the south and was abandoned on Hideyoshi's death in 1598. The war devastated Korea. Japanese troops took noses as war trophies (the Mimizuka mound in Kyoto) and carried off thousands of captives, including potters who founded celebrated ceramic traditions such as Arita and Satsuma ware. The war remains a painful memory in Korea.</p>
+  <h4 class="reveal">Momoyama splendor</h4>
+  <p class="reveal">Fortress-palaces such as <strong>Himeji</strong>, Osaka and Fushimi were decorated with gold-leaf screens by <strong>Kanō Eitoku</strong> and Hasegawa Tōhaku. At the opposite pole, the tea master <strong>Sen no Rikyū</strong> perfected <em>wabi-cha</em> in tiny, rustic two-mat tea rooms. Hideyoshi staged both: the portable Golden Tea Room and the vast Kitano Grand Tea Gathering of 1587. In 1591 he ordered Rikyū to commit suicide, for reasons that are still debated.</p>
+</section>
+
+<!-- ============ EDO ============ -->
+<section class="chap" id="edo">
+  <div class="chap-head reveal"><div class="chap-num" aria-hidden="true">江</div><h2>The Tokugawa Shogunate: 265 Years of Peace<span class="sub">江戸時代</span><span class="brush"></span></h2></div>
+  <h3 class="reveal">Sekigahara and the new order <span class="jp">関ヶ原</span><span class="dates">21 October 1600 (Keichō 5, 9th month, 15th day)</span></h3>
+  <p class="reveal">In a fog-bound valley in Mino, Ieyasu's Eastern Army fought Ishida Mitsunari's Western Army, perhaps 160,000 men in all. The battle turned when <strong>Kobayakawa Hideaki</strong> defected mid-battle. The distinction between lords who had sided with Ieyasu before Sekigahara (<strong>fudai</strong>, hereditary vassals) and those who submitted only afterward (<strong>tozama</strong>, "outside" lords) shaped politics for 250 years. In the 1860s, two great tozama domains, <strong>Satsuma</strong> and <strong>Chōshū</strong>, would bring the shogunate down.</p>
+
+  <h3 class="reveal">The machinery of control <span class="jp">幕藩体制</span><span class="dates">The bakuhan system</span></h3>
+  <div class="grid2 reveal">
+    <div class="card"><h4 style="margin-top:0">Sankin-kōtai (alternate attendance)</h4><p>Formalized in 1635 under the third shogun <strong>Iemitsu</strong>. Daimyō had to spend alternate years in Edo, and their wives and heirs lived there permanently as hostages. The splendid processions drained domain treasuries, spread culture and commerce along the <strong>Tōkaidō</strong> and other highways, and helped make Edo one of the largest cities in the world, with perhaps a million people by the 18th century.</p></div>
+    <div class="card"><h4 style="margin-top:0">Laws and limits</h4><p>The <em>Buke shohatto</em> (Laws for Military Households, 1615) regulated marriages, castle repairs and conduct. A parallel code bound the imperial court. The shogun directly controlled about a quarter of the land, the major cities and the mines. Some 260–280 domains (<em>han</em>) kept their own administration and armies, giving a system that was both centralized and decentralized.</p></div>
+  </div>
+  <h4 class="reveal">Sakoku: the "closed country"</h4>
+  <p class="reveal">The <strong>Shimabara Rebellion</strong> (1637–38), a revolt of overtaxed, largely Christian peasants led by the teenage Amakusa Shirō, was crushed with heavy loss of life. It confirmed the bakufu's fear of Christianity. A series of edicts (1633–1639) banned Christianity, barred Japanese from going abroad or returning, and expelled the Portuguese. The Dutch, who were Protestant and interested only in trade, were confined from 1641 to the tiny artificial island of <strong>Dejima</strong> in Nagasaki. Historians now stress that "sakoku" (a term coined in 1801) was <em>controlled</em> contact rather than total isolation, conducted through four "gateways": the Dutch and Chinese at <strong>Nagasaki</strong>, Korea via <strong>Tsushima</strong>, the Ryūkyū Kingdom via <strong>Satsuma</strong> (which had invaded it in 1609), and the Ainu via <strong>Matsumae</strong>.</p>
+  <h4 class="reveal">The status order (mibunsei)</h4>
+  <p class="reveal">Neo-Confucian ideology ranked society as <strong>shi-nō-kō-shō</strong>: samurai, farmers, artisans, merchants. Samurai (about 6–7% of the population) became salaried bureaucrats living in castle towns. Peasants, about 80%, paid rice taxes collectively through their villages. Merchants were formally lowest but grew rich, and many samurai fell into debt to them. Court nobles, clergy and outcaste groups (<em>eta</em> and <em>hinin</em>, whose descendants, the <em>burakumin</em>, still face discrimination) stood outside the four classes. In practice the boundaries were more fluid than the theory suggests.</p>
+  <h4 class="reveal">The floating world</h4>
+  <p class="reveal">Peace, roads and money created a vibrant urban commoner culture (<em>chōnin bunka</em>), centered on the pleasure quarters and theaters of the <strong>ukiyo</strong>, the "floating world". In the <strong>Genroku</strong> era (1688–1704) <strong>Matsuo Bashō</strong> raised haikai poetry to high art, Ihara Saikaku wrote racy novels of merchants and lovers, and <strong>Chikamatsu Monzaemon</strong> wrote double-suicide plays for the puppet theater. Woodblock prints evolved from Hishikawa Moronobu's monochrome sheets to Suzuki Harunobu's full-color "brocade prints" (1765), Utamaro's beauties, Sharaku's actors, and finally <strong>Hokusai</strong>'s <em>Great Wave</em> (c. 1831) and <strong>Hiroshige</strong>'s <em>Fifty-three Stations of the Tōkaidō</em> (1833–34). Literacy rose sharply thanks to temple schools (<em>terakoya</em>). Some estimates put male literacy at 40–50% by the 1860s, high by the standards of the time.</p>
+  <details class="reveal"><summary>Strains, reforms and new ideas (18th–19th c.)</summary><div>
+    <ul class="facts">
+      <li><strong>The 47 Rōnin</strong> (1701–03): masterless samurai avenged their lord and were ordered to commit suicide. Retold as <em>Chūshingura</em>, the story became the archetype of loyalty.</li>
+      <li><strong>Reforms</strong>: the Kyōhō (Yoshimune, 1716–45), Kansei (Matsudaira Sadanobu, 1787–93) and Tenpō (Mizuno Tadakuni, 1841–43) reforms all tried to restore austerity and agrarian finance, with diminishing success.</li>
+      <li><strong>Famines</strong>: the Kyōhō, Tenmei (1780s) and Tenpō (1830s) famines brought peasant uprisings (<em>ikki</em>) and urban riots. In 1837 the former official Ōshio Heihachirō led a revolt in Osaka.</li>
+      <li><strong>Rangaku</strong> ("Dutch learning"): Sugita Genpaku's translated anatomy text (<em>Kaitai Shinsho</em>, 1774) opened Western medicine and science to Japanese scholars.</li>
+      <li><strong>Kokugaku</strong> ("National learning"): Motoori Norinaga studied the <em>Kojiki</em> and <em>Genji</em> to recover a "pure" Japanese spirit. Together with the Mito school, this fed later emperor-centered nationalism.</li>
+      <li><strong>Population</strong> rose from perhaps 12–17 million in 1600 to around 30 million by 1720, then stayed nearly flat until the 1850s.</li>
+    </ul>
+  </div></details>
+  <h4 class="reveal">The Black Ships</h4>
+  <p class="reveal">On 8 July 1853, US Commodore <strong>Matthew C. Perry</strong> steamed into Edo Bay off <strong>Uraga</strong> with four warships, two of them steam frigates belching black smoke, the <em>kurofune</em>. He delivered President Fillmore's letter and returned in February 1854 with a larger squadron. The <strong>Convention of Kanagawa</strong> (March 1854) opened Shimoda and Hakodate. Consul Townsend Harris then won the <strong>Harris Treaty</strong> (1858), the first of the "unequal treaties", which gave foreigners extraterritoriality and fixed low tariffs. Signing them without imperial consent shattered the shogunate's legitimacy.</p>
+</section>
+
+<!-- ============ COMPARE ============ -->
+<section class="chap" id="compare">
+  <div class="chap-head reveal"><div class="chap-num" aria-hidden="true">比</div><h2>The Three Shogunates Compared<span class="sub">三幕府の比較</span><span class="brush"></span></h2></div>
+  <p class="reveal">Three warrior houses held the title of shogun as hereditary governments: the Minamoto (with the Hōjō regents) at Kamakura, the Ashikaga at Muromachi in Kyoto, and the Tokugawa at Edo. Together they span about 680 years.</p>
+  <div class="viz reveal">
+    <p class="viz-title">Spans of warrior rule, 1150–1900</p>
+    <p class="viz-note">Bars show each shogunate's span. Hatching marks the Sengoku era, when Ashikaga authority was largely nominal; the gaps are the Kenmu Restoration and the age of the unifiers.</p>
+    <svg id="shogunBars" viewBox="0 0 800 230" role="img" aria-label="Timeline bar chart comparing the Kamakura (1185 to 1333), Ashikaga (1338 to 1573) and Tokugawa (1603 to 1867) shogunates"></svg>
+  </div>
+  <div class="table-wrap reveal" style="margin-top:1.4rem">
+    <table>
+      <caption class="sr">Comparison of the Kamakura, Ashikaga and Tokugawa shogunates</caption>
+      <thead><tr><th scope="col">Aspect</th><th scope="col" class="th-kam">Kamakura 鎌倉</th><th scope="col" class="th-ash">Ashikaga / Muromachi 室町</th><th scope="col" class="th-tok">Tokugawa / Edo 江戸</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Dates</th><td>1185 (or 1192) – 1333 · ~148 yrs</td><td>1336/1338 – 1573 · ~235 yrs</td><td>1603 – 1867 · ~265 yrs</td></tr>
+        <tr><th scope="row">Founder</th><td>Minamoto no Yoritomo</td><td>Ashikaga Takauji</td><td>Tokugawa Ieyasu</td></tr>
+        <tr><th scope="row">Seat</th><td>Kamakura (Sagami, eastern Japan)</td><td>Kyoto (Muromachi district)</td><td>Edo (modern Tokyo)</td></tr>
+        <tr><th scope="row">Founding event</th><td>Genpei War; Dan-no-ura 1185</td><td>Betrayal of Go-Daigo; Minatogawa 1336</td><td>Sekigahara 1600; Osaka 1615</td></tr>
+        <tr><th scope="row">Who really ruled</th><td>Hōjō regents (shikken) after 1203</td><td>Shogun plus great shugo lords; later the Hosokawa kanrei and warlords</td><td>Shogun and council of elders (rōjū)</td></tr>
+        <tr><th scope="row">Control of provinces</th><td>Shugo &amp; jitō within a dual court–warrior system</td><td>Weak; shugo became regional powers, later daimyō</td><td>Strong: sankin-kōtai, hostages, domain transfers and confiscations</td></tr>
+        <tr><th scope="row">Foreign affairs</th><td>Repelled the Mongols (1274, 1281)</td><td>Ming tally trade; wakō pirates; Europeans arrive in 1543</td><td>Sakoku: Dejima, Tsushima, Satsuma, Matsumae; ended by Perry</td></tr>
+        <tr><th scope="row">Culture</th><td>Kamakura Buddhism (Zen, Pure Land, Nichiren); Unkei's sculpture; <em>Heike</em> recitation</td><td>Noh, Kinkaku-ji and Ginkaku-ji, ink painting, tea, rock gardens</td><td>Kabuki, bunraku, haiku, ukiyo-e, Neo-Confucianism, rangaku</td></tr>
+        <tr><th scope="row">How it fell</th><td>Unrewarded vassals after the Mongol wars; Go-Daigo's revolt; Takauji and Nitta defect (1333)</td><td>Ōnin War collapse; Sengoku fragmentation; Nobunaga expels Yoshiaki (1573)</td><td>Unequal treaties, sonnō jōi, the Satsuma–Chōshū alliance; Yoshinobu returns power (1867); Boshin War</td></tr>
+        <tr><th scope="row">Legacy</th><td>Created dual government and warrior law</td><td>Cradle of "classic" Japanese arts</td><td>Long peace, urbanization and literacy, the foundations for Meiji</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ============ POWER ============ -->
+<section class="chap" id="power">
+  <div class="chap-head reveal"><div class="chap-num" aria-hidden="true">権</div><h2>Who Held Power? Emperor, Shogun, Daimyō, Samurai<span class="sub">権力構造</span><span class="brush"></span></h2></div>
+  <p class="reveal">For most of Japanese history, the person with the highest title and the person with real power were different people. Explore how authority was arranged in five eras. <span style="color:var(--kin)">Gold</span> borders mark the source of legitimacy; <span style="color:var(--shu)">vermilion</span> marks where real power lay.</p>
+  <div class="viz reveal">
+    <div class="power-tabs seg" role="tablist" aria-label="Choose era" id="powerTabs"></div>
+    <div class="power" id="powerDiagram" role="tabpanel" aria-live="polite"></div>
+    <p class="power-note" id="powerNote"></p>
+  </div>
+</section>
+
+<!-- ============ MEIJI ============ -->
+<section class="chap" id="meiji">
+  <div class="chap-head reveal"><div class="chap-num" aria-hidden="true">明</div><h2>Bakumatsu &amp; the Meiji Restoration<span class="sub">幕末・明治維新</span><span class="brush"></span></h2></div>
+  <h3 class="reveal">Bakumatsu: the end of the bakufu <span class="jp">幕末</span><span class="dates">1853 – 1868</span></h3>
+  <p class="reveal">The treaties set off a political earthquake. The rallying cry <strong>sonnō jōi</strong> ("revere the emperor, expel the barbarians") united radical young samurai, the <em>shishi</em>. The great councilor <strong>Ii Naosuke</strong>, who signed the Harris Treaty and purged opponents in the Ansei Purge, was cut down outside Edo Castle's Sakurada Gate in 1860. After Satsuma samurai killed the British merchant Charles Richardson (the <strong>Namamugi Incident</strong>, 1862), Britain bombarded Kagoshima (1863), and Western fleets pounded Chōshū at Shimonoseki (1863–64). Both domains concluded that expulsion was impossible and that Japan must first modernize. Brokered partly by <strong>Sakamoto Ryōma</strong> of Tosa, the former enemies formed the <strong>Satsuma–Chōshū Alliance</strong> (1866). The last shogun, <strong>Tokugawa Yoshinobu</strong>, returned his governing authority to the emperor in November 1867 (<em>taisei hōkan</em>), hoping to lead a new council. On 3 January 1868, however, palace coup leaders proclaimed the "restoration of imperial rule".</p>
+  <p class="reveal">The <strong>Boshin War</strong> (1868–69) followed. Pro-imperial forces won at Toba–Fushimi. <strong>Saigō Takamori</strong> and the shogunal official <strong>Katsu Kaishū</strong> negotiated the bloodless surrender of Edo. Aizu was besieged, and the teenage Byakkotai killed themselves. The last holdouts declared the short-lived "Republic of Ezo" at Hakodate's Goryōkaku fortress before surrendering in 1869.</p>
+  <h3 class="reveal">The Meiji era <span class="jp">明治時代</span><span class="dates">1868 – 1912 · Emperor Mutsuhito (Meiji)</span></h3>
+  <p class="reveal">The teenage emperor's <strong>Charter Oath</strong> (1868) promised that "knowledge shall be sought throughout the world." The emperor moved to Edo, renamed <strong>Tokyo</strong> ("Eastern Capital"). An oligarchy of young Satsuma, Chōshū, Tosa and Hizen samurai, including <strong>Ōkubo Toshimichi</strong>, <strong>Kido Takayoshi</strong>, <strong>Itō Hirobumi</strong> and <strong>Yamagata Aritomo</strong>, then dismantled the old order with breathtaking speed:</p>
+  <ul class="facts reveal">
+    <li><strong>1871</strong>: domains abolished and replaced by prefectures (<em>haihan chiken</em>). The <strong>Iwakura Mission</strong> (1871–73) toured the US and Europe for nearly two years.</li>
+    <li><strong>1872–73</strong>: universal education ordinance, first railway (Shinbashi–Yokohama), the Gregorian calendar, <strong>military conscription</strong>, and land-tax reform.</li>
+    <li><strong>1876</strong>: samurai stipends commuted and public sword-wearing banned. The <strong>Satsuma Rebellion</strong> (1877), led by Saigō Takamori, was the last samurai revolt, crushed by a conscript army.</li>
+    <li><strong>1879</strong>: the Ryūkyū Kingdom annexed as Okinawa Prefecture. Hokkaidō colonized, with Ainu assimilation policies (1899 Former Aborigines Protection Act).</li>
+    <li><strong>1889</strong>: the <strong>Meiji Constitution</strong>, modeled on Prussia's, declared the emperor "sacred and inviolable". The Imperial Diet first met in 1890, the same year as the Imperial Rescript on Education.</li>
+    <li>Industrialization: state-built model factories (Tomioka Silk Mill, 1872), then private <em>zaibatsu</em> conglomerates such as Mitsui, Mitsubishi and Sumitomo. Silk and cotton textiles drove early growth.</li>
+  </ul>
+  <p class="reveal">Abroad, Japan defeated Qing China in the <strong>First Sino-Japanese War</strong> (1894–95), taking Taiwan. It allied with Britain (1902), then stunned the world by defeating Russia (1904–05), sinking the Baltic Fleet at <strong>Tsushima</strong>. It was the first modern victory of an Asian power over a European one. Korea became a protectorate (1905) and was <strong>annexed in 1910</strong>. By 1911, when tariff autonomy was restored, the unequal treaties had been fully revised, and Japan was recognized as a great power and an empire.</p>
+  <div class="callout reveal"><strong>Civilization and Enlightenment.</strong> <em>Bunmei kaika</em> brought gas lamps on the Ginza, brick buildings, beef stew and Western haircuts. The educator <strong>Fukuzawa Yukichi</strong>, whose face appeared on the ¥10,000 note until 2024, preached independence and practical learning, and in 1885 an essay attributed to him urged Japan to "leave Asia".</div>
+</section>
+
+<!-- ============ TAISHO & SHOWA ============ -->
+<section class="chap" id="taisho-showa">
+  <div class="chap-head reveal"><div class="chap-num" aria-hidden="true">昭</div><h2>Taishō Democracy &amp; the Road to War<span class="sub">大正デモクラシーと戦争</span><span class="brush"></span></h2></div>
+  <h3 class="reveal">Taishō era <span class="jp">大正時代</span><span class="dates">1912 – 1926 · Emperor Yoshihito</span></h3>
+  <p class="reveal">With the sickly Taishō Emperor out of public view, party politics flourished. Japan joined the Allies in <strong>World War I</strong>, seized Germany's Pacific and Chinese holdings, and pressed the <strong>Twenty-One Demands</strong> on China (1915). The wartime boom ended in the nationwide <strong>Rice Riots</strong> of 1918, after which <strong>Hara Takashi</strong> became the first commoner and party-based prime minister. He was assassinated in 1921. Japan sat among the "Big Five" at Versailles, but its proposal for a racial equality clause was rejected. The <strong>Great Kantō Earthquake</strong> (1 September 1923) and fires killed about 105,000 people. In the chaos, vigilantes and police massacred thousands of Koreans as well as Chinese and leftists. In 1925 <strong>universal male suffrage</strong> passed together with the repressive <strong>Peace Preservation Law</strong>. Urban culture boomed with "modern girls" (<em>moga</em>), cafés, jazz, cinema and radio.</p>
+  <h3 class="reveal">Early Shōwa: militarism and war <span class="jp">昭和前期</span><span class="dates">1926 – 1945 · Emperor Hirohito</span></h3>
+  <p class="reveal">The 1927 financial panic and the Great Depression devastated farming villages and discredited the parties. In 1931 Kwantung Army officers staged the <strong>Mukden Incident</strong> and seized Manchuria, creating the puppet state of <strong>Manchukuo</strong> (1932). Japan walked out of the League of Nations in 1933. Terrorism by young officers and ultranationalists killed Prime Minister Inukai Tsuyoshi (<strong>15 May 1932</strong>) and several senior officials in the attempted coup of <strong>26 February 1936</strong>. The coup failed, but the army's political weight grew.</p>
+  <p class="reveal">The <strong>Marco Polo Bridge Incident</strong> (July 1937) escalated into full-scale war with China. After Nanjing fell, Japanese troops carried out the <strong>Nanjing Massacre</strong> (December 1937–January 1938), killing tens of thousands to hundreds of thousands of civilians and prisoners. The scale is disputed, but the atrocity is not. Other wartime crimes included forced labor, Unit 731's biological experiments, and the system of "comfort women" forced into military brothels, which remains a live diplomatic issue. Japan joined the Axis (Tripartite Pact, 1940) and moved into French Indochina. When the US, Britain and the Netherlands answered with an oil embargo, Tokyo chose war: <strong>Pearl Harbor</strong> and simultaneous attacks across Southeast Asia (7–8 December 1941) launched the Pacific War under the banner of a "Greater East Asia Co-Prosperity Sphere."</p>
+  <p class="reveal">After rapid early conquests, from Hong Kong and Singapore to the Philippines and Burma, the tide turned at <strong>Midway</strong> (June 1942) and Guadalcanal. Island-hopping US forces brought bombers within range of Japan. The firebombing of Tokyo on <strong>9–10 March 1945</strong> killed perhaps 100,000 people in a single night. The <strong>Battle of Okinawa</strong> (April–June 1945) killed over 200,000 people, roughly half of them Okinawan civilians.</p>
+  <div class="callout shu reveal"><strong>Hiroshima and Nagasaki.</strong> On <strong>6 August 1945</strong> the uranium bomb "Little Boy" destroyed Hiroshima. On <strong>9 August</strong> the plutonium bomb "Fat Man" struck Nagasaki, the same day the Soviet Union invaded Manchuria. By the end of 1945 an estimated 140,000 people had died in Hiroshima and 70,000 in Nagasaki, and many more died later from injuries and radiation. Survivors (<em>hibakusha</em>) became central to the global anti-nuclear movement. Their organization, Nihon Hidankyō, received the Nobel Peace Prize in 2024. On <strong>15 August</strong> the emperor's recorded broadcast announced surrender, telling subjects to "endure the unendurable." The formal signing took place aboard USS <em>Missouri</em> on 2 September 1945. About 2.6–3.1 million Japanese had died, and the war claimed many millions more lives across Asia.</div>
+</section>
+
+<!-- ============ POSTWAR ============ -->
+<section class="chap" id="postwar">
+  <div class="chap-head reveal"><div class="chap-num" aria-hidden="true">復</div><h2>Occupation, Constitution &amp; Economic Miracle<span class="sub">占領・憲法・高度経済成長</span><span class="brush"></span></h2></div>
+  <h3 class="reveal">The Allied Occupation <span class="jp">占領期</span><span class="dates">1945 – 1952</span></h3>
+  <p class="reveal">Under General <strong>Douglas MacArthur</strong> (SCAP), the overwhelmingly American occupation demilitarized and democratized Japan. It brought land reform that turned tenants into owners, women's suffrage (women first voted in April 1946), legal labor unions, the breakup of the zaibatsu, an educational overhaul, and the separation of State Shinto from government. In his 1 January 1946 rescript the emperor rejected the "false conception" of his divinity. He was kept on the throne and never tried. The <strong>Tokyo War Crimes Tribunal</strong> (1946–48) convicted 25 leaders and hanged seven, including Tōjō Hideki.</p>
+  <p class="reveal">The <strong>Constitution of Japan</strong>, drafted in English by SCAP staff in February 1946 and revised and adopted by the Diet, was promulgated on 3 November 1946 and took effect on 3 May 1947. It made the people sovereign and the emperor "the symbol of the State and of the unity of the people." <strong>Article 9</strong> renounces war "as a sovereign right of the nation." It has never been amended. As the Cold War and the Korean War arrived, the occupation shifted course (the "reverse course"): purges of leftists, economic stabilization, and the creation of what became the <strong>Self-Defense Forces</strong> (1954). The <strong>Treaty of San Francisco</strong> (signed 1951, effective 28 April 1952) restored sovereignty, alongside a US–Japan Security Treaty. Okinawa stayed under US administration until 1972.</p>
+  <h3 class="reveal">Later Shōwa: the miracle <span class="jp">高度経済成長</span><span class="dates">1950s – 1980s</span></h3>
+  <p class="reveal">The conservative parties merged into the <strong>Liberal Democratic Party</strong> (LDP) in 1955, beginning the "1955 System" of near-continuous LDP rule. The revised Security Treaty of 1960 provoked the massive <strong>Anpo protests</strong>. Prime Minister Ikeda Hayato then promised to double incomes in ten years, and the economy did so in about seven. Real growth averaged around 9–10% a year from the mid-1950s to 1973. The <strong>1964 Tokyo Olympics</strong> opened alongside the first <strong>Shinkansen</strong> bullet train. Japan's GNP became the second-largest in the capitalist world in 1968, and the "three sacred treasures" of TV, washing machine and refrigerator filled homes. The costs included grave pollution diseases (<strong>Minamata</strong> mercury poisoning, Itai-itai disease) and punishing work hours.</p>
+  <p class="reveal">Firms like <strong>Toyota, Sony, Honda, Panasonic and Nintendo</strong> conquered world markets after the 1973 oil shock, aided by lifetime employment, keiretsu networks, quality-control circles and coordination by the Ministry of International Trade and Industry (MITI). After the <strong>Plaza Accord</strong> (1985) drove up the yen, easy money inflated an asset <strong>bubble</strong>. At its peak the land under Tokyo's Imperial Palace was rumored to be worth more than all of California, and the Nikkei 225 stock index closed at a record <strong>38,915.87</strong> on 29 December 1989. Emperor Hirohito had died earlier that year, on 7 January 1989, after a 62-year reign.</p>
+</section>
+
+<!-- ============ HEISEI ============ -->
+<section class="chap" id="heisei">
+  <div class="chap-head reveal"><div class="chap-num" aria-hidden="true">平</div><h2>Heisei: Lost Decades &amp; Disasters<span class="sub">平成時代</span><span class="brush"></span></h2></div>
+  <h3 class="reveal">Heisei era <span class="jp">平成</span><span class="dates">8 January 1989 – 30 April 2019 · Emperor Akihito</span></h3>
+  <p class="reveal">"Achieving peace" was a hopeful name for an anxious era. The bubble burst in 1990–91: stocks lost more than half their value within a few years, land prices fell for over a decade, and banks hid mountains of bad loans. The 1990s and 2000s became the <strong>"Lost Decades"</strong>, marked by deflation, near-zero growth, "zombie" firms, the rise of insecure non-regular employment, and a generation shut out of the job market (the "employment ice age"). In 2010 China overtook Japan as the world's second-largest economy.</p>
+  <ul class="facts reveal">
+    <li><strong>1993</strong>: the LDP briefly lost power to an eight-party coalition under Hosokawa Morihiro. The electoral system was reformed in 1994.</li>
+    <li><strong>1995</strong>: the <strong>Great Hanshin (Kobe) Earthquake</strong> on 17 January killed about 6,400 people. On 20 March the <strong>Aum Shinrikyo</strong> cult released sarin gas on the Tokyo subway, killing 13 initially and injuring thousands.</li>
+    <li><strong>1997–98</strong>: major financial collapses, including Yamaichi Securities and the Long-Term Credit Bank.</li>
+    <li><strong>2001–06</strong>: the populist reformer <strong>Koizumi Jun'ichirō</strong> privatized the postal system. His visits to the Yasukuni Shrine strained relations with China and Korea.</li>
+    <li><strong>2009–12</strong>: the Democratic Party of Japan (DPJ) governed after a landslide. It was then swept out after disaster management and policy failures.</li>
+    <li><strong>2012–20</strong>: <strong>Abe Shinzō</strong>'s second term, built on <strong>"Abenomics"</strong> (aggressive monetary easing, fiscal stimulus and structural reform), the 2015 security laws allowing limited collective self-defense, and diplomacy around the "Free and Open Indo-Pacific". He became Japan's longest-serving prime minister.</li>
+  </ul>
+  <div class="callout shu reveal"><strong>3·11: the Great East Japan Earthquake.</strong> At 14:46 on <strong>11 March 2011</strong>, a magnitude <strong>9.0–9.1</strong> megathrust earthquake off Tōhoku, the most powerful ever recorded in Japan, generated tsunami waves exceeding 30–40 m in places. Nearly 20,000 people died or remain missing (about 15,900 confirmed dead and about 2,500 missing, plus thousands of disaster-related deaths later). At the <strong>Fukushima Daiichi</strong> nuclear plant, three reactors melted down after the tsunami knocked out cooling, forcing over 150,000 people to evacuate. It was the worst nuclear accident since Chernobyl. Most reactors nationwide were shut down. Treated water releases began in 2023 over objections from China and others, and decommissioning is expected to take decades.</div>
+  <p class="reveal">In 2016 Emperor Akihito, who with Empress Michiko had redefined the monarchy through visits to disaster zones and wartime battlefields, signaled a wish to retire. A one-time special law (2017) allowed the <strong>first abdication in about two centuries</strong>, the last having been Emperor Kōkaku in 1817. Akihito stepped down on 30 April 2019.</p>
+</section>
+
+<!-- ============ REIWA ============ -->
+<section class="chap" id="reiwa">
+  <div class="chap-head reveal"><div class="chap-num" aria-hidden="true">令</div><h2>Reiwa: Japan Today<span class="sub">令和時代（2019年〜）</span><span class="brush"></span></h2></div>
+  <h3 class="reveal">Reiwa era <span class="jp">令和</span><span class="dates">1 May 2019 – present · Emperor Naruhito</span></h3>
+  <p class="reveal">"Reiwa", usually glossed as "beautiful harmony", was the first era name taken from a <em>Japanese</em> classic, a poem preface in the <em>Man'yōshū</em> about plum blossoms, instead of Chinese texts. The era began with festive optimism and was quickly overtaken by the COVID-19 pandemic.</p>
+  <ul class="facts reveal">
+    <li><strong>Tokyo 2020 Olympics</strong>: postponed by a year and held from 23 July to 8 August 2021 with almost no spectators. Japan won a record 27 gold medals.</li>
+    <li><strong>Prime ministers</strong>: Abe resigned for health reasons in 2020 and was followed by <strong>Suga Yoshihide</strong> (2020–21), <strong>Kishida Fumio</strong> (2021–24) and <strong>Ishiba Shigeru</strong> (2024–25). In October 2025 <strong>Takaichi Sanae</strong> became the LDP's leader and <strong>Japan's first woman prime minister</strong>. She governs with a new partnership with the Japan Innovation Party (Ishin), after Kōmeitō ended its 26-year coalition with the LDP.</li>
+    <li><strong>8 July 2022</strong>: former PM Abe Shinzō was <strong>assassinated</strong> while campaigning in Nara. The attacker's grievance against the Unification Church set off investigations into the church's ties with politicians and a court order (2025) to dissolve its Japanese branch.</li>
+    <li><strong>Security</strong>: the December 2022 strategy documents committed to roughly doubling defense spending toward 2% of GDP by FY2027 and to acquiring "counterstrike" capabilities, a historic shift driven by China, North Korea and Russia's war in Ukraine.</li>
+    <li><strong>Economy</strong>: the yen fell to multi-decade lows. The Nikkei finally surpassed its 1989 record in February 2024, and in March 2024 the Bank of Japan ended negative interest rates, its first hike in 17 years. Inflation returned after decades of deflation, along with major wage increases.</li>
+    <li><strong>Disasters</strong>: the <strong>Noto Peninsula earthquake</strong> (M7.5) struck on New Year's Day 2024.</li>
+    <li><strong>Politics</strong>: an LDP slush-fund scandal (2023–24) contributed to the ruling coalition losing its lower-house majority in October 2024 and its upper-house majority in July 2025, the most fragile LDP position in decades.</li>
+    <li><strong>Expo 2025 Osaka, Kansai</strong> (13 April – 13 October 2025) drew over 25 million visits. Inbound tourism hit records (about 37 million visitors in 2024), bringing worries about "overtourism".</li>
+    <li><strong>Demography</strong>: births fell below 700,000 in 2024, the lowest since records began in 1899. About 29% of the population is 65 or older, the highest share of any large country. Foreign residents passed 3.5 million, and immigration policy is being cautiously loosened.</li>
+  </ul>
+  <div class="callout ai reveal"><strong>A note on recency.</strong> This summary reflects events through roughly late 2025. Developments in 2026, such as election results, policy changes or diplomatic events, may not be captured here. Check current news sources for the latest.</div>
+</section>
+
+<!-- ============ IMPERIAL ============ -->
+<section class="chap" id="imperial">
+  <div class="chap-head reveal"><div class="chap-num" aria-hidden="true">皇</div><h2>The Imperial Institution &amp; Era Names<span class="sub">天皇と元号</span><span class="brush"></span></h2></div>
+  <p class="reveal">Japan's monarchy is often called the oldest continuous hereditary monarchy in the world. By the traditional count, Naruhito is the <strong>126th</strong> emperor in a line running back to the mythical Jimmu. Historically verifiable descent reaches at least to the 6th century. For most of that time emperors were priest-kings and patrons of culture, not rulers. Real power belonged to the Soga, the Fujiwara regents, retired emperors, shoguns, and after 1868 to oligarchs and generals acting in the emperor's name. The postwar Constitution makes the emperor a <strong>"symbol of the State,"</strong> with no powers related to government.</p>
+  <p class="reveal"><strong>Succession</strong> is limited to men in the male line by the 1947 Imperial Household Law, although eight women reigned as empress in earlier centuries, two of them twice (Kōgyoku/Saimei and Kōken/Shōtoku). The heirs are the emperor's brother, <strong>Crown Prince Fumihito</strong>, and his son <strong>Prince Hisahito</strong> (born 2006). Princesses who marry commoners leave the imperial family, which is shrinking, and the Diet continues to debate reforms such as allowing female members to keep their status. The emperor's only child is <strong>Princess Aiko</strong>.</p>
+  <h3 class="reveal">Gengō: counting time by eras <span class="jp">元号</span></h3>
+  <p class="reveal">Following Chinese practice, Japan began naming eras in <strong>645 with Taika</strong> ("Great Change"). Reiwa is the <strong>248th</strong>. Before 1868 eras changed frequently, after omens, disasters or the start of a new sixty-year cycle, sometimes several times in one reign. Since <strong>Meiji</strong>, one era corresponds to one reign (<em>issei ichigen</em>), and emperors are posthumously known by their era name: Hirohito is "Emperor Shōwa." Era names still appear on official documents, coins, and many forms. 2026 is <strong>Reiwa 8</strong>.</p>
+  <div class="viz reveal">
+    <p class="viz-title">How long did eras last?</p>
+    <p class="viz-note">Approximate lengths in years for selected eras. Pre-Meiji eras were often brief: the average before 1868 was about 5 years.</p>
+    <div class="era-bars" id="eraBars"></div>
+  </div>
+</section>
+
+<!-- ============ NUMBERS ============ -->
+<section class="chap" id="numbers">
+  <div class="chap-head reveal"><div class="chap-num" aria-hidden="true">数</div><h2>Population &amp; Economy Through Time<span class="sub">人口と経済</span><span class="brush"></span></h2></div>
+  <p class="reveal">Japan's population grew slowly for a thousand years and stalled during the Edo period. It quadrupled after industrialization, peaked at about <strong>128 million in 2008</strong>, and is now shrinking by more than half a million people a year.</p>
+  <div class="viz reveal">
+    <div style="display:flex;flex-wrap:wrap;gap:.8rem;justify-content:space-between;align-items:center">
+      <p class="viz-title" id="chartTitle">Population of Japan, 700 – 2070</p>
+      <div class="seg" role="group" aria-label="Choose chart">
+        <button type="button" id="btnPop" aria-pressed="true">Population</button>
+        <button type="button" id="btnGdp" aria-pressed="false">Postwar growth</button>
+      </div>
+    </div>
+    <p class="viz-note" id="chartNote">All figures are approximate. Pre-1872 values are scholarly estimates (e.g. Farris, Hayami, Kitō), which vary widely. Dashed line: official medium-variant projection (IPSS 2023). Hover or focus on points for details.</p>
+    <div class="chart-box" id="chartBox"><svg id="chart" viewBox="0 0 800 400" role="img" aria-label="Line chart of Japan's population over time"></svg><div class="tip" id="tip" role="status"></div></div>
+  </div>
+</section>
+
+<!-- ============ RELIGION ============ -->
+<section class="chap" id="religion">
+  <div class="chap-head reveal"><div class="chap-num" aria-hidden="true">神仏</div><h2>Shinto, Buddhism &amp; the Sacred<span class="sub">神道と仏教</span><span class="brush"></span></h2></div>
+  <p class="reveal">Most Japanese people engage with more than one tradition without seeing a contradiction. A common saying is "born Shinto, married Christian, die Buddhist": newborns are presented at shrines, many weddings are chapel-style, and funerals are overwhelmingly Buddhist. Surveys show that most people do not identify as "religious", yet tens of millions visit shrines and temples at New Year (<em>hatsumōde</em>).</p>
+  <div class="grid2 reveal">
+    <div class="card"><h4 style="margin-top:0">Shinto <span class="jp" style="color:var(--shu)">神道</span></h4><p>"The way of the kami." Kami are sacred powers present in mountains, waterfalls, ancestors, heroes and even scholars: Sugawara no Michizane is worshipped as Tenjin, the god of learning. There is no founder or canonical scripture. The emphasis is on purity (<em>harae</em>), ritual and festival. Shrines are marked by <em>torii</em> gates and <em>shimenawa</em> ropes. <strong>Ise Jingū</strong>, dedicated to Amaterasu, is rebuilt every 20 years (<em>shikinen sengū</em>; the 62nd rebuilding took place in 2013). <strong>Izumo Taisha</strong> is where the kami are said to gather each tenth month. From 1868 to 1945 the state turned Shinto into a nationalist ideology ("State Shinto"), which is why the Yasukuni Shrine, where Japan's war dead including convicted war criminals are enshrined, remains politically charged.</p></div>
+    <div class="card"><h4 style="margin-top:0">Buddhism <span class="jp" style="color:var(--shu)">仏教</span></h4><p>Introduced via Korea in the 6th century. For about a thousand years Buddhism and Shinto were fused (<em>shinbutsu shūgō</em>), with kami understood as local manifestations of buddhas (<em>honji suijaku</em>). The Meiji government forcibly separated them in 1868, and anti-Buddhist violence destroyed many temples.</p>
+    <ul class="facts"><li><strong>Nara schools</strong> (Kegon, Hossō…) and <strong>Heian esoteric</strong> schools: Tendai and Shingon.</li><li><strong>Pure Land</strong> (Jōdo, Jōdo Shinshū): rebirth in Amida's paradise through faith and the <em>nenbutsu</em>. Today it is the largest family of sects.</li><li><strong>Zen</strong> (Rinzai: kōan; Sōtō: "just sitting", <em>shikantaza</em>; Ōbaku): shaped warrior culture, gardens, ink painting and tea.</li><li><strong>Nichiren</strong>: the Lotus Sutra and the chant <em>Namu Myōhō Renge Kyō</em>, the basis of modern lay movements such as Sōka Gakkai.</li></ul></div>
+  </div>
+  <p class="reveal"><strong>Confucianism</strong> shaped ethics, government and family life, especially as Neo-Confucian orthodoxy under the Tokugawa. <strong>Christianity</strong> flourished briefly, was banned and driven underground (the <em>Kakure Kirishitan</em>, or "hidden Christians", whose sites in Nagasaki are now UNESCO-listed), and today counts about 1% of the population. The 19th and 20th centuries produced many <em>shin shūkyō</em> (new religions), such as Tenrikyō and Ōmoto.</p>
+</section>
+
+<!-- ============ ARTS ============ -->
+<section class="chap" id="arts">
+  <div class="chap-head reveal"><div class="chap-num" aria-hidden="true">芸</div><h2>Arts, Ways &amp; Traditions<span class="sub">芸道と伝統文化</span><span class="brush"></span></h2></div>
+  <svg class="enso" viewBox="0 0 200 200" aria-hidden="true"><path d="M100 20 C 160 18 185 70 178 110 C 170 160 120 185 80 175 C 35 163 15 120 25 80 C 33 48 60 28 92 24" fill="none" stroke="currentColor" stroke-width="14" stroke-linecap="round"/></svg>
+  <h3 class="reveal">Samurai &amp; bushidō <span class="jp">侍・武士道</span></h3>
+  <p class="reveal">The <strong>bushi</strong> or samurai ("those who serve") arose as provincial mounted archers in the Heian period. They dominated Japan from 1185, became an urban administrative class under the Tokugawa, and were abolished as a legal status in the 1870s. Medieval warrior ideals stressed martial skill, reputation, and reciprocal ties between lord and vassal, and betrayal was common. The systematic code called <strong>bushidō</strong> is largely a product of Edo-era moralists and of the Meiji period. Works such as <em>Hagakure</em> (1716, "the way of the warrior is found in death") and Nitobe Inazō's English-language <em>Bushido: The Soul of Japan</em> (1900) romanticized loyalty, rectitude and self-sacrifice, and these ideals were later mobilized for militarism. The samurai's material culture endures: the Japanese sword, armor, castles, and martial arts (<em>budō</em>) such as kendō, kyūdō, jūdō (founded by Kanō Jigorō in 1882) and aikidō.</p>
+  <div class="grid2 reveal">
+    <div class="card"><h4 style="margin-top:0">The way of tea <span class="jp" style="color:var(--shu)">茶道</span></h4><p>Tea came with Buddhist monks. Eisai promoted powdered green tea in 1191 and wrote of its health benefits. From competitive tea parties, Murata Jukō, Takeno Jōō and above all <strong>Sen no Rikyū</strong> developed <em>wabi-cha</em>: rough Raku bowls, tiny huts entered on hands and knees, and the principles of harmony, respect, purity and tranquility (<em>wa kei sei jaku</em>). Rikyū's descendants founded the Omotesenke, Urasenke and Mushakōjisenke schools. The phrase <em>ichi-go ichi-e</em> ("one time, one meeting") captures its ethos.</p></div>
+    <div class="card"><h4 style="margin-top:0">Ikebana <span class="jp" style="color:var(--shu)">生け花</span></h4><p>Flower arrangement grew out of Buddhist altar offerings. The <strong>Ikenobō</strong> school, whose priests served at Kyoto's Rokkaku-dō temple, codified the formal <em>rikka</em> style in the 15th–16th centuries. Later styles include the simpler <em>shōka</em>/<em>seika</em>, the casual <em>nageire</em>, and modern schools such as Ohara (<em>moribana</em>) and Sōgetsu (1927, avant-garde). Arrangements emphasize asymmetry, line, empty space and the season.</p></div>
+  </div>
+  <h3 class="reveal">Theater <span class="jp">能・歌舞伎・文楽</span></h3>
+  <div class="grid3 reveal">
+    <div class="card"><h4 style="margin-top:0">Noh 能</h4><p>Masked, slow and haunting musical drama perfected by <strong>Kan'ami</strong> and his son <strong>Zeami</strong> (c. 1363–1443). Zeami's treatises theorize <em>yūgen</em> and <em>hana</em>, the "flower" of performance. Ghosts, warriors and madwomen appear on a bare cypress stage with a painted pine. Comic <strong>kyōgen</strong> plays are performed between Noh pieces. It is on UNESCO's list (2008, first proclaimed 2001).</p></div>
+    <div class="card"><h4 style="margin-top:0">Kabuki 歌舞伎</h4><p>Begun around 1603 by <strong>Izumo no Okuni</strong>, a female dancer in Kyoto. Women were banned from the stage in 1629, and then young men, so all-male troupes with <em>onnagata</em> female-role specialists became the norm. Kabuki features flamboyant <em>kumadori</em> makeup, <em>mie</em> poses, the <em>hanamichi</em> walkway into the audience, and revolving stages. Acting dynasties such as Ichikawa Danjūrō continue today.</p></div>
+    <div class="card"><h4 style="margin-top:0">Bunraku 文楽</h4><p>Puppet theater (<em>ningyō jōruri</em>), in which three puppeteers in view of the audience operate one large puppet, accompanied by a chanter (<em>tayū</em>) and shamisen. <strong>Takemoto Gidayū</strong> (from 1684) and the playwright <strong>Chikamatsu Monzaemon</strong> made it the premier drama of the Genroku era. Many classic kabuki plays began as bunraku. It is based today at the National Bunraku Theatre in Osaka.</p></div>
+  </div>
+  <h3 class="reveal">Poetry <span class="jp">和歌・俳句</span></h3>
+  <p class="reveal">The classical <strong>waka</strong>, or <strong>tanka</strong>, has 31 morae (5-7-5-7-7) and was the essential accomplishment of courtiers. Linked verse (<em>renga</em>) became a social art in the Middle Ages, and its comic offshoot <em>haikai</em> gave rise to the independent 17-mora opening verse (<em>hokku</em>). <strong>Masaoka Shiki</strong> renamed it <strong>haiku</strong> in the 1890s. The great masters are <strong>Bashō</strong> (1644–1694), <strong>Yosa Buson</strong> (1716–1784), <strong>Kobayashi Issa</strong> (1763–1828) and Shiki. A haiku traditionally contains a seasonal word (<em>kigo</em>) and a "cutting word" (<em>kireji</em>).</p>
+  <blockquote class="reveal"><span class="jp" lang="ja">古池や　蛙飛び込む　水の音</span>"The old pond— / a frog leaps in, / the sound of water."<cite>Matsuo Bashō, 1686</cite></blockquote>
+  <h3 class="reveal">Ukiyo-e &amp; painting <span class="jp">浮世絵</span></h3>
+  <p class="reveal">Woodblock prints were made by a team: the publisher, the artist who drew the design, the carver, and the printer. They were cheap entertainment that showed courtesans, kabuki stars, sumo wrestlers, landscapes and erotica. After Japan opened, prints flooded Europe, sparking <strong>Japonisme</strong>: Van Gogh copied Hiroshige, Monet collected prints and built a Japanese bridge at Giverny, and Degas and Toulouse-Lautrec borrowed their flat color fields and bold cropping. Before ukiyo-e came the great schools of Japanese painting: Heian <em>yamato-e</em> narrative scrolls (<em>Genji Monogatari Emaki</em>), Muromachi ink painting, the Kanō school's official style, and the decorative Rinpa school (Sōtatsu, Kōrin). Eccentric Edo masters such as <strong>Itō Jakuchū</strong> also belong in this story.</p>
+  <h3 class="reveal">Architecture &amp; gardens <span class="jp">建築・庭園</span></h3>
+  <div class="grid2 reveal">
+    <div class="card"><h4 style="margin-top:0">Building in wood</h4><p>The tradition runs from raised-floor shrines (Ise, Izumo) and continental-style temple halls (Hōryū-ji, Tōdai-ji's Daibutsuden, the largest wooden building in the world for centuries), through the Heian aristocratic <em>shinden-zukuri</em>, warrior-era <em>shoin-zukuri</em> with tatami and <em>tokonoma</em>, and the refined rustic <em>sukiya</em> (Katsura Imperial Villa), to castles such as <strong>Himeji</strong>, the "White Heron". Joinery without nails, deep eaves, and flexible pagodas that survive earthquakes are hallmarks. Modern Japanese architects such as Tange Kenzō, Andō Tadao, SANAA, Itō Toyoo and Isozaki Arata have made Japan one of the most decorated countries in the history of the Pritzker Prize.</p></div>
+    <div class="card"><h4 style="margin-top:0">The garden</h4><p>The <em>Sakuteiki</em> (11th century) is the world's oldest garden manual. Styles include Heian pond gardens imagining Amida's paradise (Byōdō-in); Zen dry landscapes (<em>karesansui</em>) of raked gravel and rock, as at <strong>Ryōan-ji</strong> and Daisen-in; tea gardens (<em>roji</em>) with stepping stones and lanterns; and Edo stroll gardens with "borrowed scenery" (<em>shakkei</em>). The "Three Great Gardens" are Kenroku-en (Kanazawa), Kōraku-en (Okayama) and Kairaku-en (Mito).</p></div>
+  </div>
+  <h3 class="reveal">Cuisine <span class="jp">和食</span></h3>
+  <p class="reveal"><strong>Washoku</strong> was added to UNESCO's Intangible Cultural Heritage list in 2013. It is built on rice, seasonal ingredients, fermented foods (miso, soy sauce, sake, natto) and <strong>dashi</strong> stock from kombu and bonito. In 1908 the chemist Ikeda Kikunae identified the "fifth taste", <em>umami</em>, from kombu. Buddhist influence made eating meat taboo for centuries (the ban was publicly lifted in 1872) and produced <em>shōjin ryōri</em> vegetarian temple cuisine. <strong>Kaiseki</strong> grew from tea-ceremony meals. <strong>Sushi</strong> evolved from <em>narezushi</em>, fish fermented in rice, into Edo's fast-food <em>nigiri</em> in the 1820s. Tempura came via the Portuguese, and <strong>ramen</strong>, curry rice and tonkatsu are modern adaptations of Chinese and Western food. Tokyo has more Michelin-starred restaurants than any other city.</p>
+  <h3 class="reveal">Festivals <span class="jp">祭り</span></h3>
+  <p class="reveal">A <strong>matsuri</strong> is a festival in which the kami are welcomed, entertained and carried through the streets in portable shrines (<em>mikoshi</em>) or on towering floats. Kyoto's <strong>Gion Matsuri</strong> began in 869 to appease plague spirits and fills all of July. Others include Aomori's illuminated <strong>Nebuta</strong> floats, Tokushima's <strong>Awa Odori</strong> dance, Osaka's <strong>Tenjin Matsuri</strong> boat procession, and Tokyo's <strong>Kanda</strong> and <strong>Sanja</strong> festivals. The ritual year includes <strong>Shōgatsu</strong> (New Year, the most important holiday), Setsubun bean-throwing, <strong>hanami</strong> (cherry-blossom viewing, tracked nationally by a "sakura front"), Tanabata (the star festival), and <strong>Obon</strong> in midsummer, when ancestral spirits return and are sent off with lanterns and <em>bon-odori</em> dances.</p>
+</section>
+
+<!-- ============ AESTHETICS ============ -->
+<section class="chap" id="aesthetics">
+  <div class="chap-head reveal"><div class="chap-num" aria-hidden="true">美</div><h2>The Vocabulary of Beauty<span class="sub">日本の美意識</span><span class="brush"></span></h2></div>
+  <p class="reveal">Japanese aesthetics developed a precise vocabulary for moods that are hard to translate. These concepts overlap and shifted over time, and some were systematized only in the modern era. Even so, they shape everything from poetry to product design.</p>
+  <div class="aes reveal">
+    <div class="card" data-k="侘寂"><div class="big jp">侘寂</div><h4>Wabi-sabi</h4><p>The beauty of the imperfect, impermanent and incomplete. <em>Wabi</em> means rustic simplicity and quiet solitude; <em>sabi</em> is the patina of age. Think of a cracked tea bowl mended with gold (<em>kintsugi</em>) or moss on stone.</p></div>
+    <div class="card" data-k="哀"><div class="big jp">物の哀れ</div><h4>Mono no aware</h4><p>"The pathos of things": a gentle, bittersweet sensitivity to transience. Motoori Norinaga identified it as the heart of <em>The Tale of Genji</em>. Falling cherry blossoms are its emblem.</p></div>
+    <div class="card" data-k="間"><div class="big jp">間</div><h4>Ma</h4><p>Meaningful interval or negative space, in time as well as space: the pause in Noh music, the empty tokonoma alcove, the untouched gravel in a garden, the silence between words.</p></div>
+    <div class="card" data-k="幽玄"><div class="big jp">幽玄</div><h4>Yūgen</h4><p>Profound, mysterious grace, suggested rather than shown. It is central to medieval poetics and Zeami's Noh: "to watch the sun sink behind a flower-clad hill… to wander in a huge forest without thought of return."</p></div>
+    <div class="card" data-k="粋"><div class="big jp">粋</div><h4>Iki</h4><p>Edo townsfolk's urbane chic: understated, worldly, a little flirtatious, never trying too hard. The philosopher Kuki Shūzō analyzed it in <em>The Structure of Iki</em> (1930). Think of the plain kimono with a gorgeous lining.</p></div>
+    <div class="card" data-k="渋"><div class="big jp">渋い</div><h4>Shibui</h4><p>Subtle, unobtrusive beauty that deepens with time. It describes a quietly perfect object, often in muted tones, and was championed by the folk-craft (<em>mingei</em>) movement of Yanagi Sōetsu.</p></div>
+  </div>
+</section>
+
+<!-- ============ POP ============ -->
+<section class="chap" id="pop">
+  <div class="chap-head reveal"><div class="chap-num" aria-hidden="true">漫</div><h2>Modern Pop Culture<span class="sub">ポップカルチャー</span><span class="brush"></span></h2></div>
+  <p class="reveal">Since the late 20th century, Japan's most influential export may be its imagination. Precursors include Hokusai's sketchbooks, the "Hokusai Manga" of 1814, and 12th-century comic scrolls of frolicking animals (<em>Chōjū-giga</em>).</p>
+  <div class="grid2 reveal">
+    <div class="card"><h4 style="margin-top:0">Manga &amp; anime</h4><p><strong>Tezuka Osamu</strong>, the "god of manga", pioneered cinematic storytelling (<em>Astro Boy</em>, manga from 1952 and TV anime from 1963). Weekly magazines like <em>Shōnen Jump</em> launched global franchises such as <em>Dragon Ball</em>, <em>One Piece</em> (one of the best-selling comics in history) and <em>Naruto</em>. <strong>Studio Ghibli</strong> (founded 1985) with Miyazaki Hayao won Oscars for <em>Spirited Away</em> (2003) and <em>The Boy and the Heron</em> (2024). <em>Akira</em>, <em>Ghost in the Shell</em> and <em>Evangelion</em> shaped science fiction worldwide, and <em>Demon Slayer: Mugen Train</em> (2020) became Japan's highest-grossing film.</p></div>
+    <div class="card"><h4 style="margin-top:0">Games &amp; gadgets</h4><p><strong>Nintendo</strong> (founded 1889 as a playing-card maker), Sega, Sony's PlayStation (1994), Square Enix, Capcom and others defined video gaming. Landmarks include <em>Space Invaders</em> (1978), <em>Pac-Man</em> (1980), <em>Super Mario Bros.</em> (1985), <em>The Legend of Zelda</em>, <em>Final Fantasy</em> and <strong>Pokémon</strong> (1996), the world's highest-grossing media franchise. Sony's Walkman (1979), karaoke, emoji (from the Japanese for "picture character") and the culture of <em>kawaii</em> (Hello Kitty, 1974) all traveled widely.</p></div>
+    <div class="card"><h4 style="margin-top:0">Film</h4><p>The golden age of Japanese cinema produced <strong>Kurosawa Akira</strong> (<em>Rashōmon</em>, 1950; <em>Seven Samurai</em>, 1954), <strong>Ozu Yasujirō</strong> (<em>Tokyo Story</em>) and Mizoguchi Kenji. <em>Godzilla</em> (1954) was born from nuclear trauma, and <em>Godzilla Minus One</em> won the Oscar for visual effects in 2024. Later filmmakers include Kitano Takeshi, Koreeda Hirokazu (Palme d'Or, <em>Shoplifters</em>, 2018) and Hamaguchi Ryūsuke (<em>Drive My Car</em>, Oscar 2022).</p></div>
+    <div class="card"><h4 style="margin-top:0">Music &amp; more</h4><p>Postwar <em>kayōkyoku</em> and <em>enka</em> led to the 1980s <strong>city pop</strong> revival, Yellow Magic Orchestra's synth-pop, <strong>J-pop</strong> megastars (Utada Hikaru, Hamasaki Ayumi), idol groups (AKB48), and visual-kei and J-rock. Vocaloid's Hatsune Miku (2007) became a virtual idol. Recent global streaming hits include YOASOBI and Creepy Nuts. Literature reaches world readers through Kawabata Yasunari and Ōe Kenzaburō (both Nobel laureates), Mishima Yukio and Murakami Haruki.</p></div>
+  </div>
+</section>
+
+<!-- ============ LANGUAGE ============ -->
+<section class="chap" id="language">
+  <div class="chap-head reveal"><div class="chap-num" aria-hidden="true">語</div><h2>Language &amp; the Writing System<span class="sub">日本語と文字</span><span class="brush"></span></h2></div>
+  <h3 class="reveal">Origins <span class="jp">日本語の起源</span></h3>
+  <p class="reveal">Japanese belongs to the small <strong>Japonic</strong> family together with the Ryukyuan languages. Its deeper origins are one of linguistics' great puzzles. The once-popular <strong>"Altaic"</strong> hypothesis (linking it with Korean, Mongolic, Turkic and Tungusic) is now widely rejected. A relationship with <strong>Korean</strong> is plausible but unproven, since shared features may come from long contact. Others propose an Austronesian substrate. Place names recorded in the Korean <em>Samguk sagi</em> suggest that "Peninsular Japonic" languages were once spoken in Korea. A common view is that proto-Japonic arrived with Yayoi rice farmers from the peninsula around the first millennium BCE, gradually replacing Jōmon languages, of which the Ainu language may be a distant relative or simply a neighbor.</p>
+  <p class="reveal"><strong>Old Japanese</strong>, the language of the 8th-century <em>Man'yōshū</em> and <em>Kojiki</em>, distinguished more vowel qualities than today's five (the <em>kō-otsu</em> distinction recorded in man'yōgana spellings). Japanese is agglutinative, subject–object–verb, and topic-prominent (marked with は <em>wa</em>), freely drops pronouns, and uses a pitch accent. Roughly half of its vocabulary consists of Sino-Japanese words (<em>kango</em>), alongside native <em>wago</em> and a growing number of loanwords (<em>gairaigo</em>), mostly from English.</p>
+
+  <h3 class="reveal">From Chinese characters to kana <span class="jp">文字の歴史</span></h3>
+  <div class="viz reveal">
+    <p class="viz-title">Writing-system evolution</p>
+    <p class="viz-note">How a borrowed script was adapted to a completely unrelated language.</p>
+    <div class="script-flow">
+      <div class="sf"><div class="g">漢</div><b>Kanji arrive</b><small>c. 1st–5th c. Chinese texts and scribes from Korea (the Wani legend). The Inariyama sword (471?) bears an early inscription.</small></div>
+      <div class="sf"><div class="g">漢文</div><b>Kanbun</b><small>Writing in Classical Chinese, read in Japanese order using <em>kunten</em> marks.</small></div>
+      <div class="sf"><div class="g">安</div><b>Man'yōgana</b><small>7th–8th c. Kanji used purely for sound, as in the Man'yōshū.</small></div>
+      <div class="sf"><div class="g">あ ア</div><b>Kana</b><small>9th–10th c. Hiragana from cursive script (<em>onna-de</em>, "women's hand"); katakana from fragments of characters used in monks' annotations.</small></div>
+      <div class="sf"><div class="g">漢かな</div><b>Mixed script</b><small><em>Kanji kana majiri</em>: kanji for word stems, hiragana for grammar, katakana for loanwords and emphasis.</small></div>
+    </div>
+    <p class="viz-note" style="margin-top:.4rem"><strong>Select a card to flip it:</strong> see which kanji each kana came from. Hiragana simplify the <em>whole</em> character in cursive; katakana keep just <span class="kata-part">one part</span> of it.</p>
+    <div class="flips" id="flips"></div>
+  </div>
+  <ul class="facts reveal" style="margin-top:1.2rem">
+    <li><strong>Each kanji can have several readings</strong>: <em>on'yomi</em> (Sino-Japanese, which can come from different Chinese eras: Go-on, Kan-on, Tō-on) and native <em>kun'yomi</em>. For example, 山 is read <em>san</em> (as in Fuji-san) or <em>yama</em>.</li>
+    <li>The <strong>Iroha</strong> poem (c. 11th c.) uses every kana exactly once and served as the "alphabet" order. The modern <em>gojūon</em> (a, i, u, e, o / ka, ki…) table is based on Sanskrit phonetics.</li>
+    <li><strong>1900</strong>: hiragana standardized to one form per sound; the variant forms (<em>hentaigana</em>) fell out of use.</li>
+    <li>The <strong>genbun itchi</strong> movement (late 19th to early 20th c.) unified the written and spoken language. Novelists such as Futabatei Shimei led the way.</li>
+    <li><strong>1946</strong>: postwar reforms introduced the Tōyō kanji list (1,850 characters), modern kana spelling and simplified forms (<em>shinjitai</em>). Some reformers had even proposed abolishing kanji. The list was replaced by the <strong>Jōyō kanji</strong> in 1981 (1,945 characters), expanded in 2010 to <strong>2,136</strong>.</li>
+    <li><strong>Rōmaji</strong>: the Hepburn (1867) and Kunrei romanization systems compete. In 2025 a government advisory council recommended making Hepburn-style spellings the official standard.</li>
+  </ul>
+
+  <h3 class="reveal">Keigo: the grammar of respect <span class="jp">敬語</span></h3>
+  <p class="reveal">Japanese builds social relationships into grammar. Speakers choose forms according to the listener's status and to the line between in-group and out-group (<em>uchi/soto</em>). For example, when speaking to a client you humble your own boss.</p>
+  <div class="grid3 reveal">
+    <div class="card"><h4 style="margin-top:0">Teineigo 丁寧語</h4><p>Polite: <em>-desu/-masu</em> forms. <br><span class="jp">行きます</span> <em>ikimasu</em>, "I/they go".</p></div>
+    <div class="card"><h4 style="margin-top:0">Sonkeigo 尊敬語</h4><p>Honorific: elevates the other person's actions. <br><span class="jp">いらっしゃいます</span> <em>irasshaimasu</em>, "(you, respected) go".</p></div>
+    <div class="card"><h4 style="margin-top:0">Kenjōgo 謙譲語</h4><p>Humble: lowers one's own actions. <br><span class="jp">参ります</span> <em>mairimasu</em>, "I (humbly) go".</p></div>
+  </div>
+  <p class="reveal">Name suffixes add another layer: <em>-san</em> (neutral polite), <em>-sama</em> (esteemed), <em>-kun</em> (junior males), <em>-chan</em> (affectionate), and <em>-sensei</em> (teachers, doctors, artists).</p>
+
+  <h3 class="reveal">Dialects <span class="jp">方言</span></h3>
+  <p class="reveal">Standard Japanese (<em>hyōjungo</em>) is based on educated Tokyo speech and spread through schools and broadcasting. Regional dialects, though, remain vivid: <strong>Kansai-ben</strong> (Osaka/Kyoto: <em>ōkini</em> for "thanks", <em>-hen</em> negatives) is beloved in comedy. <strong>Tōhoku</strong> dialects can be hard for outsiders to follow, and <strong>Kagoshima</strong> speech was reportedly used as a code during WWII. Some scholars treat <strong>Hachijō</strong>, spoken on Hachijō Island, as a separate language preserving features of eastern Old Japanese.</p>
+</section>
+
+<!-- ============ PEOPLES ============ -->
+<section class="chap" id="peoples">
+  <div class="chap-head reveal"><div class="chap-num" aria-hidden="true">民</div><h2>Ainu &amp; Ryukyuan Peoples<span class="sub">アイヌと琉球</span><span class="brush"></span></h2></div>
+  <p class="reveal">The idea of Japan as ethnically homogeneous, which became prominent in postwar rhetoric, overlooks Indigenous and minority peoples, as well as the Zainichi Korean community and a growing number of immigrants.</p>
+  <div class="grid2 reveal">
+    <div class="card"><h4 style="margin-top:0">The Ainu <span class="jp" style="color:var(--shu)">アイヌ</span></h4><p>The Indigenous people of Hokkaidō, southern Sakhalin and the Kurils, descended from Jōmon peoples via the Satsumon and Okhotsk cultures. Their culture centered on salmon, deer, and a rich spiritual world of <em>kamuy</em>, including the bear ceremony (<em>iyomante</em>), and the oral epics (<em>yukar</em>). Trade with Japanese, monopolized after 1604 by the Matsumae domain, became exploitative. Revolts such as <strong>Shakushain's War</strong> (1669) were crushed. After 1869 Meiji colonization took land, banned customs such as tattoos and earrings, and imposed assimilation. The <strong>Ainu language</strong> is an isolate and critically endangered, with very few native speakers left, though revival efforts are active. The Diet recognized the Ainu as Indigenous in 2008, the Ainu Promotion Act followed in 2019, and the national museum <strong>Upopoy</strong> opened in 2020.</p></div>
+    <div class="card"><h4 style="margin-top:0">Ryūkyū / Okinawa <span class="jp" style="color:var(--shu)">琉球</span></h4><p>The southern islands developed their own <em>gusuku</em> (castle) culture. In 1429 <strong>Shō Hashi</strong> unified the <strong>Ryūkyū Kingdom</strong>, a maritime trading state paying tribute to Ming China. Its capital was <strong>Shuri Castle</strong>, which burned in 2019 and is due to be rebuilt by 2026. Invaded by Satsuma in 1609, the kingdom was quietly subordinated while still sending tribute to China, then annexed in 1879. The <strong>Ryukyuan languages</strong> (Amami, Kunigami, Okinawan, Miyako, Yaeyama, Yonaguni) are Japonic but not mutually intelligible with Japanese, and UNESCO lists all of them as endangered. Okinawa suffered the bloodiest land battle of the Pacific War, remained under US rule until 1972, and still hosts about 70% of the land area exclusively used by US bases in Japan, a constant political grievance. Its music (<em>sanshin</em>), karate, which originated there, Bingata dyeing and famous longevity are distinctive.</p></div>
+  </div>
+</section>
+
+<!-- ============ SOURCES ============ -->
+<section class="chap" id="sources">
+  <div class="chap-head reveal"><div class="chap-num" aria-hidden="true">典</div><h2>Notes &amp; Further Reading<span class="sub">参考文献</span><span class="brush"></span></h2></div>
+  <p class="reveal">This page is a synthesis for general readers. Dates follow mainstream scholarship, but ancient chronology, casualty figures and population estimates carry wide uncertainty, and where they are contested this page gives ranges or flags them as approximate. Coverage of current affairs ends around late 2025.</p>
+  <ul class="facts reveal">
+    <li>Conrad Totman, <em>A History of Japan</em> (Blackwell, 2nd ed. 2005)</li>
+    <li>Marius B. Jansen, <em>The Making of Modern Japan</em> (Harvard, 2000)</li>
+    <li>Andrew Gordon, <em>A Modern History of Japan: From Tokugawa Times to the Present</em> (Oxford, 4th ed.)</li>
+    <li>William Wayne Farris, <em>Japan's Medieval Population</em> and <em>Population, Disease, and Land in Early Japan</em></li>
+    <li>Donald Keene, <em>Seeds in the Heart</em> and <em>World Within Walls</em> (history of Japanese literature)</li>
+    <li>John W. Dower, <em>Embracing Defeat: Japan in the Wake of World War II</em> (1999)</li>
+    <li>Mark J. Hudson, <em>Ruins of Identity: Ethnogenesis in the Japanese Islands</em> (1999)</li>
+    <li>Statistics Bureau of Japan; National Institute of Population and Social Security Research (IPSS); Cabinet Office national accounts</li>
+    <li>Agency for Cultural Affairs; UNESCO World Heritage and Intangible Heritage listings</li>
+  </ul>
+</section>
+
+</main>
+</div>
+
+<footer>
+  <span class="jp" lang="ja">温故知新</span>
+  <em>On ko chi shin</em>: "Study the old to understand the new."<br>
+  A single-page illustrated history of Japan · Written 2026 · Data approximate where noted.
+</footer>
+
+<script>
+(function(){
+'use strict';
+var $=function(s,c){return (c||document).querySelector(s);};
+var $$=function(s,c){return Array.prototype.slice.call((c||document).querySelectorAll(s));};
+var reduceMotion=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+var SVGNS='http://www.w3.org/2000/svg';
+function svgEl(tag,attrs,parent){var e=document.createElementNS(SVGNS,tag);for(var k in attrs){if(Object.prototype.hasOwnProperty.call(attrs,k))e.setAttribute(k,attrs[k]);}if(parent)parent.appendChild(e);return e;}
+function el(tag,cls,html){var e=document.createElement(tag);if(cls)e.className=cls;if(html!=null)e.innerHTML=html;return e;}
+function fmtYear(y){return y<0?(Math.abs(y).toLocaleString()+' BCE'):(y+(y<1000?' CE':''));}
+
+/* ---------- Theme ---------- */
+var root=document.documentElement;
+function store(k,v){try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v);}catch(e){return null;}}
+function applyTheme(t){root.setAttribute('data-theme',t);$('#themeIcon').textContent=t==='dark'?'☀':'☾';$('#themeLbl').textContent=t==='dark'?'Day':'Night';}
+var saved=store('jp-theme');
+applyTheme(saved||((window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light'));
+$('#themeBtn').addEventListener('click',function(){var t=root.getAttribute('data-theme')==='dark'?'light':'dark';applyTheme(t);store('jp-theme',t);});
+
+/* ---------- Progress, top bar, TOC ---------- */
+var prog=$('#progress'),topbar=$('#topbar');
+function onScroll(){
+  var h=document.documentElement,max=h.scrollHeight-h.clientHeight,r=max>0?h.scrollTop/max:0;
+  prog.style.transform='scaleX('+r+')';prog.setAttribute('aria-valuenow',Math.round(r*100));
+  topbar.classList.toggle('show',h.scrollTop>window.innerHeight*0.6);
+}
+window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+var toc=$('#toc'),menuBtn=$('#menuBtn');
+menuBtn.addEventListener('click',function(){var o=toc.classList.toggle('open');menuBtn.setAttribute('aria-expanded',o);});
+$$('#toc a').forEach(function(a){a.addEventListener('click',function(){toc.classList.remove('open');menuBtn.setAttribute('aria-expanded','false');});});
+var tocLinks={};$$('#toc a').forEach(function(a){tocLinks[a.getAttribute('href').slice(1)]=a;});
+if('IntersectionObserver' in window){
+  var secObs=new IntersectionObserver(function(entries){entries.forEach(function(en){if(en.isIntersecting){$$('#toc a.active').forEach(function(x){x.classList.remove('active');x.removeAttribute('aria-current');});var l=tocLinks[en.target.id];if(l){l.classList.add('active');l.setAttribute('aria-current','true');}}});},{rootMargin:'-35% 0px -60% 0px'});
+  $$('section.chap').forEach(function(s){secObs.observe(s);});
+}
+
+/* ---------- Reveal + counters ---------- */
+function countUp(b){var target=+b.getAttribute('data-count'),suf=b.getAttribute('data-suffix')||'';if(reduceMotion){b.textContent=target.toLocaleString()+suf;return;}var t0=null;function step(t){if(!t0)t0=t;var p=Math.min(1,(t-t0)/1600),e=1-Math.pow(1-p,3);b.textContent=Math.round(target*e).toLocaleString()+suf;if(p<1)requestAnimationFrame(step);}requestAnimationFrame(step);}
+var onReveal=[];
+if('IntersectionObserver' in window&&!reduceMotion){
+  var rObs=new IntersectionObserver(function(entries){entries.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');$$('[data-count]',en.target).forEach(countUp);onReveal.forEach(function(f){f(en.target);});rObs.unobserve(en.target);}});},{threshold:0.12,rootMargin:'0px 0px -40px 0px'});
+  $$('.reveal').forEach(function(e){rObs.observe(e);});
+}else{$$('.reveal').forEach(function(e){e.classList.add('in');});$$('[data-count]').forEach(countUp);setTimeout(function(){onReveal.forEach(function(f){f(document.body);});},0);}
+
+/* ---------- Sakura petals ---------- */
+(function(){
+  var c=$('#petals');if(!c||!c.getContext)return;var ctx=c.getContext('2d'),W=0,H=0,dpr=Math.min(window.devicePixelRatio||1,2),petals=[],running=true,raf=null;
+  function size(){var r=c.getBoundingClientRect();W=r.width;H=r.height;c.width=W*dpr;c.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);}
+  function mk(init){return{x:Math.random()*W,y:init?Math.random()*H:-20,s:6+Math.random()*9,vx:-0.3+Math.random()*1.1,vy:0.5+Math.random()*1.1,r:Math.random()*Math.PI*2,vr:-0.02+Math.random()*0.04,f:Math.random()*Math.PI*2,hue:Math.random()};}
+  function drawPetal(p){ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.r);var sc=Math.abs(Math.cos(p.f));ctx.scale(1,0.4+0.6*sc);ctx.beginPath();ctx.moveTo(0,-p.s);ctx.bezierCurveTo(p.s*0.9,-p.s*0.7,p.s*0.7,p.s*0.6,0,p.s);ctx.bezierCurveTo(-p.s*0.7,p.s*0.6,-p.s*0.9,-p.s*0.7,0,-p.s);ctx.closePath();ctx.fillStyle=p.hue>0.5?'rgba(247,190,205,.85)':'rgba(255,222,230,.85)';ctx.fill();ctx.restore();}
+  function frame(){ctx.clearRect(0,0,W,H);for(var i=0;i<petals.length;i++){var p=petals[i];p.x+=p.vx+Math.sin(p.f)*0.6;p.y+=p.vy;p.r+=p.vr;p.f+=0.03;if(p.y>H+20||p.x>W+30||p.x<-30)petals[i]=mk(false);drawPetal(p);}if(running)raf=requestAnimationFrame(frame);}
+  size();var n=reduceMotion?14:Math.round(Math.min(55,W/22));for(var i=0;i<n;i++)petals.push(mk(true));
+  if(reduceMotion){petals.forEach(drawPetal);return;}
+  frame();
+  window.addEventListener('resize',size);
+  if('IntersectionObserver' in window){new IntersectionObserver(function(e){var vis=e[0].isIntersecting;if(vis&&!running){running=true;frame();}else if(!vis){running=false;cancelAnimationFrame(raf);}}).observe(c);}
+})();
+
+/* ---------- Timeline ---------- */
+var periods=[
+ {n:'Paleolithic',j:'旧石器',k:'石',s:-38000,e:-14000,c:'#6b5b4b',g:'Prehistory',sum:'Hunter-gatherers crossed Ice Age land bridges and straits into the archipelago.',h:['Earliest secure sites c. 38,000 years ago','Edge-ground stone axes among the oldest anywhere','Iwajuku discovery (1949); Fujimura hoax exposed (2000)']},
+ {n:'Jōmon',j:'縄文',k:'縄',s:-14000,e:-300,c:'#8a6a45',g:'Prehistory',sum:'Settled hunter-gatherer-fishers making some of the world\'s oldest pottery.',h:['Cord-marked pottery and flame-style vessels','Dogū figurines; shell middens','Sannai-Maruyama (c. 3900–2200 BCE)','Population peaked at perhaps 250,000']},
+ {n:'Yayoi',j:'弥生',k:'弥',s:-300,e:250,c:'#a0743a',g:'Prehistory',sum:'Wet-rice farming, bronze and iron arrive from the continent; chiefdoms and war.',h:['Moated villages such as Yoshinogari','Gold seal of the King of Na (57 CE)','Queen Himiko of Yamatai sends envoys to Wei (239)']},
+ {n:'Kofun',j:'古墳',k:'墳',s:250,e:538,c:'#7d5a2e',g:'Ancient',sum:'Keyhole tombs mark the rise of the Yamato kingship.',h:['Daisen Kofun, about 486 m long','Haniwa clay figures','Close ties with Baekje and Gaya; iron and horses']},
+ {n:'Asuka',j:'飛鳥',k:'飛',s:538,e:710,c:'#b8892f',g:'Ancient',sum:'Buddhism arrives; Prince Shōtoku; Chinese-style centralization.',h:['Buddhism introduced from Baekje (538/552)','Seventeen-Article Constitution (604)','Taika Reforms (646); Taihō Code (701)','"Tennō" and "Nihon" adopted']},
+ {n:'Nara',j:'奈良',k:'奈',s:710,e:794,c:'#c99a3a',g:'Classical',sum:'First permanent capital; Tōdai-ji\'s Great Buddha; the first histories.',h:['Heijō-kyō modeled on Chang\'an','Kojiki (712), Nihon Shoki (720), Man\'yōshū','Great Buddha dedicated in 752']},
+ {n:'Heian',j:'平安',k:'安',s:794,e:1185,c:'#b04a6a',g:'Classical',sum:'Courtly Kyoto: Fujiwara regents, kana literature, rising warrior clans.',h:['Kyoto founded 794','Tale of Genji (c. 1008); Pillow Book','Fujiwara no Michinaga at his peak','Genpei War ends at Dan-no-ura (1185)']},
+ {n:'Kamakura',j:'鎌倉',k:'鎌',s:1185,e:1333,c:'#9c3b2a',g:'Warrior',sum:'The first shogunate; Hōjō regents; the Mongol invasions repelled.',h:['Minamoto no Yoritomo, shogun from 1192','Jōkyū War (1221); Goseibai Shikimoku (1232)','Mongol invasions 1274 and 1281 ("kamikaze")','Zen, Pure Land and Nichiren Buddhism']},
+ {n:'Kenmu',j:'建武',k:'建',s:1333,e:1336,c:'#c0391b',g:'Warrior',sum:'Emperor Go-Daigo\'s brief attempt at direct imperial rule.',h:['Fall of Kamakura (1333)','Ashikaga Takauji rebels','Kusunoki Masashige dies at Minatogawa (1336)']},
+ {n:'Muromachi',j:'室町',k:'室',s:1336,e:1467,c:'#3f6a52',g:'Warrior',sum:'The Ashikaga shogunate in Kyoto; rival courts; Noh, Zen gardens, tea.',h:['Northern & Southern Courts (1336–1392)','Yoshimitsu: Golden Pavilion and Ming trade','Kan\'ami and Zeami perfect Noh','The shogunate lasts nominally to 1573']},
+ {n:'Sengoku',j:'戦国',k:'戦',s:1467,e:1568,c:'#5a3d5c',g:'Warrior',sum:'The Warring States: gekokujō, independent daimyō, guns and Jesuits.',h:['Ōnin War (1467–1477) wrecks Kyoto','Portuguese guns at Tanegashima (1543)','Francis Xavier arrives (1549)','Takeda Shingen vs Uesugi Kenshin']},
+ {n:'Azuchi–Momoyama',j:'安土桃山',k:'桃',s:1568,e:1603,c:'#d4a017',g:'Warrior',sum:'Nobunaga, Hideyoshi and Ieyasu reunify Japan.',h:['Ashikaga ended (1573); Nagashino (1575)','Honnō-ji (1582)','Sword hunt (1588); unification (1590)','Invasions of Korea (1592–98); Sekigahara (1600)']},
+ {n:'Edo',j:'江戸',k:'江',s:1603,e:1868,c:'#24406b',g:'Warrior',sum:'The Tokugawa peace: sakoku, sankin-kōtai, the floating world.',h:['Sankin-kōtai (1635); Dejima (1641)','Genroku culture: Bashō, Chikamatsu','Hokusai and Hiroshige','Perry\'s Black Ships (1853)']},
+ {n:'Meiji',j:'明治',k:'明',s:1868,e:1912,c:'#1f5f7a',g:'Modern',sum:'Restoration, revolution from above, industrialization and empire.',h:['Charter Oath (1868); domains abolished (1871)','Meiji Constitution (1889)','Wars with China (1894–95) and Russia (1904–05)','Korea annexed (1910)']},
+ {n:'Taishō',j:'大正',k:'大',s:1912,e:1926,c:'#4a7d8c',g:'Modern',sum:'Party politics and mass culture, plus the Great Kantō Earthquake.',h:['WWI on the Allied side','Rice Riots (1918); Hara cabinet','Great Kantō Earthquake (1923)','Universal male suffrage (1925)']},
+ {n:'Shōwa',j:'昭和',k:'昭',s:1926,e:1989,c:'#3b3f6b',g:'Modern',sum:'Militarism, total war and defeat; then occupation, democracy and the economic miracle.',h:['Manchuria (1931); war with China (1937)','Pearl Harbor (1941); Hiroshima and Nagasaki (1945)','Constitution (1947); Tokyo Olympics (1964)','The bubble peaks (1989)']},
+ {n:'Heisei',j:'平成',k:'平',s:1989,e:2019,c:'#6a5d8c',g:'Contemporary',sum:'The Lost Decades, disasters, and the first abdication in two centuries.',h:['Bubble bursts (1990–91)','Kobe earthquake and sarin attack (1995)','3·11 earthquake, tsunami and Fukushima (2011)','Abenomics (2012–20)']},
+ {n:'Reiwa',j:'令和',k:'令',s:2019,e:2026,c:'#c0587a',g:'Contemporary',sum:'Pandemic, a delayed Olympics, inflation\'s return, and the first woman PM.',h:['Tokyo 2020 Olympics held in 2021','Abe assassinated (2022)','Nikkei record and BOJ rate hike (2024)','Expo 2025 Osaka; PM Takaichi Sanae (Oct 2025)']}
+];
+(function(){
+  var track=$('#tlTrack'),detail=$('#tlDetail'),scroller=$('#tlScroller'),btns=[],cur=0,x=0,groups={};
+  periods.forEach(function(p,i){
+    var dur=p.e-p.s,w=Math.round(70+40*Math.log2(dur+1));
+    var b=el('button','tl-seg','<span class="n">'+p.n+'</span><span class="j" lang="ja">'+p.j+'</span><span class="d">'+fmtYear(p.s)+' – '+(i===periods.length-1?'today':fmtYear(p.e))+'</span>');
+    b.style.width=w+'px';b.style.background='linear-gradient(160deg,'+p.c+','+shade(p.c,-28)+')';
+    b.setAttribute('role','tab');b.setAttribute('aria-selected','false');b.setAttribute('id','tl-'+i);b.setAttribute('aria-controls','tlDetail');b.tabIndex=-1;
+    b.addEventListener('click',function(){select(i,true);});
+    track.appendChild(b);btns.push(b);
+    if(!groups[p.g])groups[p.g]={x:x,w:0};groups[p.g].w=x+w-groups[p.g].x;x+=w+4;
+  });
+  Object.keys(groups).forEach(function(g){var d=el('div','tl-group',g);d.style.left=groups[g].x+'px';d.style.width=groups[g].w+'px';track.appendChild(d);});
+  track.addEventListener('keydown',function(e){var k=e.key;if(k==='ArrowRight'||k==='ArrowDown'){e.preventDefault();select(Math.min(cur+1,periods.length-1),true,true);}else if(k==='ArrowLeft'||k==='ArrowUp'){e.preventDefault();select(Math.max(cur-1,0),true,true);}else if(k==='Home'){e.preventDefault();select(0,true,true);}else if(k==='End'){e.preventDefault();select(periods.length-1,true,true);}});
+  $('#tlPrev').addEventListener('click',function(){select(Math.max(cur-1,0),true);});
+  $('#tlNext').addEventListener('click',function(){select(Math.min(cur+1,periods.length-1),true);});
+  function select(i,scroll,focus){
+    btns[cur].setAttribute('aria-selected','false');btns[cur].tabIndex=-1;cur=i;var b=btns[i],p=periods[i];
+    b.setAttribute('aria-selected','true');b.tabIndex=0;if(focus)b.focus({preventScroll:true});
+    if(scroll){var target=b.offsetLeft-scroller.clientWidth/2+b.offsetWidth/2;scroller.scrollTo({left:target,behavior:reduceMotion?'auto':'smooth'});}
+    var dur=p.e-p.s;
+    detail.classList.remove('swap');void detail.offsetWidth;detail.classList.add('swap');
+    detail.setAttribute('aria-labelledby','tl-'+i);
+    detail.innerHTML='<div class="tl-kanji" lang="ja" style="background:linear-gradient(160deg,'+p.c+','+shade(p.c,-30)+')">'+p.j+'</div><div class="tl-body"><span class="tag">'+p.g+'</span><h4>'+p.n+' period</h4><div class="when">'+fmtYear(p.s)+' – '+(i===periods.length-1?'present':fmtYear(p.e))+' · about '+dur.toLocaleString()+' years</div><p>'+p.sum+'</p><ul>'+p.h.map(function(h){return '<li>'+h+'</li>';}).join('')+'</ul></div>';
+  }
+  select(0,false);
+})();
+function shade(hex,amt){var n=parseInt(hex.slice(1),16),r=(n>>16)+amt,g=((n>>8)&255)+amt,b=(n&255)+amt;r=Math.max(0,Math.min(255,r));g=Math.max(0,Math.min(255,g));b=Math.max(0,Math.min(255,b));return '#'+((1<<24)+(r<<16)+(g<<8)+b).toString(16).slice(1);}
+
+/* ---------- Map ---------- */
+(function(){
+  var svg=$('#japanMap');if(!svg)return;
+  function P(lon,lat){return[(lon-128.5)*36,(46-lat)*44];}
+  function PO(lon,lat){return[16+(lon-126.6)*90,16+(27.1-lat)*110];}
+  function smooth(pts){var n=pts.length,d='M'+pts[0][0].toFixed(1)+','+pts[0][1].toFixed(1);for(var i=0;i<n;i++){var p0=pts[(i-1+n)%n],p1=pts[i],p2=pts[(i+1)%n],p3=pts[(i+2)%n];var c1x=p1[0]+(p2[0]-p0[0])/6,c1y=p1[1]+(p2[1]-p0[1])/6,c2x=p2[0]-(p3[0]-p1[0])/6,c2y=p2[1]-(p3[1]-p1[1])/6;d+='C'+c1x.toFixed(1)+','+c1y.toFixed(1)+' '+c2x.toFixed(1)+','+c2y.toFixed(1)+' '+p2[0].toFixed(1)+','+p2[1].toFixed(1);}return d+'Z';}
+  var islands={
+    hokkaido:[[140.05,41.42],[140.0,41.9],[139.8,42.2],[140.1,42.6],[140.45,43.2],[141.35,43.2],[141.4,43.8],[141.65,44.3],[141.75,45.0],[141.95,45.5],[142.4,45.15],[143.0,44.6],[143.8,44.15],[144.4,43.95],[144.9,44.05],[145.35,44.35],[145.1,43.75],[145.35,43.55],[145.8,43.38],[145.0,43.1],[144.3,42.98],[143.6,42.6],[143.25,41.93],[142.6,42.15],[142.0,42.45],[141.6,42.6],[141.0,42.35],[140.55,42.1],[140.95,41.8],[140.6,41.72],[140.25,41.45]],
+    honshu:[[140.35,41.25],[140.65,41.0],[140.9,41.2],[140.9,41.5],[141.45,41.4],[141.45,40.6],[141.8,40.0],[142.05,39.55],[141.65,38.95],[141.5,38.3],[141.05,38.25],[140.95,37.6],[140.95,36.9],[140.6,36.4],[140.85,35.75],[140.4,35.2],[139.85,34.9],[139.85,35.3],[140.05,35.6],[139.78,35.62],[139.65,35.4],[139.68,35.15],[139.5,35.3],[139.15,35.2],[139.1,34.9],[138.85,34.6],[138.75,34.9],[138.85,35.1],[138.5,35.0],[138.2,34.62],[137.4,34.65],[137.0,34.72],[136.85,35.05],[136.6,34.75],[136.85,34.3],[136.3,34.15],[135.78,33.45],[135.15,33.8],[135.15,34.25],[135.4,34.6],[135.2,34.7],[134.7,34.75],[134.0,34.6],[133.4,34.45],[132.5,34.35],[132.2,34.15],[131.5,34.0],[131.0,33.95],[130.9,34.35],[131.3,34.45],[131.8,34.7],[132.4,35.2],[132.75,35.45],[133.1,35.58],[134.0,35.55],[134.9,35.65],[135.3,35.6],[135.7,35.5],[136.0,35.7],[136.1,36.2],[136.6,36.6],[136.75,37.0],[136.75,37.35],[137.35,37.5],[137.2,37.05],[136.95,36.85],[137.3,36.75],[137.8,37.0],[138.3,37.2],[138.9,37.85],[139.3,38.2],[139.55,38.6],[139.85,39.1],[140.05,39.6],[139.7,39.95],[139.95,40.1],[139.9,40.6],[140.3,41.0]],
+    shikoku:[[132.0,33.35],[132.7,33.85],[133.0,34.1],[133.6,34.25],[134.0,34.35],[134.6,34.2],[134.7,33.9],[134.18,33.25],[133.5,33.5],[133.0,32.72],[132.5,33.2]],
+    kyushu:[[130.9,33.9],[130.4,33.62],[129.9,33.5],[129.6,33.2],[129.85,32.75],[130.3,32.8],[130.1,32.4],[130.2,31.8],[130.3,31.25],[130.55,31.55],[130.66,31.0],[131.1,31.4],[131.45,31.9],[131.7,32.6],[132.0,33.25],[131.7,33.62],[131.2,33.6]],
+    sado:[[138.2,37.8],[138.5,38.3],[138.55,38.1],[138.3,37.85]],
+    awaji:[[134.85,34.6],[135.0,34.55],[134.85,34.2],[134.7,34.28]],
+    tsushima:[[129.2,34.15],[129.45,34.7],[129.35,34.62],[129.3,34.3]]
+  };
+  var okinawa=[[127.68,26.08],[127.68,26.2],[127.73,26.38],[127.8,26.45],[127.87,26.62],[127.95,26.7],[128.1,26.75],[128.26,26.87],[128.3,26.78],[128.2,26.6],[128.0,26.5],[127.95,26.4],[127.88,26.3],[127.8,26.2],[127.75,26.12]];
+  svgEl('rect',{x:0,y:0,width:640,height:680,rx:14,class:'sea'},svg);
+  for(var wy=60;wy<680;wy+=58){for(var wx=(wy/58%2)*40+20;wx<640;wx+=120){svgEl('path',{d:'M'+wx+','+wy+' q8,-7 16,0 t16,0',class:'wave'},svg);}}
+  Object.keys(islands).forEach(function(k){svgEl('path',{d:smooth(islands[k].map(function(p){return P(p[0],p[1]);})),class:'land'},svg);});
+  svgEl('rect',{x:10,y:10,width:200,height:150,rx:10,class:'inset'},svg);
+  svgEl('path',{d:smooth(okinawa.map(function(p){return PO(p[0],p[1]);})),class:'land'},svg);
+  var it=svgEl('text',{x:22,y:150,class:'rlabel'},svg);it.textContent='Okinawa (inset)';
+  [['Hokkaidō',142.6,43.55],['Tōhoku',140.6,39.4],['Kantō',139.85,36.15],['Chūbu',137.55,36.05],['Kansai',135.1,35.25],['Chūgoku',132.6,35.0],['Shikoku',133.15,33.62],['Kyūshū',130.75,32.35]].forEach(function(r){var p=P(r[1],r[2]);var t=svgEl('text',{x:p[0],y:p[1],'text-anchor':'middle',class:'rlabel'},svg);t.textContent=r[0];});
+  var eras={pre:{c:'#8a6a45',n:'Prehistory'},cls:{c:'#b8892f',n:'Ancient & classical'},war:{c:'#9c3b2a',n:'Warrior age'},edo:{c:'#24406b',n:'Edo'},mod:{c:'#3b6f8c',n:'Modern & contemporary'}};
+  var sites=[
+    {n:'Sannai-Maruyama',lon:140.70,lat:40.81,e:'pre',t:'c. 3900–2200 BCE',d:'One of the largest Jōmon settlements: hundreds of pit dwellings, long houses, burial rows, and the post holes of a monumental six-pillar timber tower. Part of the UNESCO-listed Jōmon sites of northern Japan.',lx:8,ly:-8},
+    {n:'Yoshinogari',lon:130.38,lat:33.33,e:'pre',t:'Yayoi, c. 400 BCE–300 CE',d:'A great moated settlement with watchtowers and jar burials, some containing headless skeletons. Sometimes floated as a candidate for Himiko\'s Yamatai.',lx:-80,ly:4},
+    {n:'Daisen Kofun',lon:135.49,lat:34.56,e:'cls',t:'5th century',d:'The keyhole tomb attributed to Emperor Nintoku in Sakai, about 486 m long. Part of the Mozu–Furuichi Kofun Group (UNESCO 2019). As an imperial tomb it is closed to excavation.',lx:-82,ly:14},
+    {n:'Izumo Taisha',lon:132.69,lat:35.40,e:'cls',t:'Ancient',d:'One of Japan\'s oldest and most important shrines, dedicated to Ōkuninushi. Ancient records describe a towering hall, and huge pillar bases found in 2000 support those accounts.',lx:-40,ly:-10},
+    {n:'Ise Jingū',lon:136.73,lat:34.46,e:'cls',t:'Founded by tradition c. 4 BCE; historically c. 7th c.',d:'The holiest Shinto shrine, dedicated to Amaterasu, the imperial ancestress. Rebuilt every 20 years in identical form. The next renewal is due in 2033.',lx:8,ly:12},
+    {n:'Nara (Heijō-kyō)',lon:135.80,lat:34.68,e:'cls',t:'Capital 710–784',d:'Japan\'s first permanent capital, home to Tōdai-ji\'s Great Buddha (752), Kōfuku-ji, Kasuga Taisha and the Shōsōin treasure house of Silk Road objects.',lx:8,ly:4},
+    {n:'Kyoto (Heian-kyō)',lon:135.77,lat:35.01,e:'cls',t:'Imperial capital 794–1869',d:'The capital for over a thousand years. Seat of the Heian court and the Ashikaga shogunate, and home to roughly 1,600 temples and 400 shrines. It was spared from atomic bombing in 1945.',lx:8,ly:-6},
+    {n:'Hiraizumi',lon:141.12,lat:38.99,e:'war',t:'12th century',d:'Capital of the Ōshū Fujiwara, whose gold-covered Konjikidō hall still survives at Chūson-ji. Minamoto no Yoshitsune died here in 1189.',lx:8,ly:4},
+    {n:'Dan-no-ura',lon:130.96,lat:33.96,e:'war',t:'1185',d:'The final sea battle of the Genpei War in the Shimonoseki Strait. The Taira were annihilated and the child Emperor Antoku drowned with the sword Kusanagi.',lx:-70,ly:-10},
+    {n:'Kamakura',lon:139.55,lat:35.32,e:'war',t:'Shogunal seat 1185–1333',d:'Minamoto no Yoritomo\'s eastern capital, with Tsurugaoka Hachiman-gū, great Zen temples, and the Great Buddha (Kōtoku-in, mid-13th c.).',lx:-62,ly:16},
+    {n:'Hakata Bay',lon:130.40,lat:33.59,e:'war',t:'1274 & 1281',d:'Landing site of both Mongol invasions. Remains of the defensive stone wall (genkō bōrui) built after 1274 can still be seen in Fukuoka.',lx:-72,ly:-6},
+    {n:'Azuchi Castle',lon:136.14,lat:35.15,e:'war',t:'1576–1582',d:'Oda Nobunaga\'s revolutionary castle on Lake Biwa, with a seven-story keep decorated by Kanō Eitoku. It burned shortly after his death.',lx:8,ly:-10},
+    {n:'Sekigahara',lon:136.47,lat:35.37,e:'war',t:'21 October 1600',d:'The decisive battle in which Tokugawa Ieyasu defeated the Western Army, aided by Kobayakawa Hideaki\'s defection.',lx:8,ly:-4},
+    {n:'Osaka Castle',lon:135.53,lat:34.69,e:'war',t:'1583; sieges 1614–15',d:'Toyotomi Hideyoshi\'s mighty fortress. Its fall in the summer siege of 1615 ended the Toyotomi line and the Sengoku age.',lx:-78,ly:-2},
+    {n:'Edo / Tokyo',lon:139.69,lat:35.69,e:'edo',t:'Shogunal seat 1603–1868; capital since 1868',d:'A fishing village turned into one of the largest cities in the world by 1700. Today greater Tokyo is the most populous metropolitan area on Earth.',lx:8,ly:-6},
+    {n:'Nikkō',lon:139.60,lat:36.75,e:'edo',t:'1617; rebuilt 1636',d:'Tōshō-gū, the lavish mausoleum shrine of Tokugawa Ieyasu, deified as Tōshō Daigongen.',lx:8,ly:0},
+    {n:'Dejima, Nagasaki',lon:129.87,lat:32.74,e:'edo',t:'1641–1859',d:'The fan-shaped artificial island where the Dutch East India Company was confined. It was Japan\'s main window on Western science.',lx:-104,ly:4},
+    {n:'Uraga',lon:139.72,lat:35.24,e:'edo',t:'8 July 1853',d:'Where Commodore Perry\'s Black Ships anchored, forcing the end of the Tokugawa policy of seclusion.',lx:8,ly:12},
+    {n:'Kagoshima (Satsuma)',lon:130.56,lat:31.60,e:'mod',t:'1863; 1877',d:'Capital of Satsuma domain. It was bombarded by Britain in 1863, and Satsuma later became an architect of the Meiji Restoration. Saigō Takamori died here in 1877, ending the Satsuma Rebellion.',lx:8,ly:4},
+    {n:'Hakodate',lon:140.73,lat:41.77,e:'mod',t:'1854; 1869',d:'Opened to foreign ships under the Kanagawa treaty. The star fort Goryōkaku was the last stand of the Boshin War.',lx:8,ly:8},
+    {n:'Sapporo',lon:141.35,lat:43.06,e:'mod',t:'1869–',d:'Grid-planned capital of the Hokkaidō colonization office, built on Ainu land with American advisors. Host of the 1972 Winter Olympics.',lx:8,ly:-4},
+    {n:'Hiroshima',lon:132.46,lat:34.39,e:'mod',t:'6 August 1945',d:'The first city destroyed by an atomic bomb. The Genbaku Dome is a UNESCO World Heritage site and the city is a global symbol of peace.',lx:-46,ly:18},
+    {n:'Nagasaki',lon:129.95,lat:32.80,e:'mod',t:'9 August 1945',d:'Struck by the second atomic bomb. The Urakami district, centuries-old heart of Japanese Catholicism, was devastated.',lx:-70,ly:-8},
+    {n:'Fukushima Daiichi',lon:141.03,lat:37.42,e:'mod',t:'11 March 2011',d:'Nuclear plant where the tsunami caused three reactor meltdowns. Decommissioning is expected to take decades.',lx:8,ly:4},
+    {n:'Mt Fuji',lon:138.73,lat:35.36,e:'cls',t:'Last eruption 1707',d:'Japan\'s sacred highest peak (3,776 m), subject of Hokusai\'s Thirty-six Views. A UNESCO Cultural Site (2013) as a "place of worship and source of artistic inspiration."',lx:-52,ly:16},
+    {n:'Shuri Castle',lon:127.72,lat:26.22,e:'edo',t:'Ryūkyū Kingdom, 1429–1879',d:'Royal seat of the Ryūkyū Kingdom, blending Chinese and Japanese styles. Destroyed in 1945, rebuilt, burned in 2019, and rebuilding again.',lx:8,ly:4,ok:true}
+  ];
+  var panel=$('#mapPanel'),active=null,leg=$('#mapLegend');
+  Object.keys(eras).forEach(function(k){var s=el('span','', '<i style="background:'+eras[k].c+'"></i>'+eras[k].n);leg.appendChild(s);});
+  sites.forEach(function(s){
+    var p=s.ok?PO(s.lon,s.lat):P(s.lon,s.lat),col=eras[s.e].c;
+    var g=svgEl('g',{class:'site',tabindex:'0',role:'button','aria-label':s.n+', '+s.t},svg);
+    svgEl('circle',{cx:p[0],cy:p[1],r:6,class:'pulse',stroke:col},g);
+    svgEl('circle',{cx:p[0],cy:p[1],r:5.5,class:'dot',fill:col},g);
+    var t=svgEl('text',{x:p[0]+s.lx,y:p[1]+s.ly,class:'slabel'},g);t.textContent=s.n;
+    function show(){if(active)active.classList.remove('on');g.classList.add('on');active=g;panel.innerHTML='<div class="era" style="color:'+col+'">'+eras[s.e].n+' · '+s.t+'</div><h4>'+s.n+'</h4><p>'+s.d+'</p>';}
+    g.addEventListener('click',show);g.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();show();}});
+  });
+})();
+
+/* ---------- Shogunate bars ---------- */
+(function(){
+  var s=$('#shogunBars');if(!s)return;
+  var x=function(y){return 20+(y-1150)/750*760;};
+  var defs=svgEl('defs',{},s);var pat=svgEl('pattern',{id:'hatch',width:8,height:8,patternUnits:'userSpaceOnUse',patternTransform:'rotate(45)'},defs);svgEl('rect',{width:4,height:8,fill:'rgba(255,255,255,.35)'},pat);
+  for(var y=1150;y<=1900;y+=50){svgEl('line',{x1:x(y),x2:x(y),y1:20,y2:190,class:'tick'},s);var t=svgEl('text',{x:x(y),y:210,'text-anchor':'middle',class:'ticklbl'},s);t.textContent=y;}
+  var rows=[{n:'Kamakura (Minamoto / Hōjō)',a:1185,b:1333,c:'#7a3b2e',y:30},{n:'Ashikaga (Muromachi)',a:1338,b:1573,c:'#3f6a52',y:85},{n:'Tokugawa (Edo)',a:1603,b:1867,c:'#24406b',y:140}];
+  rows.forEach(function(r,i){
+    var w=x(r.b)-x(r.a);
+    var rect=svgEl('rect',{x:x(r.a),y:r.y,width:reduceMotion?w:0,height:36,rx:8,fill:r.c},s);
+    if(!reduceMotion){rect.style.transition='width 1.4s cubic-bezier(.2,.7,.2,1) '+(i*0.25)+'s';onReveal.push(function(t){if(t.contains(s))rect.setAttribute('width',w);});}
+    var lbl=svgEl('text',{x:x(r.a)+10,y:r.y+23,fill:'#fff',style:'fill:#fff;font-size:13px;font-weight:600'},s);lbl.textContent=r.n+' · '+r.a+'–'+r.b+' ('+(r.b-r.a)+' yrs)';
+  });
+  svgEl('rect',{x:x(1467),y:85,width:x(1573)-x(1467),height:36,rx:8,fill:'url(#hatch)'},s);
+  var sg=svgEl('text',{x:(x(1467)+x(1573))/2,y:80,'text-anchor':'middle',class:'ticklbl',style:'font-style:italic'},s);sg.textContent='Sengoku (nominal rule)';
+  var kn=svgEl('text',{x:x(1335),y:16,'text-anchor':'middle',class:'ticklbl'},s);kn.textContent='Kenmu ↓';
+  svgEl('line',{x1:x(1335),x2:x(1335),y1:20,y2:190,stroke:'#c0391b','stroke-dasharray':'3 3'},s);
+  var un=svgEl('text',{x:(x(1573)+x(1603))/2,y:135,'text-anchor':'middle',class:'ticklbl'},s);un.textContent='Unifiers';
+})();
+
+/* ---------- Power diagram ---------- */
+(function(){
+  var data={
+    Heian:{note:'The emperor reigned while the Fujiwara regents, and from 1086 the retired emperors (insei), governed through marriage ties and court office.',tiers:[[{b:'Emperor',j:'天皇',s:'Sacred sovereign; often a child',c:'top'}],[{b:'Fujiwara Regents',j:'摂政・関白',s:'Rule via marriage politics',c:'real'},{b:'Retired Emperor',j:'上皇（院政）',s:'Cloister government from 1086',c:'real'}],[{b:'Court nobles',j:'公家',s:'Ranked aristocrats in Heian-kyō'},{b:'Great temples',j:'寺社',s:'Enryaku-ji, Kōfuku-ji; armed monks',c:'side'}],[{b:'Provincial governors',j:'国司',s:'Often absentee'},{b:'Warrior bands',j:'武士',s:'Taira and Minamoto rising'}],[{b:'Cultivators',j:'農民',s:'Work shōen estates and public land'}]]},
+    Kamakura:{note:'A dual government: court in Kyoto and bakufu in Kamakura. After 1203 the shogun was a figurehead and the Hōjō regents ruled.',tiers:[[{b:'Emperor & Court',j:'天皇・朝廷',s:'Kyoto; legitimacy and ceremony',c:'top'}],[{b:'Shogun',j:'将軍',s:'Minamoto, then puppet princes'}],[{b:'Hōjō Regent',j:'執権',s:'Real power from 1203',c:'real'}],[{b:'Shugo',j:'守護',s:'Provincial military governors'},{b:'Jitō',j:'地頭',s:'Estate stewards'},{b:'Gokenin',j:'御家人',s:'Direct vassals of the shogun'}],[{b:'Peasants',j:'百姓',s:'Taxed by both estate holders and stewards'}]]},
+    Edo:{note:'The shogun ruled through about 260–280 daimyō under strict controls. The emperor in Kyoto conferred the shogun title but had no political power.',tiers:[[{b:'Emperor',j:'天皇',s:'Kyoto; grants shogun title',c:'top'},{b:'Court nobles',j:'公家',s:'Outside the four classes',c:'side'}],[{b:'Shogun',j:'将軍',s:'Edo; Tokugawa house',c:'real'}],[{b:'Rōjū & bakufu',j:'老中',s:'Senior councillors; magistrates'}],[{b:'Shinpan',j:'親藩',s:'Tokugawa branch houses'},{b:'Fudai',j:'譜代',s:'Hereditary vassal lords'},{b:'Tozama',j:'外様',s:'"Outside" lords, e.g. Satsuma, Chōshū'}],[{b:'Samurai',j:'士',s:'~6–7%; salaried retainers'}],[{b:'Farmers',j:'農',s:'~80%; rice taxes'},{b:'Artisans',j:'工',s:'Crafts'},{b:'Merchants',j:'商',s:'Lowest in theory, often richest'}],[{b:'Clergy · Outcastes',j:'僧・えた・ひにん',s:'Outside the four-class scheme',c:'side'}]]},
+    Meiji:{note:'Under the 1889 constitution the emperor was sovereign. In practice the genrō oligarchs and later the military, which had direct access to the throne, wielded power.',tiers:[[{b:'Emperor',j:'天皇',s:'"Sacred and inviolable" sovereign',c:'top'}],[{b:'Genrō',j:'元老',s:'Elder statesmen (Itō, Yamagata…)',c:'real'},{b:'Army & Navy',j:'陸海軍',s:'Independent "supreme command"',c:'real'},{b:'Privy Council',j:'枢密院',s:'Advises the throne'}],[{b:'Cabinet',j:'内閣',s:'Responsible to the emperor'},{b:'Imperial Diet',j:'帝国議会',s:'Elected lower house and House of Peers'}],[{b:'Subjects',j:'臣民',s:'Rights "within the limits of law"'}]]},
+    Today:{note:'Under the 1947 Constitution the people are sovereign. The emperor is a symbol with purely ceremonial duties, and the cabinet answers to the Diet.',tiers:[[{b:'The People',j:'国民',s:'Sovereign; elect the Diet',c:'top'}],[{b:'National Diet',j:'国会',s:'House of Representatives and House of Councillors',c:'real'}],[{b:'Prime Minister & Cabinet',j:'内閣総理大臣',s:'Chosen by the Diet',c:'real'},{b:'Supreme Court',j:'最高裁判所',s:'Judicial review'}],[{b:'Emperor',j:'天皇',s:'"Symbol of the State"; appoints the PM as the Diet designates',c:'side'}],[{b:'47 Prefectures',j:'都道府県',s:'Elected governors and assemblies'}]]}
+  };
+  var tabs=$('#powerTabs'),diag=$('#powerDiagram'),note=$('#powerNote'),keys=Object.keys(data),btns={};
+  keys.forEach(function(k,i){var b=el('button','',k);b.type='button';b.setAttribute('role','tab');b.setAttribute('aria-selected',i===2?'true':'false');b.addEventListener('click',function(){render(k);});
+    b.addEventListener('keydown',function(e){var idx=keys.indexOf(k);if(e.key==='ArrowRight'){e.preventDefault();var n=keys[(idx+1)%keys.length];render(n);btns[n].focus();}if(e.key==='ArrowLeft'){e.preventDefault();var p=keys[(idx-1+keys.length)%keys.length];render(p);btns[p].focus();}});
+    tabs.appendChild(b);btns[k]=b;});
+  function render(k){keys.forEach(function(x){btns[x].setAttribute('aria-selected',x===k?'true':'false');btns[x].tabIndex=x===k?0:-1;});diag.innerHTML='';var delay=0;
+    data[k].tiers.forEach(function(t){var row=el('div','tier');t.forEach(function(n){var d=el('div','node'+(n.c?' '+n.c:''),'<b>'+n.b+'</b><span class="jp" lang="ja">'+n.j+'</span><small>'+n.s+'</small>');d.style.animationDelay=(delay*0.07)+'s';delay++;row.appendChild(d);});diag.appendChild(row);});
+    note.textContent=data[k].note;}
+  render('Edo');
+})();
+
+/* ---------- Era bars ---------- */
+(function(){
+  var eras=[{n:'Taika',j:'大化',a:645,b:650,c:'#b8892f',x:'The first era name'},{n:'Ryakunin',j:'暦仁',a:1238,b:1239,c:'#9c3b2a',x:'One of the shortest, about 2.5 months'},{n:'Ōei',j:'応永',a:1394,b:1428,c:'#3f6a52',x:'Longest pre-modern era'},{n:'Meiji',j:'明治',a:1868,b:1912,c:'#1f5f7a'},{n:'Taishō',j:'大正',a:1912,b:1926,c:'#4a7d8c'},{n:'Shōwa',j:'昭和',a:1926,b:1989,c:'#3b3f6b',x:'Longest era of all'},{n:'Heisei',j:'平成',a:1989,b:2019,c:'#6a5d8c'},{n:'Reiwa',j:'令和',a:2019,b:2026,c:'#c0587a',x:'Ongoing'}];
+  var box=$('#eraBars'),max=63,bars=[];
+  eras.forEach(function(e){var len=Math.max(e.b-e.a,0.25);var row=el('div','era-row','<div class="lbl"><b>'+e.n+'</b><span class="jp" lang="ja">'+e.j+'</span></div><div class="bar" title="'+(e.x||'')+'"><i style="background:'+e.c+'"></i></div><div class="yrs">'+(e.b-e.a<1?'<1':(e.b-e.a))+(e.n==='Reiwa'?'+':'')+' yr</div>');row.setAttribute('aria-label',e.n+' era, '+e.a+' to '+(e.n==='Reiwa'?'present':e.b)+(e.x?', '+e.x:''));box.appendChild(row);bars.push([$('i',row),Math.max(1.2,len/max*100)]);});
+  function grow(){bars.forEach(function(b){b[0].style.width=b[1]+'%';});}
+  if(reduceMotion||!('IntersectionObserver' in window))grow();else onReveal.push(function(t){if(t.contains(box))grow();});
+})();
+
+/* ---------- Population / growth chart ---------- */
+(function(){
+  var svg=$('#chart'),tip=$('#tip'),box=$('#chartBox');if(!svg)return;
+  var pop=[[725,4.5],[800,5.5],[900,5.6],[1000,5.5],[1150,6.3],[1280,6.0],[1450,10],[1550,12],[1600,15],[1650,20],[1721,31.3],[1750,31],[1792,29.9],[1822,31.1],[1846,32.2],[1872,34.8],[1890,40],[1900,43.8],[1910,49.2],[1920,56.0],[1930,64.5],[1940,71.9],[1945,72.1],[1950,84.1],[1960,94.3],[1970,104.7],[1980,117.1],[1990,123.6],[2000,126.9],[2008,128.1],[2015,127.1],[2020,126.1],[2024,123.8]];
+  var proj=[[2024,123.8],[2030,120.1],[2040,112.8],[2050,104.7],[2060,96.1],[2070,87.0]];
+  var notes={725:'Nara period estimate',1150:'Late Heian',1600:'Sekigahara era',1721:'First shogunal census (plus estimate of uncounted)',1846:'Late Edo plateau',1872:'First Meiji household count',1945:'War\'s end',1950:'Postwar baby boom',2008:'All-time peak',2024:'Latest estimate'};
+  var growth=[['1956–73',9.1,'High-growth era'],['1974–90',4.2,'Stable growth'],['1991–2000',1.3,'Bubble collapse'],['2001–10',0.6,'Lost decades'],['2011–19',0.9,'3·11 and Abenomics'],['2020–24',0.4,'Pandemic and recovery']];
+  var M={l:52,r:20,t:24,b:40},W=800,H=400,iw=W-M.l-M.r,ih=H-M.t-M.b;
+  function clear(){while(svg.firstChild)svg.removeChild(svg.firstChild);}
+  function showTip(evt,html){tip.innerHTML=html;var r=box.getBoundingClientRect(),cx,cy;if(evt.clientX!=null&&evt.type!=='focus'){cx=evt.clientX-r.left;cy=evt.clientY-r.top;}else{var br=evt.target.getBoundingClientRect();cx=br.left+br.width/2-r.left;cy=br.top-r.top;}tip.style.left=cx+'px';tip.style.top=cy+'px';tip.classList.add('on');}
+  function hideTip(){tip.classList.remove('on');}
+  function drawPop(){
+    clear();svg.setAttribute('aria-label','Line chart: population of Japan from about 4.5 million in 725 CE to a peak of 128 million in 2008, projected to fall to about 87 million by 2070');
+    var X=function(y){return M.l+(y-700)/(2070-700)*iw;},Y=function(v){return M.t+ih-(v/140)*ih;};
+    var defs=svgEl('defs',{},svg);var lg=svgEl('linearGradient',{id:'popFill',x1:0,y1:0,x2:0,y2:1},defs);svgEl('stop',{offset:'0%','stop-color':'#c0391b','stop-opacity':'.35'},lg);svgEl('stop',{offset:'100%','stop-color':'#c0391b','stop-opacity':'0'},lg);
+    var periodsBg=[[710,794,'Nara'],[794,1185,'Heian'],[1185,1333,'Kamakura'],[1336,1573,'Muromachi'],[1603,1868,'Edo'],[1868,1945,'Modern'],[1945,2026,'Postwar']];
+    periodsBg.forEach(function(p,i){svgEl('rect',{x:X(p[0]),y:M.t,width:X(p[1])-X(p[0]),height:ih,fill:i%2?'rgba(168,123,35,.06)':'rgba(31,58,95,.05)'},svg);var t=svgEl('text',{x:(X(p[0])+X(p[1]))/2,y:M.t+12,'text-anchor':'middle',style:'font-size:10px;fill:var(--muted);letter-spacing:.08em'},svg);t.textContent=p[2];});
+    var grid=svgEl('g',{class:'grid'},svg),ax=svgEl('g',{class:'axis'},svg);
+    for(var v=0;v<=140;v+=20){svgEl('line',{x1:M.l,x2:W-M.r,y1:Y(v),y2:Y(v)},grid);var t=svgEl('text',{x:M.l-8,y:Y(v)+4,'text-anchor':'end'},ax);t.textContent=v+'M';}
+    [800,1000,1200,1400,1600,1800,1900,2000,2070].forEach(function(y){var t=svgEl('text',{x:X(y),y:H-M.b+18,'text-anchor':'middle'},ax);t.textContent=y;svgEl('line',{x1:X(y),x2:X(y),y1:H-M.b,y2:H-M.b+5},ax);});
+    svgEl('line',{x1:M.l,x2:W-M.r,y1:Y(0),y2:Y(0)},ax);
+    var d=pop.map(function(p,i){return(i?'L':'M')+X(p[0]).toFixed(1)+','+Y(p[1]).toFixed(1);}).join('');
+    svgEl('path',{d:d+'L'+X(2024)+','+Y(0)+'L'+X(725)+','+Y(0)+'Z',fill:'url(#popFill)'},svg);
+    var line=svgEl('path',{d:d,fill:'none',stroke:'#c0391b','stroke-width':2.6,'stroke-linejoin':'round'},svg);
+    var pd=proj.map(function(p,i){return(i?'L':'M')+X(p[0]).toFixed(1)+','+Y(p[1]).toFixed(1);}).join('');
+    svgEl('path',{d:pd,fill:'none',stroke:'#1f3a5f','stroke-width':2.2,'stroke-dasharray':'6 5'},svg);
+    if(!reduceMotion&&line.getTotalLength){var L=line.getTotalLength();line.style.strokeDasharray=L;line.style.strokeDashoffset=L;line.getBoundingClientRect();line.style.transition='stroke-dashoffset 2.2s ease';requestAnimationFrame(function(){line.style.strokeDashoffset=0;});}
+    [[1603,'Edo begins'],[1868,'Meiji'],[2008,'Peak 128M']].forEach(function(a){var p=null;pop.forEach(function(q){if(!p||Math.abs(q[0]-a[0])<Math.abs(p[0]-a[0]))p=q;});var t=svgEl('text',{x:X(a[0])-4,y:Y(p[1])-12,'text-anchor':'end',style:'font-size:11px;fill:var(--ink);font-style:italic'},svg);t.textContent=a[1];});
+    pop.concat(proj.slice(1)).forEach(function(p){var isProj=p[0]>2024;var c=svgEl('circle',{cx:X(p[0]),cy:Y(p[1]),r:notes[p[0]]?4.5:3,fill:isProj?'#1f3a5f':'#c0391b',stroke:'var(--card)','stroke-width':1.5,tabindex:'0',role:'img','aria-label':p[0]+': about '+p[1]+' million'+(isProj?' (projected)':'')},svg);c.style.cursor='pointer';
+      var html='<b>'+p[0]+'</b> · ≈ '+p[1]+'M'+(isProj?' (projection)':'')+(notes[p[0]]?'<br><span style="opacity:.8">'+notes[p[0]]+'</span>':'');
+      c.addEventListener('mouseenter',function(e){showTip(e,html);});c.addEventListener('mousemove',function(e){showTip(e,html);});c.addEventListener('mouseleave',hideTip);c.addEventListener('focus',function(e){showTip(e,html);});c.addEventListener('blur',hideTip);});
+    var lx=W-M.r-210;svgEl('line',{x1:lx,x2:lx+24,y1:M.t+36,y2:M.t+36,stroke:'#c0391b','stroke-width':2.6},svg);var t1=svgEl('text',{x:lx+30,y:M.t+40,style:'font-size:11px;fill:var(--ink)'},svg);t1.textContent='Estimated / census';
+    svgEl('line',{x1:lx,x2:lx+24,y1:M.t+54,y2:M.t+54,stroke:'#1f3a5f','stroke-width':2.2,'stroke-dasharray':'6 5'},svg);var t2=svgEl('text',{x:lx+30,y:M.t+58,style:'font-size:11px;fill:var(--ink)'},svg);t2.textContent='IPSS projection (medium)';
+  }
+  function drawGdp(){
+    clear();svg.setAttribute('aria-label','Bar chart of approximate average annual real GDP growth in Japan by period, from about 9 percent in 1956 to 1973 down to below 1 percent after 2000');
+    var maxV=10,bw=iw/growth.length,Y=function(v){return M.t+ih-(v/maxV)*ih;};
+    var grid=svgEl('g',{class:'grid'},svg),ax=svgEl('g',{class:'axis'},svg);
+    for(var v=0;v<=10;v+=2){svgEl('line',{x1:M.l,x2:W-M.r,y1:Y(v),y2:Y(v)},grid);var t=svgEl('text',{x:M.l-8,y:Y(v)+4,'text-anchor':'end'},ax);t.textContent=v+'%';}
+    var cols=['#c0391b','#d0703a','#a87b23','#6a5d8c','#3d6390','#1f3a5f'];
+    growth.forEach(function(g,i){var x=M.l+i*bw+bw*0.18,w=bw*0.64,h=Y(0)-Y(g[1]);
+      var r=svgEl('rect',{x:x,y:reduceMotion?Y(g[1]):Y(0),width:w,height:reduceMotion?h:0,rx:6,fill:cols[i],tabindex:'0',role:'img','aria-label':g[0]+': about '+g[1]+' percent average annual real growth, '+g[2]},svg);
+      if(!reduceMotion){r.style.transition='all 1s cubic-bezier(.2,.7,.2,1) '+(i*0.1)+'s';requestAnimationFrame(function(){requestAnimationFrame(function(){r.setAttribute('y',Y(g[1]));r.setAttribute('height',h);});});}
+      var html='<b>'+g[0]+'</b> · ≈ '+g[1]+'% / yr<br><span style="opacity:.8">'+g[2]+'</span>';
+      r.addEventListener('mouseenter',function(e){showTip(e,html);});r.addEventListener('mousemove',function(e){showTip(e,html);});r.addEventListener('mouseleave',hideTip);r.addEventListener('focus',function(e){showTip(e,html);});r.addEventListener('blur',hideTip);
+      var vt=svgEl('text',{x:x+w/2,y:Y(g[1])-8,'text-anchor':'middle',style:'font-size:13px;font-weight:600;fill:var(--ink)'},svg);vt.textContent='≈'+g[1]+'%';
+      var lt=svgEl('text',{x:x+w/2,y:H-M.b+18,'text-anchor':'middle'},ax);lt.textContent=g[0];
+      var st=svgEl('text',{x:x+w/2,y:H-M.b+32,'text-anchor':'middle',style:'font-size:10px;font-style:italic'},ax);st.textContent=g[2];});
+    svgEl('line',{x1:M.l,x2:W-M.r,y1:Y(0),y2:Y(0)},ax);
+  }
+  var bp=$('#btnPop'),bg=$('#btnGdp');
+  bp.addEventListener('click',function(){bp.setAttribute('aria-pressed','true');bg.setAttribute('aria-pressed','false');$('#chartTitle').textContent='Population of Japan, 700 – 2070';$('#chartNote').textContent='All figures are approximate. Pre-1872 values are scholarly estimates (e.g. Farris, Hayami, Kitō), which vary widely. Dashed line: official medium-variant projection (IPSS 2023). Hover or focus on points for details.';hideTip();drawPop();});
+  bg.addEventListener('click',function(){bg.setAttribute('aria-pressed','true');bp.setAttribute('aria-pressed','false');$('#chartTitle').textContent='Average annual real GDP growth, by period';$('#chartNote').textContent='Approximate period averages based on Cabinet Office national accounts. Rounded and illustrative; definitions and revisions vary. Japan was the world\'s second-largest economy from 1968 (GNP) until China overtook it in 2010.';hideTip();drawGdp();});
+  var drawn=false;function first(){if(!drawn){drawn=true;drawPop();}}
+  if(reduceMotion||!('IntersectionObserver' in window))first();else onReveal.push(function(t){if(t.contains(svg))first();});
+  setTimeout(first,4000);
+})();
+
+/* ---------- Kana flip cards ---------- */
+(function(){
+  var pairs=[['安','あ','a','hira'],['以','い','i','hira'],['宇','う','u','hira'],['衣','え','e','hira'],['於','お','o','hira'],['加','か','ka','hira'],['阿','ア','a','kata','阝 (left part)'],['伊','イ','i','kata','亻 (left part)'],['宇','ウ','u','kata','宀 (top part)'],['江','エ','e','kata','工 (right part)'],['於','オ','o','kata','方 (left part)'],['加','カ','ka','kata','力 (left part)']];
+  var box=$('#flips');
+  pairs.forEach(function(p){var kata=p[3]==='kata';var b=el('button','flip'+(kata?' kata':''),'<span class="inner"><span class="face front"><span class="g" lang="ja">'+p[0]+'</span><small>'+(kata?'kanji → katakana':'kanji → hiragana')+'</small></span><span class="face back"><span class="g" lang="ja">'+p[1]+'</span><small>'+p[2]+(kata?' · from '+p[4]:' · cursive of '+p[0])+'</small></span></span>');b.type='button';b.setAttribute('aria-pressed','false');b.setAttribute('aria-label',(kata?'Katakana ':'Hiragana ')+p[1]+' ('+p[2]+') derived from kanji '+p[0]+'. Press to flip.');
+    b.addEventListener('click',function(){var on=b.classList.toggle('on');b.setAttribute('aria-pressed',on);});box.appendChild(b);});
+  if(!reduceMotion&&'IntersectionObserver' in window){onReveal.push(function(t){if(!t.contains(box))return;var cards=$$('.flip',box);cards.forEach(function(c,i){setTimeout(function(){c.classList.add('on');},600+i*120);setTimeout(function(){c.classList.remove('on');},2600+i*120);});});}
+})();
+
+})();
+</script>
+</body>
+</html>

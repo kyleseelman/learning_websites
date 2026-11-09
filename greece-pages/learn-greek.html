@@ -1,0 +1,1796 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Μάθε Ελληνικά — Learn Greek from Zero</title>
+<meta name="description" content="A beautiful, interactive primer for learning Modern Greek from zero — alphabet, sounds, grammar, phrases, quizzes — plus Ancient & Koine Greek.">
+<meta name="theme-color" content="#0d3b66">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=GFS+Didot&family=Noto+Sans:wght@400;500;600;700&family=Noto+Serif:ital,wght@0,400;0,600;0,700;1,400&family=Noto+Sans+Phoenician&display=swap" rel="stylesheet">
+<script>
+(function(){var d=document.documentElement;d.classList.add('js');try{var t=JSON.parse(localStorage.getItem('lg-theme'));if(!t){t=(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}d.setAttribute('data-theme',t);}catch(e){d.setAttribute('data-theme','light');}})();
+</script>
+<style>
+:root{
+  --sea:#1f5fa8; --sea-deep:#0d3b66; --aegean:#2a7ab8; --foam:#e6f0f8;
+  --olive:#6b7a3a; --olive-soft:#e9edd9; --terra:#c8643b; --terra-soft:#f7e3d8;
+  --gold:#c9a227; --gold-soft:#f6edcc;
+  --bg:#f7f4ec; --bg2:#efe9dc; --card:#ffffff; --ink:#1b2432; --muted:#5a6576;
+  --line:rgba(13,59,102,.13); --shadow:0 14px 34px -16px rgba(13,59,102,.32), 0 2px 6px -2px rgba(13,59,102,.08);
+  --shadow-lg:0 30px 60px -24px rgba(13,59,102,.45);
+  --art:#2a7ab8; --art-fill:rgba(42,122,184,.15); --art-ov:#c8643b;
+  --radius:20px; --nav-h:66px;
+  --serif:"Noto Serif","GFS Didot",Georgia,serif; --didot:"GFS Didot","Noto Serif",Georgia,serif;
+  --sans:"Noto Sans",system-ui,-apple-system,"Segoe UI",sans-serif; --phoen:"Noto Sans Phoenician","Segoe UI Historic",sans-serif;
+}
+[data-theme="dark"]{
+  --sea:#6fb3ec; --sea-deep:#9fd0ff; --aegean:#5aa7e6; --foam:#13283d;
+  --olive:#a9bb6a; --olive-soft:#26301a; --terra:#ef8a5e; --terra-soft:#3a2219;
+  --gold:#e3c25a; --gold-soft:#3a3115;
+  --bg:#0a1420; --bg2:#0f1c2c; --card:#132235; --ink:#e8eef6; --muted:#9db0c6;
+  --line:rgba(255,255,255,.1); --shadow:0 14px 34px -16px rgba(0,0,0,.7), 0 2px 6px -2px rgba(0,0,0,.4);
+  --shadow-lg:0 30px 60px -24px rgba(0,0,0,.8);
+  --art:#6fb3ec; --art-fill:rgba(111,179,236,.14); --art-ov:#ef8a5e;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--nav-h) + 14px)}
+body{margin:0;font-family:var(--sans);background:var(--bg);color:var(--ink);line-height:1.62;font-size:16.5px;transition:background-color .4s,color .4s;-webkit-font-smoothing:antialiased}
+img,svg{max-width:100%}
+a{color:var(--sea)}
+a:hover{color:var(--terra)}
+h1,h2,h3,h4{font-family:var(--serif);line-height:1.2;margin:0 0 .5em}
+h2{font-size:clamp(1.9rem,3.6vw,2.8rem);letter-spacing:-.01em}
+h3{font-size:1.35rem}
+p{margin:0 0 1em}
+.gr{font-family:var(--didot);font-feature-settings:"kern"}
+.grs{font-family:var(--serif)}
+.tr{font-style:italic;color:var(--muted)}
+.muted{color:var(--muted)}
+.small{font-size:.88rem}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.skip{position:absolute;left:-999px;top:8px;background:var(--sea-deep);color:#fff;padding:10px 16px;border-radius:10px;z-index:1000}
+.skip:focus{left:12px}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:8px}
+.wrap{width:min(1180px,92vw);margin:0 auto}
+section.sec{padding:88px 0 40px;position:relative}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:.8rem;letter-spacing:.18em;text-transform:uppercase;color:var(--terra);font-weight:700;margin-bottom:12px}
+.eyebrow .gr{letter-spacing:.04em;text-transform:none;font-size:1rem;color:var(--sea)}
+.lead{font-size:1.15rem;color:var(--muted);max-width:760px}
+.meander{height:14px;background:var(--gold);opacity:.75;
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='14'%3E%3Cpath d='M0 13H24M16 13V1H4V9H12V5H8' fill='none' stroke='%23000' stroke-width='2'/%3E%3C/svg%3E") repeat-x left center/24px 14px;
+  mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='14'%3E%3Cpath d='M0 13H24M16 13V1H4V9H12V5H8' fill='none' stroke='%23000' stroke-width='2'/%3E%3C/svg%3E") repeat-x left center/24px 14px}
+.meander.thin{height:10px;opacity:.5;-webkit-mask-size:17px 10px;mask-size:17px 10px}
+.card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px;border:1px solid var(--line)}
+.grid{display:grid;gap:20px}
+.g2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.g3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.g4{grid-template-columns:repeat(4,minmax(0,1fr))}
+@media (max-width:900px){.g3,.g4{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:640px){.g2,.g3,.g4{grid-template-columns:1fr}}
+.btn{appearance:none;border:0;cursor:pointer;font:inherit;font-weight:600;border-radius:999px;padding:11px 20px;background:var(--sea);color:#fff;box-shadow:var(--shadow);transition:transform .2s,background .2s,box-shadow .2s;display:inline-flex;align-items:center;gap:8px;text-decoration:none}
+[data-theme="dark"] .btn{color:#06121f}
+.btn:hover{transform:translateY(-2px);background:var(--terra);color:#fff}
+.btn.ghost{background:transparent;color:var(--sea);box-shadow:inset 0 0 0 2px var(--sea)}
+.btn.ghost:hover{background:var(--sea);color:#fff}
+[data-theme="dark"] .btn.ghost:hover{color:#06121f}
+.btn.sm{padding:7px 14px;font-size:.88rem}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:999px;background:var(--foam);color:var(--sea-deep);font-size:.85rem;font-weight:600;border:1px solid var(--line)}
+.seg{display:inline-flex;background:var(--bg2);border-radius:999px;padding:4px;gap:2px;border:1px solid var(--line)}
+.seg button{appearance:none;border:0;background:transparent;font:inherit;font-size:.9rem;font-weight:600;color:var(--muted);padding:7px 14px;border-radius:999px;cursor:pointer;transition:background .2s,color .2s}
+.seg button[aria-pressed="true"],.seg button[aria-selected="true"]{background:var(--card);color:var(--sea);box-shadow:0 2px 8px -2px rgba(0,0,0,.2)}
+.say{appearance:none;border:0;cursor:pointer;width:34px;height:34px;border-radius:50%;display:inline-grid;place-items:center;background:var(--foam);color:var(--sea);transition:transform .2s,background .2s;flex:none;vertical-align:middle}
+.say:hover{transform:scale(1.1);background:var(--sea);color:#fff}
+.say svg{width:18px;height:18px}
+.say.speaking{animation:pulse 1s ease-in-out infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 8px rgba(42,122,184,.18)}}
+table{border-collapse:collapse;width:100%}
+th,td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:700}
+.tbl-wrap{overflow-x:auto;border-radius:var(--radius)}
+.note{border-left:4px solid var(--gold);background:var(--gold-soft);padding:14px 18px;border-radius:0 14px 14px 0;margin:16px 0}
+.note.blue{border-color:var(--sea);background:var(--foam)}
+.note.terra{border-color:var(--terra);background:var(--terra-soft)}
+kbd{font-family:ui-monospace,Menlo,monospace;font-size:.82em;background:var(--bg2);border:1px solid var(--line);border-bottom-width:2px;padding:1px 6px;border-radius:6px}
+
+/* progress bar & nav */
+#scrollbar{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--gold),var(--terra));z-index:200;transition:width .1s linear}
+header.nav{position:sticky;top:0;z-index:100;height:var(--nav-h);backdrop-filter:saturate(1.5) blur(14px);-webkit-backdrop-filter:saturate(1.5) blur(14px);background:color-mix(in srgb,var(--bg) 80%,transparent);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;gap:14px;height:100%}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--didot);font-size:1.35rem;color:var(--ink);text-decoration:none;white-space:nowrap}
+.brand .logo{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,var(--sea),var(--sea-deep));color:#fff;display:grid;place-items:center;font-size:1.25rem;box-shadow:var(--shadow)}
+.navlinks{display:flex;gap:2px;margin-left:auto;list-style:none;padding:0;margin-top:0;margin-bottom:0}
+.navlinks a{display:block;padding:7px 11px;border-radius:999px;text-decoration:none;color:var(--muted);font-weight:600;font-size:.9rem;transition:background .2s,color .2s}
+.navlinks a:hover,.navlinks a.active{background:var(--foam);color:var(--sea)}
+.navtools{display:flex;gap:6px;align-items:center}
+.iconbtn{appearance:none;border:1px solid var(--line);background:var(--card);color:var(--ink);width:40px;height:40px;border-radius:12px;display:grid;place-items:center;cursor:pointer;transition:transform .2s}
+.iconbtn:hover{transform:translateY(-1px);color:var(--sea)}
+.iconbtn svg{width:20px;height:20px}
+#menuBtn{display:none}
+@media (max-width:1100px){
+  #menuBtn{display:grid}
+  .navlinks{position:absolute;top:var(--nav-h);left:0;right:0;flex-direction:column;background:var(--card);padding:10px 4vw 16px;border-bottom:1px solid var(--line);box-shadow:var(--shadow);display:none}
+  .navlinks.open{display:flex}
+  .navtools{margin-left:auto}
+}
+
+/* hero */
+.hero{position:relative;overflow:hidden;background:radial-gradient(1200px 600px at 80% -10%,rgba(201,162,39,.22),transparent 60%),linear-gradient(180deg,var(--bg) 0%,var(--foam) 100%);padding:70px 0 170px}
+.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+@media (max-width:860px){.hero .wrap{grid-template-columns:1fr}.hero-art{order:-1;max-width:360px;margin:0 auto}}
+.hero h1{font-size:clamp(2.6rem,6vw,4.6rem);letter-spacing:-.02em;margin-bottom:.2em}
+.hero h1 .gr{display:block;color:var(--sea);font-size:.72em;font-weight:400}
+.hero p.lead{font-size:1.2rem}
+.hero .cta{display:flex;gap:12px;flex-wrap:wrap;margin:26px 0}
+.hero .facts{display:flex;gap:10px;flex-wrap:wrap}
+.hero-art svg{width:100%;height:auto;overflow:visible}
+.brush{fill:none;stroke:var(--sea-deep);stroke-width:20;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1;animation:draw 3.2s .3s cubic-bezier(.6,.05,.3,1) forwards}
+.brush.gold{stroke:var(--gold);stroke-width:5;animation-delay:2.2s;animation-duration:2.4s;opacity:.9}
+.brush.a2{stroke:var(--terra);stroke-width:13;animation-delay:2.6s;animation-duration:1.8s}
+@keyframes draw{to{stroke-dashoffset:0}}
+.sun{animation:float 8s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-8px)}}
+.waves{position:absolute;left:0;right:0;bottom:-2px;height:150px;pointer-events:none}
+.waves svg{width:100%;height:100%;display:block}
+.wv{animation:wave 18s linear infinite}
+.wv.w2{animation-duration:26s;animation-direction:reverse}
+.wv.w3{animation-duration:12s}
+@keyframes wave{from{transform:translateX(0)}to{transform:translateX(-1440px)}}
+
+/* reveal */
+.js .reveal{opacity:0;transform:translateY(22px);transition:opacity .8s ease,transform .8s ease}
+.js .reveal.in{opacity:1;transform:none}
+
+/* timeline */
+.timeline{position:relative;margin:30px 0;padding-left:28px}
+.timeline::before{content:"";position:absolute;left:8px;top:6px;bottom:6px;width:3px;background:linear-gradient(var(--gold),var(--sea),var(--terra));border-radius:3px}
+.tl{position:relative;margin-bottom:22px}
+.tl::before{content:"";position:absolute;left:-26px;top:8px;width:15px;height:15px;border-radius:50%;background:var(--card);border:3px solid var(--sea)}
+.tl .when{font-weight:700;color:var(--terra);font-size:.9rem}
+.tl h4{margin:2px 0 4px;font-size:1.12rem}
+.tl p{margin:0;color:var(--muted)}
+.tl .gl{font-family:var(--phoen);font-size:1.3rem;color:var(--sea)}
+.roadmap{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;counter-reset:step}
+@media (max-width:900px){.roadmap{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){.roadmap{grid-template-columns:1fr}}
+.step{position:relative;background:var(--card);border-radius:18px;padding:18px;border:1px solid var(--line);box-shadow:var(--shadow)}
+.step::before{counter-increment:step;content:counter(step);position:absolute;top:-14px;left:16px;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--terra);color:#fff;font-weight:700;font-size:.9rem}
+.step h4{margin:8px 0 4px;font-size:1.05rem}
+.step p{margin:0;font-size:.9rem;color:var(--muted)}
+.step .dur{font-size:.75rem;font-weight:700;color:var(--olive);text-transform:uppercase;letter-spacing:.08em}
+
+/* alphabet */
+.toolbar{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin:20px 0}
+.toolbar .lbl{font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted)}
+.voice-note{display:none;margin:12px 0}
+.voice-note.show{display:block}
+.abc{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:18px;list-style:none;padding:0;margin:0}
+.lcard{position:relative;height:310px;perspective:1100px}
+.lcard .flip{appearance:none;border:0;padding:0;background:none;font:inherit;color:inherit;display:block;width:100%;height:100%;cursor:pointer;position:relative;transform-style:preserve-3d;transition:transform .7s cubic-bezier(.2,.8,.2,1);border-radius:var(--radius);text-align:center}
+.lcard.flipped .flip{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:var(--radius);background:var(--card);box-shadow:var(--shadow);border:1px solid var(--line);padding:18px 16px 14px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;overflow:hidden}
+.face.front::after{content:"";position:absolute;left:0;right:0;bottom:0;height:5px;background:linear-gradient(90deg,var(--sea),var(--aegean),var(--gold))}
+.lcard.ff .face.front::after{background:linear-gradient(90deg,var(--terra),var(--gold))}
+.face.back{transform:rotateY(180deg);justify-content:flex-start;background:linear-gradient(180deg,var(--card),var(--foam))}
+.lcard:hover .face{box-shadow:var(--shadow-lg)}
+.idx{position:absolute;top:12px;left:14px;font-size:.75rem;font-weight:700;color:var(--muted)}
+.glyph{font-family:var(--didot);font-size:4.4rem;line-height:1.05;color:var(--sea-deep);letter-spacing:.04em}
+.glyph .lo{color:var(--terra)}
+.nm{font-size:.95rem}
+.nm b{font-family:var(--didot);font-size:1.15rem;font-weight:400;color:var(--sea)}
+.snd{font-size:.88rem;color:var(--muted);line-height:1.35}
+.snd strong{color:var(--ink)}
+.ffbadge{position:absolute;top:12px;left:50%;transform:translateX(-50%);font-size:.66rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:var(--terra-soft);color:var(--terra);padding:3px 9px;border-radius:999px;white-space:nowrap}
+.back .art{width:108px;height:108px;flex:none}
+.back .mn{font-size:.8rem;line-height:1.42;text-align:left;overflow:auto;padding-right:2px}
+.lcard .tools{position:absolute;top:8px;right:8px;z-index:4;display:flex;gap:5px}
+.lcard .tools .say,.lcard .tools .info{width:30px;height:30px}
+.info{appearance:none;border:0;cursor:pointer;border-radius:50%;display:inline-grid;place-items:center;background:var(--gold-soft);color:var(--gold);font-weight:800;font-family:var(--serif);font-style:italic}
+.info:hover{background:var(--gold);color:#fff}
+.art .s{fill:none;stroke:var(--art);stroke-width:4;stroke-linecap:round;stroke-linejoin:round}
+.art .thin{stroke-width:2.5}
+.art .fat{stroke-width:9}
+.art .f{fill:var(--art-fill);stroke:var(--art);stroke-width:2.5;stroke-linejoin:round}
+.art .acc{fill:var(--gold);stroke:none}
+.art .ov{font-family:var(--didot);font-size:62px;fill:var(--art-ov);paint-order:stroke;stroke:var(--card);stroke-width:5px;stroke-linejoin:round}
+
+/* stroke order */
+.strokes{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
+@media (max-width:760px){.strokes{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:460px){.strokes{grid-template-columns:repeat(2,1fr)}}
+.sdemo{background:var(--card);border-radius:18px;border:1px solid var(--line);box-shadow:var(--shadow);padding:12px;text-align:center;cursor:pointer}
+.sdemo svg{width:100%;height:auto;aspect-ratio:1}
+.sdemo .guide{fill:none;stroke:var(--line);stroke-width:7;stroke-linecap:round;stroke-linejoin:round}
+.sdemo .gl{stroke:var(--line);stroke-width:1;stroke-dasharray:3 4}
+.sdemo .draw{fill:none;stroke:var(--sea);stroke-width:7;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:0}
+.sdemo.play .draw{animation:drawS 2.2s ease-in-out both}
+@keyframes drawS{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+.sdemo .start{fill:var(--terra)}
+.sdemo .num{fill:#fff;font-size:8px;font-weight:700;font-family:var(--sans)}
+.sdemo .cap{font-size:.85rem;color:var(--muted)}
+
+/* confusing */
+.conf{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+.cpair{display:flex;gap:14px;align-items:center;margin-bottom:8px}
+.cpair .g{font-family:var(--didot);font-size:2.8rem;color:var(--sea-deep);width:62px;height:62px;display:grid;place-items:center;background:var(--foam);border-radius:14px;line-height:1}
+.cpair .x{font-family:Georgia,"Times New Roman",serif;font-size:2.6rem;color:var(--muted);width:62px;height:62px;display:grid;place-items:center;background:var(--bg2);border-radius:14px;line-height:1}
+.cpair .vs{font-weight:700;color:var(--terra);font-size:.8rem}
+.cpair .lab{font-size:.82rem;line-height:1.3}
+
+/* evolution */
+.evo{width:100%;min-width:640px}
+.evo td,.evo th{text-align:center;vertical-align:middle;padding:8px 6px}
+.evo td.ph{font-family:var(--phoen);font-size:1.7rem;color:var(--olive)}
+.evo td.gk{font-family:var(--didot);font-size:1.7rem;color:var(--sea-deep)}
+.evo td.la{font-family:Georgia,serif;font-size:1.25rem;color:var(--terra)}
+.evo td.cy{font-family:var(--serif);font-size:1.25rem;color:var(--gold)}
+.evo .arrow{color:var(--muted);font-size:1.1rem}
+.evo .nmx{font-size:.75rem;color:var(--muted);display:block;line-height:1.2}
+.evo tr{transition:background .2s}
+.evo tbody tr:hover{background:var(--foam)}
+.evo-legend{display:flex;gap:16px;flex-wrap:wrap;margin:10px 0 0;font-size:.85rem}
+.evo-legend span::before{content:"";display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;background:currentColor}
+
+/* digraphs / six i */
+.dg{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+.dgc{display:flex;gap:14px;align-items:flex-start}
+.dgc .big{font-family:var(--didot);font-size:2.2rem;color:var(--sea-deep);min-width:72px;text-align:center;background:var(--foam);border-radius:14px;padding:6px 4px;line-height:1.2}
+.dgc .snd2{font-weight:700;color:var(--terra)}
+.dgc .ex{font-size:.9rem}
+.six{position:relative}
+.six-row{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
+@media (max-width:700px){.six-row{grid-template-columns:repeat(3,1fr)}.six-lines{display:none}}
+.six-tile{background:var(--card);border-radius:18px;border:1px solid var(--line);box-shadow:var(--shadow);padding:14px 8px;text-align:center;transition:transform .3s}
+.six-tile:hover{transform:translateY(-4px)}
+.six-tile .g{font-family:var(--didot);font-size:2.6rem;line-height:1.1}
+.six-tile .w{font-family:var(--didot);font-size:1.05rem}
+.six-tile .m{font-size:.78rem;color:var(--muted)}
+.six-lines{display:block;width:100%;height:70px}
+.six-lines path{fill:none;stroke-width:3;stroke-linecap:round;stroke-dasharray:6 6;animation:dash 1.4s linear infinite}
+@keyframes dash{to{stroke-dashoffset:-24}}
+.six-target{margin:4px auto 0;width:max-content;padding:14px 30px;border-radius:999px;background:linear-gradient(135deg,var(--sea),var(--sea-deep));color:#fff;font-weight:700;font-size:1.25rem;box-shadow:var(--shadow-lg);text-align:center}
+.six-target small{display:block;font-weight:400;font-size:.8rem;opacity:.85}
+.stress-demo{display:flex;gap:16px;flex-wrap:wrap}
+.sw{flex:1 1 220px;text-align:center}
+.sw .word{font-family:var(--didot);font-size:2.4rem}
+.sw .word .st{color:var(--terra);border-bottom:3px solid var(--terra)}
+
+/* quiz */
+.dash{display:grid;grid-template-columns:260px 1fr;gap:22px;align-items:center}
+@media (max-width:760px){.dash{grid-template-columns:1fr}}
+.ring{position:relative;width:220px;height:220px;margin:0 auto}
+.ring svg{width:100%;height:100%;transform:rotate(-90deg)}
+.ring .bg{fill:none;stroke:var(--bg2);stroke-width:14}
+.ring .fg{fill:none;stroke:url(#ringGrad);stroke-width:14;stroke-linecap:round;stroke-dasharray:339.29;stroke-dashoffset:339.29;transition:stroke-dashoffset 1.4s cubic-bezier(.2,.8,.2,1)}
+.ring .inner{position:absolute;inset:0;display:grid;place-items:center;text-align:center}
+.ring .pct{font-family:var(--serif);font-size:2.6rem;font-weight:700;color:var(--sea-deep);line-height:1}
+.ring .cap{font-size:.8rem;color:var(--muted)}
+.bars .bar{margin-bottom:14px}
+.bars .bar .t{display:flex;justify-content:space-between;font-size:.88rem;font-weight:600}
+.bars .track{height:10px;border-radius:99px;background:var(--bg2);overflow:hidden}
+.bars .fill{height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,var(--olive),var(--gold));transition:width 1.2s cubic-bezier(.2,.8,.2,1)}
+.bars .fill.b2{background:linear-gradient(90deg,var(--sea),var(--aegean))}
+.bars .fill.b3{background:linear-gradient(90deg,var(--terra),var(--gold))}
+.mgrid{display:grid;grid-template-columns:repeat(12,1fr);gap:6px;margin-top:10px}
+@media (max-width:520px){.mgrid{grid-template-columns:repeat(8,1fr)}}
+.mcell{aspect-ratio:1;border-radius:9px;display:grid;place-items:center;font-family:var(--didot);font-size:1.1rem;background:var(--bg2);color:var(--muted);transition:background .5s,color .5s,transform .4s}
+.mcell.l1{background:var(--terra-soft);color:var(--terra)}
+.mcell.l2{background:var(--gold-soft);color:var(--gold)}
+.mcell.l3{background:var(--olive);color:#fff;transform:scale(1.04)}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:.78rem;color:var(--muted);margin-top:8px}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+.quiz{margin-top:24px}
+.qmodes{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:18px}
+.qstats{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}
+.qstat{background:var(--bg2);border-radius:14px;padding:8px 14px;min-width:92px;text-align:center}
+.qstat b{display:block;font-family:var(--serif);font-size:1.5rem;color:var(--sea-deep);line-height:1.1}
+.qstat span{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:700}
+.qstat.streak b{color:var(--terra)}
+.qbox{min-height:330px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:16px;position:relative}
+.qprompt{font-family:var(--didot);font-size:5.4rem;line-height:1.05;color:var(--sea-deep)}
+.qprompt.word{font-size:clamp(2.2rem,6vw,3.6rem)}
+.qprompt.sound{font-family:var(--sans);font-size:2rem;font-weight:700}
+.qhint{color:var(--muted);font-size:.95rem}
+.qopts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;width:min(560px,100%)}
+.qopt{appearance:none;border:2px solid var(--line);background:var(--card);color:var(--ink);border-radius:16px;padding:14px;font:inherit;font-weight:600;cursor:pointer;transition:transform .15s,border-color .2s,background .2s;position:relative}
+.qopt .k{position:absolute;top:6px;left:10px;font-size:.7rem;color:var(--muted)}
+.qopt.gl{font-family:var(--didot);font-size:2.2rem;font-weight:400;padding:6px}
+.qopt:hover{transform:translateY(-2px);border-color:var(--sea)}
+.qopt.right{border-color:var(--olive);background:var(--olive-soft)}
+.qopt.wrong{border-color:var(--terra);background:var(--terra-soft);animation:shake .4s}
+@keyframes shake{25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.qinput{display:flex;gap:8px;width:min(440px,100%)}
+.qinput input{flex:1;font:inherit;font-size:1.1rem;padding:12px 16px;border-radius:14px;border:2px solid var(--line);background:var(--card);color:var(--ink)}
+.qinput input:focus{outline:none;border-color:var(--sea)}
+.qfb{min-height:1.6em;font-weight:600}
+.qfb.ok{color:var(--olive)}
+.qfb.no{color:var(--terra)}
+.fc{width:min(360px,90%);height:230px;perspective:1000px}
+.fc .in{position:relative;width:100%;height:100%;transition:transform .6s;transform-style:preserve-3d}
+.fc.flipped .in{transform:rotateY(180deg)}
+.fc .side{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:20px;background:var(--foam);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:16px;border:1px solid var(--line)}
+.fc .side.b{transform:rotateY(180deg);background:var(--gold-soft)}
+.missed{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-top:12px}
+.missed .chip{font-family:var(--didot);font-size:1rem;background:var(--terra-soft);color:var(--terra)}
+
+/* grammar */
+.gen{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media (max-width:700px){.gen{grid-template-columns:1fr}}
+.gen .card{border-top:6px solid var(--sea)}
+.gen .card.f{border-top-color:var(--terra)}
+.gen .card.n{border-top-color:var(--olive)}
+.gen .art2{font-family:var(--didot);font-size:2.6rem;line-height:1}
+.decl td.gr,.decl td .gr{font-size:1.15rem}
+.decl .end{color:var(--terra);font-weight:700}
+.decl tbody th{text-transform:none;letter-spacing:0;font-size:.9rem;color:var(--ink)}
+.conj td{font-size:1rem}
+.conj .end{color:var(--terra);font-weight:700}
+.wo{display:grid;gap:16px}
+.wo-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.wo-lab{width:130px;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+.wo-blocks{display:flex;gap:8px;flex-wrap:wrap;transition:opacity .3s}
+.blk{padding:10px 16px;border-radius:14px;font-weight:600;box-shadow:var(--shadow);transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.blk .gr{font-size:1.2rem}
+.blk.sub{background:var(--foam);color:var(--sea-deep);border:2px solid var(--sea)}
+.blk.vrb{background:var(--gold-soft);color:var(--ink);border:2px solid var(--gold)}
+.blk.obj{background:var(--terra-soft);color:var(--ink);border:2px solid var(--terra)}
+.blk .e{color:var(--terra);text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px}
+.blk.sub .e{color:var(--sea)}
+.wo-mean{font-size:.95rem;font-weight:600;padding:8px 14px;border-radius:12px;background:var(--bg2)}
+.wo-mean.bad{background:var(--terra-soft);color:var(--terra)}
+.wo-mean.good{background:var(--olive-soft);color:var(--olive)}
+.sent{display:flex;flex-wrap:wrap;gap:10px;align-items:flex-end;justify-content:center;padding:10px 0}
+.tok{appearance:none;border:0;font:inherit;cursor:pointer;background:var(--card);border-radius:16px;padding:10px 14px 8px;text-align:center;box-shadow:var(--shadow);border-bottom:6px solid var(--c);transition:transform .2s;color:var(--ink)}
+.tok:hover,.tok[aria-pressed="true"]{transform:translateY(-4px)}
+.tok .w{font-family:var(--didot);font-size:1.7rem;display:block;line-height:1.2}
+.tok .w .st{color:var(--terra);text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:5px}
+.tok .syl{opacity:.4;padding:0 1px}
+.tok .g{display:block;font-size:.78rem;color:var(--muted)}
+.tok .r{display:block;font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--c)}
+.tokinfo{margin-top:14px;min-height:64px}
+.rolekey{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;font-size:.8rem;margin-top:6px}
+.rolekey span{display:inline-flex;align-items:center;gap:6px}
+.rolekey span::before{content:"";width:12px;height:12px;border-radius:4px;background:var(--c)}
+
+/* numbers */
+.nums{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
+.num{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px;display:flex;flex-direction:column;gap:2px;position:relative;box-shadow:var(--shadow)}
+.num .n{font-family:var(--serif);font-weight:700;font-size:1.4rem;color:var(--terra);line-height:1}
+.num .w{font-family:var(--didot);font-size:1.2rem}
+.num .t{font-size:.8rem;color:var(--muted);font-style:italic}
+.num .say{position:absolute;top:8px;right:8px;width:28px;height:28px}
+.num .say svg{width:15px;height:15px}
+.numeral-out{font-family:var(--didot);font-size:3rem;color:var(--sea-deep);min-height:1.3em}
+.numeral-tbl td{font-family:var(--didot);text-align:center;font-size:1.15rem;padding:6px}
+.numeral-tbl td small{display:block;font-family:var(--sans);font-size:.7rem;color:var(--muted)}
+
+/* tabs, words, phrases */
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+.words{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.wcard{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px 14px;box-shadow:var(--shadow);animation:pop .4s both}
+@keyframes pop{from{opacity:0;transform:scale(.96) translateY(6px)}}
+.wcard .w{font-family:var(--didot);font-size:1.25rem;line-height:1.2}
+.wcard .t{font-size:.82rem;color:var(--muted);font-style:italic}
+.wcard .m{font-size:.88rem}
+.wcard > div{flex:1;min-width:0}
+.phr{display:grid;gap:10px}
+.prow{display:grid;grid-template-columns:1fr 1fr auto;gap:12px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px 16px;box-shadow:var(--shadow);animation:pop .4s both}
+@media (max-width:640px){.prow{grid-template-columns:1fr auto}.prow .en{grid-column:1/2}}
+.prow .g{font-family:var(--didot);font-size:1.25rem}
+.prow .t{font-size:.85rem;color:var(--muted);font-style:italic}
+.prow .en{font-size:.95rem}
+
+/* roots */
+.roots{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.rootbtn{appearance:none;border:1px solid var(--line);background:var(--card);color:var(--ink);font:inherit;font-weight:600;padding:8px 14px;border-radius:999px;cursor:pointer;transition:all .2s}
+.rootbtn:hover{border-color:var(--sea);color:var(--sea)}
+.rootbtn[aria-pressed="true"]{background:var(--sea);color:#fff;border-color:var(--sea)}
+[data-theme="dark"] .rootbtn[aria-pressed="true"]{color:#06121f}
+.rootpanel{display:grid;grid-template-columns:240px 1fr;gap:20px;align-items:start}
+@media (max-width:700px){.rootpanel{grid-template-columns:1fr}}
+.rootbig{text-align:center;background:linear-gradient(135deg,var(--sea),var(--sea-deep));color:#fff;border-radius:20px;padding:24px 16px}
+.rootbig .g{font-family:var(--didot);font-size:2.6rem;line-height:1.1}
+.rootbig .r{font-size:1.3rem;font-weight:700;color:var(--gold-soft)}
+[data-theme="dark"] .rootbig{color:#06121f}
+[data-theme="dark"] .rootbig .r{color:#3a3115}
+.rw{display:flex;flex-wrap:wrap;gap:10px}
+.rw .item{background:var(--bg2);border-radius:14px;padding:10px 14px;animation:pop .35s both}
+.rw .item b{color:var(--sea-deep)}
+.rw .item .hl{color:var(--terra)}
+.decode{display:flex;gap:8px;margin-top:14px}
+.decode input{flex:1;font:inherit;padding:10px 14px;border-radius:12px;border:2px solid var(--line);background:var(--card);color:var(--ink)}
+.decode-out{margin-top:10px;min-height:1.5em}
+
+/* ancient */
+.poly{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px}
+.pm{text-align:center;padding:16px}
+.pm .g{font-family:var(--serif);font-size:2.8rem;color:var(--sea-deep);line-height:1.1}
+.pm .n{font-weight:700;font-size:.9rem}
+.pm .d{font-size:.8rem;color:var(--muted)}
+.builder{display:grid;grid-template-columns:1fr 200px;gap:20px;align-items:center}
+@media (max-width:700px){.builder{grid-template-columns:1fr}}
+.builder fieldset{border:0;padding:0;margin:0 0 12px}
+.builder legend{font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:6px}
+.builder .opts{display:flex;flex-wrap:wrap;gap:6px}
+.builder label{cursor:pointer}
+.builder input{position:absolute;opacity:0;pointer-events:none}
+.builder label span{display:inline-block;padding:6px 12px;border-radius:999px;border:1px solid var(--line);background:var(--card);font-weight:600;font-size:.9rem;transition:all .2s}
+.builder label span.g{font-family:var(--serif);font-size:1.15rem;padding:3px 14px}
+.builder input:checked + span{background:var(--sea);color:#fff;border-color:var(--sea)}
+[data-theme="dark"] .builder input:checked + span{color:#06121f}
+.builder input:focus-visible + span{outline:3px solid var(--gold)}
+.bout{text-align:center;background:var(--foam);border-radius:20px;padding:18px}
+.bout .g{font-family:var(--serif);font-size:5rem;line-height:1.1;color:var(--sea-deep)}
+.bout .msg{font-size:.85rem;color:var(--muted)}
+.bout .msg.warn{color:var(--terra)}
+.inter{display:flex;flex-wrap:wrap;gap:8px 6px;margin:10px 0}
+.iw{text-align:center;padding:8px 10px;border-radius:14px;background:var(--bg2);min-width:70px;transition:background .2s,transform .2s;cursor:default}
+.iw:hover{background:var(--gold-soft);transform:translateY(-2px)}
+.iw .g{font-family:var(--serif);font-size:1.45rem;display:block;color:var(--sea-deep);line-height:1.25}
+.iw .t{font-size:.78rem;font-style:italic;color:var(--muted);display:block}
+.iw .e{font-size:.85rem;font-weight:600;display:block}
+.iw .gram{font-size:.68rem;color:var(--terra);display:block}
+.cmp td:first-child{font-family:var(--serif);font-size:1.2rem}
+
+/* map */
+.mapwrap{display:grid;grid-template-columns:1.1fr 1fr;gap:20px}
+@media (max-width:900px){.mapwrap{grid-template-columns:1fr}}
+.map svg{width:100%;height:auto;display:block;border-radius:16px;background:linear-gradient(180deg,#d9eaf6,#bcd8ee)}
+[data-theme="dark"] .map svg{background:linear-gradient(180deg,#0e2235,#0a1828)}
+.land{fill:#f4efe3;stroke:#c9bfa6;stroke-width:1}
+[data-theme="dark"] .land{fill:#26384c;stroke:#3a5069}
+.land.gr-land{fill:#fdfbf6;stroke:var(--sea);stroke-width:1.6}
+[data-theme="dark"] .land.gr-land{fill:#d6e6f5;stroke:#6fb3ec}
+.land.cy{fill:#fbefd9;stroke:var(--terra);stroke-width:1.6}
+.coast{fill:none;stroke:#c9bfa6;stroke-width:1.2;stroke-dasharray:3 3}
+.isl{fill:#fdfbf6;stroke:var(--sea);stroke-width:1}
+.city{fill:var(--terra);stroke:#fff;stroke-width:1.5}
+.pulse{fill:var(--terra);opacity:.35;transform-box:fill-box;transform-origin:center;animation:ping 2.4s ease-out infinite}
+@keyframes ping{from{transform:scale(.6);opacity:.55}to{transform:scale(2.6);opacity:0}}
+.maplab{font-family:var(--sans);font-size:11px;fill:#3b4a5c;font-weight:600}
+[data-theme="dark"] .maplab{fill:#c8d6e6}
+.maplab.big{font-family:var(--didot);font-size:20px;fill:var(--sea-deep);font-weight:400;letter-spacing:.12em}
+.maplab.sea{font-style:italic;fill:#4f7fa8;font-weight:400;font-size:13px;letter-spacing:.15em}
+.maplab.minor{fill:var(--terra);font-size:10px}
+.grat{stroke:rgba(31,95,168,.12);stroke-width:.6;fill:none}
+
+/* cefr */
+.cefr svg{width:100%;height:auto;display:block}
+.cefr .bar{cursor:pointer;transition:opacity .2s}
+.cefr .bar:hover rect,.cefr .bar.sel rect{filter:brightness(1.08)}
+.cefr .bar.sel rect{stroke:var(--ink);stroke-width:2}
+.cefr text{font-family:var(--sans)}
+.cefr .lvl{font-family:var(--serif);font-weight:700;font-size:20px;fill:#fff}
+.cefr .hrs{font-size:11px;fill:var(--muted)}
+.cefr-info{min-height:90px}
+.grow{transform-box:fill-box;transform-origin:bottom;animation:growUp 1.2s cubic-bezier(.2,.8,.2,1) both}
+@keyframes growUp{from{transform:scaleY(0)}}
+
+/* resources */
+.res{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
+.resc{display:flex;flex-direction:column;gap:6px;text-decoration:none;color:var(--ink);transition:transform .2s}
+.resc:hover{transform:translateY(-4px);color:var(--ink)}
+.resc .tag{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--olive)}
+.resc h4{margin:0;font-size:1.1rem;color:var(--sea)}
+.resc p{margin:0;font-size:.9rem;color:var(--muted)}
+
+/* modal, toast, confetti */
+.modal{position:fixed;inset:0;z-index:300;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(6,18,31,.55);backdrop-filter:blur(4px)}
+.modal.open{display:flex}
+.modal .box{background:var(--card);border-radius:24px;max-width:640px;width:100%;max-height:90vh;overflow:auto;padding:28px;box-shadow:var(--shadow-lg);position:relative;animation:pop .35s both}
+.modal .close{position:absolute;top:14px;right:14px}
+.mhead{display:flex;gap:20px;align-items:center;margin-bottom:12px}
+.mhead .art{width:130px;height:130px;flex:none}
+.mhead .glyph{font-size:4rem}
+.dl{display:grid;grid-template-columns:150px 1fr;gap:6px 14px;font-size:.95rem}
+.dl dt{font-weight:700;color:var(--muted);font-size:.8rem;text-transform:uppercase;letter-spacing:.06em;padding-top:3px}
+.dl dd{margin:0}
+.chain{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:1.6rem}
+.chain .ph{font-family:var(--phoen);color:var(--olive)}
+.chain .gk{font-family:var(--didot);color:var(--sea-deep)}
+.chain .la{font-family:Georgia,serif;color:var(--terra)}
+.chain .cy{font-family:var(--serif);color:var(--gold)}
+.chain .ar{font-size:1rem;color:var(--muted)}
+#toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,140%);background:var(--sea-deep);color:#fff;padding:12px 22px;border-radius:999px;box-shadow:var(--shadow-lg);z-index:400;font-weight:600;transition:transform .45s cubic-bezier(.2,.8,.2,1);max-width:90vw;text-align:center}
+[data-theme="dark"] #toast{color:#06121f}
+#toast.show{transform:translate(-50%,0)}
+#confetti{position:fixed;inset:0;pointer-events:none;z-index:350}
+footer{padding:50px 0 60px;color:var(--muted);font-size:.9rem;text-align:center}
+footer .gr{font-size:1.4rem;color:var(--sea)}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
+  .brush{stroke-dashoffset:0}
+  .wv{animation:none!important}
+  .js .reveal{opacity:1;transform:none}
+}
+@media print{header.nav,.waves,#confetti,#toast{display:none}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div id="scrollbar" aria-hidden="true"></div>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Learn Greek — home"><span class="logo" aria-hidden="true">Ω</span><span>Μάθε Ελληνικά</span></a>
+    <ul class="navlinks" id="navlinks">
+      <li><a href="#intro">History</a></li>
+      <li><a href="#alphabet">Alphabet</a></li>
+      <li><a href="#sounds">Sounds</a></li>
+      <li><a href="#practice">Practice</a></li>
+      <li><a href="#grammar">Grammar</a></li>
+      <li><a href="#numbers">Numbers</a></li>
+      <li><a href="#vocab">Words</a></li>
+      <li><a href="#roots">Roots</a></li>
+      <li><a href="#ancient">Ancient</a></li>
+      <li><a href="#plan">Roadmap</a></li>
+      <li><a href="#resources">Resources</a></li>
+    </ul>
+    <div class="navtools">
+      <button class="iconbtn" id="muteBtn" aria-pressed="false" title="Mute / unmute pronunciation audio" aria-label="Mute pronunciation audio">
+        <svg id="muteIcon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+      <button class="iconbtn" id="themeBtn" aria-pressed="false" title="Toggle dark mode" aria-label="Toggle dark mode">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 13.2A8.5 8.5 0 1 1 10.8 3a6.6 6.6 0 0 0 10.2 10.2z" fill="currentColor"/></svg>
+      </button>
+      <button class="iconbtn" id="menuBtn" aria-expanded="false" aria-controls="navlinks" aria-label="Open menu">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow">A primer from zero <span class="gr">· από το μηδέν</span></div>
+      <h1><span class="gr">Μάθε Ελληνικά</span>Learn Greek, letter by letter.</h1>
+      <p class="lead">The language of Homer, Plato and the Gospels is spoken today by around 13 million people. Start with 24 letters, a handful of sound rules and a few memorable pictures — and within a weekend you'll be reading signs, menus and words you already know, like <span class="gr">δημοκρατία</span> and <span class="gr">φιλοσοφία</span>.</p>
+      <div class="cta">
+        <a class="btn" href="#alphabet">Start with the alphabet →</a>
+        <a class="btn ghost" href="#practice">Practice &amp; quiz</a>
+      </div>
+      <div class="facts">
+        <span class="chip">24 letters</span>
+        <span class="chip">~13 million speakers</span>
+        <span class="chip">3,400 years written</span>
+        <span class="chip">Official in Greece, Cyprus &amp; the EU</span>
+      </div>
+    </div>
+    <div class="hero-art" aria-hidden="true">
+      <svg viewBox="0 0 400 320">
+        <defs>
+          <filter id="ink"><feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="4"/><feDisplacementMap in="SourceGraphic" scale="5"/></filter>
+          <radialGradient id="sunG"><stop offset="0" stop-color="#f6d36b"/><stop offset="1" stop-color="#c9a227"/></radialGradient>
+        </defs>
+        <g class="sun"><circle cx="322" cy="62" r="34" fill="url(#sunG)" opacity=".9"/></g>
+        <g filter="url(#ink)">
+          <path class="brush" pathLength="1" d="M88 262 H150 V242 C104 222 84 184 84 140 C84 82 134 42 200 42 C266 42 316 82 316 140 C316 184 296 222 250 242 V262 H312"/>
+          <path class="brush gold" pathLength="1" d="M70 290 C140 280 260 300 330 286"/>
+          <path class="brush a2" pathLength="1" d="M236 168 C228 152 202 150 194 170 C186 192 206 204 220 192 C226 186 232 176 236 168 C234 184 238 200 250 202"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+  <div class="waves" aria-hidden="true">
+    <svg viewBox="0 0 1440 150" preserveAspectRatio="none">
+      <path class="wv w2" fill="var(--aegean)" opacity=".25" d="M0 60 Q90 30 180 60 T360 60 T540 60 T720 60 T900 60 T1080 60 T1260 60 T1440 60 T1620 60 T1800 60 T1980 60 T2160 60 T2340 60 T2520 60 T2700 60 T2880 60 V150 H0Z"/>
+      <path class="wv" fill="var(--sea)" opacity=".35" d="M0 85 Q90 55 180 85 T360 85 T540 85 T720 85 T900 85 T1080 85 T1260 85 T1440 85 T1620 85 T1800 85 T1980 85 T2160 85 T2340 85 T2520 85 T2700 85 T2880 85 V150 H0Z"/>
+      <path class="wv w3" fill="var(--bg)" d="M0 115 Q90 95 180 115 T360 115 T540 115 T720 115 T900 115 T1080 115 T1260 115 T1440 115 T1620 115 T1800 115 T1980 115 T2160 115 T2340 115 T2520 115 T2700 115 T2880 115 V150 H0Z"/>
+    </svg>
+  </div>
+</section>
+
+<!-- ============ INTRO ============ -->
+<section class="sec" id="intro" data-track>
+  <div class="wrap">
+    <div class="eyebrow">01 · History <span class="gr">Ιστορία</span></div>
+    <h2>3,400 years of writing Greek</h2>
+    <p class="lead">Greek has the longest documented history of any living Indo-European language. Its alphabet — the first to write vowels as full letters — became the ancestor of the Latin letters you're reading now and of the Cyrillic used from Sofia to Vladivostok.</p>
+    <div class="grid g2" style="margin-top:28px">
+      <div class="timeline reveal">
+        <div class="tl"><div class="when">c. 1450–1200 BCE</div><h4>Linear B — before the alphabet</h4><p>Mycenaean palace scribes wrote an early form of Greek in a <em>syllabary</em> of roughly 87 signs (plus picture-like ideograms) on clay tablets at Knossos, Pylos and Mycenae. Michael Ventris deciphered it in 1952, showing it was Greek.</p></div>
+        <div class="tl"><div class="when">c. 1200–800 BCE</div><h4>Writing goes quiet</h4><p>When the palace civilisation collapsed, Linear B vanished from the Greek mainland. (On Cyprus a related syllabary lived on for centuries.)</p></div>
+        <div class="tl"><div class="when">8th century BCE</div><h4>Borrowing from the Phoenicians <span class="gl" aria-label="Phoenician aleph, bet, gimel">&#x10900;&#x10901;&#x10902;</span></h4><p>Greeks adapted the Phoenician script, which wrote only consonants. Their stroke of genius: reusing letters for sounds Greek lacked as <strong>vowels</strong> — ʾālep → Α, hē → Ε, ḥēt → Η, yōd → Ι, ʿayin → Ο, wāw → Υ. Early examples include Nestor's Cup from Pithekoussai.</p></div>
+        <div class="tl"><div class="when">8th–5th c. BCE</div><h4>Local alphabets, East and West</h4><p>Each city had its own variant, adding Φ, Χ, Ψ and (in Ionia) Ω. A western variant travelled via Cumae in Italy to the Etruscans and then the Romans: the <strong>Latin alphabet</strong>.</p></div>
+        <div class="tl"><div class="when">403/402 BCE</div><h4>Athens standardises</h4><p>Under the archon Eucleides, Athens officially adopted the 24-letter Ionic alphabet — the same 24 letters used today.</p></div>
+        <div class="tl"><div class="when">c. 200 BCE</div><h4>Accent marks invented</h4><p>Scholars in Alexandria, traditionally Aristophanes of Byzantium, introduced accents and breathings to help readers pronounce Homer.</p></div>
+        <div class="tl"><div class="when">9th–10th c. CE</div><h4>Lowercase &amp; Cyrillic</h4><p>Byzantine scribes developed the fast minuscule hand that became our lowercase letters. In the First Bulgarian Empire, followers of Saints Cyril and Methodius built the <strong>Cyrillic</strong> script largely on Greek uncial letters.</p></div>
+        <div class="tl"><div class="when">1976 / 1982</div><h4>Modern reforms</h4><p>Demotic (everyday) Greek became the official language in 1976, and in 1982 the <em>monotonic</em> system replaced the old accents with a single stress mark, the <span class="gr">τόνος</span>.</p></div>
+      </div>
+      <div class="reveal">
+        <div class="card" style="margin-bottom:20px">
+          <h3>Why learn the alphabet first?</h3>
+          <ul>
+            <li><strong>It's small and it's phonetic.</strong> 24 letters plus about a dozen letter pairs. Once you know them, you can read almost any word aloud correctly.</li>
+            <li><strong>Stress is written for you.</strong> Every word of more than one syllable carries an accent mark showing which syllable to stress.</li>
+            <li><strong>You already know a third of it.</strong> Α, Β, Ε, Ζ, Ι, Κ, Μ, Ν, Ο, Τ, Χ look familiar, and π, Σ, Δ, Ω, μ appear in maths and science.</li>
+            <li><strong>Transliteration is a trap.</strong> Greek has no single standard way to write it in Latin letters. Reading the real script from day one saves you from unlearning later.</li>
+            <li><strong>Instant rewards.</strong> Shop signs, street names, menus and thousands of English cognates (<span class="gr">τηλέφωνο, μουσική, κέντρο</span>) open up straight away.</li>
+          </ul>
+        </div>
+        <div class="note blue"><strong>Modern or Ancient?</strong> This page teaches <strong>Modern Greek</strong> first — the living language — and switches to Ancient &amp; Koine pronunciation whenever you flip the toggle. A dedicated <a href="#ancient">Ancient &amp; Koine section</a> covers polytonic accents, Homer and the New Testament.</div>
+      </div>
+    </div>
+
+    <h3 style="margin-top:40px">Your study roadmap</h3>
+    <div class="roadmap reveal" style="margin-top:22px">
+      <div class="step"><div class="dur">Days 1–3</div><h4>The alphabet</h4><p>Learn the letters with the picture mnemonics, then drill the false friends.</p></div>
+      <div class="step"><div class="dur">Days 4–7</div><h4>Letter pairs &amp; stress</h4><p>Learn ου, αι, ει, οι, μπ, ντ, γκ and the τόνος. Read 50 real words aloud.</p></div>
+      <div class="step"><div class="dur">Weeks 2–4</div><h4>Survival kit</h4><p>Greetings, numbers, café and travel phrases. Speak them aloud every day.</p></div>
+      <div class="step"><div class="dur">Months 2–3</div><h4>Grammar core</h4><p>Genders, articles, the four cases, είμαι, and present-tense verbs.</p></div>
+      <div class="step"><div class="dur">Month 4+</div><h4>A1 → A2 → B1</h4><p>Graded readers, podcasts, ERT news, conversation partners, an Ellinomatheia exam.</p></div>
+    </div>
+  </div>
+</section>
+<div class="wrap"><div class="meander thin" aria-hidden="true"></div></div>
+
+<!-- ============ ALPHABET ============ -->
+<section class="sec" id="alphabet" data-track>
+  <div class="wrap">
+    <div class="eyebrow">02 · The alphabet <span class="gr">Το αλφάβητο</span></div>
+    <h2>24 letters, 24 pictures</h2>
+    <p class="lead">Tap a card to flip it and see its mnemonic. Cards with a <span style="color:var(--terra);font-weight:700">terracotta</span> stripe are <strong>false friends</strong>: they look like English letters but sound different. The speaker reads the letter's name and the <em>i</em> button opens full details.</p>
+    <div class="toolbar">
+      <span class="lbl" id="caseLbl">Case</span>
+      <div class="seg" role="group" aria-labelledby="caseLbl" id="caseSeg">
+        <button data-case="both" aria-pressed="true">Αα Both</button>
+        <button data-case="upper" aria-pressed="false">Α Upper</button>
+        <button data-case="lower" aria-pressed="false">α Lower</button>
+      </div>
+      <span class="lbl" id="pronLbl">Pronunciation</span>
+      <div class="seg" role="group" aria-labelledby="pronLbl" id="pronSeg">
+        <button data-pron="modern" aria-pressed="true">Modern</button>
+        <button data-pron="ancient" aria-pressed="false">Ancient (reconstructed)</button>
+      </div>
+      <button class="btn sm ghost" id="flipAll">Flip all</button>
+    </div>
+    <div class="note terra voice-note" id="voiceNote" role="status"></div>
+    <ul class="abc" id="abc" aria-label="Greek alphabet cards"></ul>
+
+    <h3 style="margin-top:56px">How to write them: stroke order</h3>
+    <p class="muted">Watch α β γ δ ε being drawn (tap any of them to replay). The orange dot marks where to start. Every other letter has a numbered stroke hint in its details (the <em>i</em> button).</p>
+    <div class="strokes" id="strokes"></div>
+  </div>
+</section>
+
+<!-- ============ CONFUSING ============ -->
+<section class="sec" id="confusing" data-track>
+  <div class="wrap">
+    <div class="eyebrow">03 · False friends <span class="gr">Ψεύτικοι φίλοι</span></div>
+    <h2>Letters that will try to trick you</h2>
+    <p class="lead">Your English-reading brain will autocorrect these. Learn them as a set, and look for the small differences in shape.</p>
+    <div class="conf" id="conf"></div>
+  </div>
+</section>
+
+<!-- ============ EVOLUTION ============ -->
+<section class="sec" id="evolution" data-track>
+  <div class="wrap">
+    <div class="eyebrow">04 · Family tree <span class="gr">Η εξέλιξη</span></div>
+    <h2>From Phoenician to Latin &amp; Cyrillic</h2>
+    <p class="lead">Every Greek letter and where it came from and went. Φ, Χ, Ψ and Ω were Greek additions with no Phoenician parent. Cyrillic letters marked archaic dropped out of modern Russian or Bulgarian spelling.</p>
+    <div class="evo-legend"><span style="color:var(--olive)">Phoenician (c. 1000 BCE)</span><span style="color:var(--sea-deep)">Greek</span><span style="color:var(--terra)">Latin</span><span style="color:var(--gold)">Cyrillic</span></div>
+    <div class="card tbl-wrap" style="margin-top:14px;padding:8px">
+      <table class="evo" id="evo">
+        <thead><tr><th>Phoenician</th><th aria-hidden="true"></th><th>Greek</th><th aria-hidden="true"></th><th>Latin</th><th>Cyrillic</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <div class="note" style="margin-top:18px"><strong>Lost letters.</strong> Early Greek also had <span class="gr">Ϝ</span> <em>digamma</em> (a “w” sound, from wāw), which became Latin <strong>F</strong>; <span class="gr">Ϙ</span> <em>koppa</em> (from qōp), which became Latin <strong>Q</strong>; and <span class="gr">Ϻ</span> <em>san</em> (from ṣādē). Koppa, <span class="gr">ϡ</span> <em>sampi</em> and <span class="gr">ϛ</span> <em>stigma</em> survive only as numerals (90, 900 and 6). See the <a href="#numbers">numerals bonus</a>.</div>
+  </div>
+</section>
+<div class="wrap"><div class="meander thin" aria-hidden="true"></div></div>
+
+<!-- ============ SOUNDS ============ -->
+<section class="sec" id="sounds" data-track>
+  <div class="wrap">
+    <div class="eyebrow">05 · Sounds <span class="gr">Οι ήχοι</span></div>
+    <h2>Letter pairs, stress &amp; pronunciation</h2>
+    <p class="lead">Modern Greek spelling preserves ancient spelling, so several letter pairs (digraphs) stand for a single sound. Learn these and you can read nearly anything aloud.</p>
+
+    <h3 style="margin-top:30px">Vowel pairs</h3>
+    <div class="dg" id="dgVowels"></div>
+    <div class="card" style="margin-top:18px">
+      <h3>The αυ / ευ rule</h3>
+      <p>In αυ and ευ, the υ turns into a consonant:</p>
+      <ul>
+        <li><strong>av / ev</strong> before a vowel or a voiced consonant (β γ δ ζ λ μ ν ρ): <span class="gr">αυγό</span> <span class="tr">avghó</span> “egg”, <span class="gr">Ευρώπη</span> <span class="tr">Evrópi</span> “Europe”.</li>
+        <li><strong>af / ef</strong> before a voiceless consonant (θ κ ξ π σ τ φ χ ψ) or at the end of a word: <span class="gr">αυτό</span> <span class="tr">aftó</span> “this”, <span class="gr">ευχαριστώ</span> <span class="tr">efharistó</span> “thank you”.</li>
+        <li>With a diaeresis or an accent on the α/ε, the letters are read separately: <span class="gr">άυλος</span> <span class="tr">áilos</span> “immaterial”.</li>
+      </ul>
+    </div>
+
+    <h3 style="margin-top:34px">Consonant pairs</h3>
+    <div class="dg" id="dgCons"></div>
+
+    <h3 style="margin-top:44px">Six ways to write “ee”</h3>
+    <p class="muted">Ancient Greek had six different sounds here. Over the centuries they all merged into one [i] — but the spellings stayed. (Modern Greek also has two ways to write “o” (ο, ω) and two ways to write “e” (ε, αι).)</p>
+    <div class="six reveal" aria-label="Six spellings of the i sound">
+      <div class="six-row" id="sixRow"></div>
+      <svg class="six-lines" viewBox="0 0 600 70" preserveAspectRatio="none" aria-hidden="true" id="sixLines"></svg>
+      <div class="six-target">[i] — “ee” as in <em>see</em><small>one sound, six spellings: ι · η · υ · ει · οι · υι</small></div>
+    </div>
+
+    <h3 style="margin-top:50px">Stress: the τόνος and the diaeresis</h3>
+    <div class="grid g2">
+      <div class="card">
+        <p>Every Modern Greek word of two or more syllables has exactly one stressed syllable, marked with the <strong>τόνος</strong> (´) on its vowel: <span class="gr">καλημέρα</span> <span class="tr">kaliméra</span>. One-syllable words usually go without it, except a few that would otherwise be confused: <span class="gr">ή</span> “or” vs <span class="gr">η</span> “the”, and <span class="gr">πού;</span> “where?” vs <span class="gr">που</span> “that/which”. On capitals the mark sits to the upper left (<span class="gr">Άννα</span>), and ALL-CAPS text usually drops it.</p>
+        <p>Stress changes meaning. Listen:</p>
+        <div class="stress-demo" id="stressDemo"></div>
+      </div>
+      <div class="card">
+        <p>The <strong>diaeresis</strong> (¨, <span class="gr">διαλυτικά</span>) tells you to read two vowels <em>separately</em> rather than as a pair:</p>
+        <table>
+          <tbody>
+            <tr><td class="gr" style="font-size:1.3rem">και</td><td><span class="tr">ke</span> — “and” (αι = e)</td><td><button class="say" data-say="και" aria-label="Listen: και"></button></td></tr>
+            <tr><td class="gr" style="font-size:1.3rem">παϊδάκια</td><td><span class="tr">pa-i-dhákia</span> — lamb chops (α + ϊ)</td><td><button class="say" data-say="παϊδάκια" aria-label="Listen: παϊδάκια"></button></td></tr>
+            <tr><td class="gr" style="font-size:1.3rem">κοροϊδεύω</td><td><span class="tr">koro-i-dhévo</span> — I tease</td><td><button class="say" data-say="κοροϊδεύω" aria-label="Listen: κοροϊδεύω"></button></td></tr>
+            <tr><td class="gr" style="font-size:1.3rem">πρωτεΐνη</td><td><span class="tr">prote-íni</span> — protein (ΐ = stress + diaeresis)</td><td><button class="say" data-say="πρωτεΐνη" aria-label="Listen: πρωτεΐνη"></button></td></tr>
+            <tr><td class="gr" style="font-size:1.3rem">τσάι</td><td><span class="tr">tsá-i</span> — tea (the accent on α already splits the pair, so no ¨ is needed)</td><td><button class="say" data-say="τσάι" aria-label="Listen: τσάι"></button></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <h3 style="margin-top:44px">Pronunciation guide</h3>
+    <div class="grid g3">
+      <div class="card"><h4>Five pure vowels</h4><p>Greek has just five vowel sounds: <strong>a</strong> (father), <strong>e</strong> (met), <strong>i</strong> (see), <strong>o</strong> (or, short), <strong>u</strong> (moon). They never glide like English “oh-oo” and never weaken to “uh”, even unstressed. <span class="gr">Αθήνα</span> is <span class="tr">a-THÍ-na</span>, never “uh-THEE-nuh”.</p></div>
+      <div class="card"><h4>Throaty consonants</h4><p><span class="gr">γ</span> is a voiced gargle “gh” (like a soft French r) before a, o, u and consonants, and “y” before e/i sounds: <span class="gr">γάλα</span> <span class="tr">ghála</span>, <span class="gr">γεια</span> <span class="tr">ya</span>. <span class="gr">χ</span> is the “kh” of <em>loch</em>, softening to the <em>h</em> of <em>huge</em> before e/i: <span class="gr">χέρι</span> <span class="tr">héri</span>.</p></div>
+      <div class="card"><h4>Two different “th”s</h4><p><span class="gr">θ</span> = <em>th</em>ink (voiceless) and <span class="gr">δ</span> = <em>th</em>is (voiced). Contrast <span class="gr">θέμα</span> <span class="tr">théma</span> “topic” with <span class="gr">δέμα</span> <span class="tr">dhéma</span> “parcel”.</p></div>
+      <div class="card"><h4>Tapped r, crisp stops</h4><p><span class="gr">ρ</span> is a quick tongue tap like Spanish <em>pero</em> (rolled when doubled or for emphasis). <span class="gr">π, τ, κ</span> are unaspirated, with no puff of air, as in English <em>spin, stop, skin</em>.</p></div>
+      <div class="card"><h4>Double letters are single</h4><p><span class="gr">θάλασσα</span> is <span class="tr">thálasa</span> and <span class="gr">Άννα</span> is <span class="tr">Ána</span>. (Cypriot Greek does lengthen doubled consonants.)</p></div>
+      <div class="card"><h4>Little assimilations</h4><p><span class="gr">σ</span> becomes [z] before voiced consonants: <span class="gr">κόσμος</span> <span class="tr">kózmos</span> “world”. A final ν blends with a following π/τ/κ: <span class="gr">τον πατέρα</span> → <span class="tr">tom batéra</span>. <span class="gr">κ, γ, χ, λ, ν</span> soften (palatalise) before i/e sounds: <span class="gr">ήλιος</span> ≈ <span class="tr">ílyos</span>.</p></div>
+    </div>
+    <p class="small muted" style="margin-top:14px">Transliteration on this page: <em>dh</em> = δ (this), <em>th</em> = θ (think), <em>gh</em> = γ (gargled), <em>h</em> = χ (throaty), <em>y</em> = γ before e/i, <em>á é í ó ú</em> = stressed vowel.</p>
+  </div>
+</section>
+<div class="wrap"><div class="meander thin" aria-hidden="true"></div></div>
+
+<!-- ============ PRACTICE ============ -->
+<section class="sec" id="practice" data-track>
+  <div class="wrap">
+    <div class="eyebrow">06 · Practice <span class="gr">Εξάσκηση</span></div>
+    <h2>Quiz &amp; flashcards</h2>
+    <p class="lead">Letters you miss come back more often until they stick. Your progress is saved in this browser. Keyboard: <kbd>1</kbd>–<kbd>4</kbd> to answer, <kbd>Enter</kbd> for the next question, <kbd>Space</kbd> to flip a flashcard.</p>
+
+    <div class="card dash reveal" style="margin-top:24px">
+      <div class="ring" role="img" id="ringWrap" aria-label="Letters mastered">
+        <svg viewBox="0 0 120 120" aria-hidden="true">
+          <defs><linearGradient id="ringGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#6b7a3a"/><stop offset=".5" stop-color="#c9a227"/><stop offset="1" stop-color="#c8643b"/></linearGradient></defs>
+          <circle class="bg" cx="60" cy="60" r="54"/>
+          <circle class="fg" id="ringFg" cx="60" cy="60" r="54"/>
+        </svg>
+        <div class="inner"><div><div class="pct" id="ringPct">0/24</div><div class="cap">letters mastered</div></div></div>
+      </div>
+      <div class="bars">
+        <div class="bar"><div class="t"><span>Quiz accuracy</span><span id="accTxt">—</span></div><div class="track"><div class="fill" id="accBar"></div></div></div>
+        <div class="bar"><div class="t"><span>Letters seen</span><span id="seenTxt">0 / 24</span></div><div class="track"><div class="fill b2" id="seenBar"></div></div></div>
+        <div class="bar"><div class="t"><span>Sections explored</span><span id="secTxt">0</span></div><div class="track"><div class="fill b3" id="secBar"></div></div></div>
+        <div class="mgrid" id="mgrid" aria-label="Mastery per letter"></div>
+        <div class="legend"><span><i style="background:var(--bg2)"></i>not yet</span><span><i style="background:var(--terra-soft)"></i>needs work</span><span><i style="background:var(--gold-soft)"></i>learning</span><span><i style="background:var(--olive)"></i>mastered (3+ right, ≥75%)</span></div>
+      </div>
+    </div>
+
+    <div class="card quiz">
+      <div class="qmodes seg" role="tablist" aria-label="Quiz mode" id="qmodes">
+        <button role="tab" data-mode="l2s" aria-selected="true">Letter → sound</button>
+        <button role="tab" data-mode="s2l" aria-selected="false">Sound → letter</button>
+        <button role="tab" data-mode="type" aria-selected="false">Type the name</button>
+        <button role="tab" data-mode="flash" aria-selected="false">Flashcards</button>
+        <button role="tab" data-mode="word" aria-selected="false">Read the word</button>
+      </div>
+      <div class="qstats">
+        <div class="qstat"><b id="sScore">0</b><span>Correct</span></div>
+        <div class="qstat"><b id="sTotal">0</b><span>Answered</span></div>
+        <div class="qstat streak"><b id="sStreak">0</b><span>Streak</span></div>
+        <div class="qstat"><b id="sBest">0</b><span>Best streak</span></div>
+      </div>
+      <div class="qbox" id="qbox" aria-live="polite"></div>
+      <div class="missed" id="missed"></div>
+      <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap;justify-content:space-between;align-items:center">
+        <span class="small muted">Quiz uses the case &amp; pronunciation settings from the alphabet chart (currently: <strong id="qSettings">both cases · Modern</strong>).</span>
+        <button class="btn sm ghost" id="resetBtn">Reset progress</button>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="wrap"><div class="meander thin" aria-hidden="true"></div></div>
+
+<!-- ============ GRAMMAR ============ -->
+<section class="sec" id="grammar" data-track>
+  <div class="wrap">
+    <div class="eyebrow">07 · Grammar primer <span class="gr">Γραμματική</span></div>
+    <h2>The essentials, gently</h2>
+    <p class="lead">Greek grammar has a reputation, but the core is very regular. Nouns have a gender and change their endings by case, and verbs change their endings by person. That's why Greek can drop subject pronouns and shuffle word order freely.</p>
+
+    <h3 style="margin-top:30px">Three genders, three articles</h3>
+    <div class="gen">
+      <div class="card"><div class="art2 gr">ο</div><h4>Masculine</h4><p class="small">Often ends in <b>-ος, -ας, -ης</b>:<br><span class="gr">ο δρόμος</span> the road · <span class="gr">ο πατέρας</span> the father · <span class="gr">ο μαθητής</span> the pupil</p></div>
+      <div class="card f"><div class="art2 gr">η</div><h4>Feminine</h4><p class="small">Often ends in <b>-α, -η</b>:<br><span class="gr">η θάλασσα</span> the sea · <span class="gr">η πόλη</span> the city · <span class="gr">η μητέρα</span> the mother</p></div>
+      <div class="card n"><div class="art2 gr">το</div><h4>Neuter</h4><p class="small">Often ends in <b>-ο, -ι, -μα</b>:<br><span class="gr">το βουνό</span> the mountain · <span class="gr">το παιδί</span> the child · <span class="gr">το γράμμα</span> the letter</p></div>
+    </div>
+    <p class="small muted" style="margin-top:10px">Gender is grammatical, not logical (<span class="gr">το κορίτσι</span> “the girl” is neuter), and there are exceptions such as feminine <span class="gr">η οδός</span> “the street”. Always learn a noun together with its article. Indefinite article: <span class="gr">ένας / μία (μια) / ένα</span> “a/one”.</p>
+
+    <h3 style="margin-top:34px">The four cases</h3>
+    <div class="grid g4">
+      <div class="card"><h4 style="color:var(--sea)">Nominative</h4><p class="small">The subject. <span class="gr"><b>Ο φίλος</b> είναι εδώ.</span> “The friend is here.”</p></div>
+      <div class="card"><h4 style="color:var(--olive)">Genitive</h4><p class="small">Possession (“of”), and unstressed pronouns for “to him/her”. <span class="gr">το σπίτι <b>του φίλου</b></span> “the friend's house”.</p></div>
+      <div class="card"><h4 style="color:var(--terra)">Accusative</h4><p class="small">The direct object, and after most prepositions. <span class="gr">Βλέπω <b>τον φίλο</b>.</span> “I see the friend.”</p></div>
+      <div class="card"><h4 style="color:var(--gold)">Vocative</h4><p class="small">Calling or addressing someone. <span class="gr"><b>Φίλε</b>, έλα!</span> “Friend, come!” · <span class="gr">Νίκο!</span></p></div>
+    </div>
+
+    <div class="card tbl-wrap" style="margin-top:20px">
+      <h3>Articles + declension of three model nouns</h3>
+      <table class="decl">
+        <thead><tr><th></th><th>Masc. <span class="gr" style="text-transform:none">ο φίλος</span> (friend)</th><th>Fem. <span class="gr" style="text-transform:none">η θάλασσα</span> (sea)</th><th>Neut. <span class="gr" style="text-transform:none">το παιδί</span> (child)</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Nom. sg.</th><td class="gr">ο φίλ<span class="end">ος</span></td><td class="gr">η θάλασσ<span class="end">α</span></td><td class="gr">το παιδ<span class="end">ί</span></td></tr>
+          <tr><th scope="row">Gen. sg.</th><td class="gr">του φίλ<span class="end">ου</span></td><td class="gr">της θάλασσ<span class="end">ας</span></td><td class="gr">του παιδ<span class="end">ιού</span></td></tr>
+          <tr><th scope="row">Acc. sg.</th><td class="gr">τον φίλ<span class="end">ο</span></td><td class="gr">τη(ν) θάλασσ<span class="end">α</span></td><td class="gr">το παιδ<span class="end">ί</span></td></tr>
+          <tr><th scope="row">Voc. sg.</th><td class="gr">φίλ<span class="end">ε</span></td><td class="gr">θάλασσ<span class="end">α</span></td><td class="gr">παιδ<span class="end">ί</span></td></tr>
+          <tr><th scope="row">Nom. pl.</th><td class="gr">οι φίλ<span class="end">οι</span></td><td class="gr">οι θάλασσ<span class="end">ες</span></td><td class="gr">τα παιδ<span class="end">ιά</span></td></tr>
+          <tr><th scope="row">Gen. pl.</th><td class="gr">των φίλ<span class="end">ων</span></td><td class="gr">των θαλασσ<span class="end">ών</span></td><td class="gr">των παιδ<span class="end">ιών</span></td></tr>
+          <tr><th scope="row">Acc. pl.</th><td class="gr">τους φίλ<span class="end">ους</span></td><td class="gr">τις θάλασσ<span class="end">ες</span></td><td class="gr">τα παιδ<span class="end">ιά</span></td></tr>
+          <tr><th scope="row">Voc. pl.</th><td class="gr">φίλ<span class="end">οι</span></td><td class="gr">θάλασσ<span class="end">ες</span></td><td class="gr">παιδ<span class="end">ιά</span></td></tr>
+        </tbody>
+      </table>
+      <p class="small muted" style="margin-top:10px">Notice how the stress moves in <span class="gr">θαλασσών</span> and <span class="gr">παιδιού</span>. The final ν of <span class="gr">τη(ν)</span> stays before vowels and before κ, π, τ, ξ, ψ, μπ, ντ, γκ, τσ, τζ.</p>
+    </div>
+
+    <div class="grid g3" style="margin-top:20px">
+      <div class="card tbl-wrap">
+        <h3><span class="gr">είμαι</span> — to be</h3>
+        <table class="conj"><tbody>
+          <tr><td class="gr">(εγώ) είμαι</td><td class="tr">íme</td><td>I am</td></tr>
+          <tr><td class="gr">(εσύ) είσαι</td><td class="tr">íse</td><td>you are</td></tr>
+          <tr><td class="gr">(αυτός/ή/ό) είναι</td><td class="tr">íne</td><td>he/she/it is</td></tr>
+          <tr><td class="gr">(εμείς) είμαστε</td><td class="tr">ímaste</td><td>we are</td></tr>
+          <tr><td class="gr">(εσείς) είστε</td><td class="tr">íste</td><td>you (pl./formal) are</td></tr>
+          <tr><td class="gr">(αυτοί/ές/ά) είναι</td><td class="tr">íne</td><td>they are</td></tr>
+        </tbody></table>
+        <p class="small muted">Irregular. <span class="gr">είσαστε</span> is a common variant of <span class="gr">είστε</span>.</p>
+      </div>
+      <div class="card tbl-wrap">
+        <h3><span class="gr">γράφω</span> — I write</h3>
+        <table class="conj"><tbody>
+          <tr><td class="gr">γράφ<span class="end">ω</span></td><td class="tr">gráfo</td><td>I write</td></tr>
+          <tr><td class="gr">γράφ<span class="end">εις</span></td><td class="tr">gráfis</td><td>you write</td></tr>
+          <tr><td class="gr">γράφ<span class="end">ει</span></td><td class="tr">gráfi</td><td>he/she writes</td></tr>
+          <tr><td class="gr">γράφ<span class="end">ουμε</span></td><td class="tr">gráfume</td><td>we write</td></tr>
+          <tr><td class="gr">γράφ<span class="end">ετε</span></td><td class="tr">gráfete</td><td>you (pl.) write</td></tr>
+          <tr><td class="gr">γράφ<span class="end">ουν(ε)</span></td><td class="tr">gráfun(e)</td><td>they write</td></tr>
+        </tbody></table>
+        <p class="small muted">Type A (stress on the stem). Same pattern: <span class="gr">έχω, θέλω, πίνω, ξέρω</span>.</p>
+      </div>
+      <div class="card tbl-wrap">
+        <h3><span class="gr">μιλάω</span> — I speak</h3>
+        <table class="conj"><tbody>
+          <tr><td class="gr">μιλ<span class="end">άω</span> / μιλ<span class="end">ώ</span></td><td class="tr">miláo</td><td>I speak</td></tr>
+          <tr><td class="gr">μιλ<span class="end">άς</span></td><td class="tr">milás</td><td>you speak</td></tr>
+          <tr><td class="gr">μιλ<span class="end">άει</span> / μιλ<span class="end">ά</span></td><td class="tr">milái</td><td>he/she speaks</td></tr>
+          <tr><td class="gr">μιλ<span class="end">άμε</span></td><td class="tr">miláme</td><td>we speak</td></tr>
+          <tr><td class="gr">μιλ<span class="end">άτε</span></td><td class="tr">miláte</td><td>you (pl.) speak</td></tr>
+          <tr><td class="gr">μιλ<span class="end">άνε</span> / μιλ<span class="end">ούν</span></td><td class="tr">miláne</td><td>they speak</td></tr>
+        </tbody></table>
+        <p class="small muted">Type B1 (stress on the ending). Same pattern: <span class="gr">αγαπάω, ρωτάω, περνάω</span>.</p>
+      </div>
+    </div>
+
+    <h3 style="margin-top:40px">Word order: why Greek can shuffle and English can't</h3>
+    <div class="card">
+      <div class="wo" id="wo">
+        <div class="wo-row"><span class="wo-lab">English</span><div class="wo-blocks" id="woEn"></div><span class="wo-mean" id="woEnMean"></span></div>
+        <div class="wo-row"><span class="wo-lab">Greek</span><div class="wo-blocks" id="woGr"></div><span class="wo-mean good" id="woGrMean"></span></div>
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:16px">
+        <button class="btn sm" id="woSwap">⇄ Swap the word order</button>
+        <button class="say" data-say="Ο σκύλος δαγκώνει τον άνθρωπο." id="woSay" aria-label="Listen to the Greek sentence"></button>
+        <span class="small muted">In English, <em>position</em> shows who does what. In Greek, the <strong style="color:var(--sea)">nominative</strong> (<span class="gr">ο σκύλος</span>) and <strong style="color:var(--terra)">accusative</strong> (<span class="gr">τον άνθρωπο</span>) endings carry that information, so the meaning survives any order. Subject–verb–object is still the neutral default.</span>
+      </div>
+      <div class="grid g2" style="margin-top:18px">
+        <div class="note blue" style="margin:0"><strong>Questions use <span class="gr">;</span></strong> — the Greek question mark looks like an English semicolon. <span class="gr">Μιλάς ελληνικά;</span> <span class="tr">Milás eliniká?</span> “Do you speak Greek?” Same word order as the statement; only the rising intonation changes. The Greek semicolon is a raised dot: <span class="gr">·</span></div>
+        <div class="note" style="margin:0"><strong>Subjects are optional.</strong> The verb ending already says who: <span class="gr">Μιλάω ελληνικά.</span> “I speak Greek.” Negate with <span class="gr">δεν</span>: <span class="gr">Δεν μιλάω ελληνικά.</span> “I don't speak Greek.”</div>
+      </div>
+    </div>
+
+    <h3 style="margin-top:40px">Anatomy of a real sentence</h3>
+    <div class="card" style="text-align:center">
+      <div class="sent" id="sent"></div>
+      <div class="rolekey" id="roleKey"></div>
+      <p style="margin:14px 0 0"><strong>“Nikos writes a letter to his mother.”</strong> <button class="say" data-say="Ο Νίκος γράφει ένα γράμμα στη μητέρα του." aria-label="Listen to the sentence"></button></p>
+      <div class="tokinfo note blue" id="tokInfo" style="text-align:left">Tap a word to see its grammar. The <span style="color:var(--terra);text-decoration:underline">underlined</span> syllable carries the stress.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ NUMBERS ============ -->
+<section class="sec" id="numbers" data-track>
+  <div class="wrap">
+    <div class="eyebrow">08 · Numbers <span class="gr">Οι αριθμοί</span></div>
+    <h2>Counting in Greek</h2>
+    <p class="lead">1, 3 and 4 change with gender (<span class="gr">ένας/μία/ένα, τρεις/τρία, τέσσερις/τέσσερα</span>). The neuter form, used for counting, is shown here. Where two forms exist (<span class="gr">επτά/εφτά</span>), both are correct.</p>
+    <div class="nums" id="nums"></div>
+    <h3 style="margin-top:30px">Tens and beyond</h3>
+    <div class="nums" id="tens"></div>
+
+    <div class="card" style="margin-top:30px">
+      <h3>Bonus: the Greek alphabetic numerals</h3>
+      <p>Before Arabic numerals, Greeks wrote numbers with letters followed by a keraia (<span class="gr">ʹ</span>). You still see them for book chapters, school grades, kings and popes: <span class="gr">Αʹ Λυκείου</span> (first year of upper secondary school), <span class="gr">Κωνσταντίνος Βʹ</span> (Constantine II). Thousands take a low mark in front: <span class="gr">͵α</span> = 1000.</p>
+      <div class="grid g2" style="align-items:center">
+        <div class="tbl-wrap"><table class="numeral-tbl" id="numeralTbl"></table></div>
+        <div style="text-align:center">
+          <label for="numIn" class="small muted">Type a number (1–9999):</label>
+          <div class="decode" style="justify-content:center"><input id="numIn" type="number" min="1" max="9999" value="2026" style="max-width:160px;text-align:center"></div>
+          <div class="numeral-out" id="numOut" aria-live="polite"></div>
+          <div class="small muted" id="numExplain"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="wrap"><div class="meander thin" aria-hidden="true"></div></div>
+
+<!-- ============ VOCAB & PHRASES ============ -->
+<section class="sec" id="vocab" data-track>
+  <div class="wrap">
+    <div class="eyebrow">09 · Words &amp; phrases <span class="gr">Λέξεις &amp; φράσεις</span></div>
+    <h2>55 everyday words</h2>
+    <p class="lead">A core vocabulary grouped by topic. Tap the speaker to hear each one, and say it back.</p>
+    <div class="tabs seg" role="tablist" id="wordTabs" aria-label="Word topics"></div>
+    <div class="words" id="words" role="tabpanel"></div>
+
+    <h2 style="margin-top:56px">Essential phrases</h2>
+    <p class="lead">Polite, practical and ready for your first trip.</p>
+    <div class="tabs seg" role="tablist" id="phraseTabs" aria-label="Phrase topics"></div>
+    <div class="phr" id="phrases" role="tabpanel"></div>
+    <p class="small muted" style="margin-top:12px"><span class="gr">εσύ</span> (informal “you”) vs <span class="gr">εσείς</span> (plural or polite “you”): use <span class="gr">εσείς</span> forms with strangers, shopkeepers and older people. That's why “hello” has two versions, <span class="gr">γεια σου</span> and <span class="gr">γεια σας</span>.</p>
+  </div>
+</section>
+
+<!-- ============ ROOTS ============ -->
+<section class="sec" id="roots" data-track>
+  <div class="wrap">
+    <div class="eyebrow">10 · Hidden Greek <span class="gr">Ρίζες</span></div>
+    <h2>English is full of Greek roots</h2>
+    <p class="lead">Thousands of English words — especially in science, medicine and philosophy — are built from Greek pieces. Pick a root to explore its family, or type any English word to decode it.</p>
+    <div class="roots" id="rootBtns" role="group" aria-label="Greek roots"></div>
+    <div class="rootpanel card" id="rootPanel" aria-live="polite"></div>
+    <div class="card" style="margin-top:16px">
+      <label for="decodeIn"><strong>Decode a word</strong> <span class="muted small">— try <em>philosophy, chronometer, telepathy, hydrophobia, autobiography</em></span></label>
+      <div class="decode"><input id="decodeIn" type="text" placeholder="e.g. microphone" autocomplete="off" spellcheck="false"><button class="btn sm" id="decodeBtn">Decode</button></div>
+      <div class="decode-out" id="decodeOut" aria-live="polite"></div>
+    </div>
+  </div>
+</section>
+<div class="wrap"><div class="meander thin" aria-hidden="true"></div></div>
+
+<!-- ============ ANCIENT ============ -->
+<section class="sec" id="ancient" data-track>
+  <div class="wrap">
+    <div class="eyebrow">11 · Ancient &amp; Koine <span class="gr">Αρχαία &amp; Κοινή</span></div>
+    <h2>Reading Homer and the Gospels</h2>
+    <p class="lead">Classical (Attic) Greek is the language of 5th-century BCE Athens. Homer's epic dialect is older, and <em>Koine</em> (“common”) Greek is the international language of the Hellenistic and Roman worlds, used in the New Testament. Same alphabet, but the spelling uses the <strong>polytonic</strong> system and the sound was quite different.</p>
+
+    <h3 style="margin-top:28px">Polytonic marks: accents &amp; breathings</h3>
+    <div class="poly">
+      <div class="card pm"><div class="g">ἀ</div><div class="n">Smooth breathing</div><div class="d">ψιλή — no h-sound. Written on every word beginning with a vowel that lacks an h.</div></div>
+      <div class="card pm"><div class="g">ἁ</div><div class="n">Rough breathing</div><div class="d">δασεῖα — adds an “h”: ἁμαρτία <i>hamartía</i>, ὁ <i>ho</i>. Initial ρ and υ always take it: ῥ, ὑ.</div></div>
+      <div class="card pm"><div class="g">ά</div><div class="n">Acute</div><div class="d">ὀξεῖα — originally a rising pitch.</div></div>
+      <div class="card pm"><div class="g">ὰ</div><div class="n">Grave</div><div class="d">βαρεῖα — replaces a final acute when another word follows: θεὰ, καὶ.</div></div>
+      <div class="card pm"><div class="g">ᾶ</div><div class="n">Circumflex</div><div class="d">περισπωμένη — rise-and-fall pitch, on long vowels and diphthongs only: ῆ, ῶ.</div></div>
+      <div class="card pm"><div class="g">ᾳ</div><div class="n">Iota subscript</div><div class="d">ὑπογεγραμμένη — a silent “little iota” under ᾳ ῃ ῳ: ἀρχῇ.</div></div>
+      <div class="card pm"><div class="g">ἄ ἅ ῆ</div><div class="n">Combined</div><div class="d">A breathing goes before or under the accent: ἄ ἅ ἂ ἃ ἆ ἇ ᾄ.</div></div>
+      <div class="card pm"><div class="g">ϊ ΐ</div><div class="n">Diaeresis</div><div class="d">διαλυτικά — read the vowels separately: Πηληϊάδεω.</div></div>
+    </div>
+
+    <div class="card" style="margin-top:20px">
+      <h3>Build a polytonic character</h3>
+      <div class="builder">
+        <div id="builder">
+          <fieldset><legend>Letter</legend><div class="opts" data-group="base"></div></fieldset>
+          <fieldset><legend>Breathing</legend><div class="opts" data-group="br"></div></fieldset>
+          <fieldset><legend>Accent</legend><div class="opts" data-group="ac"></div></fieldset>
+          <fieldset><legend>Extra</legend><div class="opts" data-group="sub"></div></fieldset>
+        </div>
+        <div class="bout"><div class="g" id="bOut" aria-live="polite">ἄ</div><div class="msg" id="bMsg"></div><div class="small muted" id="bCode"></div></div>
+      </div>
+    </div>
+
+    <h3 style="margin-top:40px">How Ancient pronunciation differed</h3>
+    <div class="card tbl-wrap">
+      <table class="cmp">
+        <thead><tr><th>Spelling</th><th>Classical Attic (reconstructed, c. 400 BCE)</th><th>Erasmian (school)</th><th>Modern</th></tr></thead>
+        <tbody>
+          <tr><td>β γ δ</td><td>[b] [g] [d] — like English b, g, d</td><td>b, g, d</td><td>[v] [ɣ/ʝ] [ð]</td></tr>
+          <tr><td>φ θ χ</td><td>[pʰ] [tʰ] [kʰ] — aspirated stops, like <em>p</em>ot, <em>t</em>op, <em>k</em>it</td><td>f, th, kh (often)</td><td>[f] [θ] [x/ç]</td></tr>
+          <tr><td>ζ</td><td>[zd] as in <em>wisdom</em></td><td>dz or z</td><td>[z]</td></tr>
+          <tr><td>η</td><td>[ɛː] long open e</td><td>ē (as in “hey”)</td><td>[i]</td></tr>
+          <tr><td>υ</td><td>[y] — French <em>u</em>, German <em>ü</em></td><td>ü or u</td><td>[i]</td></tr>
+          <tr><td>ω</td><td>[ɔː] long open o</td><td>ō</td><td>[o]</td></tr>
+          <tr><td>αι οι</td><td>[ai̯] [oi̯] — real diphthongs</td><td>ai, oi</td><td>[e] [i]</td></tr>
+          <tr><td>ει ου</td><td>[eː] [uː] — long monophthongs</td><td>ei, ou</td><td>[i] [u]</td></tr>
+          <tr><td>αυ ευ</td><td>[au̯] [eu̯]</td><td>au, eu</td><td>[av/af] [ev/ef]</td></tr>
+          <tr><td>ἁ (rough)</td><td>[h]</td><td>h</td><td>silent (and not written)</td></tr>
+          <tr><td>accents</td><td>musical <strong>pitch</strong>, plus long vs short vowels</td><td>stress</td><td><strong>stress</strong> only, no vowel length</td></tr>
+        </tbody>
+      </table>
+      <p class="small muted" style="margin-top:10px">Koine sits between the two: by the 1st century CE, αι was already [e], ει and η were moving toward [i], and the pitch accent was turning into stress. The <em>Erasmian</em> system taught in many schools is a scholarly convention, not a native pronunciation. The “Ancient” toggle on the alphabet cards uses the reconstructed Classical values.</p>
+    </div>
+
+    <h3 style="margin-top:40px">Homer, <em>Iliad</em> 1.1–2</h3>
+    <div class="card">
+      <div class="inter" id="iliad"></div>
+      <p><strong>“Sing, goddess, the wrath of Achilles, son of Peleus — the accursed wrath that laid countless woes upon the Achaeans…”</strong></p>
+      <p class="small muted">Epic dialect, about the 8th century BCE. The very first word is <span class="grs">μῆνιν</span>, “wrath”: the theme of the whole poem. The elision mark (’) shows a dropped final vowel, as in μυρί’ for μυρία.</p>
+    </div>
+    <h3 style="margin-top:28px">Gospel of John 1:1 (Koine)</h3>
+    <div class="card">
+      <div class="inter" id="john"></div>
+      <p><strong>“In the beginning was the Word, and the Word was with God, and the Word was God.”</strong></p>
+      <p class="small muted">Notice the grave accents (καὶ, πρὸς, τὸν, θεὸς) where an acute stands before another word, the iota subscript in ἀρχῇ (dative case), and the rough breathing on ὁ “the”. Speak buttons use a Modern Greek voice, which is close to how Greek Orthodox churches read these texts today.</p>
+      <button class="btn sm ghost" data-say="Εν αρχή ην ο λόγος, και ο λόγος ην προς τον θεόν, και θεός ην ο λόγος.">Hear it read with Modern pronunciation</button>
+    </div>
+
+    <h3 style="margin-top:40px">Ancient vs Modern at a glance</h3>
+    <div class="grid g3">
+      <div class="card"><h4>Cases</h4><p class="small">Ancient has five cases including the <strong>dative</strong> (“to/for/with”). Modern has four. The dative survives only in fixed expressions: <span class="gr">εντάξει</span> “OK” (from <span class="grs">ἐν τάξει</span>, “in order”).</p></div>
+      <div class="card"><h4>Verbs</h4><p class="small">Ancient had infinitives, the optative mood and a dual number. Modern Greek uses <span class="gr">να</span> + verb instead of the infinitive (<span class="gr">θέλω να γράψω</span> “I want to write”) and builds the future with <span class="gr">θα</span>.</p></div>
+      <div class="card"><h4>Vocabulary</h4><p class="small">Many everyday words were replaced: water <span class="grs">ὕδωρ</span> → <span class="gr">νερό</span>, bread <span class="grs">ἄρτος</span> → <span class="gr">ψωμί</span>, wine <span class="grs">οἶνος</span> → <span class="gr">κρασί</span>, horse <span class="grs">ἵππος</span> → <span class="gr">άλογο</span>, fish <span class="grs">ἰχθύς</span> → <span class="gr">ψάρι</span>. The old words live on in compounds (<span class="gr">υδραυλικός</span> “plumber”, <span class="gr">ιππόδρομος</span> “racecourse”).</p></div>
+      <div class="card"><h4>Spelling</h4><p class="small">Polytonic (three accents, two breathings, iota subscript) vs monotonic (one <span class="gr">τόνος</span>, since 1982). Spelling is otherwise largely unchanged, so a Modern reader can sound out Plato.</p></div>
+      <div class="card"><h4>Sound</h4><p class="small">Pitch accent became stress, vowel length disappeared, the h-sound vanished, and six vowel spellings merged into [i] (see above).</p></div>
+      <div class="card"><h4>Mutual intelligibility</h4><p class="small">A Modern speaker recognises much of the New Testament, a fair amount of Plato with effort, and Homer only with study, roughly like an English speaker reading the King James Bible, Chaucer and <em>Beowulf</em>.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MAP ============ -->
+<section class="sec" id="where" data-track>
+  <div class="wrap">
+    <div class="eyebrow">12 · Where it's spoken <span class="gr">Πού μιλιέται</span></div>
+    <h2>Greece, Cyprus &amp; a global diaspora</h2>
+    <p class="lead">Greek is the official language of Greece (about 10 million people) and, with Turkish, of the Republic of Cyprus. It's one of the EU's 24 official languages, and a recognised minority language in Albania, Italy, Armenia, Hungary, Romania and Ukraine. Large diaspora communities live in Australia, the USA, Canada, Germany and the UK; Melbourne is often said to have one of the largest Greek-speaking populations outside Greece and Cyprus.</p>
+    <div class="mapwrap">
+      <div class="card map" style="padding:12px">
+        <svg viewBox="0 0 640 400" role="img" aria-label="Map of Greece and Cyprus with major cities and Greek-speaking minority areas" id="mapGR"></svg>
+        <p class="small muted" style="margin:8px 4px 0">Hand-drawn and approximate. Greek-speaking minorities also live in southern Albania and in Griko-speaking villages of Salento and Calabria (southern Italy).</p>
+      </div>
+      <div class="card map" style="padding:12px">
+        <svg viewBox="0 0 720 300" role="img" aria-label="World map with Greek diaspora communities" id="mapW"></svg>
+        <p class="small muted" style="margin:8px 4px 0">Major diaspora hubs (dots pulse). Historic communities also include Istanbul, Alexandria and the Pontic Greeks of the Black Sea.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="wrap"><div class="meander thin" aria-hidden="true"></div></div>
+
+<!-- ============ PLAN / CEFR ============ -->
+<section class="sec" id="plan" data-track>
+  <div class="wrap">
+    <div class="eyebrow">13 · Roadmap <span class="gr">Το πλάνο</span></div>
+    <h2>From A1 to C2</h2>
+    <p class="lead">The Common European Framework (CEFR) defines six levels. Greece's official proficiency exam, the <strong>Certificate of Attainment in Greek</strong> (<span class="gr">Πιστοποίηση Ελληνομάθειας</span>, “Ellinomatheia”), is run by the Centre for the Greek Language for all six. Tap a level for details.</p>
+    <div class="grid" style="grid-template-columns:1.4fr 1fr;align-items:center" id="cefrGrid">
+      <div class="card cefr"><svg viewBox="0 0 620 300" id="cefrSvg" role="img" aria-label="CEFR levels chart from A1 to C2 with approximate study hours"></svg></div>
+      <div class="card cefr-info" id="cefrInfo" aria-live="polite"></div>
+    </div>
+    <p class="small muted" style="margin-top:10px">Hours are rough cumulative guided-learning estimates for English speakers and vary widely. Greek is usually ranked as a moderately hard language for English speakers: the alphabet is quick, but the grammar takes time.</p>
+    <style>@media (max-width:860px){#cefrGrid{grid-template-columns:1fr!important}}</style>
+  </div>
+</section>
+
+<!-- ============ RESOURCES ============ -->
+<section class="sec" id="resources" data-track>
+  <div class="wrap">
+    <div class="eyebrow">14 · Resources <span class="gr">Πηγές</span></div>
+    <h2>Keep going: free &amp; trusted resources</h2>
+    <div class="res" id="res"></div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="meander" aria-hidden="true" style="margin-bottom:26px"></div>
+    <div class="gr">Καλή επιτυχία! <span class="muted" style="font-family:var(--sans);font-size:.9rem">— Good luck!</span></div>
+    <p>A self-contained primer. Progress is stored only in your browser's localStorage. Pronunciation audio uses your device's text-to-speech voices.</p>
+  </div>
+</footer>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+  <div class="box">
+    <button class="iconbtn close" id="mClose" aria-label="Close details"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></button>
+    <div id="mBody"></div>
+  </div>
+</div>
+<div id="toast" role="status" aria-live="polite"></div>
+<canvas id="confetti" aria-hidden="true"></canvas>
+<noscript><div style="position:fixed;bottom:0;left:0;right:0;background:#c8643b;color:#fff;padding:10px;text-align:center">Enable JavaScript for the interactive alphabet, quiz and audio.</div></noscript>
+
+<script>
+(function(){
+'use strict';
+const $=(s,r)=>(r||document).querySelector(s);
+const $$=(s,r)=>Array.from((r||document).querySelectorAll(s));
+const store={get(k,d){try{const v=localStorage.getItem(k);return v==null?d:JSON.parse(v);}catch(e){return d;}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}};
+const reduceMotion=!!(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const SPK='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
+const MUTED='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor"/><path d="M16 9l5 6M21 9l-5 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
+const sayBtn=(text,label)=>`<button class="say" data-say="${esc(text)}" aria-label="Listen: ${esc(label||text)}">${SPK}</button>`;
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+
+/* ---------- toast ---------- */
+let toastT;
+function toast(msg){const t=$('#toast');t.textContent=msg;t.classList.add('show');clearTimeout(toastT);toastT=setTimeout(()=>t.classList.remove('show'),2800);}
+
+/* ---------- theme ---------- */
+const root=document.documentElement;
+let theme=root.getAttribute('data-theme')||'light';
+function applyTheme(t){root.setAttribute('data-theme',t);const b=$('#themeBtn');b.setAttribute('aria-pressed',String(t==='dark'));b.title=t==='dark'?'Switch to light mode':'Switch to dark mode';}
+applyTheme(theme);
+$('#themeBtn').addEventListener('click',()=>{theme=theme==='dark'?'light':'dark';applyTheme(theme);store.set('lg-theme',theme);});
+
+/* ---------- mobile menu ---------- */
+$('#menuBtn').addEventListener('click',()=>{const n=$('#navlinks');const o=n.classList.toggle('open');$('#menuBtn').setAttribute('aria-expanded',String(o));});
+$$('#navlinks a').forEach(a=>a.addEventListener('click',()=>{$('#navlinks').classList.remove('open');$('#menuBtn').setAttribute('aria-expanded','false');}));
+
+/* ---------- speech ---------- */
+const TTS={ok:'speechSynthesis' in window&&typeof window.SpeechSynthesisUtterance==='function',greek:null,muted:store.get('lg-muted',false),checked:false};
+function updateMute(){const b=$('#muteBtn');b.setAttribute('aria-pressed',String(TTS.muted));b.setAttribute('aria-label',TTS.muted?'Unmute pronunciation audio':'Mute pronunciation audio');b.innerHTML=TTS.muted?MUTED:SPK;}
+updateMute();
+$('#muteBtn').addEventListener('click',()=>{TTS.muted=!TTS.muted;store.set('lg-muted',TTS.muted);updateMute();if(TTS.muted&&TTS.ok)speechSynthesis.cancel();toast(TTS.muted?'Audio muted':'Audio on — ήχος ενεργός');});
+function pickVoice(){if(!TTS.ok)return;const vs=speechSynthesis.getVoices()||[];TTS.greek=vs.find(v=>/^el([-_]|$)/i.test(v.lang))||null;}
+function voiceNotice(){
+  const n=$('#voiceNote');
+  if(!TTS.ok){n.innerHTML='<strong>Audio unavailable:</strong> this browser doesn\'t support the Web Speech API. Everything else works; try Chrome, Edge or Safari for pronunciation audio.';n.classList.add('show');return;}
+  if(!TTS.greek){n.innerHTML='<strong>No Greek voice found.</strong> Your browser will still try, but it may read Greek with an English accent. To install one: <em>macOS</em> System Settings → Accessibility → Spoken Content → System Voice → Manage Voices → Greek; <em>Windows</em> Settings → Time &amp; Language → Speech → Add voices → Ελληνικά; <em>Android</em> Settings → Text-to-speech → install Greek; <em>iOS</em> Settings → Accessibility → Spoken Content → Voices → Greek. Then reload this page.';n.classList.add('show');}
+  else n.classList.remove('show');
+}
+if(TTS.ok){pickVoice();speechSynthesis.onvoiceschanged=()=>{pickVoice();if(TTS.checked)voiceNotice();};}
+setTimeout(()=>{pickVoice();TTS.checked=true;voiceNotice();},1600);
+function speak(text,btn){
+  if(TTS.muted){toast('Audio is muted — tap the speaker in the top bar to unmute');return;}
+  if(!TTS.ok){toast('Speech is not supported in this browser');return;}
+  try{
+    speechSynthesis.cancel();
+    const u=new SpeechSynthesisUtterance(text);u.lang='el-GR';if(TTS.greek)u.voice=TTS.greek;u.rate=.82;
+    if(btn){btn.classList.add('speaking');const off=()=>btn.classList.remove('speaking');u.onend=off;u.onerror=off;setTimeout(off,6000);}
+    speechSynthesis.speak(u);
+  }catch(e){toast('Could not play audio');}
+}
+document.addEventListener('click',e=>{const b=e.target.closest('[data-say]');if(b){e.stopPropagation();speak(b.getAttribute('data-say'),b);}});
+$$('button.say').forEach(b=>{if(!b.querySelector('svg'))b.innerHTML=SPK;});
+
+/* ---------- letter data ---------- */
+const P=c=>String.fromCodePoint(c);
+const LETTERS=[
+ {k:'alpha',U:'Α',l:'α',gr:'άλφα',en:'alpha',tr:'a',mod:'a as in “father”',modS:'a',anc:'short or long a, as in “father”',ancS:'a',ipaM:'[a]',ipaA:'[a], [aː]',ex:['αγάπη','aghápi','love'],ph:P(0x10900),phn:'ʾālep · “ox”',lat:'A',cyr:'А',ff:false,artG:'α',art:'<path class="f" d="M16 60 C34 30 78 28 96 60 C78 92 34 90 16 60Z"/><path class="f" d="M94 60 L114 42 L112 78Z"/><circle class="acc" cx="34" cy="54" r="3.5"/><path class="s thin" d="M60 34 C66 46 66 74 60 86"/>',mn:'Capital <b>Α</b> is an A-frame tent or a mountain peak, and it really is an “a”. Lowercase <b>α</b> is a little <b>fish</b> swimming to the left: round body, flicking tail. Picture it gasping “<b>ah!</b>” as it surfaces.',st:'1 stroke: start at the top right, loop left around the bowl, then flick out to the lower right.'},
+ {k:'beta',U:'Β',l:'β',gr:'βήτα',en:'beta',tr:'v',mod:'v as in “vase”',modS:'v',anc:'b as in “bed”',ancS:'b',ipaM:'[v]',ipaA:'[b]',ex:['βιβλίο','vivlío','book'],ph:P(0x10901),phn:'bēt · “house”',lat:'B',cyr:'Б, В',ff:true,artG:'Β',art:'<path class="f" d="M44 14 H76 V26 C76 34 92 42 94 64 C96 90 80 106 60 106 C40 106 24 90 26 64 C28 42 44 34 44 26Z"/><path class="s thin" d="M36 60 C50 66 70 66 84 60"/>',mn:'<b>False friend!</b> Β looks like B, but in Modern Greek it says <b>v</b>. See Β as a <b>vase</b> from the side, belly bulging twice. The Greek word for vase is <span class="gr">βάζο</span> (<i>vázo</i>). Lowercase β is a tall B whose stem drops below the line.',st:'1 stroke: start below the line, go up the tall stem, then make two bumps on the right.'},
+ {k:'gamma',U:'Γ',l:'γ',gr:'γάμμα',en:'gamma',tr:'gh / y',mod:'gargled “gh” before a, o, u; “y” as in “yes” before e, i',modS:'gh / y',anc:'hard g as in “go”',ancS:'g',ipaM:'[ɣ], [ʝ]',ipaA:'[g]',ex:['γάλα','ghála','milk'],ph:P(0x10902),phn:'gīml · “camel / throwing stick”',lat:'C → G',cyr:'Г',ff:true,artG:'γ',art:'<path class="s fat" d="M60 112 V66 M60 66 L34 18 M60 66 L86 18"/><path class="s thin" d="M34 18 Q60 48 86 18"/><circle class="acc" cx="60" cy="40" r="6"/>',mn:'Capital <b>Γ</b> is a crane or gallows, an upside-down L. Lowercase <b>γ</b> looks like a “y” or a <b>slingshot</b>, and before e/i sounds it really does say <b>y</b> (<span class="gr">γεια</span> = <i>ya</i>). Elsewhere it\'s a <b>gargled “gh”</b>, the sound of gargling with a slingshot stuck in your throat (<span class="gr">γάλα</span> <i>ghála</i>).',st:'1 stroke: down the left arm, a small loop below the line, then up the right arm.'},
+ {k:'delta',U:'Δ',l:'δ',gr:'δέλτα',en:'delta',tr:'dh',mod:'“th” as in “this” (voiced)',modS:'dh (this)',anc:'d as in “dog”',ancS:'d',ipaM:'[ð]',ipaA:'[d]',ex:['δέντρο','dhéndro','tree'],ph:P(0x10903),phn:'dālet · “door”',lat:'D',cyr:'Д',ff:true,artG:'Δ',art:'<path class="f" d="M60 12 L108 104 H12Z"/><path class="s thin" d="M60 22 C54 50 64 72 34 102 M60 22 C66 56 60 76 86 102 M60 40 C58 66 62 84 60 102"/>',mn:'<b>Δ</b> is the triangle of a <b>river delta</b>, streams fanning out to the sea. But Modern δ is <b>never d</b>: it\'s the soft voiced <b>“th” of “this”</b>. Whisper “<b>th</b>is delta” as the river spreads. Lowercase δ is a swirl with a hook on top, like a wave curling over.',st:'1 stroke: start with the hook at the top right, swing left, then down into the round bowl.'},
+ {k:'epsilon',U:'Ε',l:'ε',gr:'έψιλον',en:'epsilon',tr:'e',mod:'e as in “met”',modS:'e',anc:'short e as in “pet”',ancS:'e (short)',ipaM:'[e]',ipaA:'[e]',ex:['ελιά','eliá','olive'],ph:P(0x10904),phn:'hē · “window / shout”',lat:'E',cyr:'Е, Є',ff:false,artG:'ε',art:'<ellipse class="f" cx="60" cy="64" rx="34" ry="44"/><path class="s thin" d="M30 60 L42 54 L52 64 L62 52 L72 64 L82 54 L92 60"/>',mn:'Capital <b>Ε</b> is a comb, just like E. Lowercase <b>ε</b> is a backwards 3, or an <b>egg</b> cracked into two curved halves: “<b>e</b>” as in <b>egg</b>. <i>E-psilon</i> means “plain e”.',st:'1 stroke: top curve, a small inward bump, then the bottom curve, like a backwards 3.'},
+ {k:'zeta',U:'Ζ',l:'ζ',gr:'ζήτα',en:'zeta',tr:'z',mod:'z as in “zoo”',modS:'z',anc:'zd as in “wisdom”',ancS:'zd',ipaM:'[z]',ipaA:'[zd]',ex:['ζωή','zoí','life'],ph:P(0x10906),phn:'zayin · “weapon”',lat:'Z (borrowed later)',cyr:'З',ff:false,artG:'ζ',art:'<path class="f" d="M72 6 L30 64 H56 L42 114 L94 48 H66Z"/><path class="s thin" d="M18 112 H102"/>',mn:'<b>ζ</b> is a “z” with a curly tail: <b>Zeus</b>\'s zigzag <b>lightning bolt</b> striking the ground, “<b>zzzap!</b>” Capital Ζ is a plain Z.',st:'1 stroke: short top bar, diagonal down-left, curl along the line, then a tail below it.'},
+ {k:'eta',U:'Η',l:'η',gr:'ήτα',en:'eta',tr:'i',mod:'ee as in “see”',modS:'i (ee)',anc:'long open e, as in “air” (without the r)',ancS:'ē (long open e)',ipaM:'[i]',ipaA:'[ɛː]',ex:['ήλιος','ílios','sun'],ph:P(0x10907),phn:'ḥēt · “fence”',lat:'H',cyr:'И',ff:true,artG:'Η',art:'<circle class="acc" cx="94" cy="24" r="13"/><path class="s thin" d="M94 4 V0 M112 24 H118 M108 10 L113 5 M76 10 L72 6"/><path class="s" d="M38 114 V22 M74 114 V22 M38 42 H74 M38 66 H74 M38 90 H74"/>',mn:'<b>Big false friend:</b> Η looks like H and η like an n, but both say <b>“ee”</b>. Picture Η as a <b>ladder</b> up to the <b>sun</b> (<span class="gr">ήλιος</span>, <i>ílios</i>), and shout “<b>eeee!</b>” at the top. Lowercase η is the ladder with one long leg dangling below the line.',st:'1 stroke: short left stem, arch over, then the right leg drops below the line.'},
+ {k:'theta',U:'Θ',l:'θ',gr:'θήτα',en:'theta',tr:'th',mod:'“th” as in “think” (voiceless)',modS:'th (think)',anc:'aspirated t, as in “top”',ancS:'tʰ (aspirated t)',ipaM:'[θ]',ipaA:'[tʰ]',ex:['θάλασσα','thálasa','sea'],ph:P(0x10908),phn:'ṭēt · “wheel”',lat:'—',cyr:'Ѳ (archaic)',ff:false,artG:'Θ',art:'<ellipse class="f" cx="60" cy="60" rx="36" ry="48"/><path class="s thin" d="M60 20 C40 22 32 42 32 60 M60 30 C46 32 42 46 42 62 M84 38 C90 50 90 72 84 86 M74 34 C82 46 82 76 74 92 M40 84 C46 96 60 100 70 98"/>',mn:'<b>Θ</b> is a <b>th</b>umbprint, or an eye with a line across it: “<b>th</b>” as in <b>th</b>umb and <b>th</b>ink. Lowercase θ is an egg sliced through the middle.',st:'2 strokes: an oval from top to bottom, then a bar across the middle.'},
+ {k:'iota',U:'Ι',l:'ι',gr:'γιώτα',en:'iota',tr:'i',mod:'ee as in “see”',modS:'i (ee)',anc:'i as in “machine” (short or long)',ancS:'i',ipaM:'[i]',ipaA:'[i], [iː]',ex:['ιστορία','istoría','history, story'],ph:P(0x10909),phn:'yōd · “hand”',lat:'I, J',cyr:'І',ff:false,artG:'ι',art:'<rect class="f" x="50" y="46" width="20" height="62" rx="3"/><path class="acc" d="M60 12 C72 26 70 40 60 42 C50 40 48 26 60 12Z"/><path class="s thin" d="M60 42 V48 M36 108 H84"/>',mn:'<b>ι</b> is a tiny <b>candle</b> with no dot on top. It\'s the smallest letter: “not one <b>iota</b>”. It says “<b>ee</b>”. Capital Ι is just I.',st:'1 stroke: a short down-stroke with a tiny hook at the bottom (no dot!).'},
+ {k:'kappa',U:'Κ',l:'κ',gr:'κάπα',en:'kappa',tr:'k',mod:'k as in “skin” (softer, like “ky”, before e/i)',modS:'k',anc:'k as in “skin”',ancS:'k',ipaM:'[k], [c]',ipaA:'[k]',ex:['καφές','kafés','coffee'],ph:P(0x1090A),phn:'kap · “palm of hand”',lat:'K',cyr:'К',ff:false,artG:'Κ',art:'<path class="f" d="M60 8 L94 50 L60 96 L26 50Z"/><path class="s thin" d="M60 8 V96 M26 50 H94"/><path class="s thin" d="M60 96 C48 104 72 108 56 118"/>',mn:'<b>Κ</b> is a <b>kite</b> on a string, a plain “<b>k</b>”. Lowercase κ is a smaller K tucked down to the height of the small letters.',st:'2 strokes: a short stem, then both arms in one “<” motion.'},
+ {k:'lambda',U:'Λ',l:'λ',gr:'λάμδα',en:'lambda',tr:'l',mod:'l as in “lamp”',modS:'l',anc:'l as in “lamp”',ancS:'l',ipaM:'[l]',ipaA:'[l]',ex:['λεμόνι','lemóni','lemon'],ph:P(0x1090B),phn:'lāmed · “goad”',lat:'L',cyr:'Л',ff:false,artG:'Λ',art:'<path class="f" d="M60 12 L110 106 H10Z"/><path class="s thin" d="M60 60 L48 106 M60 60 L72 106"/><path class="acc" d="M60 4 L68 12 L60 14Z"/>',mn:'<b>Λ</b> is a <b>tent</b>, or an <b>L</b> knocked over: “<b>l</b>” for a <b>l</b>amp lit inside the tent. Lowercase λ is someone striding forward on one long leg.',st:'2 strokes: a long diagonal from top left to bottom right, then a short left leg.'},
+ {k:'mu',U:'Μ',l:'μ',gr:'μι',en:'mu',tr:'m',mod:'m as in “mother”',modS:'m',anc:'m as in “mother”',ancS:'m',ipaM:'[m]',ipaA:'[m]',ex:['μέλι','méli','honey'],ph:P(0x1090C),phn:'mēm · “water”',lat:'M',cyr:'М',ff:false,artG:'μ',art:'<ellipse class="f" cx="62" cy="58" rx="34" ry="22"/><circle class="f" cx="90" cy="38" r="10"/><circle class="acc" cx="94" cy="56" r="3"/><path class="s thin" d="M28 62 C14 74 34 92 18 112"/>',mn:'<b>μ</b> is a “u” with a long tail hanging down: a little <b>mouse</b> with its tail, “<b>m</b>”. Scientists know it as micro (μm). Capital Μ is M.',st:'1 stroke: a long stem from below the line, up, around the “u” bowl, ending with a small tail on the right.'},
+ {k:'nu',U:'Ν',l:'ν',gr:'νι',en:'nu',tr:'n',mod:'n as in “no”',modS:'n',anc:'n as in “no”',ancS:'n',ipaM:'[n]',ipaA:'[n]',ex:['νερό','neró','water'],ph:P(0x1090D),phn:'nūn · “fish / snake”',lat:'N',cyr:'Н',ff:true,artG:'ν',art:'<path class="f" d="M46 14 C50 44 36 64 24 78 C34 88 54 90 66 82 C70 72 62 66 56 70"/><circle class="acc" cx="52" cy="80" r="4"/><path class="s thin" d="M70 30 C82 30 90 36 92 46"/>',mn:'<b>False friend!</b> <b>ν</b> looks exactly like a “v” but says <b>n</b>. Picture a pointy V-shaped <b>nose</b>: ν for <b>n</b>ose. Its capital Ν is a normal N, and ν is just Ν with its first leg chopped off. (Greek writes the v-sound with β.)',st:'1 stroke: a rounded “v”: down the left side, then up a slightly curved right side.'},
+ {k:'xi',U:'Ξ',l:'ξ',gr:'ξι',en:'xi',tr:'ks',mod:'ks as in “kicks”',modS:'ks',anc:'ks as in “box”',ancS:'ks',ipaM:'[ks]',ipaA:'[ks]',ex:['ξένος','ksénos','foreigner, guest'],ph:P(0x1090E),phn:'sāmek · “pillar”',lat:'—',cyr:'Ѯ (archaic)',ff:false,artG:'Ξ',art:'<rect class="f" x="22" y="16" width="76" height="14" rx="5"/><rect class="f" x="34" y="53" width="52" height="14" rx="5"/><rect class="f" x="22" y="90" width="76" height="14" rx="5"/><path class="s thin" d="M104 80 L116 70 M106 92 L118 92"/>',mn:'<b>Ξ</b> is <b>three stacked bars</b>. <b>Kick</b> them over: “<b>ks</b>” as in <b>kicks</b>. Lowercase <b>ξ</b> is a squiggly spring (an ε with a cap and a tail), still “ks”: <span class="gr">ξένος</span> gives us <i>xenophobia</i>.',st:'1 stroke: a small top cap, then two stacked curves and a tail below the line.'},
+ {k:'omicron',U:'Ο',l:'ο',gr:'όμικρον',en:'omicron',tr:'o',mod:'o as in “or” (short, pure)',modS:'o',anc:'short o as in “pot” (British)',ancS:'o (short)',ipaM:'[o]',ipaA:'[o]',ex:['όνομα','ónoma','name'],ph:P(0x1090F),phn:'ʿayin · “eye”',lat:'O',cyr:'О',ff:false,artG:'ο',art:'<circle class="f" cx="52" cy="52" r="32"/><path class="s fat" d="M76 76 L106 106"/>',mn:'<b>Ο-micron</b> = “<b>micro O</b>”, the <b>little o</b> under a magnifying glass. It\'s a short, pure “<b>o</b>” as in “or”. (Its big brother is <i>o-mega</i>, “big O”.)',st:'1 stroke: a small circle, counter-clockwise from the top.'},
+ {k:'pi',U:'Π',l:'π',gr:'πι',en:'pi',tr:'p',mod:'p as in “spin” (no puff of air)',modS:'p',anc:'p as in “spin”',ancS:'p',ipaM:'[p]',ipaA:'[p]',ex:['πόλη','póli','city'],ph:P(0x10910),phn:'pē · “mouth”',lat:'P',cyr:'П',ff:false,artG:'Π',art:'<path class="f" d="M14 22 H106 V36 H92 V110 H74 V36 H46 V110 H28 V36 H14Z"/><path class="acc" d="M14 22 L60 6 L106 22Z"/>',mn:'<b>Π</b> is a <b>doorway</b> or a temple gate, and the <b>π</b> you know from maths (3.14…). It\'s a plain “<b>p</b>”: walk through the <b>P</b>ortal.',st:'2 strokes: the top bar first, then the two legs (or write it in one cursive stroke).'},
+ {k:'rho',U:'Ρ',l:'ρ',gr:'ρο',en:'rho',tr:'r',mod:'tapped r, as in Spanish “pero”',modS:'r',anc:'trilled r (rh at the start of a word)',ancS:'r',ipaM:'[ɾ]',ipaA:'[r]',ex:['ρόδι','ródhi','pomegranate'],ph:P(0x10913),phn:'rēš · “head”',lat:'R',cyr:'Р',ff:true,artG:'Ρ',art:'<path class="s" d="M34 114 V10"/><path class="f" d="M36 12 C58 2 72 26 96 16 V54 C72 64 58 40 36 50Z"/><path class="s thin" d="M100 26 C106 30 106 40 100 44"/>',mn:'<b>False friend!</b> Ρ/ρ look like P/p but say <b>r</b>. See a <b>flag</b> on a pole, flapping “<b>rrrr</b>” in the wind. Tap your tongue once, like the Spanish “pe<b>r</b>o”. Greek\'s real “p” is π.',st:'1 stroke: start below the line, go up the stem, then round the bowl clockwise.'},
+ {k:'sigma',U:'Σ',l:'σ',l2:'ς',gr:'σίγμα',en:'sigma',tr:'s',mod:'s as in “sun” (z before β, γ, δ, μ…)',modS:'s',anc:'s as in “sun”',ancS:'s',ipaM:'[s], [z]',ipaA:'[s]',ex:['σπίτι','spíti','house'],ph:P(0x10914),phn:'šīn · “tooth”',lat:'S',cyr:'С',ff:false,artG:'Σ',art:'<path class="s fat" d="M94 18 H28 L64 60 L28 102 H90"/><circle class="acc" cx="96" cy="102" r="7"/><path class="s thin" d="M102 102 L114 96 M102 102 L114 110"/>',mn:'<b>Σ</b> looks like a sideways M, or a zigzag <b>snake</b> hissing “<b>sss</b>”. Lowercase <b>σ</b> is the snake curled up with its head raised. At the <b>end of a word</b> it uncoils into <b>ς</b> (final sigma): <span class="gr">σοφός</span>.',st:'σ, 1 stroke: a circle counter-clockwise, then a short bar to the right at the top. ς: a c-curve with a tail below the line.'},
+ {k:'tau',U:'Τ',l:'τ',gr:'ταυ',en:'tau',tr:'t',mod:'t as in “stop” (no puff of air)',modS:'t',anc:'t as in “stop”',ancS:'t',ipaM:'[t]',ipaA:'[t]',ex:['τυρί','tirí','cheese'],ph:P(0x10915),phn:'tāw · “mark”',lat:'T',cyr:'Т',ff:false,artG:'Τ',art:'<path class="f" d="M12 28 H108 V42 H12Z"/><path class="s fat" d="M60 42 V108"/><path class="s" d="M42 110 H78"/><circle class="acc" cx="34" cy="20" r="6"/><circle class="acc" cx="86" cy="20" r="6"/>',mn:'<b>Τ</b> is a <b>table</b> with a single pedestal leg: a plain “<b>t</b>”. Lowercase τ is a small T whose leg kicks forward.',st:'2 strokes: the top bar, then the short stem curving to the right.'},
+ {k:'upsilon',U:'Υ',l:'υ',gr:'ύψιλον',en:'upsilon',tr:'i',mod:'ee as in “see”',modS:'i (ee)',anc:'French “u” / German “ü”',ancS:'ü (French u)',ipaM:'[i]',ipaA:'[y]',ex:['ύπνος','ípnos','sleep'],ph:P(0x10905),phn:'wāw · “hook”',lat:'V → U, W; Y',cyr:'У, Ѵ',ff:true,artG:'Υ',art:'<path class="f" d="M32 12 H88 C88 44 78 62 60 64 C42 62 32 44 32 12Z"/><path class="s" d="M60 64 V104 M40 108 H80"/><path class="s thin" d="M36 30 H84"/>',mn:'<b>False friend!</b> Υ looks like Y and υ like u, but in Modern Greek both say <b>“ee”</b>. Picture Υ as a <b>wine glass</b> raised in a toast, “<span class="gr">Στην υγειά μας!</span>”, with a happy “<b>eee!</b>” (The oo-sound in Greek is spelled ου.)',st:'1 stroke: a rounded “u” with no tail.'},
+ {k:'phi',U:'Φ',l:'φ',gr:'φι',en:'phi',tr:'f',mod:'f as in “fish”',modS:'f',anc:'aspirated p, as in “pot” (not f!)',ancS:'pʰ (aspirated p)',ipaM:'[f]',ipaA:'[pʰ]',ex:['φως','fos','light'],ph:null,phn:'Greek addition',lat:'—',cyr:'Ф',ff:false,artG:'Φ',art:'<circle class="f" cx="60" cy="62" r="28"/><path class="s" d="M60 10 V114"/><path class="s thin" d="M60 10 C82 20 98 42 102 76"/><circle class="acc" cx="102" cy="82" r="5"/>',mn:'<b>Φ</b> is a circle pierced by a line: a <b>f</b>ishing rod pushed through a hoop, “<b>f</b>”. Lowercase φ is the same idea with a taller rod. (Ancient Greeks said a breathy p, hence the English spelling “ph”.)',st:'2 strokes: the circle (or loop) first, then a long vertical line through it.'},
+ {k:'chi',U:'Χ',l:'χ',gr:'χι',en:'chi',tr:'h (kh)',mod:'throaty “kh” as in Scottish “loch”; like the “h” in “huge” before e/i',modS:'h (kh)',anc:'aspirated k, as in “kit”',ancS:'kʰ (aspirated k)',ipaM:'[x], [ç]',ipaA:'[kʰ]',ex:['χαρά','hará','joy'],ph:null,phn:'Greek addition',lat:'X (western “ks” value)',cyr:'Х',ff:true,artG:'Χ',art:'<path class="s fat" d="M24 24 L96 96 M96 24 L24 96"/><path class="s" d="M14 36 L36 14 M84 14 L106 36"/><circle class="acc" cx="24" cy="24" r="5"/><circle class="acc" cx="96" cy="24" r="5"/>',mn:'<b>False friend!</b> Χ looks like X, but it\'s never “ks”. It\'s the <b>throaty “kh”</b> of Scottish <i>loch</i> or German <i>Bach</i>. Imagine two <b>crossed swords</b> scraping at the back of your throat. Before e/i it softens to the “h” in “<b>h</b>uge”. (Greek\'s “ks” is ξ.)',st:'2 strokes: a long diagonal sweeping below the line, then the crossing diagonal.'},
+ {k:'psi',U:'Ψ',l:'ψ',gr:'ψι',en:'psi',tr:'ps',mod:'ps as in “lips”',modS:'ps',anc:'ps as in “lips”',ancS:'ps',ipaM:'[ps]',ipaA:'[ps]',ex:['ψάρι','psári','fish'],ph:null,phn:'Greek addition',lat:'—',cyr:'Ѱ (archaic)',ff:false,artG:'Ψ',art:'<path class="s fat" d="M60 114 V28 M28 22 V44 C28 62 92 62 92 44 V22"/><path class="acc" d="M60 8 L52 26 H68Z M28 10 L20 26 H36Z M92 10 L84 26 H100Z"/><path class="s thin" d="M8 110 C20 102 30 118 42 110 C54 102 66 118 78 110 C90 102 100 118 112 110"/>',mn:'<b>Ψ</b> is <b>Poseidon\'s trident</b> rising from the waves: “<b>ps</b>”, like the god whispering “<b>psst!</b>” from the sea. You know it from <b>ps</b>ychology and <b>ps</b>yche, where the p is silent in English but sounded in Greek.',st:'2 strokes: a “u” cup, then a long vertical through its centre, dropping below the line.'},
+ {k:'omega',U:'Ω',l:'ω',gr:'ωμέγα',en:'omega',tr:'o',mod:'o as in “or”, the same sound as ο',modS:'o',anc:'long open o, as in “saw”',ancS:'ō (long open o)',ipaM:'[o]',ipaA:'[ɔː]',ex:['ώρα','óra','hour, time'],ph:null,phn:'Greek addition (from Ο)',lat:'—',cyr:'Ѡ (archaic)',ff:true,artG:'Ω',art:'<path class="s" d="M32 106 C10 80 12 30 60 20 C108 30 110 80 88 106" style="stroke-width:16;opacity:.35"/><circle class="acc" cx="26" cy="72" r="3.5"/><circle class="acc" cx="30" cy="44" r="3.5"/><circle class="acc" cx="94" cy="72" r="3.5"/><circle class="acc" cx="90" cy="44" r="3.5"/><circle class="acc" cx="60" cy="24" r="3.5"/>',mn:'Capital <b>Ω</b> is a lucky <b>horseshoe</b>, or “<b>Oh-mega</b>”, the <b>big O</b>. Lowercase <b>ω</b> looks like a w, but <b>there\'s no w-sound in Greek</b>. It\'s two o\'s holding hands: a double-o “<b>oh</b>”. It\'s the last letter: “the Alpha and the Omega”.',st:'1 stroke: two small bowls joined in the middle, like a rounded “w”.'}
+];
+LETTERS.forEach((L,i)=>{L.i=i;});
+const ACCEPT={alpha:['alpha','alfa','a'],beta:['beta','vita','veta','b','v'],gamma:['gamma','gama','ghama','g','gh','y'],delta:['delta','dhelta','thelta','d','dh'],epsilon:['epsilon','epsilo','e'],zeta:['zeta','zita','z'],eta:['eta','ita','i','ee'],theta:['theta','thita','th'],iota:['iota','giota','yota','yiota','i','ee'],kappa:['kappa','kapa','k'],lambda:['lambda','lamda','lamvda','l'],mu:['mu','mi','m'],nu:['nu','ni','n'],xi:['xi','ksi','ks','x'],omicron:['omicron','omikron','o'],pi:['pi','p'],rho:['rho','ro','r'],sigma:['sigma','s'],tau:['tau','taf','t'],upsilon:['upsilon','ypsilon','ipsilon','ee','i','y','u'],phi:['phi','fi','f','ph'],chi:['chi','khi','hi','kh','ch','h'],psi:['psi','ps'],omega:['omega','o']};
+
+/* ---------- prefs ---------- */
+let prefs=Object.assign({cs:'both',pron:'modern'},store.get('lg-prefs',{}));
+function savePrefs(){store.set('lg-prefs',prefs);}
+const soundOf=L=>prefs.pron==='ancient'?L.ancS:L.modS;
+function glyphHTML(L,cs){
+  cs=cs||prefs.cs;
+  const lo=L.l+(L.l2?' '+L.l2:'');
+  if(cs==='upper')return esc(L.U);
+  if(cs==='lower')return `<span class="lo">${esc(lo)}</span>`;
+  return `${esc(L.U)}<span class="lo">${esc(L.l+(L.l2||''))}</span>`;
+}
+const glyphText=L=>prefs.cs==='upper'?L.U:prefs.cs==='lower'?L.l:L.U+L.l;
+function artSVG(L,size){
+  return `<svg class="art" viewBox="0 0 120 120" role="img" aria-label="Mnemonic picture for ${esc(L.en)}"${size?` width="${size}" height="${size}"`:''}><g>${L.art}</g><text class="ov" x="60" y="62" text-anchor="middle" dominant-baseline="central">${esc(L.artG)}</text></svg>`;
+}
+
+/* ---------- alphabet grid ---------- */
+function renderABC(){
+  const ul=$('#abc');
+  ul.innerHTML=LETTERS.map(L=>{
+    const snd=prefs.pron==='ancient'?L.anc:L.mod;
+    return `<li class="lcard${L.ff?' ff':''}" data-k="${L.k}">
+      <button class="flip" aria-pressed="false" aria-label="${esc(L.en)}, ${esc(L.gr)}. Says ${esc(snd)}. Press to flip for the mnemonic.">
+        <span class="face front">
+          <span class="idx">${L.i+1}</span>${L.ff?'<span class="ffbadge">false friend</span>':''}
+          <span class="glyph" aria-hidden="true">${glyphHTML(L)}</span>
+          <span class="nm"><b>${esc(L.gr)}</b> · ${esc(L.en)}</span>
+          <span class="snd"><strong>${esc(prefs.pron==='ancient'?L.ancS:L.tr)}</strong> — ${esc(snd)}</span>
+        </span>
+        <span class="face back" aria-hidden="true">${artSVG(L)}<span class="mn">${L.mn}</span></span>
+      </button>
+      <span class="tools">${sayBtn(L.gr,L.en)}<button class="info" data-info="${L.k}" aria-label="Details for ${esc(L.en)}">i</button></span>
+    </li>`;
+  }).join('');
+}
+$('#abc').addEventListener('click',e=>{
+  const inf=e.target.closest('[data-info]');
+  if(inf){openModal(LETTERS.find(L=>L.k===inf.getAttribute('data-info')));return;}
+  const f=e.target.closest('.flip');if(!f)return;
+  const li=f.closest('.lcard');const on=li.classList.toggle('flipped');f.setAttribute('aria-pressed',String(on));
+  $('.back',li).setAttribute('aria-hidden',String(!on));
+  markSeen(li.getAttribute('data-k'));
+});
+let allFlipped=false;
+$('#flipAll').addEventListener('click',()=>{allFlipped=!allFlipped;$$('#abc .lcard').forEach(li=>{li.classList.toggle('flipped',allFlipped);$('.flip',li).setAttribute('aria-pressed',String(allFlipped));$('.back',li).setAttribute('aria-hidden',String(!allFlipped));});$('#flipAll').textContent=allFlipped?'Unflip all':'Flip all';});
+function setSeg(seg,attr,val){$$('button',seg).forEach(b=>b.setAttribute('aria-pressed',String(b.getAttribute(attr)===val)));}
+$('#caseSeg').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;prefs.cs=b.getAttribute('data-case');savePrefs();setSeg($('#caseSeg'),'data-case',prefs.cs);renderABC();allFlipped=false;$('#flipAll').textContent='Flip all';refreshQuizSettings();});
+$('#pronSeg').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;prefs.pron=b.getAttribute('data-pron');savePrefs();setSeg($('#pronSeg'),'data-pron',prefs.pron);renderABC();allFlipped=false;$('#flipAll').textContent='Flip all';refreshQuizSettings();toast(prefs.pron==='ancient'?'Showing reconstructed Classical (Attic) pronunciation':'Showing Modern Greek pronunciation');});
+setSeg($('#caseSeg'),'data-case',prefs.cs);setSeg($('#pronSeg'),'data-pron',prefs.pron);
+
+/* ---------- modal ---------- */
+let lastFocus=null;
+function chainHTML(L){
+  const ph=L.ph?`<span class="ph" title="Phoenician">${L.ph}</span>`:'<span class="muted small">(Greek invention)</span>';
+  return `<div class="chain">${ph}<span class="ar">→</span><span class="gk">${esc(L.U)}</span><span class="ar">→</span><span class="la">${esc(L.lat)}</span><span class="ar">/</span><span class="cy">${esc(L.cyr)}</span></div>`;
+}
+function openModal(L){
+  if(!L)return;
+  markSeen(L.k);
+  $('#mBody').innerHTML=`<div class="mhead">${artSVG(L)}<div><div class="glyph">${esc(L.U)} <span class="lo" style="color:var(--terra)">${esc(L.l)}${L.l2?' '+esc(L.l2):''}</span></div><h3 id="mTitle" style="margin:0"><span class="gr">${esc(L.gr)}</span> · ${esc(L.en)} ${sayBtn(L.gr,L.en)}</h3></div></div>
+  <p>${L.mn}</p>
+  <dl class="dl">
+    <dt>Modern</dt><dd><strong>${esc(L.tr)}</strong> — ${esc(L.mod)} <span class="muted">${esc(L.ipaM)}</span></dd>
+    <dt>Ancient</dt><dd><strong>${esc(L.ancS)}</strong> — ${esc(L.anc)} <span class="muted">${esc(L.ipaA)}</span></dd>
+    <dt>Example</dt><dd><span class="gr" style="font-size:1.25rem">${esc(L.ex[0])}</span> <span class="tr">${esc(L.ex[1])}</span> — ${esc(L.ex[2])} ${sayBtn(L.ex[0])}</dd>
+    <dt>Stroke hint</dt><dd>${esc(L.st)}</dd>
+    <dt>Origin</dt><dd>${esc(L.phn)}</dd>
+  </dl>
+  <h4 style="margin-top:16px">Family tree</h4>${chainHTML(L)}`;
+  lastFocus=document.activeElement;
+  $('#modal').classList.add('open');$('#mClose').focus();
+}
+function closeModal(){$('#modal').classList.remove('open');if(lastFocus&&lastFocus.focus)lastFocus.focus();}
+$('#mClose').addEventListener('click',closeModal);
+$('#modal').addEventListener('click',e=>{if(e.target.id==='modal')closeModal();});
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'&&$('#modal').classList.contains('open'))closeModal();
+  if(e.key==='Tab'&&$('#modal').classList.contains('open')){const f=$$('#modal button, #modal a');if(!f.length)return;const first=f[0],last=f[f.length-1];if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}}
+});
+
+/* ---------- stroke order ---------- */
+const STROKES=[
+ {g:'α',n:'alpha',d:'M72 44 C64 36 40 36 34 52 C28 70 46 80 58 70 C64 64 68 54 72 44 C70 58 72 72 82 76',s:[72,44]},
+ {g:'β',n:'beta',d:'M34 96 L34 34 C34 16 64 14 64 32 C64 44 52 48 44 48 C66 48 72 60 68 70 C64 80 46 80 36 72',s:[34,96]},
+ {g:'γ',n:'gamma',d:'M24 42 C34 38 40 48 50 70 C54 80 52 94 46 94 C40 94 42 80 50 70 C58 56 66 44 76 40',s:[24,42]},
+ {g:'δ',n:'delta',d:'M68 22 C60 12 36 14 38 26 C40 36 72 44 72 60 C72 74 60 78 50 78 C38 78 30 70 30 60 C30 48 42 44 52 42',s:[68,22]},
+ {g:'ε',n:'epsilon',d:'M68 46 C62 38 40 38 40 48 C40 54 48 58 58 58 C44 58 36 62 36 68 C36 78 60 80 70 72',s:[68,46]}
+];
+$('#strokes').innerHTML=STROKES.map((S,i)=>`<div class="sdemo" role="button" tabindex="0" data-i="${i}" aria-label="Replay stroke order for ${S.n}">
+  <svg viewBox="0 0 100 100" aria-hidden="true"><line class="gl" x1="6" x2="94" y1="40" y2="40"/><line class="gl" x1="6" x2="94" y1="76" y2="76" style="stroke-dasharray:none"/>
+  <path class="guide" d="${S.d}"/><path class="draw" pathLength="1" d="${S.d}"/><circle class="start" cx="${S.s[0]}" cy="${S.s[1]}" r="5.5"/><text class="num" x="${S.s[0]}" y="${S.s[1]+2.8}" text-anchor="middle">1</text></svg>
+  <div class="cap"><span class="gr" style="font-size:1.3rem;color:var(--ink)">${S.g}</span> ${S.n} · tap to replay</div></div>`).join('');
+function playStroke(el){el.classList.remove('play');void el.getBoundingClientRect();el.classList.add('play');}
+$$('#strokes .sdemo').forEach((el,i)=>{el.addEventListener('click',()=>playStroke(el));el.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();playStroke(el);}});});
+
+/* ---------- confusing ---------- */
+const CONF=[
+ ['ν','v','ν = n','A Latin v is pointed; Greek ν is rounded at the bottom and is simply the lowercase of Ν. The v-sound in Greek is spelled β.'],
+ ['ρ','p','ρ = r','The Greek p is π. Read ρ as a flag “rrr”: <span class="gr">ρόδι</span> <i>ródhi</i>, “pomegranate”.'],
+ ['η','n','η = ee','η\'s right leg drops <b>below</b> the line. The Greek n-letter is ν: <span class="gr">νερό</span> vs <span class="gr">ήλιος</span>.'],
+ ['υ','u','υ = ee','The “oo” sound needs <b>two</b> letters: ου. On its own υ is “ee”: <span class="gr">ύπνος</span> <i>ípnos</i>.'],
+ ['ω','w','ω = o','Greek has no w-sound. ω is a pair of joined o\'s, the same “o” as ο: <span class="gr">ώρα</span> <i>óra</i>.'],
+ ['χ','x','χ = kh','Greek “ks” is ξ. χ is the throaty “kh” of <i>loch</i>: <span class="gr">χαρά</span> <i>hará</i>.'],
+ ['ζ','ξ','z ≠ ks','ζ has one curl and a tail (z). ξ has an extra bump on top: a cap and two curves (ks).'],
+ ['σ','ς','same s','Same letter: σ at the start or middle of a word, ς only at the end: <span class="gr">σεισμός</span> <i>sizmós</i>.'],
+ ['ε','ξ','e ≠ ks','ε sits on the line with two open curves. ξ adds a little cap on top and a tail below the line.'],
+ ['γ','y','γ = gh/y','γ\'s tail usually has a tiny loop below the line. It sounds like “y” only before e/i: <span class="gr">γεια</span>. Otherwise it\'s “gh”.']
+];
+$('#conf').innerHTML=CONF.map(c=>`<div class="card reveal"><div class="cpair"><span class="g" aria-label="Greek ${esc(c[0])}">${c[0]}</span><span class="vs">vs</span><span class="x" aria-label="${/[a-z]/.test(c[1])?'Latin':'Greek'} ${esc(c[1])}">${c[1]}</span><span class="lab"><strong style="color:var(--terra);font-size:1.05rem">${c[2]}</strong></span></div><p class="small" style="margin:0">${c[3]}</p></div>`).join('');
+$$('#conf .x')[6].style.fontFamily='var(--didot)';$$('#conf .x')[7].style.fontFamily='var(--didot)';$$('#conf .x')[8].style.fontFamily='var(--didot)';
+
+/* ---------- evolution ---------- */
+$('#evo tbody').innerHTML=LETTERS.map(L=>`<tr><td class="ph">${L.ph?L.ph:'<span class="small muted" style="font-family:var(--sans)">—</span>'}<span class="nmx">${esc(L.phn)}</span></td><td class="arrow" aria-hidden="true">→</td><td class="gk">${esc(L.U)} ${esc(L.l)}<span class="nmx">${esc(L.en)}</span></td><td class="arrow" aria-hidden="true">→</td><td class="la">${esc(L.lat)}</td><td class="cy">${esc(L.cyr)}</td></tr>`).join('');
+
+/* ---------- digraphs ---------- */
+const DGV=[
+ ['αι','e','as in “met” (same as ε)','και','ke','and'],
+ ['ει','i','“ee” (same as ι)','είναι','íne','is / are'],
+ ['οι','i','“ee” (same as ι)','πλοίο','plío','ship'],
+ ['υι','i','“ee” (rare)','υιός','iós','son (formal)'],
+ ['ου','u','“oo” as in “moon”','ουρανός','uranós','sky'],
+ ['αυ','av / af','see the rule below','αυτό','aftó','this, it'],
+ ['ευ','ev / ef','see the rule below','Ευρώπη','Evrópi','Europe']
+];
+const DGC=[
+ ['μπ','b / mb','b at the start of a word; b or mb inside','μπανάνα','banána','banana'],
+ ['ντ','d / nd','d at the start; d or nd inside','πέντε','pénde','five'],
+ ['γκ','g / ng','g at the start; g or ng inside','γκαράζ','garáz','garage'],
+ ['γγ','ng','as in “finger”','Αγγλία','Anglía','England'],
+ ['τσ','ts','as in “cats”','τσάι','tsái','tea'],
+ ['τζ','dz','as in “adze”','τζάμι','dzámi','window pane']
+];
+const dgHTML=a=>a.map(d=>`<div class="card dgc"><span class="big">${d[0]}</span><div><div class="snd2">${esc(d[1])}</div><div class="small muted">${esc(d[2])}</div><div class="ex"><span class="gr" style="font-size:1.15rem">${d[3]}</span> <span class="tr">${d[4]}</span> — ${d[5]} ${sayBtn(d[3])}</div></div></div>`).join('');
+$('#dgVowels').innerHTML=dgHTML(DGV);$('#dgCons').innerHTML=dgHTML(DGC);
+
+const SIX=[['ι','φίλος','fílos','friend','#1f5fa8'],['η','ήλιος','ílios','sun','#c8643b'],['υ','ύπνος','ípnos','sleep','#6b7a3a'],['ει','είμαι','íme','I am','#c9a227'],['οι','οικογένεια','ikoyénia','family','#2a7ab8'],['υι','υιός','iós','son','#8a4f7d']];
+$('#sixRow').innerHTML=SIX.map(s=>`<div class="six-tile" style="border-top:5px solid ${s[4]}"><div class="g" style="color:${s[4]}">${s[0]}</div><div class="w">${s[1]}</div><div class="m"><i>${s[2]}</i> · ${s[3]}</div>${sayBtn(s[1])}</div>`).join('');
+$('#sixLines').innerHTML=SIX.map((s,i)=>`<path d="M${50+i*100} 0 C${50+i*100} 40 300 30 300 70" stroke="${s[4]}"/>`).join('');
+
+const STRESS=[[['πό','τε'],0,'póte','when?'],[['πο','τέ'],1,'poté','never'],[['νό','μος'],0,'nómos','law'],[['νο','μός'],1,'nomós','prefecture'],[['γέ','ρος'],0,'yéros','old man'],[['γε','ρός'],1,'yerós','sturdy']];
+$('#stressDemo').innerHTML=STRESS.map(s=>`<div class="sw"><div class="word">${s[0].map((x,i)=>i===s[1]?`<span class="st">${x}</span>`:x).join('')}</div><div><span class="tr">${s[2]}</span> — “${s[3]}” ${sayBtn(s[0].join(''))}</div></div>`).join('');
+
+/* ---------- progress state ---------- */
+function freshP(){return{stats:{},best:0,streak:0,correct:0,total:0,ms:[],seen:[]};}
+let PR=Object.assign(freshP(),store.get('lg-progress',{}));
+if(!Array.isArray(PR.seen))PR.seen=[];if(!Array.isArray(PR.ms))PR.ms=[];
+function saveP(){store.set('lg-progress',PR);}
+let visited=new Set(store.get('lg-visited',[]));
+function markSeen(k){if(k&&!PR.seen.includes(k)){PR.seen.push(k);saveP();renderProgress();}}
+const isMastered=s=>!!s&&s.c>=3&&s.c/(s.c+s.w)>=.75;
+const masteredCount=()=>LETTERS.filter(L=>isMastered(PR.stats[L.k])).length;
+function level(k){const s=PR.stats[k];if(!s||(s.c+s.w)===0)return 0;if(isMastered(s))return 3;return s.w>s.c?1:2;}
+$('#mgrid').innerHTML=LETTERS.map(L=>`<div class="mcell" data-k="${L.k}" title="${L.en}">${L.l}</div>`).join('');
+const SECTIONS=$$('[data-track]');
+function renderProgress(){
+  const m=masteredCount();
+  const C=339.29;$('#ringFg').style.strokeDashoffset=String(C*(1-m/24));
+  $('#ringPct').textContent=m+'/24';$('#ringWrap').setAttribute('aria-label',m+' of 24 letters mastered');
+  const acc=PR.total?Math.round(PR.correct/PR.total*100):0;
+  $('#accTxt').textContent=PR.total?acc+'% ('+PR.correct+'/'+PR.total+')':'—';$('#accBar').style.width=acc+'%';
+  const seenSet=new Set(PR.seen);LETTERS.forEach(L=>{const s=PR.stats[L.k];if(s&&s.c+s.w>0)seenSet.add(L.k);});
+  const seen=LETTERS.filter(L=>seenSet.has(L.k)).length;
+  $('#seenTxt').textContent=seen+' / 24';$('#seenBar').style.width=(seen/24*100)+'%';
+  const vs=SECTIONS.filter(s=>visited.has(s.id)).length;
+  $('#secTxt').textContent=vs+' / '+SECTIONS.length;$('#secBar').style.width=(vs/SECTIONS.length*100)+'%';
+  $$('#mgrid .mcell').forEach(c=>{const lv=level(c.getAttribute('data-k'));c.className='mcell'+(lv?' l'+lv:'');});
+  $('#sScore').textContent=PR.correct;$('#sTotal').textContent=PR.total;$('#sStreak').textContent=PR.streak;$('#sBest').textContent=PR.best;
+  const missed=LETTERS.filter(L=>{const s=PR.stats[L.k];return s&&s.w>0&&!isMastered(s);}).sort((a,b)=>weight(b)-weight(a)).slice(0,10);
+  $('#missed').innerHTML=missed.length?'<span class="small muted">Coming back more often:</span> '+missed.map(L=>`<span class="chip" title="${L.en}: ${PR.stats[L.k].w} missed">${L.U}${L.l}</span>`).join(''):'';
+}
+
+/* ---------- quiz ---------- */
+const WORDS=[
+ ['διάλογος','dhiáloghos','dialogue'],['φιλοσοφία','filosofía','philosophy'],['δημοκρατία','dhimokratía','democracy'],['τηλέφωνο','tiléfono','telephone'],['μουσική','musikí','music'],
+ ['θέατρο','théatro','theatre'],['ιστορία','istoría','history'],['ταξί','taksí','taxi'],['μπανάνα','banána','banana'],['καφές','kafés','coffee'],['πίτσα','pítsa','pizza'],
+ ['κινηματογράφος','kinimatoghráfos','cinema'],['γεωγραφία','yeoghrafía','geography'],['φωτογραφία','fotoghrafía','photograph'],['μαθηματικά','mathimatiká','mathematics'],
+ ['πανόραμα','panórama','panorama'],['αθλητής','athlitís','athlete'],['ορχήστρα','orhístra','orchestra'],['κρίση','krísi','crisis'],['σύμβολο','símvolo','symbol'],
+ ['ζώνη','zóni','zone, belt'],['ελικόπτερο','elikóptero','helicopter'],['μηχανή','mihaní','machine, engine'],['τυφώνας','tifónas','typhoon'],['χάος','háos','chaos'],
+ ['ήρωας','íroas','hero'],['μύθος','míthos','myth'],['ρυθμός','rithmós','rhythm'],['αρμονία','armonía','harmony'],['κέντρο','kéndro','centre'],['πρόβλημα','próvlima','problem'],
+ ['σύστημα','sístima','system'],['τηλεόραση','tileórasi','television'],['μουσείο','musío','museum'],['ατμόσφαιρα','atmósfera','atmosphere'],['οικονομία','ikonomía','economy'],
+ ['Ευρώπη','Evrópi','Europe'],['φαρμακείο','farmakío','pharmacy'],['τηλεσκόπιο','tileskópio','telescope'],['αεροπλάνο','aeropláno','aeroplane'],['πλανήτης','planítis','planet'],
+ ['κωμωδία','komodhía','comedy'],['τραγωδία','traghodhía','tragedy']
+];
+const Q={mode:'l2s',cur:null,answered:false,flipped:false,lastK:null};
+function weight(L){const s=PR.stats[L.k]||{c:0,w:0};return Math.max(.25,(1+s.w*2.2)/(1+s.c*.6));}
+function pickWeighted(items,wf,avoid){let tot=0;const ws=items.map(it=>{const w=(avoid&&it===avoid)?1e-4:wf(it);tot+=w;return w;});let r=Math.random()*tot;for(let i=0;i<items.length;i++){r-=ws[i];if(r<=0)return items[i];}return items[items.length-1];}
+function distractors(L,n){const s=soundOf(L);const seen=new Set([s]);const out=[];for(const x of shuffle(LETTERS.filter(x=>x!==L))){const sx=soundOf(x);if(!seen.has(sx)){seen.add(sx);out.push(x);}if(out.length>=n)break;}return out;}
+function refreshQuizSettings(){$('#qSettings').textContent=({both:'both cases',upper:'uppercase',lower:'lowercase'})[prefs.cs]+' · '+(prefs.pron==='ancient'?'Ancient':'Modern');if(Q.mode!=='word')newQ();}
+function record(key,ok,isLetter){
+  if(isLetter){const s=PR.stats[key]||(PR.stats[key]={c:0,w:0});ok?s.c++:s.w++;if(!PR.seen.includes(key))PR.seen.push(key);}
+  PR.total++;
+  if(ok){PR.correct++;PR.streak++;if(PR.streak>PR.best)PR.best=PR.streak;}else PR.streak=0;
+  saveP();milestones();renderProgress();
+}
+function milestones(){
+  const hits=[];
+  if([5,10,20,30,50,75,100].includes(PR.streak))hits.push(PR.streak+' in a row! Μπράβο!');
+  [25,50,100,250,500,1000].forEach(n=>{const id='c'+n;if(PR.correct>=n&&!PR.ms.includes(id)){PR.ms.push(id);hits.push(n+' correct answers — συγχαρητήρια!');}});
+  [12].forEach(n=>{const id='m'+n;if(masteredCount()>=n&&!PR.ms.includes(id)){PR.ms.push(id);hits.push('Half the alphabet mastered!');}});
+  if(masteredCount()===24&&!PR.ms.includes('all')){PR.ms.push('all');hits.push('All 24 letters mastered! Ζήτω!');}
+  if(hits.length){saveP();confetti();toast(hits[hits.length-1]);}
+}
+function nextBtn(){return '<button class="btn sm" id="qNext">Next →</button>';}
+function newQ(){
+  Q.answered=false;Q.flipped=false;
+  const box=$('#qbox');
+  if(Q.mode==='word'){
+    const w=WORDS[Math.floor(Math.random()*WORDS.length)];
+    const others=shuffle(WORDS.filter(x=>x!==w)).slice(0,3);
+    const opts=shuffle([w,...others]);Q.cur={w,opts};
+    box.innerHTML=`<div class="qhint">Sound it out. Which English word is this?</div><div class="qprompt word">${esc(w[0])}</div>
+      <div class="qopts">${opts.map((o,i)=>`<button class="qopt" data-i="${i}"><span class="k">${i+1}</span>${esc(o[2])}</button>`).join('')}</div><div class="qfb" id="qfb"></div>`;
+    return;
+  }
+  const L=pickWeighted(LETTERS,weight,LETTERS.find(x=>x.k===Q.lastK));Q.lastK=L.k;
+  if(Q.mode==='l2s'||Q.mode==='s2l'){
+    const opts=shuffle([L,...distractors(L,3)]);Q.cur={L,opts};
+    if(Q.mode==='l2s'){
+      box.innerHTML=`<div class="qhint">What sound does this letter make${prefs.pron==='ancient'?' in Ancient Greek':''}?</div><div class="qprompt">${esc(glyphText(L))}</div>
+      <div class="qopts">${opts.map((o,i)=>`<button class="qopt" data-i="${i}"><span class="k">${i+1}</span>${esc(soundOf(o))}</button>`).join('')}</div><div class="qfb" id="qfb"></div>`;
+    }else{
+      box.innerHTML=`<div class="qhint">Which letter makes this sound${prefs.pron==='ancient'?' in Ancient Greek':''}?</div><div class="qprompt sound">“${esc(soundOf(L))}”</div>
+      <div class="qopts">${opts.map((o,i)=>`<button class="qopt gl" data-i="${i}" aria-label="${esc(o.en)}"><span class="k">${i+1}</span>${esc(glyphText(o))}</button>`).join('')}</div><div class="qfb" id="qfb"></div>`;
+    }
+  }else if(Q.mode==='type'){
+    Q.cur={L};
+    box.innerHTML=`<div class="qhint">Type this letter's name (e.g. <i>alpha</i>) or its sound.</div><div class="qprompt">${esc(glyphText(L))}</div>
+      <form class="qinput" id="qform"><label class="sr-only" for="qin">Your answer</label><input id="qin" autocomplete="off" spellcheck="false" placeholder="name or sound…"><button class="btn sm" type="submit">Check</button></form><div class="qfb" id="qfb"></div>`;
+    const inp=$('#qin');if(inp&&document.activeElement&&document.activeElement.closest&&document.activeElement.closest('#practice'))inp.focus({preventScroll:true});
+  }else if(Q.mode==='flash'){
+    Q.cur={L};
+    box.innerHTML=`<div class="fc" id="fc" role="button" tabindex="0" aria-label="Flashcard: press to flip"><div class="in">
+      <div class="side"><div class="qprompt">${esc(glyphText(L))}</div><div class="qhint">Say its name and sound, then flip</div></div>
+      <div class="side b">${artSVG(L,84)}<div style="font-weight:700;font-size:1.1rem"><span class="gr">${esc(L.gr)}</span> · ${esc(L.en)}</div><div class="small">${esc(prefs.pron==='ancient'?L.anc:L.mod)}</div></div>
+    </div></div>
+    <div id="fcBtns" style="display:flex;gap:10px;visibility:hidden"><button class="btn sm ghost" data-fc="0">↺ Again</button><button class="btn sm" data-fc="1">✓ Got it</button>${sayBtn(L.gr,L.en)}</div><div class="qfb" id="qfb"></div>`;
+  }
+}
+function finishFb(ok,html){const fb=$('#qfb');fb.className='qfb '+(ok?'ok':'no');fb.innerHTML=html+' '+nextBtn();}
+function answerOpt(i){
+  if(Q.answered||!Q.cur||!Q.cur.opts)return;
+  Q.answered=true;
+  const btns=$$('#qbox .qopt');const chosen=Q.cur.opts[i];
+  if(Q.mode==='word'){
+    const w=Q.cur.w,ok=chosen===w;
+    btns.forEach((b,j)=>{if(Q.cur.opts[j]===w)b.classList.add('right');else if(j===i)b.classList.add('wrong');b.disabled=true;});
+    record('w:'+w[0],ok,false);
+    finishFb(ok,(ok?'Σωστά! Correct — ':'Not quite — ')+`<span class="gr">${esc(w[0])}</span> = <i>${esc(w[1])}</i>, “${esc(w[2])}” ${sayBtn(w[0])}`);
+    return;
+  }
+  const L=Q.cur.L,ok=chosen===L;
+  btns.forEach((b,j)=>{if(Q.cur.opts[j]===L)b.classList.add('right');else if(j===i)b.classList.add('wrong');b.disabled=true;});
+  record(L.k,ok,true);
+  finishFb(ok,(ok?'Σωστά! ':'Oops — ')+`<span class="gr">${esc(L.U)} ${esc(L.l)}</span> is <b>${esc(L.en)}</b> (<span class="gr">${esc(L.gr)}</span>): ${esc(soundOf(L))} ${sayBtn(L.gr,L.en)}`);
+}
+const norm=s=>s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z]/g,'');
+function checkTyped(){
+  if(Q.answered)return;const inp=$('#qin');if(!inp)return;const v=norm(inp.value);if(!v){inp.focus();return;}
+  Q.answered=true;const L=Q.cur.L;const acc=ACCEPT[L.k].concat([norm(L.tr),norm(soundOf(L))]);
+  const ok=acc.includes(v);inp.disabled=true;
+  record(L.k,ok,true);
+  finishFb(ok,(ok?'Σωστά! ':'Not quite — ')+`it's <b>${esc(L.en)}</b> (<span class="gr">${esc(L.gr)}</span>), sound: ${esc(soundOf(L))} ${sayBtn(L.gr,L.en)}`);
+  const nb=$('#qNext');if(nb)nb.focus({preventScroll:true});
+}
+function flipFc(){const fc=$('#fc');if(!fc)return;Q.flipped=!Q.flipped;fc.classList.toggle('flipped',Q.flipped);if(Q.flipped){$('#fcBtns').style.visibility='visible';markSeen(Q.cur.L.k);}}
+function answerFc(ok){if(Q.answered)return;Q.answered=true;record(Q.cur.L.k,ok,true);newQ();}
+$('#qbox').addEventListener('click',e=>{
+  const o=e.target.closest('.qopt');if(o){answerOpt(+o.getAttribute('data-i'));return;}
+  if(e.target.closest('#qNext')){newQ();return;}
+  const fb=e.target.closest('[data-fc]');if(fb){answerFc(fb.getAttribute('data-fc')==='1');return;}
+  if(e.target.closest('#fc'))flipFc();
+});
+$('#qbox').addEventListener('submit',e=>{e.preventDefault();checkTyped();});
+document.addEventListener('keydown',e=>{
+  const pr=$('#practice');if(!pr)return;const r=pr.getBoundingClientRect();
+  const inView=r.top<window.innerHeight*.6&&r.bottom>window.innerHeight*.3;
+  if(!inView||$('#modal').classList.contains('open'))return;
+  const tag=(e.target.tagName||'').toLowerCase();
+  if(tag==='input'&&e.target.id==='qin'){return;}
+  if(tag==='input'||tag==='textarea')return;
+  if(/^[1-4]$/.test(e.key)&&(Q.mode==='l2s'||Q.mode==='s2l'||Q.mode==='word')){answerOpt(+e.key-1);e.preventDefault();}
+  else if(e.key==='Enter'&&Q.answered&&Q.mode!=='flash'&&!(e.target.closest&&e.target.closest('button'))){newQ();e.preventDefault();}
+  else if(e.key===' '&&Q.mode==='flash'&&!(e.target.closest&&e.target.closest('button:not(#fc)'))){flipFc();e.preventDefault();}
+});
+$('#qmodes').addEventListener('click',e=>{const b=e.target.closest('[data-mode]');if(!b)return;Q.mode=b.getAttribute('data-mode');$$('#qmodes [data-mode]').forEach(x=>x.setAttribute('aria-selected',String(x===b)));newQ();});
+$('#resetBtn').addEventListener('click',()=>{if(typeof window.confirm==='function'&&!window.confirm('Reset all quiz progress?'))return;PR=freshP();saveP();visited=new Set();store.set('lg-visited',[]);renderProgress();newQ();toast('Progress reset — καλή αρχή!');});
+
+/* ---------- confetti ---------- */
+function confetti(){
+  if(reduceMotion)return;
+  const c=$('#confetti');let ctx=null;try{ctx=c.getContext&&c.getContext('2d');}catch(e){ctx=null;}
+  if(!ctx)return;
+  const W=c.width=window.innerWidth,H=c.height=window.innerHeight;
+  const cols=['#1f5fa8','#2a7ab8','#c9a227','#c8643b','#6b7a3a','#ffffff'];
+  const ps=Array.from({length:160},()=>({x:W/2+(Math.random()-.5)*W*.3,y:H*.35,vx:(Math.random()-.5)*14,vy:-Math.random()*14-4,s:Math.random()*7+4,r:Math.random()*6,vr:(Math.random()-.5)*.3,c:cols[Math.floor(Math.random()*cols.length)]}));
+  const t0=performance.now();
+  (function frame(t){
+    ctx.clearRect(0,0,W,H);
+    ps.forEach(p=>{p.vy+=.35;p.vx*=.99;p.x+=p.vx;p.y+=p.vy;p.r+=p.vr;ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.r);ctx.fillStyle=p.c;ctx.fillRect(-p.s/2,-p.s/4,p.s,p.s/2);ctx.restore();});
+    if(t-t0<2800)requestAnimationFrame(frame);else ctx.clearRect(0,0,W,H);
+  })(t0);
+}
+
+/* ---------- word order ---------- */
+let woSwapped=false;
+function renderWO(){
+  const en=woSwapped?[['sub','The man'],['vrb','bites'],['obj','the dog']]:[['sub','The dog'],['vrb','bites'],['obj','the man']];
+  $('#woEn').innerHTML=en.map(b=>`<span class="blk ${b[0]}">${b[1]}<br><small>${b[0]==='sub'?'subject (by position)':b[0]==='obj'?'object (by position)':'verb'}</small></span>`).join('');
+  $('#woEnMean').textContent=woSwapped?'Meaning flipped: the man bites!':'dog → bites → man';
+  $('#woEnMean').className='wo-mean'+(woSwapped?' bad':'');
+  const gS='<span class="blk sub"><span class="gr">ο σκύλ<span class="e">ος</span></span><br><small>nominative = subject</small></span>';
+  const gV='<span class="blk vrb"><span class="gr">δαγκώνει</span><br><small>bites</small></span>';
+  const gO='<span class="blk obj"><span class="gr">τον άνθρωπ<span class="e">ο</span></span><br><small>accusative = object</small></span>';
+  const gS2=gS.replace('ο σκύλ','Ο σκύλ'),gO2=gO.replace('τον άνθρωπ','Τον άνθρωπ');
+  $('#woGr').innerHTML=woSwapped?gO2+gV+gS:gS2+gV+gO;
+  $('#woGrMean').textContent='Same meaning: the dog bites the man';
+  $('#woSay').setAttribute('data-say',woSwapped?'Τον άνθρωπο δαγκώνει ο σκύλος.':'Ο σκύλος δαγκώνει τον άνθρωπο.');
+}
+renderWO();
+$('#woSwap').addEventListener('click',()=>{woSwapped=!woSwapped;const bl=[$('#woEn'),$('#woGr')];bl.forEach(b=>b.style.opacity='0');setTimeout(()=>{renderWO();bl.forEach(b=>b.style.opacity='1');},reduceMotion?0:250);});
+
+/* ---------- sentence breakdown ---------- */
+const ROLES={sub:['Subject','#1f5fa8'],verb:['Verb','#c9a227'],dobj:['Direct object','#c8643b'],iobj:['Indirect object','#6b7a3a'],poss:['Possessor','#8a4f7d']};
+const SENT=[
+ {s:['Ο'],st:-1,g:'the',r:'sub',d:'<b>Ο</b> — definite article, masculine nominative singular. Greek uses the article even with names: “the Nikos”. Unaccented because it has one syllable.'},
+ {s:['Νί','κος'],st:0,g:'Nikos',r:'sub',d:'<b>Νίκος</b> — proper noun, masculine, <b>nominative</b> (-ος), so he\'s the subject. Stress on the first syllable: <i>NÍ-kos</i>.'},
+ {s:['γρά','φει'],st:0,g:'writes',r:'verb',d:'<b>γράφει</b> — verb γράφω “write”, present tense, 3rd person singular (-ει, pronounced “i”). <i>GRÁ-fi</i>.'},
+ {s:['έ','να'],st:0,g:'a',r:'dobj',d:'<b>ένα</b> — indefinite article, neuter accusative singular, agreeing with γράμμα. <i>É-na</i>.'},
+ {s:['γράμ','μα'],st:0,g:'letter',r:'dobj',d:'<b>γράμμα</b> — noun, neuter, <b>accusative</b>: the direct object. (Neuter -μα nouns look the same in the nominative and accusative.) Double μ is said as one: <i>GRÁ-ma</i>.'},
+ {s:['στη'],st:-1,g:'to the',r:'iobj',d:'<b>στη</b> — preposition σε “to/in/at” fused with the article τη(ν) (feminine accusative). The ν drops before μ.'},
+ {s:['μη','τέ','ρα'],st:1,g:'mother',r:'iobj',d:'<b>μητέρα</b> — noun, feminine, accusative after the preposition: the indirect object (“to whom?”). <i>mi-TÉ-ra</i>.'},
+ {s:['του'],st:-1,g:'his',r:'poss',d:'<b>του</b> — weak possessive pronoun, <b>genitive</b> masculine: literally “the mother <i>of him</i>”. It comes <i>after</i> the noun. Pronounced <i>tu</i>.'}
+];
+$('#sent').innerHTML=SENT.map((w,i)=>`<button class="tok" style="--c:${ROLES[w.r][1]}" data-i="${i}" aria-pressed="false"><span class="w">${w.s.map((x,j)=>j===w.st?`<span class="st">${x}</span>`:(w.s.length>1?`${x}`:x)).join('<span class="syl">·</span>')}</span><span class="g">${w.g}</span><span class="r">${ROLES[w.r][0]}</span></button>`).join('');
+$('#roleKey').innerHTML=Object.values(ROLES).map(r=>`<span style="--c:${r[1]}">${r[0]}</span>`).join('');
+$('#sent').addEventListener('click',e=>{const t=e.target.closest('.tok');if(!t)return;$$('#sent .tok').forEach(x=>x.setAttribute('aria-pressed',String(x===t)));const w=SENT[+t.getAttribute('data-i')];$('#tokInfo').innerHTML=w.d+' '+sayBtn(w.s.join(''));});
+
+/* ---------- numbers ---------- */
+const NUMS=[[1,'ένα','éna'],[2,'δύο','dhío'],[3,'τρία','tría'],[4,'τέσσερα','tésera'],[5,'πέντε','pénde'],[6,'έξι','éksi'],[7,'επτά / εφτά','eptá / eftá'],[8,'οκτώ / οχτώ','októ / ohtó'],[9,'εννέα / εννιά','enéa / enyá'],[10,'δέκα','dhéka'],
+ [11,'έντεκα','éndeka'],[12,'δώδεκα','dhódheka'],[13,'δεκατρία','dhekatría'],[14,'δεκατέσσερα','dhekatésera'],[15,'δεκαπέντε','dhekapénde'],[16,'δεκαέξι / δεκάξι','dhekaéksi'],[17,'δεκαεπτά / δεκαεφτά','dhekaeftá'],[18,'δεκαοκτώ / δεκαοχτώ','dhekaoktó'],[19,'δεκαεννέα / δεκαεννιά','dhekaenéa'],[20,'είκοσι','íkosi']];
+const TENS=[[30,'τριάντα','triánda'],[40,'σαράντα','saránda'],[50,'πενήντα','penínda'],[60,'εξήντα','eksínda'],[70,'εβδομήντα','evdhomínda'],[80,'ογδόντα','oghdhónda'],[90,'ενενήντα','enenínda'],[100,'εκατό','ekató'],[1000,'χίλια','hílya'],[21,'είκοσι ένα','íkosi éna'],[101,'εκατόν ένα','ekatón éna'],[2026,'δύο χιλιάδες είκοσι έξι','dhío hilyádhes íkosi éksi']];
+const numHTML=a=>a.map(n=>`<div class="num"><span class="n">${n[0]}</span><span class="w">${n[1]}</span><span class="t">${n[2]}</span>${sayBtn(n[1].split(' / ')[0],String(n[0]))}</div>`).join('');
+$('#nums').innerHTML=numHTML(NUMS);$('#tens').innerHTML=numHTML(TENS);
+const ONES=['','α','β','γ','δ','ε','ϛ','ζ','η','θ'],TNS=['','ι','κ','λ','μ','ν','ξ','ο','π','ϟ'],HUN=['','ρ','σ','τ','υ','φ','χ','ψ','ω','ϡ'];
+function toGreekNum(n){n=Math.floor(n);if(!(n>=1&&n<=9999))return '';const th=Math.floor(n/1000),h=Math.floor(n%1000/100),t=Math.floor(n%100/10),o=n%10;let s='';if(th)s+='͵'+ONES[th];const rest=HUN[h]+TNS[t]+ONES[o];s+=rest;return rest?s+'ʹ':s;}
+function explainNum(n){n=Math.floor(n);const th=Math.floor(n/1000),h=Math.floor(n%1000/100),t=Math.floor(n%100/10),o=n%10;const parts=[];if(th)parts.push('͵'+ONES[th]+' = '+th*1000);if(h)parts.push(HUN[h]+' = '+h*100);if(t)parts.push(TNS[t]+' = '+t*10);if(o)parts.push(ONES[o]+' = '+o);return parts.join(' + ');}
+function updNum(){const v=+$('#numIn').value;const g=toGreekNum(v);$('#numOut').textContent=g||'—';$('#numExplain').textContent=g?explainNum(v):'Enter a whole number from 1 to 9999.';}
+$('#numIn').addEventListener('input',updNum);updNum();
+const rowN=(arr,mult)=>'<tr>'+arr.slice(1).map((g,i)=>`<td>${g}<small>${(i+1)*mult}</small></td>`).join('')+'</tr>';
+$('#numeralTbl').innerHTML='<tbody>'+rowN(ONES,1)+rowN(TNS,10)+rowN(HUN,100)+'</tbody>';
+
+/* ---------- vocab ---------- */
+const VOCAB={
+ 'Family & people':[['η μητέρα','mitéra','mother'],['ο πατέρας','patéras','father'],['ο αδερφός','adherfós','brother'],['η αδερφή','adherfí','sister'],['το παιδί','pedhí','child'],['ο φίλος','fílos','friend (m.)']],
+ 'Food & drink':[['το νερό','neró','water'],['το ψωμί','psomí','bread'],['το κρασί','krasí','wine'],['ο καφές','kafés','coffee'],['το τυρί','tirí','cheese'],['η ελιά','eliá','olive; olive tree'],['το ψάρι','psári','fish'],['τα φρούτα','frúta','fruit'],['το γάλα','ghála','milk'],['το μέλι','méli','honey']],
+ 'Places':[['το σπίτι','spíti','house, home'],['η θάλασσα','thálasa','sea'],['η πόλη','póli','city, town'],['ο δρόμος','dhrómos','street, road'],['το σχολείο','s-holío','school'],['το εστιατόριο','estiatório','restaurant'],['η παραλία','paralía','beach'],['το νησί','nisí','island']],
+ 'Time':[['σήμερα','símera','today'],['αύριο','ávrio','tomorrow'],['χτες','htes','yesterday'],['η μέρα','méra','day'],['η νύχτα','níhta','night'],['η ώρα','óra','hour; time'],['τώρα','tóra','now'],['η εβδομάδα','evdhomádha','week']],
+ 'Nature':[['ο ήλιος','ílios','sun'],['ο ουρανός','uranós','sky'],['το βουνό','vunó','mountain'],['το δέντρο','dhéndro','tree'],['το λουλούδι','lulúdhi','flower'],['η γάτα','gháta','cat'],['ο σκύλος','skílos','dog']],
+ 'Describing':[['καλός','kalós','good'],['μεγάλος','meghálos','big'],['μικρός','mikrós','small'],['ωραίος','oréos','beautiful, nice'],['ζεστός','zestós','hot, warm'],['κρύος','kríos','cold'],['καινούριος','kenúrios','new'],['παλιός','palyós','old (things)']],
+ 'Verbs':[['θέλω','thélo','I want'],['έχω','ého','I have'],['πάω','páo','I go'],['τρώω','tróo','I eat'],['πίνω','píno','I drink'],['ξέρω','kséro','I know'],['αγαπώ','aghapó','I love'],['καταλαβαίνω','katalavéno','I understand']]
+};
+const PHRASES={
+ 'Greetings':[['Γεια σου!','ya su','Hi! / Bye! (informal)'],['Γεια σας!','ya sas','Hello! (polite or plural)'],['Καλημέρα!','kaliméra','Good morning!'],['Καλησπέρα!','kalispéra','Good evening!'],['Καληνύχτα!','kaliníhta','Good night!'],['Τι κάνεις;','ti kánis?','How are you? (informal)'],['Καλά, ευχαριστώ.','kalá, efharistó','Fine, thanks.'],['Με λένε…','me léne…','My name is… (lit. “they call me”)'],['Χαίρω πολύ.','héro polí','Nice to meet you.'],['Τα λέμε!','ta léme!','See you!'],['Αντίο!','adío!','Goodbye!']],
+ 'Politeness':[['Παρακαλώ.','parakaló','Please. / You\'re welcome.'],['Ευχαριστώ πολύ.','efharistó polí','Thank you very much.'],['Συγγνώμη.','sighnómi','Sorry. / Excuse me.'],['Ναι.','ne','Yes. (yes, really!)'],['Όχι.','óhi','No.'],['Δεν καταλαβαίνω.','dhen katalavéno','I don\'t understand.'],['Μιλάτε αγγλικά;','miláte angliká?','Do you speak English?'],['Πιο αργά, παρακαλώ.','pyo arghá, parakaló','More slowly, please.']],
+ 'Restaurant':[['Ένα τραπέζι για δύο, παρακαλώ.','éna trapézi ya dhío, parakaló','A table for two, please.'],['Τον κατάλογο, παρακαλώ.','ton katálogho, parakaló','The menu, please.'],['Θα ήθελα…','tha íthela…','I would like…'],['Ένα ποτήρι νερό.','éna potíri neró','A glass of water.'],['Καλή όρεξη!','kalí óreksi!','Enjoy your meal!'],['Στην υγειά μας!','stin iyá mas!','Cheers! (to our health)'],['Τον λογαριασμό, παρακαλώ.','ton logharyazmó, parakaló','The bill, please.']],
+ 'Travel':[['Πού είναι…;','pu íne…?','Where is…?'],['Πού είναι η τουαλέτα;','pu íne i tualéta?','Where is the toilet?'],['Ένα εισιτήριο για…','éna isitírio ya…','A ticket to…'],['Πόσο απέχει;','póso apéhi?','How far is it?'],['Αριστερά / δεξιά / ευθεία','aristerá / dheksyá / efthía','Left / right / straight on'],['Πού είναι το λιμάνι;','pu íne to limáni?','Where is the port?'],['Χάθηκα.','háthika','I\'m lost.']],
+ 'Shopping':[['Πόσο κάνει;','póso káni?','How much is it?'],['Έχετε…;','éhete…?','Do you have…?'],['Είναι ακριβό.','íne akrivó','It\'s expensive.'],['Θα το πάρω.','tha to páro','I\'ll take it.'],['Μπορώ να πληρώσω με κάρτα;','boró na pliróso me kárta?','Can I pay by card?'],['Απλώς κοιτάζω.','aplós kitázo','I\'m just looking.']]
+};
+function makeTabs(tabsEl,panelEl,data,render){
+  const keys=Object.keys(data);
+  tabsEl.innerHTML=keys.map((k,i)=>`<button role="tab" aria-selected="${i===0}" data-k="${esc(k)}">${esc(k)}</button>`).join('');
+  const show=k=>{$$('button',tabsEl).forEach(b=>b.setAttribute('aria-selected',String(b.getAttribute('data-k')===k)));panelEl.innerHTML=render(data[k]);};
+  tabsEl.addEventListener('click',e=>{const b=e.target.closest('[role=tab]');if(b)show(b.getAttribute('data-k'));});
+  tabsEl.addEventListener('keydown',e=>{if(e.key!=='ArrowRight'&&e.key!=='ArrowLeft')return;const bs=$$('button',tabsEl);let i=bs.findIndex(b=>b.getAttribute('aria-selected')==='true');i=(i+(e.key==='ArrowRight'?1:-1)+bs.length)%bs.length;bs[i].focus();show(bs[i].getAttribute('data-k'));});
+  show(keys[0]);
+}
+makeTabs($('#wordTabs'),$('#words'),VOCAB,arr=>arr.map((w,i)=>`<div class="wcard" style="animation-delay:${i*30}ms"><div><div class="w">${esc(w[0])}</div><div class="t">${esc(w[1])}</div><div class="m">${esc(w[2])}</div></div>${sayBtn(w[0])}</div>`).join(''));
+makeTabs($('#phraseTabs'),$('#phrases'),PHRASES,arr=>arr.map((p,i)=>`<div class="prow" style="animation-delay:${i*30}ms"><div><div class="g">${esc(p[0])}</div><div class="t">${esc(p[1])}</div></div><div class="en">${esc(p[2])}</div>${sayBtn(p[0].replace(/…/g,''),p[2])}</div>`).join(''));
+
+/* ---------- roots ---------- */
+const ROOTS=[
+ {r:'tele-',g:'τῆλε',t:'tēle',m:'far, at a distance',p:['tele'],w:[['telephone','far + sound'],['television','far + sight (Latin)'],['telescope','far + look'],['telepathy','far + feeling']]},
+ {r:'phil-',g:'φίλος',t:'phílos',m:'loving, friend',p:['phil'],w:[['philosophy','love of wisdom'],['philanthropy','love of humankind'],['Philadelphia','brotherly love'],['bibliophile','book lover']]},
+ {r:'bio-',g:'βίος',t:'bíos',m:'life',p:['bio'],w:[['biology','study of life'],['biography','life writing'],['antibiotic','against life (of germs)'],['symbiosis','living together']]},
+ {r:'graph-',g:'γράφω',t:'gráphō',m:'I write, draw',p:['graph','gram'],w:[['photograph','light drawing'],['autograph','self-written'],['calligraphy','beautiful writing'],['telegram','far writing']]},
+ {r:'-logy',g:'λόγος',t:'lógos',m:'word, reason, study',p:['logy','logist','logic','logue','log'],w:[['geology','study of the earth'],['theology','study of God'],['dialogue','speech across'],['logic','reasoning']]},
+ {r:'demo-',g:'δῆμος',t:'dêmos',m:'the people',p:['demo','dem'],w:[['democracy','people power'],['demographic','people writing'],['epidemic','upon the people'],['demagogue','people leader']]},
+ {r:'chron-',g:'χρόνος',t:'khrónos',m:'time',p:['chron'],w:[['chronology','study of time order'],['chronic','lasting in time'],['synchronize','same time'],['chronometer','time measurer']]},
+ {r:'auto-',g:'αὐτός',t:'autós',m:'self',p:['auto'],w:[['automatic','self-acting'],['autonomy','self-law'],['autobiography','self life writing'],['autopsy','seeing for oneself']]},
+ {r:'micro-',g:'μικρός',t:'mikrós',m:'small',p:['micro'],w:[['microscope','small look'],['microphone','small sound'],['microbe','small life'],['microcosm','small world']]},
+ {r:'poly-',g:'πολύς',t:'polús',m:'many, much',p:['poly'],w:[['polygon','many angles'],['polyglot','many tongues'],['polymer','many parts'],['polytheism','many gods']]},
+ {r:'phon-',g:'φωνή',t:'phōnḗ',m:'sound, voice',p:['phon'],w:[['symphony','sounding together'],['phonetics','study of sounds'],['saxophone','Sax\'s sound'],['euphony','good sound']]},
+ {r:'photo-',g:'φῶς, φωτός',t:'phôs, phōtós',m:'light',p:['photo','phos'],w:[['photograph','light drawing'],['photon','light particle'],['photosynthesis','putting together with light'],['phosphorus','light-bearer']]},
+ {r:'geo-',g:'γῆ',t:'gê',m:'earth, land',p:['geo'],w:[['geography','earth writing'],['geometry','earth measuring'],['geology','earth study'],['geocentric','earth-centred']]},
+ {r:'psych-',g:'ψυχή',t:'psukhḗ',m:'soul, mind, breath',p:['psych'],w:[['psychology','study of the mind'],['psyche','the soul'],['psychiatry','healing of the mind'],['psychedelic','mind-revealing']]},
+ {r:'hydr-',g:'ὕδωρ',t:'húdōr',m:'water',p:['hydr'],w:[['hydrate','add water'],['hydrant','water outlet'],['dehydrate','remove water'],['hydrophobia','fear of water']]},
+ {r:'astr-',g:'ἄστρον',t:'ástron',m:'star',p:['astr','aster'],w:[['astronomy','star law'],['astronaut','star sailor'],['disaster','bad star'],['asterisk','little star']]},
+ {r:'anthrop-',g:'ἄνθρωπος',t:'ánthrōpos',m:'human being',p:['anthrop'],w:[['anthropology','study of humans'],['philanthropy','love of humans'],['misanthrope','hater of humans'],['anthropomorphic','human-shaped']]},
+ {r:'-scope',g:'σκοπέω',t:'skopéō',m:'I look at, examine',p:['scop'],w:[['telescope','far look'],['microscope','small look'],['periscope','look around'],['horoscope','hour look']]},
+ {r:'soph-',g:'σοφία',t:'sophía',m:'wisdom',p:['soph'],w:[['philosophy','love of wisdom'],['sophisticated','made wise'],['sophomore','wise fool'],['Sophia','wisdom (name)']]},
+ {r:'path-',g:'πάθος',t:'páthos',m:'feeling, suffering',p:['path'],w:[['sympathy','feeling with'],['empathy','feeling in'],['pathology','study of disease'],['apathy','without feeling']]},
+ {r:'phob-',g:'φόβος',t:'phóbos',m:'fear',p:['phob'],w:[['phobia','fear'],['claustrophobia','fear of closed spaces (Latin claustrum)'],['arachnophobia','fear of spiders'],['xenophobia','fear of strangers']]},
+ {r:'metr-',g:'μέτρον',t:'métron',m:'measure',p:['metr','meter'],w:[['geometry','earth measuring'],['thermometer','heat measure'],['symmetry','measured together'],['metronome','measure law']]},
+ {r:'therm-',g:'θερμός',t:'thermós',m:'hot',p:['therm'],w:[['thermometer','heat measure'],['thermal','of heat'],['thermostat','heat stand'],['hypothermia','under heat']]},
+ {r:'mega-',g:'μέγας',t:'mégas',m:'great, big',p:['mega','megal'],w:[['megaphone','big sound'],['megalith','big stone'],['megalomania','madness of greatness'],['megabyte','big byte']]},
+ {r:'pan-',g:'πᾶν',t:'pân',m:'all, every',p:['pan'],w:[['panorama','all-seeing view'],['pandemic','all the people'],['pantheon','all the gods'],['panacea','cure-all']]},
+ {r:'neo-',g:'νέος',t:'néos',m:'new, young',p:['neo'],w:[['neon','the new (gas)'],['neolithic','new stone (age)'],['neologism','new word'],['neonatal','newborn (Latin natus)']]},
+ {r:'xeno-',g:'ξένος',t:'xénos',m:'stranger, guest',p:['xeno','xen'],w:[['xenophobia','fear of strangers'],['xenon','the stranger (gas)'],['xenial','hospitable'],['xenolith','foreign stone']]},
+ {r:'cardi-',g:'καρδία',t:'kardía',m:'heart',p:['cardi'],w:[['cardiology','study of the heart'],['cardiac','of the heart'],['electrocardiogram','electric heart writing'],['cardiogram','heart writing']]}
+];
+function rootPanel(R){
+  const hl=w=>{const lw=w.toLowerCase();for(const p of R.p){const i=lw.indexOf(p);if(i>=0)return esc(w.slice(0,i))+'<span class="hl">'+esc(w.slice(i,i+p.length))+'</span>'+esc(w.slice(i+p.length));}return esc(w);};
+  return `<div class="rootbig"><div class="g">${esc(R.g)}</div><div class="small" style="opacity:.85;font-style:italic">${esc(R.t)}</div><div class="r">${esc(R.r)}</div><div class="small">“${esc(R.m)}”</div></div>
+   <div><h3 style="margin-bottom:10px">Words built on <span style="color:var(--terra)">${esc(R.r)}</span></h3><div class="rw">${R.w.map((w,i)=>`<div class="item" style="animation-delay:${i*60}ms"><b>${hl(w[0])}</b><div class="small muted">${esc(w[1])}</div></div>`).join('')}</div>
+   <p class="small muted" style="margin-top:12px">Ancient Greek <span class="grs">${esc(R.g)}</span>. In Modern Greek you'll still meet this root all the time.</p></div>`;
+}
+$('#rootBtns').innerHTML=ROOTS.map((R,i)=>`<button class="rootbtn" aria-pressed="${i===0}" data-i="${i}">${esc(R.r)} <span class="grs muted" style="font-weight:400">${esc(R.g.split(',')[0])}</span></button>`).join('');
+$('#rootPanel').innerHTML=rootPanel(ROOTS[0]);
+$('#rootBtns').addEventListener('click',e=>{const b=e.target.closest('.rootbtn');if(!b)return;$$('#rootBtns .rootbtn').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));$('#rootPanel').innerHTML=rootPanel(ROOTS[+b.getAttribute('data-i')]);});
+function decode(){
+  const raw=$('#decodeIn').value.trim();const w=raw.toLowerCase().replace(/[^a-z]/g,'');const out=$('#decodeOut');
+  if(!w){out.innerHTML='<span class="muted">Type an English word above.</span>';return;}
+  const found=[];const used=new Array(w.length).fill(false);
+  const cands=[];ROOTS.forEach(R=>R.p.forEach(p=>{let i=w.indexOf(p);while(i>=0){cands.push({R,p,i});i=w.indexOf(p,i+1);}}));
+  cands.sort((a,b)=>b.p.length-a.p.length||a.i-b.i);
+  cands.forEach(c=>{let free=true;for(let j=c.i;j<c.i+c.p.length;j++)if(used[j])free=false;if(free&&!found.some(f=>f.R===c.R)){for(let j=c.i;j<c.i+c.p.length;j++)used[j]=true;found.push(c);}});
+  found.sort((a,b)=>a.i-b.i);
+  if(!found.length){out.innerHTML=`No Greek roots from this list found in “${esc(raw)}”. It may be Latin or Germanic, or use a root we haven't listed.`;return;}
+  out.innerHTML=`<strong>${esc(raw)}</strong> ≈ `+found.map(f=>`<span class="chip" style="margin:2px">${esc(f.p)}… <span class="grs">${esc(f.R.g.split(',')[0])}</span> “${esc(f.R.m)}”</span>`).join(' + ');
+}
+$('#decodeBtn').addEventListener('click',decode);
+$('#decodeIn').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();decode();}});
+
+/* ---------- polytonic builder ---------- */
+const BGROUPS={
+ base:[['α','α'],['ε','ε'],['η','η'],['ι','ι'],['ο','ο'],['υ','υ'],['ω','ω'],['ρ','ρ']],
+ br:[['','none'],['\u0313','smooth ̓'],['\u0314','rough ̔']],
+ ac:[['','none'],['\u0301','acute ´'],['\u0300','grave `'],['\u0342','circumflex ῀']],
+ sub:[['','none'],['\u0345','iota subscript'],['\u0308','diaeresis ¨']]
+};
+const BSEL={base:'α',br:'\u0313',ac:'\u0301',sub:''};
+Object.keys(BGROUPS).forEach(g=>{
+  const box=$(`#builder [data-group="${g}"]`);
+  box.innerHTML=BGROUPS[g].map((o,i)=>`<label><input type="radio" name="b-${g}" value="${esc(o[0])}" ${o[0]===BSEL[g]?'checked':''}><span class="${g==='base'?'g':''}">${esc(o[1])}</span></label>`).join('');
+  box.addEventListener('change',e=>{BSEL[g]=e.target.value;buildChar();});
+});
+const BR_N={'':'','\u0313':'smooth breathing','\u0314':'rough breathing'},AC_N={'':'','\u0301':'acute','\u0300':'grave','\u0342':'circumflex'};
+function buildChar(){
+  const b=BSEL.base,br=BSEL.br,ac=BSEL.ac,sub=BSEL.sub;
+  const warn=[];
+  if(sub==='\u0308'&&br)warn.push('A diaeresis never combines with a breathing (it marks a non-initial vowel).');
+  if(sub==='\u0308'&&b!=='ι'&&b!=='υ')warn.push('Diaeresis appears only on ι and υ.');
+  if(sub==='\u0345'&&!'αηω'.includes(b))warn.push('Iota subscript goes only under α, η and ω.');
+  if(ac==='\u0342'&&'εο'.includes(b))warn.push('ε and ο are always short, so they can\'t take a circumflex.');
+  if(b==='ρ'&&(ac||sub))warn.push('ρ takes no accent: only a breathing at the start of a word (ῥ).');
+  if(b==='ρ'&&br==='\u0313')warn.push('Initial ρ takes the rough breathing (ῥ). Smooth ῤ appears only in some editions for doubled ρρ.');
+  if(b==='υ'&&br==='\u0313')warn.push('An initial υ always takes the rough breathing (ὑ). Smooth ὐ appears only as the second vowel of a diphthong (αὐτός).');
+  const order=sub==='\u0308'?b+sub+ac:b+br+ac+sub;
+  const ch=order.normalize('NFC');
+  $('#bOut').textContent=ch;
+  const names=[BR_N[br],AC_N[ac],sub==='\u0345'?'iota subscript':sub==='\u0308'?'diaeresis':''].filter(Boolean);
+  const m=$('#bMsg');m.className='msg'+(warn.length?' warn':'');
+  m.textContent=warn.length?warn.join(' '):(b+(names.length?' with '+names.join(' + '):' (no marks)')+(br==='\u0314'?' — pronounced with an initial h':''));
+  $('#bCode').textContent=Array.from(ch).map(c=>'U+'+c.codePointAt(0).toString(16).toUpperCase().padStart(4,'0')).join(' ');
+}
+buildChar();
+
+/* ---------- interlinear ---------- */
+const ILIAD=[['μῆνιν','mênin','wrath','acc. sg., object'],['ἄειδε','áeide','sing!','imperative'],['θεὰ','theà','O goddess','vocative'],['Πηληϊάδεω','Pēlēïádeō','of Peleus’ son','gen. (epic)'],['Ἀχιλῆος','Akhilêos','Achilles’','gen.'],
+ ['οὐλομένην','ouloménēn','accursed','acc., with μῆνιν'],['ἣ','hḕ','which','relative'],['μυρί’','murí’','countless','acc. pl.'],['Ἀχαιοῖς','Akhaioîs','on the Achaeans','dat. pl.'],['ἄλγε’','álge’','woes','acc. pl.'],['ἔθηκε','éthēke','laid','aorist']];
+const JOHN=[['Ἐν','En','in','prep.'],['ἀρχῇ','arkhêi','beginning','dat. sg.'],['ἦν','ên','was','imperf.'],['ὁ','ho','the','art. nom.'],['λόγος,','lógos','Word','nom. sg.'],['καὶ','kaì','and','conj.'],['ὁ','ho','the','art.'],['λόγος','lógos','Word','nom.'],['ἦν','ên','was',''],['πρὸς','pròs','with / toward','prep.'],['τὸν','tòn','the','art. acc.'],['θεόν,','theón','God','acc. sg.'],['καὶ','kaì','and',''],['θεὸς','theòs','God','nom., predicate'],['ἦν','ên','was',''],['ὁ','ho','the',''],['λόγος.','lógos','Word','nom.']];
+const interHTML=a=>a.map(w=>`<span class="iw"><span class="g">${esc(w[0])}</span><span class="t">${esc(w[1])}</span><span class="e">${esc(w[2])}</span>${w[3]?`<span class="gram">${esc(w[3])}</span>`:''}</span>`).join('');
+$('#iliad').innerHTML=interHTML(ILIAD);$('#john').innerHTML=interHTML(JOHN);
+
+/* ---------- maps ---------- */
+const NS='http://www.w3.org/2000/svg';
+const prjG=(lon,lat)=>[(lon-19)*40,(42.2-lat)*48];
+const pathFrom=(pts,prj,close)=>pts.map((p,i)=>{const q=prj(p[0],p[1]);return (i?'L':'M')+q[0].toFixed(1)+' '+q[1].toFixed(1);}).join(' ')+(close?'Z':'');
+const GREECE=[[20.0,39.7],[20.6,40.1],[21.0,40.7],[22.0,41.1],[23.0,41.3],[24.0,41.5],[25.0,41.3],[26.0,41.3],[26.6,41.6],[26.1,40.8],[25.0,40.95],[24.0,40.8],[23.7,40.7],[23.9,40.4],[24.3,40.1],[23.8,40.25],[23.6,39.95],[23.3,40.2],[23.4,39.95],[22.9,40.4],[22.9,40.6],[22.6,40.3],[22.6,40.0],[22.9,39.6],[23.2,39.2],[22.9,39.0],[22.6,38.9],[23.2,38.6],[23.7,38.3],[24.0,38.1],[24.0,37.7],[23.6,37.95],[23.1,37.95],[23.4,37.6],[23.2,37.3],[22.8,37.5],[22.9,36.9],[23.1,36.45],[22.6,36.8],[22.5,36.4],[22.2,36.9],[21.7,36.8],[21.6,37.4],[21.3,37.7],[21.1,37.9],[21.6,38.2],[22.4,38.1],[22.9,37.98],[22.5,38.3],[21.8,38.35],[21.1,38.4],[20.8,38.8],[20.7,39.1],[20.3,39.4]];
+const EUBOEA=[[23.0,38.95],[23.5,38.8],[24.1,38.65],[24.6,38.0],[24.2,38.2],[23.6,38.5],[23.2,38.75]];
+const CRETE=[[23.5,35.5],[24.0,35.55],[24.5,35.4],[25.0,35.4],[25.7,35.3],[26.3,35.3],[26.2,35.0],[25.5,35.0],[24.8,34.95],[24.2,35.2],[23.5,35.25]];
+const CYPRUS=[[32.3,35.0],[32.9,35.4],[33.6,35.35],[34.6,35.7],[34.0,35.1],[33.9,34.95],[33.0,34.6],[32.4,34.7]];
+const TURKEY=[[26.6,41.6],[28.0,41.6],[29.0,41.2],[29.5,40.8],[28.0,40.4],[26.7,40.3],[26.2,40.0],[26.8,39.4],[26.4,38.6],[27.2,38.0],[27.3,37.0],[28.2,36.7],[29.6,36.2],[30.6,36.8],[32.5,36.1],[34.0,36.3],[35.0,36.6]];
+const ISL=[['Lesbos',26.3,39.2,9],['Chios',26.0,38.4,6],['Samos',26.8,37.75,5],['Rhodes',28.0,36.2,8],['Naxos',25.45,37.05,5],['Paros',25.15,37.05,4],['Santorini',25.43,36.4,3.5],['Mykonos',25.35,37.45,3.5],['Corfu',19.9,39.6,6],['Kefalonia',20.5,38.2,7],['Zakynthos',20.8,37.8,5],['Lemnos',25.2,39.9,6],['Kos',27.1,36.85,4.5],['Andros',24.85,37.85,5],['Syros',24.9,37.45,3],['Thasos',24.7,40.7,5],['Karpathos',27.15,35.6,4.5],['Milos',24.42,36.7,4]];
+function buildGR(){
+  const s=$('#mapGR');let h='';
+  for(let lon=20;lon<=34;lon+=2){const x=(lon-19)*40;h+=`<line class="grat" x1="${x}" x2="${x}" y1="0" y2="400"/>`;}
+  for(let lat=35;lat<=42;lat++){const y=(42.2-lat)*48;h+=`<line class="grat" x1="0" x2="640" y1="${y}" y2="${y}"/>`;}
+  h+=`<path class="coast" d="${pathFrom(TURKEY,prjG,false)}"/>`;
+  h+=`<path class="land gr-land" d="${pathFrom(GREECE,prjG,true)}"/>`;
+  h+=`<path class="land gr-land" d="${pathFrom(EUBOEA,prjG,true)}"/>`;
+  h+=`<path class="land gr-land" d="${pathFrom(CRETE,prjG,true)}"/>`;
+  h+=`<path class="land cy" d="${pathFrom(CYPRUS,prjG,true)}"/>`;
+  ISL.forEach(i=>{const p=prjG(i[1],i[2]);h+=`<ellipse class="isl" cx="${p[0].toFixed(1)}" cy="${p[1].toFixed(1)}" rx="${i[3]}" ry="${(i[3]*.7).toFixed(1)}"><title>${i[0]}</title></ellipse>`;});
+  const lab=(t,lon,lat,cls,anchor)=>{const p=prjG(lon,lat);return `<text class="maplab ${cls||''}" x="${p[0].toFixed(1)}" y="${p[1].toFixed(1)}" text-anchor="${anchor||'middle'}">${t}</text>`;};
+  h+=lab('ΕΛΛΑΔΑ',22.0,39.85,'big');h+=lab('Greece',22.0,39.5,'');
+  h+=lab('ΚΥΠΡΟΣ',33.3,36.25,'big');h+=lab('Cyprus',33.3,35.95,'');
+  h+=lab('AEGEAN SEA',25.6,38.85,'sea');h+=lab('IONIAN',20.0,37.2,'sea');h+=lab('SEA',20.0,36.9,'sea');h+=lab('MEDITERRANEAN SEA',29.5,34.4,'sea');
+  h+=lab('Crete',24.9,34.75,'');
+  h+=lab('Turkey',30.5,38.6,'');h+=lab('Istanbul (Rum community)',29.4,41.55,'minor','start');
+  h+=lab('← S. Albania (Greek minority)',19.15,41.0,'minor','start');
+  h+=lab('← Griko (S. Italy)',19.15,38.85,'minor','start');
+  const cities=[['Athens',23.73,37.98,'Αθήνα'],['Thessaloniki',22.94,40.64,'Θεσσαλονίκη'],['Patras',21.73,38.25,'Πάτρα'],['Heraklion',25.13,35.34,'Ηράκλειο'],['Nicosia',33.36,35.17,'Λευκωσία'],['Limassol',33.04,34.68,'Λεμεσός']];
+  cities.forEach(c=>{const p=prjG(c[1],c[2]);h+=`<circle class="pulse" cx="${p[0].toFixed(1)}" cy="${p[1].toFixed(1)}" r="5"/><circle class="city" cx="${p[0].toFixed(1)}" cy="${p[1].toFixed(1)}" r="4.5"><title>${c[0]} — ${c[3]}</title></circle><text class="maplab" x="${(p[0]+8).toFixed(1)}" y="${(p[1]+4).toFixed(1)}">${c[3]}</text>`;});
+  s.innerHTML=h;
+}
+const prjW=(lon,lat)=>[(lon+180)*2,(80-lat)*2];
+const CONT={
+ na:[[-165,65],[-140,70],[-95,72],[-75,62],[-60,50],[-80,25],[-97,18],[-105,22],[-118,33],[-125,48],[-140,60]],
+ sa:[[-80,10],[-60,10],[-35,-7],[-40,-22],[-58,-38],[-70,-55],[-75,-40],[-80,-5]],
+ eu:[[-10,36],[-9,44],[-2,48],[5,52],[10,58],[20,70],[30,70],[40,65],[40,45],[28,41],[26,38],[20,38],[15,38],[12,44],[5,43]],
+ af:[[-17,21],[-5,36],[10,37],[32,31],[43,12],[51,11],[40,-15],[20,-35],[12,-18],[9,4],[-8,5],[-17,14]],
+ as:[[40,45],[40,65],[60,72],[100,76],[140,72],[178,68],[160,60],[140,50],[122,30],[108,20],[100,8],[80,8],[72,20],[58,24],[48,30],[36,36],[28,41]],
+ au:[[114,-22],[130,-12],[142,-11],[153,-27],[147,-38],[138,-35],[115,-34]],
+ uk:[[-5,50],[-6,58],[-2,58],[1,52]]
+};
+const DIAS=[['Athens',23.7,38,'Greece',1],['Nicosia',33.4,35.2,'Cyprus',1],['New York',-74,40.7,'USA',0],['Chicago',-87.6,41.9,'USA',0],['Toronto',-79.4,43.7,'Canada',0],['Montreal',-73.6,45.5,'Canada',0],['London',-0.1,51.5,'UK',0],['Munich',11.6,48.1,'Germany',0],['Melbourne',145,-37.8,'Australia',0],['Sydney',151.2,-33.9,'Australia',0],['Johannesburg',28,-26.2,'South Africa',0],['Buenos Aires',-58.4,-34.6,'Argentina',0],['Alexandria',29.9,31.2,'Egypt (historic)',0]];
+function buildW(){
+  const s=$('#mapW');let h='';
+  for(let lon=-150;lon<=180;lon+=30){const x=(lon+180)*2;h+=`<line class="grat" x1="${x}" x2="${x}" y1="0" y2="300"/>`;}
+  for(let lat=-60;lat<=60;lat+=30){const y=(80-lat)*2;h+=`<line class="grat" x1="0" x2="720" y1="${y}" y2="${y}"/>`;}
+  Object.values(CONT).forEach(c=>{h+=`<path class="land" d="${pathFrom(c,prjW,true)}"/>`;});
+  const home=prjW(25,37);
+  DIAS.forEach(d=>{const p=prjW(d[1],d[2]);if(!d[4]){const mx=(home[0]+p[0])/2,my=Math.min(home[1],p[1])-40;h+=`<path d="M${home[0]} ${home[1]} Q${mx.toFixed(1)} ${my.toFixed(1)} ${p[0].toFixed(1)} ${p[1].toFixed(1)}" fill="none" stroke="var(--gold)" stroke-width="1" stroke-dasharray="3 3" opacity=".7"/>`;}});
+  DIAS.forEach(d=>{const p=prjW(d[1],d[2]);h+=`<circle class="pulse" cx="${p[0].toFixed(1)}" cy="${p[1].toFixed(1)}" r="${d[4]?5:4}"/><circle class="city" cx="${p[0].toFixed(1)}" cy="${p[1].toFixed(1)}" r="${d[4]?4.5:3.2}" style="${d[4]?'fill:var(--sea)':''}"><title>${d[0]}, ${d[3]}</title></circle>`;});
+  const L2=[['Melbourne & Sydney',150,-41,'end'],['New York · Chicago',-74,36,'middle'],['Toronto · Montreal',-79,52,'middle'],['London · Germany',2,56,'middle'],['Greece & Cyprus',36,30,'start'],['Johannesburg',28,-31,'middle'],['Buenos Aires',-58,-40,'middle']];
+  L2.forEach(l=>{const p=prjW(l[1],l[2]);h+=`<text class="maplab" x="${p[0].toFixed(1)}" y="${p[1].toFixed(1)}" text-anchor="${l[3]}" style="font-size:10px">${l[0]}</text>`;});
+  s.innerHTML=h;
+}
+buildGR();buildW();
+
+/* ---------- CEFR ---------- */
+const CEFR=[
+ ['A1','Breakthrough','~90 h','#6b7a3a','Introduce yourself, order a coffee, ask prices, read signs and menus, and understand slow, simple speech.'],
+ ['A2','Waystage','~200 h','#8a9a45','Handle routine exchanges: shopping, directions, your family, your job and your past weekend.'],
+ ['B1','Threshold','~400 h','#2a7ab8','Get by on your own while travelling, tell a story, explain opinions simply and follow the gist of clear TV.'],
+ ['B2','Vantage','~650 h','#1f5fa8','Follow ERT news and most films, argue a point, and chat fluently with native speakers without strain.'],
+ ['C1','Effective proficiency','~900 h','#c8643b','Use Greek flexibly at work or university, and understand long, demanding texts. Often required for study or professional work in Greece.'],
+ ['C2','Mastery','~1200 h+','#c9a227','Understand virtually everything with ease, with precise, nuanced expression close to an educated native speaker.']
+];
+function buildCEFR(){
+  const s=$('#cefrSvg');let h='<line x1="40" x2="600" y1="250" y2="250" stroke="var(--line)" stroke-width="2"/>';
+  CEFR.forEach((c,i)=>{const x=50+i*92,hh=40+i*36,y=250-hh;
+    h+=`<g class="bar" data-i="${i}" tabindex="0" role="button" aria-label="${c[0]} ${c[1]}"><rect class="grow" style="animation-delay:${i*.12}s" x="${x}" y="${y}" width="78" height="${hh}" rx="12" fill="${c[3]}"/><text class="lvl" x="${x+39}" y="${y+28}" text-anchor="middle">${c[0]}</text><text class="hrs" x="${x+39}" y="270" text-anchor="middle">${c[2]}</text><text class="hrs" x="${x+39}" y="286" text-anchor="middle" style="font-weight:700">${c[1].split(' ')[0]}</text></g>`;});
+  h+=`<text class="hrs" x="50" y="28" style="font-size:12px;font-weight:700;fill:var(--terra)">ΠΙΣΤΟΠΟΙΗΣΗ ΕΛΛΗΝΟΜΑΘΕΙΑΣ · Certificate of Attainment in Greek, A1 → C2</text>`;
+  h+=`<path d="M60 52 C200 40 420 30 590 40" fill="none" stroke="var(--gold)" stroke-width="2" stroke-dasharray="5 5"/><path d="M584 34 L594 40 L584 46" fill="none" stroke="var(--gold)" stroke-width="2"/>`;
+  h+=`<text class="hrs" x="60" y="70">Basic user</text><text class="hrs" x="240" y="70">Independent user</text><text class="hrs" x="430" y="70">Proficient user</text>`;
+  s.innerHTML=h;
+  const sel=i=>{$$('#cefrSvg .bar').forEach(b=>b.classList.toggle('sel',+b.getAttribute('data-i')===i));const c=CEFR[i];$('#cefrInfo').innerHTML=`<div class="eyebrow" style="margin:0">${c[0]} · ${c[1]}</div><h3 style="color:${c[3]}">${c[0]}</h3><p>${c[4]}</p><p class="small muted">Approx. cumulative study time: <strong>${c[2]}</strong>. Ellinomatheia exam available at this level${i===0?' (also an A1 version for children aged 8–12)':''}.</p>`;};
+  s.addEventListener('click',e=>{const b=e.target.closest('.bar');if(b)sel(+b.getAttribute('data-i'));});
+  s.addEventListener('keydown',e=>{const b=e.target.closest&&e.target.closest('.bar');if(b&&(e.key==='Enter'||e.key===' ')){e.preventDefault();sel(+b.getAttribute('data-i'));}});
+  sel(0);
+}
+buildCEFR();
+
+/* ---------- resources ---------- */
+const RES=[
+ ['Official','Centre for the Greek Language','The Greek state\'s language centre: the Ellinomatheia exams, sample papers, the free “Greek for Beginners” style learning materials and online dictionaries.','https://www.greek-language.gr/'],
+ ['App','Duolingo — Greek','Free, gamified daily practice. A good habit-builder alongside this page.','https://www.duolingo.com/course/el/en/Learn-Greek'],
+ ['App','Memrise','Spaced-repetition vocabulary with native-speaker video clips.','https://www.memrise.com/'],
+ ['Podcast','GreekPod101','Audio and video lessons from absolute beginner upward, with a free tier.','https://www.greekpod101.com/'],
+ ['Listening','ERT News (ertnews.gr)','Greece\'s public broadcaster: news, radio and video. Aim to follow it at B1–B2.','https://www.ertnews.gr/'],
+ ['Pronunciation','Forvo','Hear almost any Greek word pronounced by native speakers.','https://forvo.com/languages/el/'],
+ ['Ancient','Perseus Digital Library','Free Greek texts (Homer, Plato, the New Testament) with clickable morphology and translations.','https://www.perseus.tufts.edu/hopper/'],
+ ['Ancient','Logeion','Look up any Ancient Greek word across the great dictionaries (LSJ, Middle Liddell, and more).','https://logeion.uchicago.edu/'],
+ ['Ancient','Textkit','Free public-domain Greek grammars and readers, plus a friendly forum of learners.','https://www.textkit.com/'],
+ ['Textbook','Athenaze (Oxford University Press)','A beloved reading-based course in Ancient Greek, following an Athenian farmer\'s family.','https://global.oup.com/'],
+ ['Textbook','Reading Greek (JACT, Cambridge)','The Joint Association of Classical Teachers\' classic course: real Athenian texts from early on.','https://www.cambridge.org/'],
+ ['Reference','Wiktionary — Greek','Declension and conjugation tables for Modern and Ancient Greek words.','https://en.wiktionary.org/wiki/Category:Greek_language']
+];
+$('#res').innerHTML=RES.map(r=>`<a class="card resc reveal" href="${r[3]}" target="_blank" rel="noopener noreferrer"><span class="tag">${esc(r[0])}</span><h4>${esc(r[1])} ↗</h4><p>${esc(r[2])}</p></a>`).join('');
+
+/* ---------- scroll: progress bar, active nav, reveal, visited ---------- */
+const sb=$('#scrollbar');
+function onScroll(){const h=document.documentElement;const max=h.scrollHeight-h.clientHeight;sb.style.width=(max>0?h.scrollTop/max*100:0)+'%';}
+window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+const navMap={};$$('#navlinks a').forEach(a=>{navMap[a.getAttribute('href').slice(1)]=a;});
+const navAlias={confusing:'alphabet',evolution:'alphabet',where:'ancient'};
+function markVisited(id){if(!visited.has(id)){visited.add(id);store.set('lg-visited',Array.from(visited));renderProgress();}}
+if('IntersectionObserver' in window){
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.12});
+  $$('.reveal').forEach(el=>io.observe(el));
+  const so=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){const id=e.target.id;markVisited(id);const k=navMap[id]?id:navAlias[id];$$('#navlinks a').forEach(a=>a.classList.toggle('active',a===navMap[k]));}}),{rootMargin:'-45% 0px -50% 0px'});
+  SECTIONS.forEach(s=>so.observe(s));
+  const st=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){$$('#strokes .sdemo').forEach((el,i)=>setTimeout(()=>playStroke(el),reduceMotion?0:i*450));st.disconnect();}}),{threshold:.4});
+  st.observe($('#strokes'));
+}else{
+  $$('.reveal').forEach(el=>el.classList.add('in'));
+}
+
+/* ---------- init ---------- */
+renderABC();renderProgress();refreshQuizSettings();
+window.__learnGreek={LETTERS,toGreekNum,speak,newQ,answerOpt,checkTyped,flipFc,answerFc,Q,getProgress:()=>PR,confetti,openModal,closeModal,buildChar,BSEL,decode};
+})();
+</script>
+</body>
+</html>
